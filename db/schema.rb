@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201212727) do
+ActiveRecord::Schema.define(version: 20150201222843) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_packages", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "package_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "category_packages", ["category_id"], name: "index_category_packages_on_category_id"
+  add_index "category_packages", ["package_id"], name: "index_category_packages_on_package_id"
 
   create_table "evaluations", force: :cascade do |t|
     t.integer  "metric_id"

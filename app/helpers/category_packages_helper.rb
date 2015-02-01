@@ -1,0 +1,2 @@
+module CategoryPackagesHelper
+end

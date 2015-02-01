@@ -17,3 +17,8 @@ Metric.create(
   name: 'Readme',
   description: 'Is there a complete readme covering topics pertinant to a new user?'
 )
+
+Category.destroy_all
+
+Category.create(name: 'authentication')
+Category.create(name: 'ui components')
