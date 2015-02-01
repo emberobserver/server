@@ -11,7 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201203902) do
+ActiveRecord::Schema.define(version: 20150201211750) do
+
+  create_table "api_metrics", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "details"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "api_reviews", force: :cascade do |t|
+    t.integer  "package_id"
+    t.string   "version"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "api_reviews", ["package_id"], name: "index_api_reviews_on_package_id"
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer  "metric_id"
+    t.integer  "review_id"
+    t.float    "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "evaluations", ["metric_id"], name: "index_evaluations_on_metric_id"
+  add_index "evaluations", ["review_id"], name: "index_evaluations_on_review_id"
 
   create_table "packages", force: :cascade do |t|
     t.string   "name"

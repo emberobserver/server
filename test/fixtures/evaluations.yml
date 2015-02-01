@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  metric_id: 
+  review_id: 
+  score: 1.5
+
+two:
+  metric_id: 
+  review_id: 
+  score: 1.5
