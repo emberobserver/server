@@ -11,25 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201211750) do
-
-  create_table "api_metrics", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.text     "details"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "api_reviews", force: :cascade do |t|
-    t.integer  "package_id"
-    t.string   "version"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "api_reviews", ["package_id"], name: "index_api_reviews_on_package_id"
+ActiveRecord::Schema.define(version: 20150201212727) do
 
   create_table "evaluations", force: :cascade do |t|
     t.integer  "metric_id"
@@ -42,6 +24,14 @@ ActiveRecord::Schema.define(version: 20150201211750) do
   add_index "evaluations", ["metric_id"], name: "index_evaluations_on_metric_id"
   add_index "evaluations", ["review_id"], name: "index_evaluations_on_review_id"
 
+  create_table "metrics", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.text     "details"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "packages", force: :cascade do |t|
     t.string   "name"
     t.string   "npmjs_url"
@@ -49,5 +39,15 @@ ActiveRecord::Schema.define(version: 20150201211750) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "package_id"
+    t.string   "version"
+    t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["package_id"], name: "index_reviews_on_package_id"
 
 end

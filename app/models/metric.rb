@@ -1,3 +1,3 @@
-class API::Metric < ActiveRecord::Base
+class Metric < ActiveRecord::Base
   has_many :evaluations
 end

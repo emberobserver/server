@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
-  resources :evaluations
-
-  namespace :api do
-    resources :metrics
-  end
-
-  namespace :api do
-    resources :reviews
-  end
-
   namespace :api, defaults: {format: :json} do
     resources :packages
+    resources :metrics
+    resources :reviews
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
