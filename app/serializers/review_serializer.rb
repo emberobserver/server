@@ -1,4 +1,4 @@
-class API::ReviewSerializer < ActiveModel::Serializer
+class ReviewSerializer < ActiveModel::Serializer
   attributes :id, :version, :body
   has_one :package
 end

@@ -1,4 +1,4 @@
-class API::PackagesController < ApplicationController
+class PackagesController < ApplicationController
   def index
     @packages = Package.all
     render json: @packages

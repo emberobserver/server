@@ -1,4 +1,4 @@
-class API::MetricsController < ApplicationController
+class MetricsController < ApplicationController
   def index
     @metrics = Metric.all
     render json: @metrics

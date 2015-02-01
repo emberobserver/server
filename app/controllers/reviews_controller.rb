@@ -1,2 +1,2 @@
-class API::ReviewsController < ApplicationController
+class ReviewsController < ApplicationController
 end
