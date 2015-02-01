@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Metric.destroy_all
+
+Metric.create(
+  name: 'Tests',
+  description: 'Are tests thorough and robust?'
+)
+
+Metric.create(
+  name: 'Readme',
+  description: 'Is there a complete readme covering topics pertinant to a new user?'
+)
