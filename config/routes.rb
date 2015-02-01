@@ -3,6 +3,6 @@ Rails.application.routes.draw do
     resources :evaluations
     resources :metrics
     resources :reviews
-    resources :package
+    resources :packages
   end
 end
