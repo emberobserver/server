@@ -1,2 +1,0 @@
-module API::ReviewsHelper
-end
