@@ -5,7 +5,7 @@
 #  id             :integer          not null, primary key
 #  name           :string
 #  npmjs_url      :string
-#  github_url     :string
+#  repository_url :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  latest_version :string
