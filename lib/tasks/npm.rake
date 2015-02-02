@@ -14,8 +14,10 @@ namespace :npm do
       name = addon['name']
 
       package = Package.find_or_initialize_by(name: name)
+      latest_version = addon['latest']['version']
       package.update(
-        latest_version: addon['latest']['version'],
+        latest_version: latest_version,
+        latest_version_date: addon['time'] ? addon['time'][ latest_version ] : nil,
         description: addon['description'],
         license: addon['license']
       )
