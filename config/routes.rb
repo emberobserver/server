@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :packages
     resources :categories
+
+    post :auth, to: 'auth#create'
   end
 end
