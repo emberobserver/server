@@ -1,4 +1,0 @@
-README
-======
-
-To manually update packages, run `rake npm:update`.
