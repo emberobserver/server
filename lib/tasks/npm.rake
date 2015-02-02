@@ -1,7 +1,9 @@
 namespace :npm do
-  task update: :environment do
-    system('nodejs ./npm-fetch/fetch.js');
+  task fetch: :environment do
+    sh 'node ./npm-fetch/fetch.js'
+  end
 
+  task update: [ :environment, 'npm:fetch' ] do
     begin
       addons = ActiveSupport::JSON.decode(File.read('./addons.json'))
 
