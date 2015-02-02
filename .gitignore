@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+/npm-fetch/node_modules/
+/addons.json
