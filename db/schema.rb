@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202032604) do
+ActiveRecord::Schema.define(version: 20150202034728) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -49,6 +49,29 @@ ActiveRecord::Schema.define(version: 20150202032604) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "npm_keywords", force: :cascade do |t|
+    t.string   "keyword"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "npm_users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "package_maintainers", id: false, force: :cascade do |t|
+    t.integer "package_id"
+    t.integer "npm_user_id"
+  end
+
+  create_table "package_npm_keywords", id: false, force: :cascade do |t|
+    t.integer "package_id"
+    t.integer "npm_keyword_id"
+  end
+
   create_table "packages", force: :cascade do |t|
     t.string   "name"
     t.string   "npmjs_url"
@@ -57,6 +80,8 @@ ActiveRecord::Schema.define(version: 20150202032604) do
     t.datetime "updated_at",     null: false
     t.string   "latest_version"
     t.string   "description"
+    t.string   "license"
+    t.integer  "author_id"
   end
 
   create_table "reviews", force: :cascade do |t|

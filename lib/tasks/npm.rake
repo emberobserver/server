@@ -6,18 +6,43 @@ namespace :npm do
   task update: [ :environment, 'npm:fetch' ] do
     begin
       addons = ActiveSupport::JSON.decode(File.read('./addons.json'))
-
-      addons.each do |addon|
-        name = addon['latest']['name']
-
-        package = Package.find_or_initialize_by(name: name)
-        package.update!(
-          latest_version: addon['latest']['version'],
-          description: addon['latest']['description']
-        )
-      end
     rescue ActiveSupport::JSON.parse_error
-      puts "Invalid json in file"
+      raise "Invalid JSON in addons.json file"
+    end
+
+    addons.each do |addon|
+      name = addon['name']
+
+      package = Package.find_or_initialize_by(name: name)
+      package.update(
+        latest_version: addon['latest']['version'],
+        description: addon['description'],
+        license: addon['license']
+      )
+
+      npm_author = addon['author']
+      if npm_author
+        author = NpmUser.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
+        if author != package.author
+          package.author = author
+        end
+      else
+        package.author = nil
+      end
+
+      package.npm_keywords.clear
+      addon['keywords'].each do |keyword|
+        npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
+        package.npm_keywords << npm_keyword
+      end
+
+      package.maintainers.clear
+      addon['maintainers'].each do |maintainer|
+        npm_user = NpmUser.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
+        package.maintainers << npm_user
+      end
+
+      package.save
     end
   end
 end
