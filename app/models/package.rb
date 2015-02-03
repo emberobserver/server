@@ -2,14 +2,16 @@
 #
 # Table name: packages
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  npmjs_url      :string
-#  repository_url :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  latest_version :string
-#  description    :string
+#  id                  :integer          not null, primary key
+#  name                :string
+#  repository_url      :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  latest_version      :string
+#  description         :string
+#  license             :string
+#  author_id           :integer
+#  latest_version_date :datetime
 #
 
 class Package < ActiveRecord::Base
