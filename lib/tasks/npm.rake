@@ -46,7 +46,7 @@ namespace :npm do
         package.maintainers << npm_user
       end
 
-      package.save
+      package.save!
     end
   end
 end
