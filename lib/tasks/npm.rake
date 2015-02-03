@@ -20,8 +20,7 @@ namespace :npm do
         latest_version_date: addon['time'] ? addon['time'][ latest_version ] : nil,
         description: addon['description'],
         license: addon['license'],
-        repository_url: addon['repository']['url'],
-        npmjs_url: "https://www.npmjs.com/package/#{addon['name']}"
+        repository_url: addon['repository']['url']
       )
 
       npm_author = addon['author']
