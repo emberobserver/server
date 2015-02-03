@@ -2,13 +2,13 @@ class PackagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @packages = Package.all
-    render json: @packages
+    packages = Package.all
+    render json: packages
   end
 
   def show
-    @package = Package.find(params[:id])
-    render json: @package
+    package = Package.find(params[:id])
+    render json: package
   end
 
   #TODO: Secure this for admin only
