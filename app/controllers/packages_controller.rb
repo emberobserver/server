@@ -1,5 +1,6 @@
 class PackagesController < ApplicationController
   skip_before_filter :verify_authenticity_token
+  before_action :authenticate, only: [:update]
 
   def index
     packages = Package.all

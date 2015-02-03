@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :packages
     resources :categories
 
-    post :auth, to: 'auth#create'
+    scope :authentication do
+      post :login, to: 'auth#login'
+      post :logout, to: 'auth#logout'
+    end
   end
 end
