@@ -1,3 +1,3 @@
-class MetricSerializer < ActiveModel::Serializer
+class MetricSerializer < ApplicationSerializer
   attributes :id, :name, :description, :details
 end
