@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :packages
     resources :categories
+    resources :keywords
 
     scope :authentication do
       post :login, to: 'auth#login'
