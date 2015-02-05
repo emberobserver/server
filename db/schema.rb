@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205213934) do
+ActiveRecord::Schema.define(version: 20150205214257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20150205213934) do
   create_table "package_npm_keywords", id: false, force: :cascade do |t|
     t.integer "package_id"
     t.integer "npm_keyword_id"
+  end
+
+  create_table "package_versions", force: :cascade do |t|
+    t.integer  "package_id"
+    t.string   "version"
+    t.datetime "released"
   end
 
   create_table "packages", force: :cascade do |t|
