@@ -2,7 +2,7 @@
 lock '3.3.5'
 
 set :application, 'ember-addon-review-server'
-set :repo_url, 'git@github.com:kategengler/ember-addon-review-server.git'
+set :repo_url, 'git@github.com:pgengler/ember-addon-review-server.git'
 
 set :deploy_to, '/srv/app/ember-addon-review/server'
 
