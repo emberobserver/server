@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/.capistrano
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -16,6 +17,6 @@
 !/log/.keep
 /tmp
 
-/npm-fetch/node_modules/
+/node_modules/
 /addons.json
 npm-debug.log
