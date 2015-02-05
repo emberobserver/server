@@ -12,6 +12,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'node_modules', 'tm
 set :ssh_options, { forward_agent: true }
 
 namespace :deploy do
+  after :updated, 'deploy:npm:install'
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do

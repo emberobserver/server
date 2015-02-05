@@ -3,8 +3,8 @@ namespace :deploy do
 		desc "Install NPM modules"
 		task :install do
 			on roles(:app) do
-				within "#{current_path}" do
-					execute "npm install"
+				within release_path do
+					execute :npm, "install"
 				end
 			end
 		end
