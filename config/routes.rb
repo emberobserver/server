@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :keywords
     get 'package_versions/:id', to: 'package_versions#show'
+    get 'reviews/:id', to: 'reviews#show'
 
     scope :authentication do
       post :login, to: 'auth#login'
