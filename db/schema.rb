@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203055036) do
+ActiveRecord::Schema.define(version: 20150205213934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,25 +32,6 @@ ActiveRecord::Schema.define(version: 20150203055036) do
 
   add_index "category_packages", ["category_id"], name: "index_category_packages_on_category_id", using: :btree
   add_index "category_packages", ["package_id"], name: "index_category_packages_on_package_id", using: :btree
-
-  create_table "evaluations", force: :cascade do |t|
-    t.integer  "metric_id"
-    t.integer  "review_id"
-    t.float    "score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "evaluations", ["metric_id"], name: "index_evaluations_on_metric_id", using: :btree
-  add_index "evaluations", ["review_id"], name: "index_evaluations_on_review_id", using: :btree
-
-  create_table "metrics", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.text     "details"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
 
   create_table "npm_keywords", force: :cascade do |t|
     t.string   "keyword"
@@ -86,16 +67,6 @@ ActiveRecord::Schema.define(version: 20150203055036) do
     t.integer  "author_id"
     t.datetime "latest_version_date"
   end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer  "package_id"
-    t.string   "version"
-    t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "reviews", ["package_id"], name: "index_reviews_on_package_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
