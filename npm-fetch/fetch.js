@@ -72,7 +72,7 @@ var fetchByKeywordDetailed = function() {
 }
 
 fetchByKeywordDetailed().then(function(data) {
-  var outputFilename = './addons.json';
+  var outputFilename = '/tmp/addons.json';
 
   fs.writeFile(outputFilename, JSON.stringify(data, null, 2), function(err) {
     if (err) {

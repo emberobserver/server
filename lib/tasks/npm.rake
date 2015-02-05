@@ -5,7 +5,7 @@ namespace :npm do
 
   task update: [ :environment, 'npm:fetch' ] do
     begin
-      addons = ActiveSupport::JSON.decode(File.read('./addons.json'))
+      addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
     rescue ActiveSupport::JSON.parse_error
       raise "Invalid JSON in addons.json file"
     end
