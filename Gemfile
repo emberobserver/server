@@ -24,8 +24,7 @@ gem 'whenever', require: false
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -45,4 +44,5 @@ group :development do
 	gem 'capistrano-rails'
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler'
+	gem 'capistrano3-puma'
 end
