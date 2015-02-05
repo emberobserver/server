@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150203055036) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150203055036) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "category_packages", ["category_id"], name: "index_category_packages_on_category_id"
-  add_index "category_packages", ["package_id"], name: "index_category_packages_on_package_id"
+  add_index "category_packages", ["category_id"], name: "index_category_packages_on_category_id", using: :btree
+  add_index "category_packages", ["package_id"], name: "index_category_packages_on_package_id", using: :btree
 
   create_table "evaluations", force: :cascade do |t|
     t.integer  "metric_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 20150203055036) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "evaluations", ["metric_id"], name: "index_evaluations_on_metric_id"
-  add_index "evaluations", ["review_id"], name: "index_evaluations_on_review_id"
+  add_index "evaluations", ["metric_id"], name: "index_evaluations_on_metric_id", using: :btree
+  add_index "evaluations", ["review_id"], name: "index_evaluations_on_review_id", using: :btree
 
   create_table "metrics", force: :cascade do |t|
     t.string   "name"
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150203055036) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "reviews", ["package_id"], name: "index_reviews_on_package_id"
+  add_index "reviews", ["package_id"], name: "index_reviews_on_package_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
