@@ -47,12 +47,16 @@ namespace :npm do
 
       package.package_versions.clear
       addon['versions'].each do |version, data|
-        package_version = PackageVersion.find_or_create_by(
+        package_version = PackageVersion.where(
           package_id: package.id,
           version: version
-        )
-        package_version.released = addon['time'][version]
-        package_version.save!
+        ).first
+        unless package_version
+          package_version = package.package_versions.create(
+            version: version,
+            released: addon['time'][version]
+          )
+        end
         package.package_versions << package_version
       end
 
