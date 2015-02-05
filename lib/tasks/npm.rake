@@ -45,6 +45,17 @@ namespace :npm do
         package.maintainers << npm_user
       end
 
+      package.package_versions.clear
+      addon['versions'].each do |version, data|
+        package_version = PackageVersion.find_or_create_by(
+          package_id: package.id,
+          version: version
+        )
+        package_version.released = addon['time'][version]
+        package_version.save!
+        package.package_versions << package_version
+      end
+
       package.save!
     end
   end
