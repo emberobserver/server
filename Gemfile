@@ -42,3 +42,9 @@ group :development, :test do
 end
 
 gem 'annotate'
+group :development do
+	gem 'capistrano', '~> 3.0'
+	gem 'capistrano-rails'
+	gem 'capistrano-rvm'
+	gem 'capistrano-bundler'
+end
