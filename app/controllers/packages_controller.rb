@@ -4,7 +4,7 @@ class PackagesController < ApplicationController
 
   def index
     packages = Package.includes(:package_versions).all
-    render json: packages, each_serializer: PackagesSerializer
+    render json: packages
   end
 
   def show
