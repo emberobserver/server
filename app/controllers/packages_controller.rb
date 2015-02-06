@@ -3,12 +3,12 @@ class PackagesController < ApplicationController
   before_action :authenticate, only: [:update]
 
   def index
-    packages = Package.all
-    render json: packages
+    packages = Package.includes(:package_versions).all
+    render json: packages, each_serializer: PackagesSerializer
   end
 
   def show
-    package = Package.find(params[:id])
+    package = Package.includes(:package_versions).find(params[:id])
     render json: package
   end
 
