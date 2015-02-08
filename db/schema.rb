@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205231006) do
+ActiveRecord::Schema.define(version: 20150208071229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addon_maintainers", id: false, force: :cascade do |t|
+    t.integer "addon_id"
+    t.integer "npm_user_id"
+  end
+
+  create_table "addon_npm_keywords", id: false, force: :cascade do |t|
+    t.integer "addon_id"
+    t.integer "npm_keyword_id"
+  end
+
+  create_table "addon_versions", force: :cascade do |t|
+    t.integer  "addon_id"
+    t.string   "version"
+    t.datetime "released"
+  end
+
+  create_table "addons", force: :cascade do |t|
+    t.string   "name"
+    t.string   "repository_url"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "latest_version"
+    t.string   "description"
+    t.string   "license"
+    t.integer  "author_id"
+    t.datetime "latest_version_date"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -23,15 +51,15 @@ ActiveRecord::Schema.define(version: 20150205231006) do
     t.text     "description"
   end
 
-  create_table "category_packages", force: :cascade do |t|
+  create_table "category_addons", force: :cascade do |t|
     t.integer  "category_id"
-    t.integer  "package_id"
+    t.integer  "addon_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "category_packages", ["category_id"], name: "index_category_packages_on_category_id", using: :btree
-  add_index "category_packages", ["package_id"], name: "index_category_packages_on_package_id", using: :btree
+  add_index "category_addons", ["addon_id"], name: "index_category_addons_on_addon_id", using: :btree
+  add_index "category_addons", ["category_id"], name: "index_category_addons_on_category_id", using: :btree
 
   create_table "npm_keywords", force: :cascade do |t|
     t.string   "keyword"
@@ -46,34 +74,6 @@ ActiveRecord::Schema.define(version: 20150205231006) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "package_maintainers", id: false, force: :cascade do |t|
-    t.integer "package_id"
-    t.integer "npm_user_id"
-  end
-
-  create_table "package_npm_keywords", id: false, force: :cascade do |t|
-    t.integer "package_id"
-    t.integer "npm_keyword_id"
-  end
-
-  create_table "package_versions", force: :cascade do |t|
-    t.integer  "package_id"
-    t.string   "version"
-    t.datetime "released"
-  end
-
-  create_table "packages", force: :cascade do |t|
-    t.string   "name"
-    t.string   "repository_url"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "latest_version"
-    t.string   "description"
-    t.string   "license"
-    t.integer  "author_id"
-    t.datetime "latest_version_date"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer  "has_tests"
     t.integer  "has_readme"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150205231006) do
     t.integer  "more_than_a_shell"
     t.integer  "substantive_functionality"
     t.text     "review"
-    t.integer  "package_version_id",        null: false
+    t.integer  "addon_version_id",          null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

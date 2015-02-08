@@ -1,4 +1,4 @@
 class CategorySerializer < ApplicationSerializer
   attributes :id, :name, :description
-  has_many :packages
+  has_many :addons
 end

@@ -13,7 +13,7 @@ namespace :npm do
     addons.each do |addon|
       name = addon['name']
 
-      package = Package.find_or_initialize_by(name: name)
+      package = Addon.find_or_initialize_by(name: name)
       latest_version = addon['latest']['version']
       package.update(
         latest_version: latest_version,
@@ -47,7 +47,7 @@ namespace :npm do
 
       package.package_versions.clear
       addon['versions'].each do |version, data|
-        package_version = PackageVersion.where(
+        package_version = AddonVersion.where(
           package_id: package.id,
           version: version
         ).first

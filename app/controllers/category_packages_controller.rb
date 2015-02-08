@@ -1,2 +1,0 @@
-class CategoryPackagesController < ApplicationController
-end

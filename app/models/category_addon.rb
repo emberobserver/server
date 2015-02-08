@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: category_packages
+# Table name: category_addons
 #
 #  id          :integer          not null, primary key
 #  category_id :integer
-#  package_id  :integer
+#  addon_id    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class CategoryPackage < ActiveRecord::Base
+class CategoryAddon < ActiveRecord::Base
   belongs_to :category
-  belongs_to :package
+  belongs_to :addon
 end

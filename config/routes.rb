@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  resources :category_packages
-
   scope :api, defaults: { format: :json } do
-    resources :packages
+    resources :addons
     resources :categories
     resources :keywords
-    get 'package_versions/:id', to: 'package_versions#show'
+    get 'addon_versions/:id', to: 'addon_versions#show'
     get 'reviews/:id', to: 'reviews#show'
 
     scope :authentication do

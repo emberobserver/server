@@ -10,6 +10,6 @@
 #
 
 class Category < ActiveRecord::Base
-  has_many :category_packages
-  has_many :packages, through: :category_packages
+  has_many :category_addons
+  has_many :addons, through: :category_addons
 end
