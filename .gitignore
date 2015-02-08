@@ -20,3 +20,4 @@
 /node_modules/
 /addons.json
 npm-debug.log
+npm-fetch/node_modules
