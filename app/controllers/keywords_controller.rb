@@ -1,6 +1,11 @@
 class KeywordsController < ApplicationController
   def index
-    keywords = NpmKeyword.all
+    if params[:addon_id]
+      keywords = Addon.find(params[:addon_id]).npm_keywords
+    else
+      keywords = NpmKeyword.all
+    end
+
     render json: keywords
   end
 

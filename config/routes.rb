@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :addons
     resources :categories
     resources :keywords
-    get 'addon_versions/:id', to: 'addon_versions#show'
+    resources :versions, only: [:show, :index]
     get 'reviews/:id', to: 'reviews#show'
 
     scope :authentication do
