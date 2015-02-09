@@ -10,57 +10,57 @@ namespace :npm do
       raise "Invalid JSON in addons.json file"
     end
 
-    addons.each do |addon|
-      name = addon['name']
+    addons.each do |metadata|
+      name = metadata['name']
 
-      package = Addon.find_or_initialize_by(name: name)
-      latest_version = addon['latest']['version']
-      package.update(
+      addon = Addon.find_or_initialize_by(name: name)
+      latest_version = metadata['latest']['version']
+      addon.update(
         latest_version: latest_version,
-        latest_version_date: addon['time'] ? addon['time'][ latest_version ] : nil,
-        description: addon['description'],
-        license: addon['license'],
-        repository_url: addon['repository']['url']
+        latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
+        description: metadata['description'],
+        license: metadata['license'],
+        repository_url: metadata['repository']['url']
       )
 
-      npm_author = addon['author']
+      npm_author = metadata['author']
       if npm_author
         author = NpmUser.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
-        if author != package.author
-          package.author = author
+        if author != addon.author
+          addon.author = author
         end
       else
-        package.author = nil
+        addon.author = nil
       end
 
-      package.npm_keywords.clear
-      addon['keywords'].each do |keyword|
+      addon.npm_keywords.clear
+      metadata['keywords'].each do |keyword|
         npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
-        package.npm_keywords << npm_keyword
+        addon.npm_keywords << npm_keyword
       end
 
-      package.maintainers.clear
-      addon['maintainers'].each do |maintainer|
+      addon.maintainers.clear
+      metadata['maintainers'].each do |maintainer|
         npm_user = NpmUser.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
-        package.maintainers << npm_user
+        addon.maintainers << npm_user
       end
 
-      package.package_versions.clear
-      addon['versions'].each do |version, data|
-        package_version = AddonVersion.where(
-          package_id: package.id,
+      addon.addon_versions.clear
+      metadata['versions'].each do |version, data|
+        addon_version = AddonVersion.where(
+          addon_id: addon.id,
           version: version
         ).first
-        unless package_version
-          package_version = package.package_versions.create(
+        unless addon_version
+          addon_version = addon.addon_versions.create(
             version: version,
-            released: addon['time'][version]
+            released: metadata['time'][version]
           )
         end
-        package.package_versions << package_version
+        addon.addon_versions << addon_version
       end
 
-      package.save!
+      addon.save!
     end
   end
 end
