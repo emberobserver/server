@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :keywords
     resources :versions, only: [:show, :index]
-    get 'reviews/:id', to: 'reviews#show'
+    resources :reviews, only: [:show, :create]
 
     scope :authentication do
       post :login, to: 'auth#login'

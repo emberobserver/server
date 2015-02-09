@@ -12,7 +12,6 @@ class AddonsController < ApplicationController
     render json: addon
   end
 
-  #TODO: Secure this for admin only
   def update
     addon = Addon.find(params[:id])
     addon.update({category_ids: params[:addon][:categories]})
