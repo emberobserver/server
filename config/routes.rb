@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :keywords
     resources :versions, only: [:show, :index]
     resources :reviews, only: [:show, :create]
+    resources :maintainers, only: [:index]
 
     scope :authentication do
       post :login, to: 'auth#login'

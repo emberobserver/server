@@ -42,6 +42,10 @@ namespace :npm do
       addon.maintainers.clear
       metadata['maintainers'].each do |maintainer|
         npm_user = NpmUser.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
+        if maintainer['gravatar_id']
+          npm_user.gravatar = maintainer['gravatar_id']
+          npm_user.save
+        end
         addon.maintainers << npm_user
       end
 
