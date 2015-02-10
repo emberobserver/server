@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :keywords
     resources :versions, only: [:show, :index]
-    resources :reviews, only: [:show, :create]
+    resources :reviews, only: [:show, :create, :index]
     resources :maintainers, only: [:index]
 
     scope :authentication do
