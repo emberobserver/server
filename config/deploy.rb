@@ -1,10 +1,10 @@
 # config valid only for current version of Capistrano
 lock '3.3.5'
 
-set :application, 'ember-addon-review-server'
-set :repo_url, 'git@github.com:pgengler/ember-addon-review-server.git'
+set :application, 'ember-site-server'
+set :repo_url, 'git@github.com:kategengler/ember-addon-review-server.git'
 
-set :deploy_to, '/srv/app/ember-addon-review/server'
+set :deploy_to, '/srv/app/ember-site/server'
 
 set :linked_files, %w{ .env }
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'node_modules', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
