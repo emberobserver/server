@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:kategengler/ember-addon-review-server.git'
 set :deploy_to, '/srv/app/ember-site/server'
 
 set :linked_files, %w{ .env }
-set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'node_modules', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'node_modules', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 set :ssh_options, { forward_agent: true }
 
