@@ -13,6 +13,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'puma'
 
+gem "bugsnag"
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

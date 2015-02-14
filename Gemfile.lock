@@ -45,6 +45,8 @@ GEM
     bcrypt (3.1.7)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bugsnag (2.7.1)
+      multi_json (~> 1.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -166,6 +168,7 @@ DEPENDENCIES
   active_model_serializers
   annotate
   bcrypt (~> 3.1.7)
+  bugsnag
   byebug
   capistrano (~> 3.0)
   capistrano-bundler
