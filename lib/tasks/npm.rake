@@ -3,6 +3,13 @@ namespace :npm do
     sh 'node ./npm-fetch/fetch.js'
   end
 
+  task fetch_addon_info: [ 'npm:update' ] do
+    if Rails.env.production?
+      snitch_url = ENV['FETCH_SNITCH_URL']
+      sh "curl #{snitch_url}"
+    end
+  end
+
   task update: [ :environment, 'npm:fetch' ] do
     begin
       addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
