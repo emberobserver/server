@@ -56,19 +56,19 @@ namespace :npm do
         addon.maintainers << npm_user
       end
 
-      addon.addon_versions.clear
+      current_versions = metadata['versions'].keys
+      addon.addon_versions = AddonVersion.where(addon_id: addon.id, version: current_versions)
+
       metadata['versions'].each do |version, data|
-        addon_version = AddonVersion.where(
-          addon_id: addon.id,
-          version: version
-        ).first
+        addon_version = addon.addon_versions.where(version: version).first
         unless addon_version
-          addon_version = addon.addon_versions.create(
+          new_addon_version = AddonVersion.find_or_create_by(
+            addon: addon,
             version: version,
             released: metadata['time'][version]
           )
+          addon.addon_versions << new_addon_version
         end
-        addon.addon_versions << addon_version
       end
 
       addon.save!

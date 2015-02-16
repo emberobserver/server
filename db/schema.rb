@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210031910) do
+ActiveRecord::Schema.define(version: 20150216022826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150210031910) do
     t.integer  "addon_id"
     t.string   "version"
     t.datetime "released"
+    t.string   "addon_name"
   end
 
   create_table "addons", force: :cascade do |t|
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150210031910) do
     t.integer  "is_open_source"
     t.integer  "uses_only_public_apis"
     t.integer  "has_build"
+    t.string   "addon_name"
   end
 
   create_table "users", force: :cascade do |t|

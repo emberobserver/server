@@ -17,4 +17,11 @@
 
 class Review < ActiveRecord::Base
 	belongs_to :addon_version
+
+
+  before_create :set_addon_name
+
+  def set_addon_name
+    self.addon_name = addon_version.addon_name
+  end
 end

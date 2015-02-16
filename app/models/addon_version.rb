@@ -11,4 +11,10 @@
 class AddonVersion < ActiveRecord::Base
 	belongs_to :addon
 	has_one :review
+
+  before_create :set_addon_name
+
+  def set_addon_name
+    self.addon_name = addon.name
+  end
 end
