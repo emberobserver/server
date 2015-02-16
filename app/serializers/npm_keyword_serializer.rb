@@ -1,4 +1,4 @@
 class NpmKeywordSerializer < ApplicationSerializer
   attributes :id, :keyword
-  has_many :addons, embed_in_root: false
+  has_many :addons, include: false
 end

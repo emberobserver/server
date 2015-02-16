@@ -1,7 +1,7 @@
 class KeywordsController < ApplicationController
   def index
     if params[:addon_id]
-      keywords = Addon.find(params[:addon_id]).npm_keywords
+      keywords = Addon.find(params[:addon_id]).npm_keywords.includes(:addons)
     else
       keywords = NpmKeyword.all
     end

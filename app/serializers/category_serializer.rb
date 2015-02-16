@@ -1,4 +1,4 @@
 class CategorySerializer < ApplicationSerializer
   attributes :id, :name, :description
-  has_many :addons, embed_in_root: false
+  has_many :addons, include: false
 end

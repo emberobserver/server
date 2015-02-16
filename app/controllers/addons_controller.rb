@@ -3,7 +3,7 @@ class AddonsController < ApplicationController
   before_action :authenticate, only: [:update]
 
   def index
-    addons = Addon.all
+    addons = Addon.includes(:maintainers).all
     render json: addons
   end
 

@@ -1,3 +1,3 @@
 class ApplicationSerializer < ActiveModel::Serializer
-  embed :ids, embed_in_root: true
+  embed :ids, include: true
 end
