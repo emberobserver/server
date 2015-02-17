@@ -26,5 +26,5 @@ every 12.hours do
 end
 
 every 1.day do
-  command_in_path "cd vendor/backup && bundle exec backup --config-file=./config.rb -t ember_observer"
+  command_in_dir "cd vendor/backup && bundle exec backup --config-file=./config.rb -t ember_observer"
 end
