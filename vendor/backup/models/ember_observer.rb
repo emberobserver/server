@@ -34,4 +34,12 @@ Model.new(:ember_observer, 'Description for ember_observer') do
   #
   compress_with Bzip2
 
+  notify_by Slack do |slack|
+    slack.on_success = true
+    slack.on_warning = true
+    slack.on_error = true
+
+    slack.webhook_url = 'https://hooks.slack.com/services/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'
+  end
+
 end
