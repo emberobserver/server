@@ -4,7 +4,8 @@ require 'dotenv'
 
 app_path="/srv/app/ember-site/server"
 Dotenv.load "#{app_path}/shared/.env"
-db_config=YAML.load_file("#{app_path}/current/config/database.yml")['production']
+db_config=YAML.load_file(ERB.new(File.read("#{app_path}/current/config/database.yml")).result)['production']
+
 ##
 # Backup Generated: ember_observer
 # Once configured, you can run the backup with the following command:
