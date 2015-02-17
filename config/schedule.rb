@@ -19,10 +19,12 @@
 
 # Learn more: http://github.com/javan/whenever
 
+job_type :command_in_dir, "cd :path && :task :output"
+
 every 12.hours do
   rake "npm:fetch_addon_info"
 end
 
 every 1.day do
-  command "cd vendor/backup && bundle exec backup --config-file=./config.rb -t ember_observer"
+  command_in_path "cd vendor/backup && bundle exec backup --config-file=./config.rb -t ember_observer"
 end
