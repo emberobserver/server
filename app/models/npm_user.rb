@@ -11,5 +11,6 @@
 #
 
 class NpmUser < ActiveRecord::Base
-  has_and_belongs_to_many :addons, join_table: 'addon_maintainers'
+  has_many :addon_maintainers
+  has_many :addons, through: :addon_maintainers
 end
