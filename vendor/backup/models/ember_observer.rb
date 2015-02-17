@@ -5,7 +5,7 @@ require 'dotenv'
 app_path="/srv/app/ember-site/server"
 Dotenv.load "#{app_path}/shared/.env"
 db_config=YAML.load(ERB.new(File.read("#{app_path}/current/config/database.yml")).result)['production']
-
+backup_config=YAML.load_file("#{app_path}/shared/backup.yml")
 ##
 # Backup Generated: ember_observer
 # Once configured, you can run the backup with the following command:
@@ -39,7 +39,7 @@ Model.new(:ember_observer, 'Description for ember_observer') do
     slack.on_warning = true
     slack.on_error = true
 
-    slack.webhook_url = 'https://hooks.slack.com/services/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'
+    slack.webhook_url = backup_config['slack_url']
   end
 
 end
