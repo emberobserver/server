@@ -16,10 +16,12 @@
 
 class Addon < ActiveRecord::Base
   has_many :addon_versions
+  has_many :addon_maintainers
+  has_many :addon_npm_keywords
 
   has_many :category_addons
   has_many :categories, through: :category_addons
   belongs_to :author, class_name: 'NpmUser'
-  has_and_belongs_to_many :npm_keywords, join_table: 'addon_npm_keywords'
-  has_and_belongs_to_many :maintainers, class_name: 'NpmUser', join_table: 'addon_maintainers'
+  has_many :npm_keywords, through: :addon_npm_keywords
+  has_many :maintainers, through: :addon_maintainers, source: :npm_user
 end

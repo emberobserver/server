@@ -9,5 +9,6 @@
 #
 
 class NpmKeyword < ActiveRecord::Base
-	has_and_belongs_to_many :addons, join_table: 'addon_npm_keywords'
+	has_many :addon_npm_keywords
+	has_many :addons, through: :addon_npm_keywords
 end

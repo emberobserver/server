@@ -2,10 +2,11 @@
 #
 # Table name: addon_versions
 #
-#  id       :integer          not null, primary key
-#  addon_id :integer
-#  version  :string
-#  released :datetime
+#  id         :integer          not null, primary key
+#  addon_id   :integer
+#  version    :string
+#  released   :datetime
+#  addon_name :string
 #
 
 class AddonVersion < ActiveRecord::Base
