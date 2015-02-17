@@ -1,8 +1,10 @@
 # encoding: utf-8
 
+require 'dotenv'
+
 app_path="/srv/app/ember-site/server"
 Dotenv.load "#{app_path}/shared/.env"
-db_config=YAML.load_file("#{app_path}/shared/config/database.yml")['production']
+db_config=YAML.load_file("#{app_path}/current/config/database.yml")['production']
 ##
 # Backup Generated: ember_observer
 # Once configured, you can run the backup with the following command:
@@ -15,10 +17,10 @@ db_config=YAML.load_file("#{app_path}/shared/config/database.yml")['production']
 Model.new(:ember_observer, 'Description for ember_observer') do
 
   database PostgreSQL do |db|
-    db.name               = db_config['database']
-    db.username           = db_config['username']
-    db.password           = db_config['password']
-    db.host               = db_config['host']
+    db.name     = db_config['database']
+    db.username = db_config['username']
+    db.password = db_config['password']
+    db.host     = db_config['host']
   end
 
   store_with Local do |local|
