@@ -21,7 +21,7 @@
 
 job_type :command_in_dir, "cd :path && :task :output"
 
-every 12.hours do
+every 1.hours do
   rake "npm:fetch_addon_info"
 end
 
