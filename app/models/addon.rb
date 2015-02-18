@@ -12,6 +12,11 @@
 #  license             :string
 #  author_id           :integer
 #  latest_version_date :datetime
+#  deprecated          :boolean
+#  note                :text
+#  official            :boolean
+#  cli_dependency      :boolean
+#  hidden              :boolean
 #
 
 class Addon < ActiveRecord::Base

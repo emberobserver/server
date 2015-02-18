@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216022826) do
+ActiveRecord::Schema.define(version: 20150218030606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,18 @@ ActiveRecord::Schema.define(version: 20150216022826) do
   create_table "addons", force: :cascade do |t|
     t.string   "name"
     t.string   "repository_url"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "latest_version"
     t.string   "description"
     t.string   "license"
     t.integer  "author_id"
     t.datetime "latest_version_date"
+    t.boolean  "deprecated",          default: false
+    t.text     "note"
+    t.boolean  "official",            default: false
+    t.boolean  "cli_dependency",      default: false
+    t.boolean  "hidden",              default: false
   end
 
   create_table "categories", force: :cascade do |t|
