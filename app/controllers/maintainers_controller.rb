@@ -8,4 +8,9 @@ class MaintainersController < ApplicationController
 
     render json: maintainers
   end
+
+  def show
+    maintainer = NpmUser.find(params[:id])
+    render json: maintainer
+  end
 end
