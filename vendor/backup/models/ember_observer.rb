@@ -37,7 +37,7 @@ Model.new(:ember_observer, 'Description for ember_observer') do
   notify_by Slack do |slack|
     slack.on_success = true
     slack.on_warning = true
-    slack.on_error = true
+    slack.on_failure = true
 
     slack.webhook_url = backup_config['slack_url']
   end
