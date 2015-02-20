@@ -13,7 +13,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'puma'
 
-gem "bugsnag"
+gem 'bugsnag'
+gem 'redis-rails'
 
 group :development, :test do
   gem 'byebug'
