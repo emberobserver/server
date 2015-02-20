@@ -3,7 +3,7 @@ class AddonSerializer < ApplicationSerializer
              :latest_version, :latest_version_date,
              :description, :license, :is_deprecated,
              :note, :is_official, :is_cli_dependency,
-             :is_hidden
+             :is_hidden, :is_new_addon
 
   has_many :maintainers
 
@@ -21,5 +21,9 @@ class AddonSerializer < ApplicationSerializer
 
   def is_hidden
     object.hidden
+  end
+
+  def is_new_addon
+    object.oldest_version.released > 2.weeks.ago
   end
 end

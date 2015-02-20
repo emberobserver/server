@@ -20,7 +20,7 @@
 #
 
 class Addon < ActiveRecord::Base
-  has_many :addon_versions
+  has_many :addon_versions, -> { order(released: :asc) }
   has_many :addon_maintainers
   has_many :addon_npm_keywords
 
@@ -29,4 +29,8 @@ class Addon < ActiveRecord::Base
   belongs_to :author, class_name: 'NpmUser'
   has_many :npm_keywords, through: :addon_npm_keywords
   has_many :maintainers, through: :addon_maintainers, source: :npm_user
+
+  def oldest_version
+    addon_versions.first
+  end
 end
