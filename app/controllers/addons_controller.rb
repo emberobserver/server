@@ -5,7 +5,7 @@ class AddonsController < ApplicationController
   def index
     render_cached_json 'api:addons:index', expires_in: 1.hour do
       addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: false).all
-      ActiveModel::ArraySerializer.new(addons, each_serializer: AddonSerializer)
+      ActiveModel::Serializer.build_json(self, addons, { })
     end
   end
 
