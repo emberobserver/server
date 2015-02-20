@@ -5,7 +5,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    category = Category.find(params[:id])
-    render json: category
+    category = Category.where(name: params[:name]).first
+    if category
+      render json: category
+    else
+      head :not_found
+    end
   end
 end

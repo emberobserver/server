@@ -10,8 +10,12 @@ class AddonsController < ApplicationController
   end
 
   def show
-    addon = Addon.find(params[:id])
-    render json: addon
+    addon = Addon.where(name: params[:name]).first
+    if addon
+      render json: addon
+    else
+      head :not_found
+    end
   end
 
   def update
