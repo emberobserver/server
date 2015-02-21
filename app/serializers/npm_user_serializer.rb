@@ -1,3 +1,3 @@
 class NpmUserSerializer < ApplicationSerializer
-  attributes :id, :name, :email, :gravatar
+  attributes :id, :name, :gravatar
 end
