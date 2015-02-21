@@ -24,19 +24,19 @@ Model.new(:ember_observer, 'Description for ember_observer') do
     db.host     = db_config['host']
   end
 
-  store_with Local do |local|
-    local.path = '~/backups'
-    local.keep = 5
-  end
-
   store_with SCP do |server|
     server.username = backup_config['ssh_username']
     server.ip       = backup_config['ssh_host']
     server.path     = '~/backups/'
     server.keep     = 5
     server.ssh_options = {
-      keys: '~/.ssh/id_rsa_backup'
+      keys: [ '~/.ssh/id_rsa_backup' ]
     }
+  end
+
+  store_with Local do |local|
+    local.path = '~/backups'
+    local.keep = 5
   end
 
   ##
