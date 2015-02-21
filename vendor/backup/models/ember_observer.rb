@@ -35,7 +35,7 @@ Model.new(:ember_observer, 'Description for ember_observer') do
     server.path     = '~/backups/'
     server.keep     = 5
     server.ssh_options = {
-      keys: '~/id_rsa_backup'
+      keys: '~/.ssh/id_rsa_backup'
     }
   end
 
