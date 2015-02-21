@@ -29,6 +29,16 @@ Model.new(:ember_observer, 'Description for ember_observer') do
     local.keep = 5
   end
 
+  store_with SCP do |server|
+    server.username = backup_config['ssh_username']
+    server.ip       = backup_config['ssh_host']
+    server.path     = '~/backups/'
+    server.keep     = 5
+    server.ssh_options = {
+      keys: '~/id_rsa_backup'
+    }
+  end
+
   ##
   # Bzip2 [Compressor]
   #
