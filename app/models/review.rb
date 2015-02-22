@@ -11,7 +11,6 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #  is_open_source           :integer
-#  uses_only_public_apis    :integer
 #  has_build                :integer
 #  addon_name               :string
 #
