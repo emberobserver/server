@@ -1,8 +1,5 @@
 class CategorySerializer < ApplicationSerializer
-  attributes :id, :name, :description, :parent_id, :categories
+  attributes :id, :name, :description, :parent_id
   has_many :addons, include: false
-
-  def categories
-    object.subcategories.map(&:id)
-  end
+  has_many :subcategories, include: false
 end
