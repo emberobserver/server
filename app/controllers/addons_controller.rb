@@ -27,6 +27,7 @@ class AddonsController < ApplicationController
                   cli_dependency: params[:addon][:is_cli_dependency],
                   hidden: params[:addon][:is_hidden]
                  })
+    Rails.cache.delete 'api:addons:index'
     render json: addon
   end
 
