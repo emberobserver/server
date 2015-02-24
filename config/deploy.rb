@@ -13,7 +13,8 @@ set :ssh_options, { forward_agent: true }
 
 namespace :deploy do
   after :updated, 'deploy:npm:install'
-	after :publishing, :restart
+  after :publishing, :restart
+  after :publishing, 'cache:clear'
 
   task :restart do
     on roles(:app) do
