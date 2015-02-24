@@ -72,6 +72,8 @@ namespace :npm do
       end
 
       addon.save!
+
+      Rails.cache.delete 'api:addons:index'
     end
   end
 end
