@@ -20,8 +20,7 @@ class AddonsController < ApplicationController
 
   def update
     addon = Addon.find(params[:id])
-    category_ids = categories_with_parents(params[:addon][:categories])
-    addon.update({category_ids: category_ids,
+    addon.update({category_ids: params[:addon][:categories],
                   note: params[:addon][:note],
                   official: params[:addon][:is_official],
                   deprecated: params[:addon][:is_deprecated],
@@ -35,16 +34,6 @@ class AddonsController < ApplicationController
 
   def addon_params
     params.require(:addon).permit(:categories, :note, :official, :deprecated, :cli_dependency, :hidden)
-  end
-
-  def categories_with_parents(category_ids)
-    all_category_ids = [ ]
-    category_ids.each do |category_id|
-      category = Category.find(category_id)
-      all_category_ids << category.id
-      all_category_ids << category.parent_id if category.parent_id
-    end
-    all_category_ids
   end
 
   def render_cached_json(cache_key, options = { }, &block)
