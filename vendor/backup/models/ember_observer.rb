@@ -45,7 +45,7 @@ Model.new(:ember_observer, 'Description for ember_observer') do
   compress_with Bzip2
 
   notify_by Slack do |slack|
-    slack.on_success = true
+    slack.on_success = false
     slack.on_warning = true
     slack.on_failure = true
 
