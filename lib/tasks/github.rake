@@ -1,13 +1,10 @@
 namespace :github do
 	task update_data: :environment do
 		github = Github.new(oauth_token: ENV['GITHUB_ACCESS_TOKEN'])
-		Addon.where('github_user is not null').where('github_repo is not null').each do |addon|
+		Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
 			user = addon.github_user
 			repo = addon.github_repo.sub(/#.+?$/, '')
 
-			puts "Processing #{addon.name}..."
-
-			next if addon.github_stats
 			github_stats = addon.github_stats || GithubStats.new(addon_id: addon.id)
 
 			begin
