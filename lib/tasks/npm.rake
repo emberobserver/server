@@ -82,4 +82,32 @@ namespace :npm do
       Rails.cache.delete 'api:addons:index'
     end
   end
+
+  task fetch_downloads: :environment do
+    addon_names = Addon.pluck(:name)
+    File.open('/tmp/addon-names.json', 'w') do |file|
+      file << addon_names.to_json
+    end
+   sh 'node ./npm-fetch/historical-downloads.js'
+  end
+
+  # task import_downloads: [ :environment, 'npm:fetch_downloads' ] do
+  task import_downloads: :environment do
+    begin
+      data = ActiveSupport::JSON.decode(File.read("/tmp/addon-downloads.json"))
+    rescue ActiveSupport::JSON.parse_error
+      raise "Invalid JSON in addon-downloads.json"
+    end
+
+    data.each do |download_data|
+      next unless download_data.include?('package')
+      addon = Addon.where(name: download_data['package']).first
+      next unless addon
+      download_data['downloads'].each do |downloads|
+        addon_downloads = addon.downloads.find_or_create_by(date: downloads['day'])
+        addon_downloads.downloads = downloads['downloads']
+        addon_downloads.save
+      end
+    end
+  end
 end
