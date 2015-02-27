@@ -29,6 +29,9 @@ class AddonsController < ApplicationController
                   has_invalid_github_repo: params[:addon][:has_invalid_github_repo]
                  })
     Rails.cache.delete 'api:addons:index'
+    if params[:addon][:has_invalid_github_repo] && addon.github_stats
+      addon.github_stats.delete
+    end
     render json: addon
   end
 
