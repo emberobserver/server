@@ -30,6 +30,12 @@ namespace :npm do
         repository_url: metadata['repository']['url']
       )
 
+      if metadata['downloads']['start']
+        addon_downloads = addon.downloads.find_or_create_by(date: metadata['downloads']['start'])
+        addon_downloads.downloads = metadata['downloads']['downloads']
+        addon_downloads.save
+      end
+
       npm_author = metadata['author']
       if npm_author
         author = NpmUser.find_or_create_by(name: npm_author['name'], email: npm_author['email'])

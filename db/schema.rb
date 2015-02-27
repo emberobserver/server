@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150222213749) do
+ActiveRecord::Schema.define(version: 20150227000144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addon_downloads", force: :cascade do |t|
+    t.integer "addon_id"
+    t.date    "date"
+    t.integer "downloads"
+  end
+
+  add_index "addon_downloads", ["addon_id"], name: "index_addon_downloads_on_addon_id", using: :btree
 
   create_table "addon_maintainers", id: false, force: :cascade do |t|
     t.integer "addon_id"
@@ -103,4 +111,5 @@ ActiveRecord::Schema.define(version: 20150222213749) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "addon_downloads", "addons"
 end

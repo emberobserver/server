@@ -30,6 +30,8 @@ class Addon < ActiveRecord::Base
   has_many :npm_keywords, through: :addon_npm_keywords
   has_many :maintainers, through: :addon_maintainers, source: :npm_user
 
+  has_many :downloads, foreign_key: 'addon_id', class: AddonDownload
+
   def oldest_version
     addon_versions.first
   end
