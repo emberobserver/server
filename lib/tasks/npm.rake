@@ -91,8 +91,7 @@ namespace :npm do
    sh 'node ./npm-fetch/historical-downloads.js'
   end
 
-  # task import_downloads: [ :environment, 'npm:fetch_downloads' ] do
-  task import_downloads: :environment do
+  task import_downloads: [ :environment, 'npm:fetch_downloads' ] do
     begin
       data = ActiveSupport::JSON.decode(File.read("/tmp/addon-downloads.json"))
     rescue ActiveSupport::JSON.parse_error
