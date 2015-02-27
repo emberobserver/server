@@ -25,7 +25,8 @@ class AddonsController < ApplicationController
                   official: params[:addon][:is_official],
                   deprecated: params[:addon][:is_deprecated],
                   cli_dependency: params[:addon][:is_cli_dependency],
-                  hidden: params[:addon][:is_hidden]
+                  hidden: params[:addon][:is_hidden],
+                  has_invalid_github_repo: params[:addon][:has_invalid_github_repo]
                  })
     Rails.cache.delete 'api:addons:index'
     render json: addon

@@ -2,21 +2,24 @@
 #
 # Table name: addons
 #
-#  id                  :integer          not null, primary key
-#  name                :string
-#  repository_url      :string
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  latest_version      :string
-#  description         :string
-#  license             :string
-#  author_id           :integer
-#  latest_version_date :datetime
-#  deprecated          :boolean          default("false")
-#  note                :text
-#  official            :boolean          default("false")
-#  cli_dependency      :boolean          default("false")
-#  hidden              :boolean          default("false")
+#  id                      :integer          not null, primary key
+#  name                    :string
+#  repository_url          :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  latest_version          :string
+#  description             :string
+#  license                 :string
+#  author_id               :integer
+#  latest_version_date     :datetime
+#  deprecated              :boolean          default("false")
+#  note                    :text
+#  official                :boolean          default("false")
+#  cli_dependency          :boolean          default("false")
+#  hidden                  :boolean          default("false")
+#  github_user             :string
+#  github_repo             :string
+#  has_invalid_github_repo :boolean          default("false")
 #
 
 class Addon < ActiveRecord::Base

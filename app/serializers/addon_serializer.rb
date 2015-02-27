@@ -3,7 +3,7 @@ class AddonSerializer < ApplicationSerializer
              :latest_version_date,
              :description, :license, :is_deprecated,
              :note, :is_official, :is_cli_dependency,
-             :is_hidden, :is_new_addon
+             :is_hidden, :is_new_addon, :has_invalid_github_repo
 
   has_many :maintainers
 
