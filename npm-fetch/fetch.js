@@ -1,85 +1,95 @@
-// @todo Handle errors
-
-'use strict';
-
 var RSVP = require('rsvp');
 var Registry = require('npm-registry');
-var npm = new Registry();
 var fs = require('fs');
 
-var SEARCH_KEYWORD = 'ember-addon';
-var MAX_ATTEMPTS = 10;
+var npm = new Registry();
 
-var get = function(name) {
-  var promise = new RSVP.Promise(function(resolve, reject) {
+const MAX_RETRIES = 5;
+const searchKeyword = 'ember-addon';
+const outputFilename = '/tmp/addons.json';
 
-    function attemptRequest(name, attempts, callback) {
-      if (attempts > MAX_ATTEMPTS) {
-        callback(new Error('Too many attempts: ' + name));
-      }
-
-      npm.packages.get(name, function(err, data) {
-        if (err) {
-          attemptRequest(name, attempts + 1, callback);
-        } else {
-          callback(null, data);
-        }
-      });
-    };
-
-    attemptRequest(name, 1, function(err, data) {
-      if (err) {
+function requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts)
+{
+  var registryCallback = function(err, data) {
+    if (err) {
+      if (attempts >= MAX_RETRIES) {
         reject(err);
+      } else {
+        requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
       }
-
-      resolve(data[0]);
-    });
-  });
-
-  return promise;
-};
-
-var fetchByKeyword = function() {
-  var promise = new RSVP.Promise(function(resolve, reject) {
-    npm.packages.keyword(SEARCH_KEYWORD, function(err, data) {
-      if (err) {
-        reject(err);
-      }
-
-      resolve(data);
-    });
-  });
-
-  return promise;
-};
-
-var fetchByKeywordDetailed = function() {
-  var promise = new RSVP.Promise(function(resolve, reject) {
-    fetchByKeyword().then(function(packages) {
-      var promises = packages.map(function(item) {
-        if (item.name) {
-          return get(item.name);
-        }
-      });
-
-      resolve(RSVP.all(promises));
-    }).catch(function(err) {
-      reject(err);
-    });
-  });
-
-  return promise;
+    } else {
+      resolve(successCallback(data));
+    }
+  };
+  var argsWithCallback = args.concat(registryCallback);
+  npm[endpoint][method].apply(npm[endpoint], argsWithCallback);
 }
 
-fetchByKeywordDetailed().then(function(data) {
-  var outputFilename = '/tmp/addons.json';
+function request(endpointAndMethod, args, successCallback)
+{
+  var pieces = endpointAndMethod.split('.');
+  var endpoint = pieces[0];
+  var method = pieces[1];
 
-  fs.writeFile(outputFilename, JSON.stringify(data, null, 2), function(err) {
+  if (typeof(args) !== 'object') {
+    args = [ args ];
+  }
+
+  return new RSVP.Promise(function(resolve, reject) {
+    requestWithRetries(resolve, reject, endpoint, method, args, successCallback);
+  });
+}
+
+function packageDetails(packageName)
+{
+  return request('packages.details', packageName, function(data) {
+    return data[0];
+  });
+}
+
+function packageDownloads(packageName)
+{
+  return request('downloads.totals', [ 'last-day', packageName ], function(data) {
+    return data[0];
+  });
+}
+
+function packagesWithKeyword(keyword)
+{
+  return request('packages.keyword', keyword, function(data) {
+    return data.map(function(packageInfo) {
+      return packageInfo.name;
+    });
+  });
+}
+
+var allPackageDetails = { };
+packagesWithKeyword(searchKeyword).then(function(packageNames) {
+  var promises = packageNames.map(function(packageName) {
+    return packageDetails(packageName);
+  });
+  return RSVP.all(promises);
+}).then(function(packages) {
+  var promises = packages.map(function(package) {
+    allPackageDetails[ package.name ] = package;
+    return packageDownloads(package.name);
+  });
+  return RSVP.all(promises);
+}).then(function(downloads) {
+  downloads.forEach(function(packageDownloads) {
+    allPackageDetails[ packageDownloads.package ].downloads = packageDownloads;
+  });
+}).then(function() {
+  var packageDetailsArray = Object.keys(allPackageDetails).map(function(packageName) {
+    return allPackageDetails[ packageName ];
+  });
+  fs.writeFile(outputFilename, JSON.stringify(packageDetailsArray), function(err) {
     if (err) {
       console.log(err);
     } else {
-      console.log("Found " + data.length + " add-ons");
-      console.log("Saved addons to " + outputFilename);
+      console.log("Fetched data for " + packageDetailsArray.length + " add-ons");
     }
-  })
+  });
+}).catch(function(err) {
+  console.log("An error occurred:", err);
 });
