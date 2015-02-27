@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227000144) do
+ActiveRecord::Schema.define(version: 20150227201512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20150227000144) do
     t.boolean  "official",            default: false
     t.boolean  "cli_dependency",      default: false
     t.boolean  "hidden",              default: false
+    t.string   "github_user"
+    t.string   "github_repo"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -75,6 +77,21 @@ ActiveRecord::Schema.define(version: 20150227000144) do
 
   add_index "category_addons", ["addon_id"], name: "index_category_addons_on_addon_id", using: :btree
   add_index "category_addons", ["category_id"], name: "index_category_addons_on_category_id", using: :btree
+
+  create_table "github_stats", force: :cascade do |t|
+    t.integer  "addon_id"
+    t.integer  "open_issues"
+    t.integer  "contributors"
+    t.integer  "commits"
+    t.integer  "forks"
+    t.integer  "releases"
+    t.datetime "first_commit_date"
+    t.string   "first_commit_sha"
+    t.datetime "latest_commit_date"
+    t.string   "latest_commit_sha"
+  end
+
+  add_index "github_stats", ["addon_id"], name: "index_github_stats_on_addon_id", using: :btree
 
   create_table "npm_keywords", force: :cascade do |t|
     t.string   "keyword"
@@ -112,4 +129,5 @@ ActiveRecord::Schema.define(version: 20150227000144) do
   end
 
   add_foreign_key "addon_downloads", "addons"
+  add_foreign_key "github_stats", "addons"
 end

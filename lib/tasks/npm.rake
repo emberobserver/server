@@ -22,13 +22,18 @@ namespace :npm do
 
       addon = Addon.find_or_initialize_by(name: name)
       latest_version = metadata['latest']['version']
-      addon.update(
+      addon_props = {
         latest_version: latest_version,
         latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
         description: metadata['description'],
         license: metadata['license'],
         repository_url: metadata['repository']['url']
-      )
+      }
+      if metadata.include?('github')
+        addon_props[:github_user] = metadata['github']['user']
+        addon_props[:github_repo] = metadata['github']['repo']
+      end
+      addon.update(addon_props)
 
       if metadata['downloads']['start']
         addon_downloads = addon.downloads.find_or_create_by(date: metadata['downloads']['start'])

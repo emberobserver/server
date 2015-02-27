@@ -31,3 +31,5 @@ group :development do
 	gem 'capistrano-bundler'
 	gem 'capistrano3-puma'
 end
+
+gem 'github_api'
