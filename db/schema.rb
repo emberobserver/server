@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227224238) do
+ActiveRecord::Schema.define(version: 20150228032302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20150227224238) do
   end
 
   add_index "addon_downloads", ["addon_id"], name: "index_addon_downloads_on_addon_id", using: :btree
+
+  create_table "addon_github_contributors", force: :cascade do |t|
+    t.integer "addon_id"
+    t.integer "github_user_id"
+  end
+
+  add_index "addon_github_contributors", ["addon_id"], name: "index_addon_github_contributors_on_addon_id", using: :btree
+  add_index "addon_github_contributors", ["github_user_id"], name: "index_addon_github_contributors_on_github_user_id", using: :btree
 
   create_table "addon_maintainers", id: false, force: :cascade do |t|
     t.integer "addon_id"
@@ -87,12 +95,16 @@ ActiveRecord::Schema.define(version: 20150227224238) do
     t.integer  "forks"
     t.integer  "releases"
     t.datetime "first_commit_date"
-    t.string   "first_commit_sha"
     t.datetime "latest_commit_date"
+    t.string   "first_commit_sha"
     t.string   "latest_commit_sha"
   end
 
   add_index "github_stats", ["addon_id"], name: "index_github_stats_on_addon_id", using: :btree
+
+  create_table "github_users", force: :cascade do |t|
+    t.string "login"
+  end
 
   create_table "npm_keywords", force: :cascade do |t|
     t.string   "keyword"

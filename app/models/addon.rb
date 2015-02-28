@@ -36,6 +36,9 @@ class Addon < ActiveRecord::Base
   has_many :downloads, foreign_key: 'addon_id', class: AddonDownload
   has_one :github_stats
 
+  has_many :addon_github_contributors
+  has_many :github_contributors, through: :addon_github_contributors, source: :github_user
+
   def oldest_version
     addon_versions.first
   end

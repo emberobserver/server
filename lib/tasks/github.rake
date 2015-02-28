@@ -19,6 +19,11 @@ namespace :github do
 
 				contributors = github.repos.stats.contributors(user: user, repo: repo)
 				github_stats.contributors = contributors.length
+				addon.github_contributors.clear
+				contributors.each do |contributor|
+					github_user = GithubUser.find_or_create_by(login: contributor.author.login)
+					addon.github_contributors << github_user
+				end
 
 				commits = github.repos.commits.list(user: user, repo: repo).to_a
 				commits.sort! { |a, b| a.commit.committer.date <=> b.commit.committer.date }
