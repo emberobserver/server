@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20150227224238) do
     t.integer  "forks"
     t.integer  "releases"
     t.datetime "first_commit_date"
-    t.datetime "latest_commit_date"
     t.string   "first_commit_sha"
+    t.datetime "latest_commit_date"
     t.string   "latest_commit_sha"
   end
 
