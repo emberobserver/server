@@ -22,6 +22,7 @@ class AddonsController < ApplicationController
     addon = Addon.find(params[:id])
     addon.update({category_ids: params[:addon][:categories],
                   note: params[:addon][:note],
+                  rendered_note: render_markdown(params[:addon][:note]),
                   official: params[:addon][:is_official],
                   deprecated: params[:addon][:is_deprecated],
                   cli_dependency: params[:addon][:is_cli_dependency],
@@ -50,5 +51,9 @@ class AddonsController < ApplicationController
     end
 
     render json: data
+  end
+
+  def render_markdown(text)
+    GitHub::Markdown.to_html(text, :gfm)
   end
 end

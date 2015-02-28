@@ -33,3 +33,4 @@ group :development do
 end
 
 gem 'github_api'
+gem 'github-markdown'

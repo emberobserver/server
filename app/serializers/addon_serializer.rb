@@ -1,5 +1,5 @@
 class AddonSerializer < ApplicationSerializer
-  attributes :id, :name, :repository_url,
+  attributes :id, :name, :rendered_note, :repository_url,
              :latest_version_date,
              :description, :license, :is_deprecated,
              :note, :is_official, :is_cli_dependency,
