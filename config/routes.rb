@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :versions, only: [:show, :index]
     resources :reviews, only: [:show, :create, :index]
     resources :maintainers, only: [:index]
+    post 'corrections' => 'corrections#submit'
 
     scope :authentication do
       post :login, to: 'auth#login'
