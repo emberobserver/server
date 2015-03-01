@@ -29,7 +29,7 @@ every 1.hour, at: 25 do
   rake "github:update_data"
 end
 
-every 1.hour, at: 45
+every 1.hour, at: 45 do
   rake "addons:update_scores"
 end
 
