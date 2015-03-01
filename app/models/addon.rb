@@ -42,4 +42,24 @@ class Addon < ActiveRecord::Base
   def oldest_version
     addon_versions.first
   end
+
+  def newest_version
+    addon_versions.last
+  end
+
+  def newest_review
+    newest_version_with_review = addon_versions.reverse.find { |version| !version.review.nil? }
+    newest_version_with_review ? newest_version_with_review.review : nil
+  end
+
+  def recently_released?
+    return false unless latest_version
+    newest_version.released > 3.months.ago
+  end
+
+  def recently_committed_to?
+    return false unless github_stats
+    return false unless github_stats.penultimate_commit_date
+    github_stats.penultimate_commit_date > 3.months.ago
+  end
 end
