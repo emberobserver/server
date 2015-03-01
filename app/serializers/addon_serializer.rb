@@ -3,7 +3,9 @@ class AddonSerializer < ApplicationSerializer
              :latest_version_date,
              :description, :license, :is_deprecated,
              :note, :is_official, :is_cli_dependency,
-             :is_hidden, :is_new_addon, :has_invalid_github_repo
+             :is_hidden, :is_new_addon, :has_invalid_github_repo,
+             :open_issues, :forks, :contributors,
+             :first_commit_date, :latest_commit_date
 
   has_many :maintainers
 
@@ -25,5 +27,27 @@ class AddonSerializer < ApplicationSerializer
 
   def is_new_addon
     object.oldest_version.released > 2.weeks.ago
+  end
+
+  def open_issues
+    object.github_stats ? object.github_stats.open_issues : nil
+  end
+
+  def forks
+    object.github_stats ? object.github_stats.forks : nil
+  end
+
+  def first_commit_date
+    object.github_stats ? object.github_stats.first_commit_date : nil
+  end
+
+  def latest_commit_date
+    object.github_stats ? object.github_stats.latest_commit_date : nil
+  end
+
+  def contributors
+    object.github_contributors.map do |contributor|
+      { name: contributor.login, avatar_url: contributor.avatar_url }
+    end
   end
 end
