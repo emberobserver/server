@@ -24,13 +24,16 @@ namespace :github do
 				end
 
 				commits = github.repos.commits.list(user: user, repo: repo).to_a
-				commits.sort! { |a, b| a.commit.committer.date <=> b.commit.committer.date }
+				# Sort in descending date ordet
+				commits.sort! { |a, b| b.commit.committer.date <=> a.commit.committer.date }
 
 				github_stats.commits = commits.length
-				github_stats.first_commit_date = commits.first.commit.committer.date
-				github_stats.first_commit_sha = commits.first.sha
-				github_stats.latest_commit_date = commits.last.commit.committer.date
-				github_stats.latest_commit_sha = commits.last.sha
+				github_stats.first_commit_date = commits.last.commit.committer.date
+				github_stats.first_commit_sha = commits.last.sha
+				github_stats.penultimate_commit_date = commits.second.commit.committer.date
+				github_stats.penultimate_commit_sha = commits.second.sha
+				github_stats.latest_commit_date = commits.first.commit.committer.date
+				github_stats.latest_commit_sha = commits.first.sha
 
 				github_stats.save
 			rescue Github::Error::NotFound, URI::InvalidURIError
