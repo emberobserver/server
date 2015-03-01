@@ -12,9 +12,6 @@ namespace :github do
 				github_stats.open_issues = data.open_issues_count
 				github_stats.forks = data.forks_count
 
-				releases = github.repos.releases.list(owner: user, repo: repo)
-				github_stats.releases = releases.length
-
 				contributors = github.repos.stats.contributors(user: user, repo: repo)
 				github_stats.contributors = contributors.length
 				addon.github_contributors.clear
