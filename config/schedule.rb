@@ -28,6 +28,7 @@ end
 
 every 1.hour, at: 25 do
   rake "github:update_data"
+  rake "addons:update_stars_flag"
 end
 
 every 1.day, at: '0800' do
