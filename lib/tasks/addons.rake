@@ -19,4 +19,22 @@ namespace :addons do
 			addon.save
 		end
 	end
+
+	desc "Update 'top 10%' flag for Github stars"
+	task update_stars_flag: :environment do
+		addons_with_stars = Addon.includes(:github_stats).references(:github_stats).where('github_stats.addon_id is not null and stars is not null')
+		total_addons_with_stars = addons_with_stars.count
+		Addon.includes(:github_stats).references(:github_stats).where('github_stats.addon_id is null or stars is null').each do |addon|
+			addon.is_top_starred = false
+			addon.save
+		end
+		addons_with_stars.order('stars desc').each_with_index do |addon, index|
+			if (index + 1).to_f / total_addons_with_stars <= 0.1
+				addon.is_top_starred = true
+			else
+				addon.is_top_starred = false
+			end
+			addon.save
+		end
+	end
 end
