@@ -8,14 +8,12 @@ namespace :github do
 			github_stats = addon.github_stats || GithubStats.new(addon_id: addon.id)
 
 			begin
-				issues = github.issues.list(user: user, repo: repo)
-				github_stats.open_issues = issues.length
+				data = github.repos.get(user: user, repo: repo)
+				github_stats.open_issues = data.open_issues_count
+				github_stats.forks = data.forks_count
 
 				releases = github.repos.releases.list(owner: user, repo: repo)
 				github_stats.releases = releases.length
-
-				forks = github.repos.forks.list(user: user, repo: repo)
-				github_stats.forks = forks.length
 
 				contributors = github.repos.stats.contributors(user: user, repo: repo)
 				github_stats.contributors = contributors.length
