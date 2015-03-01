@@ -22,6 +22,8 @@ namespace :github do
 				addon.github_contributors.clear
 				contributors.each do |contributor|
 					github_user = GithubUser.find_or_create_by(login: contributor.author.login)
+					github_user.avatar_url = contributor.author.avatar_url
+					github_user.save
 					addon.github_contributors << github_user
 				end
 
