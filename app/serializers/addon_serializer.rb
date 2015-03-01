@@ -6,7 +6,8 @@ class AddonSerializer < ApplicationSerializer
              :is_hidden, :is_new_addon, :has_invalid_github_repo,
              :open_issues, :forks, :contributors,
              :first_commit_date, :latest_commit_date,
-             :last_month_downloads, :is_top_downloaded, :is_top_starred
+             :last_month_downloads, :is_top_downloaded, :is_top_starred,
+             :score
 
   has_many :maintainers
 
