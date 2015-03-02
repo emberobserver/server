@@ -7,7 +7,7 @@ class AddonSerializer < ApplicationSerializer
              :open_issues, :forks, :contributors,
              :first_commit_date, :latest_commit_date,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :score
+             :score, :stars
 
   has_many :maintainers
 
@@ -51,5 +51,9 @@ class AddonSerializer < ApplicationSerializer
     object.github_contributors.map do |contributor|
       { name: contributor.login, avatar_url: contributor.avatar_url }
     end
+  end
+
+  def stars
+    object.github_stats ? object.github_stats.stars : nil
   end
 end
