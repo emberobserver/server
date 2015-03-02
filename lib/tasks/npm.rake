@@ -27,7 +27,8 @@ namespace :npm do
         latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
         description: metadata['description'],
         license: metadata['license'],
-        repository_url: metadata['repository']['url']
+        repository_url: metadata['repository']['url'],
+        published_date: metadata['created'],
       }
       if metadata.include?('github')
         addon_props[:github_user] = metadata['github']['user']
