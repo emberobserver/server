@@ -39,7 +39,7 @@ namespace :addons do
 	end
 
 	desc "Update scores for addons"
-	task update_scores: [ :environment, 'addons:update_downloads_flag', 'addons:update_stars_flag' ] do
+	task update_scores: [ :environment, 'npm:fetch_addon_info', 'github:update_data', 'addons:update_downloads_flag', 'addons:update_stars_flag' ] do
 		Addon.all.each do |addon|
 			score = 0
 			review = addon.newest_review

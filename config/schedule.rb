@@ -21,14 +21,6 @@
 
 job_type :command_in_dir, "cd :path && source .env && :task :output"
 
-every 1.hour do
-  rake "npm:fetch_addon_info"
-end
-
-every 1.hour, at: 25 do
-  rake "github:update_data"
-end
-
 every 1.hour, at: 45 do
   rake "addons:update_scores"
 end
