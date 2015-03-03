@@ -20,6 +20,12 @@
 #  github_user             :string
 #  github_repo             :string
 #  has_invalid_github_repo :boolean          default("false")
+#  rendered_note           :text
+#  last_month_downloads    :integer
+#  is_top_downloaded       :boolean          default("false")
+#  is_top_starred          :boolean          default("false")
+#  score                   :integer
+#  published_date          :datetime
 #
 
 class Addon < ActiveRecord::Base
