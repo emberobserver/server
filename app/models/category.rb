@@ -8,6 +8,7 @@
 #  updated_at  :datetime         not null
 #  description :text
 #  parent_id   :integer
+#  position    :integer
 #
 
 class Category < ActiveRecord::Base
