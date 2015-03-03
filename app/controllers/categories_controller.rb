@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
   def index
-    categories = Category.includes(:addons).order(:position)
-    render json: categories
+    render_cached_json 'api:categories:index' do
+      categories = Category.includes(:addons).order(:position)
+      ActiveModel::Serializer.build_json(self, categories, { })
+    end
   end
 
   def show

@@ -1,8 +1,12 @@
 namespace :cache do
-	desc "Clear /api/addons cache"
+	desc "Clear caches"
 	task :clear do
 		on roles(:redis) do
-			execute "redis-cli DEL api:addons:index"
+			within release_path do
+				with rails_env: fetch(:rails_env) do
+					execute :rake, "cache:clear:all"
+				end
+			end
 		end
 	end
 end

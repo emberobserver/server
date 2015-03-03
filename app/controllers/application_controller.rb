@@ -15,6 +15,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def invalidate_caches
+    Rails.cache.delete 'api:addons:index'
+    Rails.cache.delete 'api:categories:index'
+  end
+
+  def render_cached_json(cache_key, options = { }, &block)
+    options[:expires_in] ||= 1.hour
+
+    expires_in options[:expires_in], public: true
+    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
+      block.call.to_json
+    end
+
+    render json: data
+  end
+
   def render_unauthorized
     self.headers['WWW-Authenticate'] = 'Token realm="Application"'
     render json: 'Bad credentials', status: 401

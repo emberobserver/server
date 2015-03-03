@@ -3,7 +3,7 @@ class AddonsController < ApplicationController
   before_action :authenticate, only: [:update]
 
   def index
-    render_cached_json 'api:addons:index', expires_in: 1.hour do
+    render_cached_json 'api:addons:index' do
       addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: false).all
       ActiveModel::Serializer.build_json(self, addons, { })
     end
@@ -29,7 +29,7 @@ class AddonsController < ApplicationController
                   hidden: params[:addon][:is_hidden],
                   has_invalid_github_repo: params[:addon][:has_invalid_github_repo]
                  })
-    Rails.cache.delete 'api:addons:index'
+    invalidate_caches
     if params[:addon][:has_invalid_github_repo] && addon.github_stats
       addon.github_stats.delete
     end
@@ -40,17 +40,6 @@ class AddonsController < ApplicationController
 
   def addon_params
     params.require(:addon).permit(:categories, :note, :official, :deprecated, :cli_dependency, :hidden)
-  end
-
-  def render_cached_json(cache_key, options = { }, &block)
-    options[:expires_in] ||= 1.day
-
-    expires_in options[:expires_in], public: true
-    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
-      block.call.to_json
-    end
-
-    render json: data
   end
 
   def render_markdown(text)

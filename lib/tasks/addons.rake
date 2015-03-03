@@ -60,7 +60,6 @@ namespace :addons do
 			addon.save
 		end
 
-
-		Rails.cache.delete 'api:addons:index'
+		Rake::Task['cache:clear:all'].invoke
 	end
 end
