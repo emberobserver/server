@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    categories = Category.includes(:addons).all
+    categories = Category.includes(:addons).order(:position)
     render json: categories
   end
 
