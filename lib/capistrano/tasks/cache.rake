@@ -4,7 +4,7 @@ namespace :cache do
 		on roles(:redis) do
 			within release_path do
 				with rails_env: fetch(:rails_env) do
-					execute :rake, "cache:clear:all"
+					execute :rake, "cache:reset"
 				end
 			end
 		end

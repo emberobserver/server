@@ -32,6 +32,9 @@ namespace :cache do
 		desc "Prime all caches"
 		task all: [ 'cache:prime:addons', 'cache:prime:categories' ]
 	end
+
+	desc "Clear and prime all caches"
+	task reset: [ 'cache:clear:all', 'cache:prime:all' ]
 end
 
 def get(url)
