@@ -24,7 +24,7 @@ namespace :github do
 					addon.github_contributors << github_user
 				end
 
-				commits = github.repos.commits.list(user: user, repo: repo).to_a
+				commits = github.repos.commits.list(user: user, repo: repo, auto_pagination: true).to_a
 				# Sort in descending date order
 				commits.sort! { |a, b| b.commit.committer.date <=> a.commit.committer.date }
 
