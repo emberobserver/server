@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303171718) do
+ActiveRecord::Schema.define(version: 20150304015947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,12 +101,13 @@ ActiveRecord::Schema.define(version: 20150303171718) do
     t.integer  "commits"
     t.integer  "forks"
     t.datetime "first_commit_date"
-    t.datetime "latest_commit_date"
     t.string   "first_commit_sha"
+    t.datetime "latest_commit_date"
     t.string   "latest_commit_sha"
     t.integer  "stars"
     t.datetime "penultimate_commit_date"
     t.string   "penultimate_commit_sha"
+    t.datetime "repo_created_date"
   end
 
   add_index "github_stats", ["addon_id"], name: "index_github_stats_on_addon_id", using: :btree

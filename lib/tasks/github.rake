@@ -12,6 +12,7 @@ namespace :github do
 				github_stats.open_issues = data.open_issues_count
 				github_stats.forks = data.forks_count
 				github_stats.stars = data.stargazers_count
+				github_stats.repo_created_date = data.created_at
 
 				contributors = github.repos.stats.contributors(user: user, repo: repo)
 				github_stats.contributors = contributors.length
