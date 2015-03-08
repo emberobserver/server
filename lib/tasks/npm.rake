@@ -83,6 +83,7 @@ namespace :npm do
         end
       end
 
+      addon.last_seen_in_npm = DateTime.now
       addon.save!
     end
   end

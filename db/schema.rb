@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304015947) do
+ActiveRecord::Schema.define(version: 20150308184616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150304015947) do
     t.boolean  "is_top_starred",          default: false
     t.integer  "score"
     t.datetime "published_date"
+    t.datetime "last_seen_in_npm"
   end
 
   create_table "categories", force: :cascade do |t|
