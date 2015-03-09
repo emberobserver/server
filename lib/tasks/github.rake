@@ -1,5 +1,9 @@
 namespace :github do
 	task update_data: :environment do
+		unless ENV['GITHUB_ACCESS_TOKEN']
+			puts "Environment variable GITHUB_ACCESS_TOKEN not set!"
+		end
+
 		github = Github.new(oauth_token: ENV['GITHUB_ACCESS_TOKEN'])
 		Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
 			user = addon.github_user
