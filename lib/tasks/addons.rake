@@ -40,6 +40,7 @@ namespace :addons do
 
 	desc "Update scores for addons"
 	task update_scores: [ :environment, 'npm:fetch_addon_info', 'github:update_data', 'addons:update_downloads_flag', 'addons:update_stars_flag' ] do
+		addon_badge_dir = ENV['ADDON_BADGE_DIR'] || File.join(Rails.root, "public/badges")
 		Addon.all.each do |addon|
 			score = 0
 			review = addon.newest_review
@@ -58,8 +59,15 @@ namespace :addons do
 
 			addon.score = score
 			addon.save
+
+			badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.png")
+			cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.png")
 		end
 
 		Rake::Task['cache:clear:all'].invoke
 	end
+end
+
+def safe_name(name)
+	name.gsub(/[^A-Za-z0-9]/, '-')
 end
