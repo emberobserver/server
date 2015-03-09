@@ -7,7 +7,7 @@ class AddonSerializer < ApplicationSerializer
              :open_issues, :forks, :contributors,
              :first_commit_date, :latest_commit_date,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :score, :stars
+             :score, :stars, :committed_to_recently
 
   has_many :maintainers
 
@@ -46,6 +46,11 @@ class AddonSerializer < ApplicationSerializer
   def latest_commit_date
     object.github_stats ? object.github_stats.latest_commit_date : nil
   end
+
+  def committed_to_recently
+    object.recently_committed_to?
+  end
+
 
   def contributors
     object.github_contributors.map do |contributor|
