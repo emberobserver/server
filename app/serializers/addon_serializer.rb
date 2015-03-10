@@ -1,6 +1,6 @@
 class AddonSerializer < ApplicationSerializer
   attributes :id, :name, :rendered_note, :repository_url,
-             :latest_version_date,
+             :latest_version_date, :latest_reviewed_version_date,
              :description, :license, :is_deprecated,
              :note, :is_official, :is_cli_dependency,
              :is_hidden, :is_new_addon, :has_invalid_github_repo,
@@ -51,6 +51,9 @@ class AddonSerializer < ApplicationSerializer
     object.recently_committed_to?
   end
 
+  def latest_reviewed_version_date
+    object.newest_review ? object.newest_review.addon_version.released : nil
+  end
 
   def contributors
     object.github_contributors.map do |contributor|
