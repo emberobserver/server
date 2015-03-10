@@ -60,8 +60,8 @@ namespace :addons do
 			addon.score = score
 			addon.save
 
-			badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.png")
-			cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.png")
+			badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
+			cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
 		end
 
 		Rake::Task['cache:clear:all'].invoke
