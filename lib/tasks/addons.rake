@@ -57,9 +57,13 @@ namespace :addons do
 			score = score + 1 if addon.is_top_starred
 			score = score + 1 if addon.github_contributors.length > 1
 
+			unless addon.newest_review
+				score = nil
+			end
 			addon.score = score
 			addon.save
 
+			score = score || 'na'
 			badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
 			cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
 		end
