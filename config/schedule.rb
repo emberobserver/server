@@ -22,7 +22,7 @@
 job_type :command_in_dir, "cd :path && source .env && :task :output"
 
 every 1.hour, at: 45 do
-  rake "addons:update_scores"
+  rake "addons:update:all"
 end
 
 every 1.day, at: '0800' do
