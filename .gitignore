@@ -24,4 +24,4 @@ npm-fetch/node_modules
 
 .env
 
-/public/badges/*.png
+/public/badges/*.svg
