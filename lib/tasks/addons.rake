@@ -9,7 +9,7 @@ namespace :addons do
 		end
 
 		desc "Update 'top 10%' flag for addon downloads"
-		task downloads_flag: [ :environment, 'addons:update_download_count' ] do
+		task downloads_flag: [ :environment, 'addons:update:download_count' ] do
 			total_addons = Addon.count
 			Addon.order('last_month_downloads desc').each_with_index do |addon, index|
 				if (index + 1).to_f / total_addons <= 0.1
@@ -77,7 +77,7 @@ namespace :addons do
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update_data', 'addons:update_downloads_flag', 'addons:update_stars_flag', 'addons:update_scores' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update_data', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores' ]
 	end
 end
 
