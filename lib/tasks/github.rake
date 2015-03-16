@@ -58,6 +58,8 @@ namespace :github do
 				github_stats.save
 			rescue Github::Error::NotFound, URI::InvalidURIError
 				puts "WARN: Addon #{addon.name} has invalid Github data"
+				addon.has_invalid_github_repo = true
+				addon.save
 			end
 		end
 	end
