@@ -27,7 +27,8 @@ class AddonsController < ApplicationController
                   deprecated: params[:addon][:is_deprecated],
                   cli_dependency: params[:addon][:is_cli_dependency],
                   hidden: params[:addon][:is_hidden],
-                  has_invalid_github_repo: params[:addon][:has_invalid_github_repo]
+                  has_invalid_github_repo: params[:addon][:has_invalid_github_repo],
+                  is_wip: params[:addon][:is_wip]
                  })
     invalidate_caches
     if params[:addon][:has_invalid_github_repo] && addon.github_stats
@@ -37,10 +38,6 @@ class AddonsController < ApplicationController
   end
 
   private
-
-  def addon_params
-    params.require(:addon).permit(:categories, :note, :official, :deprecated, :cli_dependency, :hidden)
-  end
 
   def render_markdown(text)
     GitHub::Markdown.to_html(text, :gfm)
