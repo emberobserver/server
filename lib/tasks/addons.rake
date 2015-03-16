@@ -64,7 +64,11 @@ namespace :addons do
 				addon.score = score
 				addon.save
 
-				score = score || 'na'
+				if addon.is_wip
+					score = 'wip'
+				else
+					score = score || 'na'
+				end
 				badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
 				cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
 			end
