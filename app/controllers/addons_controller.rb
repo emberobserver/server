@@ -37,6 +37,20 @@ class AddonsController < ApplicationController
     render json: addon
   end
 
+  def readme
+    addon = Addon.find(params[:addon_id])
+    if addon and addon.github_stats
+      render json: {
+        addon: {
+          id: params[:addon_id],
+          readme: addon.github_stats.readme
+        }
+      }
+    else
+      head :not_found
+    end
+  end
+
   private
 
   def render_markdown(text)

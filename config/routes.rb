@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
-    resources :addons, only: [:index, :update]
+    resources :addons, only: [:index, :update] do
+      get 'readme' => 'addons#readme'
+    end
     get 'addons/:name' => 'addons#show'
     resources :categories, only: [:index]
     get 'categories/:name' => 'categories#show', as: 'category'

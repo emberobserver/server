@@ -55,6 +55,14 @@ namespace :github do
 					github_stats.first_commit_sha = nil
 				end
 
+				# While you should be able to pass the accept header like so,
+				# "accept: 'application/vnd.github.3.raw'," the github_api gem seems to
+				# throw MultiJson::ParseError: 795 a lot if you use this, or asking
+				# for raw or html.
+				readme = github.repos.contents.readme user, repo
+				readme = Base64.decode64(readme['content'])
+	 			github_stats.readme = readme
+
 				github_stats.save
 			rescue Github::Error::NotFound, URI::InvalidURIError
 				puts "WARN: Addon #{addon.name} has invalid Github data"
