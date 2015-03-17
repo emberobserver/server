@@ -26,7 +26,8 @@
 #  is_top_starred          :boolean          default("false")
 #  score                   :integer
 #  published_date          :datetime
-#  readme                  :text
+#  last_seen_in_npm        :datetime
+#  is_wip                  :boolean
 #
 
 class Addon < ActiveRecord::Base
