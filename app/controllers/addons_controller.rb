@@ -1,12 +1,21 @@
 class AddonsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  before_action :authenticate, only: [:update]
+  before_action :authenticate, only: [:update, :hidden]
 
   def index
+    if params[:hidden]
+      redirect_to :hidden and return
+    end
+
     render_cached_json 'api:addons:index' do
       addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: false).all
       ActiveModel::Serializer.build_json(self, addons, { })
     end
+  end
+
+  def hidden
+    addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: true).where('name not ilike ?', '%murray%').all
+    render json: addons
   end
 
   def show
