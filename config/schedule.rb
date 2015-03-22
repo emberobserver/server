@@ -25,6 +25,10 @@ every 1.hour, at: 45 do
   rake "addons:update:all"
 end
 
+every 1.day, at: '2215' do
+  rake "npm:import_downloads"
+end
+
 every 1.day, at: '0800' do
   command_in_dir "cd vendor/backup && bundle exec backup perform --config-file=./config.rb -t ember_observer && curl ${BACKUP_SNITCH_URL}"
 end
