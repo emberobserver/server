@@ -20,13 +20,15 @@ namespace :github do
 
 				contributors = github.repos.stats.contributors(user: user, repo: repo)
 				github_stats.contributors = contributors.length
-				addon.github_contributors.clear
-				contributors.each do |contributor|
-					next unless contributor.author
-					github_user = GithubUser.find_or_create_by(login: contributor.author.login)
-					github_user.avatar_url = contributor.author.avatar_url
-					github_user.save
-					addon.github_contributors << github_user
+				if contributors.length > 0
+					addon.github_contributors.clear
+					contributors.each do |contributor|
+						next unless contributor.author
+						github_user = GithubUser.find_or_create_by(login: contributor.author.login)
+						github_user.avatar_url = contributor.author.avatar_url
+						github_user.save
+						addon.github_contributors << github_user
+					end
 				end
 
 				commits = github.repos.commits.list(user: user, repo: repo, auto_pagination: true).to_a
