@@ -22,6 +22,7 @@ namespace :github do
 				github_stats.contributors = contributors.length
 				addon.github_contributors.clear
 				contributors.each do |contributor|
+					next unless contributor.author
 					github_user = GithubUser.find_or_create_by(login: contributor.author.login)
 					github_user.avatar_url = contributor.author.avatar_url
 					github_user.save
