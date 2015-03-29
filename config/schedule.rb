@@ -25,7 +25,7 @@ every 1.hour, at: 45 do
   rake "addons:update:all"
 end
 
-every 1.day, at: '2215' do
+every 1.day, at: '0515' do
   rake "npm:import_downloads"
 end
 
