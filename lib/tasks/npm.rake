@@ -84,6 +84,9 @@ namespace :npm do
       end
 
       addon.last_seen_in_npm = DateTime.now
+      if autohide?(addon)
+        addon.hidden = true
+      end
       addon.save!
     end
   end
@@ -114,4 +117,8 @@ namespace :npm do
       end
     end
   end
+end
+
+def autohide?(addon)
+  /^ember-cli-fill-murray-/.match(addon.name)
 end
