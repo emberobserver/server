@@ -13,8 +13,34 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+top_level:
+  name: Top-level category
+  description: A simple top-level category with no subcategories
+  position: 2
 
-two:
-  name: MyString
+parent:
+  id: 4
+  name: Parent category
+  description: A top-level category with a subcategory
+  position: 3
+
+subcategory:
+  name: Subcategory
+  description: A subcategory of a top-level category
+  position: 2
+  parent_id: 4
+
+fourth:
+  name: The fourth top-level category
+  description: A top-level category at the fourth position
+  position: 4
+
+first:
+  name: The first top-level category
+  description: A top-level category at the first position
+  position: 1
+
+last:
+  name: The last top-level category
+  description: A top-level category at the last position
+  position: 5
