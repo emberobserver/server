@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CategoriesControllerTest < ActionController::TestCase
+class CategoriesControllerTest < ControllerTest
   test "'show' returns data for a top-level category" do
     category = categories(:top_level)
 
@@ -39,10 +39,5 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_equal categories(:fourth).name, json_response['categories'][4]['name']
 
     assert_equal categories(:last).name, json_response['categories'].last['name']
-  end
-
-  private
-  def json_response
-    JSON.parse response.body
   end
 end
