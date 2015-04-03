@@ -15,6 +15,7 @@
 #  stars                   :integer
 #  penultimate_commit_date :datetime
 #  penultimate_commit_sha  :string
+#  repo_created_date       :datetime
 #
 
 class GithubStats < ActiveRecord::Base

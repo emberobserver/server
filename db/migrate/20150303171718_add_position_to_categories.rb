@@ -2,8 +2,10 @@ class AddPositionToCategories < ActiveRecord::Migration
   def change
     add_column :categories, :position, :integer
     component_cat = Category.where(name: 'Components').first
-    component_cat.position = 5
-    component_cat.save
+    if component_cat
+      component_cat.position = 5
+      component_cat.save
+    end
 
     position = 1
     Category.where(position: nil).each do |category|

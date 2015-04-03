@@ -44,10 +44,12 @@ namespace :npm do
 
       npm_author = metadata['author']
       if npm_author
-        author = NpmUser.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
+        author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
+        author.url = npm_author['url']
         if author != addon.author
           addon.author = author
         end
+        author.save
       else
         addon.author = nil
       end
@@ -60,7 +62,7 @@ namespace :npm do
 
       addon.maintainers.clear
       metadata['maintainers'].each do |maintainer|
-        npm_user = NpmUser.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
+        npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
         if maintainer['gravatar_id']
           npm_user.gravatar = maintainer['gravatar_id']
           npm_user.save

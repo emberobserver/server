@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316003329) do
+ActiveRecord::Schema.define(version: 20150403174640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150316003329) do
 
   create_table "addon_maintainers", id: false, force: :cascade do |t|
     t.integer "addon_id"
-    t.integer "npm_user_id"
+    t.integer "npm_maintainer_id"
   end
 
   create_table "addon_npm_keywords", id: false, force: :cascade do |t|
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20150316003329) do
     t.string   "latest_version"
     t.string   "description"
     t.string   "license"
-    t.integer  "author_id"
+    t.integer  "npm_author_id"
     t.datetime "latest_version_date"
     t.boolean  "deprecated",              default: false
     t.text     "note"
@@ -119,18 +119,26 @@ ActiveRecord::Schema.define(version: 20150316003329) do
     t.string "avatar_url"
   end
 
+  create_table "npm_authors", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "npm_keywords", force: :cascade do |t|
     t.string   "keyword"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "npm_users", force: :cascade do |t|
+  create_table "npm_maintainers", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "gravatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "gravatar"
   end
 
   create_table "reviews", force: :cascade do |t|

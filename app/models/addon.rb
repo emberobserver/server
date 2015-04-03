@@ -10,7 +10,7 @@
 #  latest_version          :string
 #  description             :string
 #  license                 :string
-#  author_id               :integer
+#  npm_author_id           :integer
 #  latest_version_date     :datetime
 #  deprecated              :boolean          default("false")
 #  note                    :text
@@ -26,6 +26,8 @@
 #  is_top_starred          :boolean          default("false")
 #  score                   :integer
 #  published_date          :datetime
+#  last_seen_in_npm        :datetime
+#  is_wip                  :boolean
 #
 
 class Addon < ActiveRecord::Base
@@ -35,9 +37,9 @@ class Addon < ActiveRecord::Base
 
   has_many :category_addons
   has_many :categories, through: :category_addons
-  belongs_to :author, class_name: 'NpmUser'
+  belongs_to :author, class_name: 'NpmAuthor', foreign_key: :npm_author_id
   has_many :npm_keywords, through: :addon_npm_keywords
-  has_many :maintainers, through: :addon_maintainers, source: :npm_user
+  has_many :maintainers, through: :addon_maintainers, source: :npm_maintainer
 
   has_many :downloads, foreign_key: 'addon_id', class: AddonDownload
   has_one :github_stats

@@ -28,7 +28,7 @@ class AddonSerializer < ApplicationSerializer
   end
 
   def is_new_addon
-    object.oldest_version.released > 2.weeks.ago
+    object.oldest_version && object.oldest_version.released > 2.weeks.ago
   end
 
   def open_issues
