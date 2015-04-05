@@ -16,6 +16,8 @@ gem 'puma'
 gem 'bugsnag'
 gem 'redis-rails'
 
+gem 'textacular', '~>3.0'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

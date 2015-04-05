@@ -7,6 +7,10 @@ class AddonsController < ApplicationController
       redirect_to :hidden and return
     end
 
+    if params[:q]
+      search(params[:q]) and return
+    end
+
     render_cached_json 'api:addons:index' do
       addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: false).all
       ActiveModel::Serializer.build_json(self, addons, { })
@@ -15,6 +19,11 @@ class AddonsController < ApplicationController
 
   def hidden
     addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: true).where('name not ilike ?', '%murray%').all
+    render json: addons
+  end
+
+  def search(q)
+    addons = Addon.fuzzy_search(q)
     render json: addons
   end
 

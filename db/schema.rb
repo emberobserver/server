@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316003329) do
+ActiveRecord::Schema.define(version: 20150405232853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "addon_downloads", force: :cascade do |t|
     t.integer "addon_id"
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(version: 20150316003329) do
     t.datetime "penultimate_commit_date"
     t.string   "penultimate_commit_sha"
     t.datetime "repo_created_date"
+    t.text     "readme"
   end
 
   add_index "github_stats", ["addon_id"], name: "index_github_stats_on_addon_id", using: :btree
