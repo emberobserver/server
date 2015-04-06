@@ -1,5 +1,3 @@
-require 'net/http'
-
 namespace :cache do
 	namespace :clear do
 		desc "Clear the cache for /api/addons"
@@ -13,20 +11,18 @@ namespace :cache do
 		end
 
 		desc "Clear all caches"
-		task all: [ :environment, 'cache:clear:addons', 'cache:clear:categories' ]
+		task all: [ 'cache:clear:addons', 'cache:clear:categories' ]
 	end
 
 	namespace :prime do
 		desc "Prime the /api/addons cache"
 		task addons: :environment do
-			include Rails.application.routes.url_helpers
-			get addons_url(host: 'emberobserver.com')
+			ActionDispatch::Integration::Session.new(Rails.application).get('/api/addons')
 		end
 
 		desc "Prime the /api/categories cache"
 		task categories: :environment do
-			include Rails.application.routes.url_helpers
-			get categories_url(host: 'emberobserver.com')
+			ActionDispatch::Integration::Session.new(Rails.application).get('/api/categories')
 		end
 
 		desc "Prime all caches"
@@ -35,8 +31,4 @@ namespace :cache do
 
 	desc "Clear and prime all caches"
 	task reset: [ 'cache:clear:all', 'cache:prime:all' ]
-end
-
-def get(url)
-	Net::HTTP.get(URI.parse(url))
 end
