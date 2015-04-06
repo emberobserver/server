@@ -4,21 +4,30 @@ namespace :github do
 			puts "Environment variable GITHUB_ACCESS_TOKEN not set!"
 		end
 
-		github = Github.new(oauth_token: ENV['GITHUB_ACCESS_TOKEN'])
+		stack = Faraday::RackBuilder.new do |builder|
+			builder.use Faraday::HttpCache, store: Rails.cache
+			builder.use Octokit::Response::RaiseError
+			builder.adapter Faraday.default_adapter
+		end
+		Octokit.middleware = stack
+		Octokit.auto_paginate = true
+		github = Octokit::Client.new(access_token: ENV['GITHUB_ACCESS_TOKEN'])
+
 		Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
 			user = addon.github_user
 			repo = addon.github_repo.sub(/#.+?$/, '')
+			slug = "#{user}/#{repo}"
 
 			github_stats = addon.github_stats || GithubStats.new(addon_id: addon.id)
 
 			begin
-				data = github.repos.get(user: user, repo: repo)
+				data = github.repo(slug)
 				github_stats.open_issues = data.open_issues_count || 0
 				github_stats.forks = data.forks_count || 0
 				github_stats.stars = data.stargazers_count || 0
 				github_stats.repo_created_date = data.created_at || 0
 
-				contributors = github.repos.stats.contributors(user: user, repo: repo)
+				contributors = github.contributors(slug)
 				github_stats.contributors = contributors.length
 				if contributors.length > 0
 					addon.github_contributors.clear
@@ -31,7 +40,7 @@ namespace :github do
 					end
 				end
 
-				commits = github.repos.commits.list(user: user, repo: repo, auto_pagination: true).to_a
+				commits = github.commits(slug).to_a
 				# Sort in descending date order
 				commits.sort! { |a, b| b.commit.committer.date <=> a.commit.committer.date }
 
@@ -59,7 +68,7 @@ namespace :github do
 				end
 
 				github_stats.save
-			rescue Github::Error::NotFound, URI::InvalidURIError
+			rescue Octokit::NotFound, URI::InvalidURIError
 				puts "WARN: Addon #{addon.name} has invalid Github data"
 				addon.has_invalid_github_repo = true
 				addon.save

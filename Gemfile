@@ -32,5 +32,7 @@ group :development do
 	gem 'capistrano3-puma'
 end
 
-gem 'github_api'
+gem 'octokit', '~> 3.0'
+gem 'faraday-http-cache'
+
 gem 'github-markdown'
