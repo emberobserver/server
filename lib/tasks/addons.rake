@@ -77,7 +77,7 @@ namespace :addons do
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update_data', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores' ]
 	end
 end
 
