@@ -9,7 +9,13 @@ class CorrectionsController < ApplicationController
 			end
 			args[field] = params[field]
 		end
-		CorrectionMailer.correction(args).deliver_now
+		addon = Addon.find_by(name: args[:addon])
+		unless addon
+			head :unprocessable_entity
+			return
+		end
+		args.delete :addon
+		CorrectionMailer.correction(args, addon).deliver_now
 		head :no_content
 	end
 end

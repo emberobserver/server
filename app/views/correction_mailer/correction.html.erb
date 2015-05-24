@@ -9,7 +9,7 @@
 			<strong>From:</strong> <%= @correction[:name] %> (<%= @correction[:email] %>)
 		</p>
 		<p>
-			<strong>Addon:</strong> <%= @correction[:addon] %>
+			<strong>Addon:</strong> <%= link_to @addon.name, "http://emberobserver.com/addons/#{@addon.name}" %>
 		</p>
 		<p>
 			<strong>Correction:</strong> <%= @correction[:correction] %>
