@@ -122,5 +122,5 @@ namespace :npm do
 end
 
 def autohide?(addon)
-  /^ember-cli-fill-murray-/.match(addon.name)
+  /fill-murray-/.match(addon.name)
 end
