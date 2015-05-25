@@ -27,7 +27,7 @@ namespace :npm do
         latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
         description: metadata['description'],
         license: metadata['license'],
-        repository_url: metadata['repository']['url'],
+        repository_url: repo_url(metadata['repository']['url']),
         published_date: metadata['created'],
       }
       if metadata.include?('github')
@@ -123,4 +123,12 @@ end
 
 def autohide?(addon)
   /fill-murray-/.match(addon.name)
+end
+
+def repo_url(url)
+  if url =~ %r|^git\+https://github.com|
+    url.sub(/^git\+/, '')
+  else
+    url
+  end
 end
