@@ -131,8 +131,8 @@ def repo_url(url)
   end
   if url =~ %r|^git\+https://github.com|
     url.sub!(/^git\+/, '')
-  elsif url =~ %r|^git+ssh://github.com|
-    url.sub!(/^git+ssh/, 'https')
+  elsif url =~ %r|^git\+ssh://github.com|
+    url.sub!(/^git\+ssh/, 'https')
   end
   url
 end
