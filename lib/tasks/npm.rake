@@ -126,9 +126,13 @@ def autohide?(addon)
 end
 
 def repo_url(url)
-  if url =~ %r|^git\+https://github.com|
-    url.sub(/^git\+/, '')
-  else
-    url
+  if url =~ /git@github.com/
+    url.sub!('git@github.com', 'github.com')
   end
+  if url =~ %r|^git\+https://github.com|
+    url.sub!(/^git\+/, '')
+  elsif url =~ %r|^git+ssh://github.com|
+    url.sub!(/^git+ssh/, 'https')
+  end
+  url
 end
