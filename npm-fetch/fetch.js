@@ -2,11 +2,24 @@ var RSVP = require('rsvp');
 var Registry = require('npm-registry');
 var fs = require('fs');
 
+function unique(arr) {
+  return arr.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+}
+
 var npm = new Registry();
 
 const MAX_RETRIES = 5;
 const searchKeyword = 'ember-addon';
 const outputFilename = '/tmp/addons.json';
+
+function wait(ms)
+{
+  return new RSVP.Promise(function(resolve, reject) {
+    setTimeout(resolve, ms);
+  });
+}
 
 function requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts)
 {
@@ -15,10 +28,22 @@ function requestWithRetries(resolve, reject, endpoint, method, args, successCall
       if (attempts >= MAX_RETRIES) {
         reject(err);
       } else {
-        requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
+        wait(500 * attempts).then(function() {
+          requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
+        });
       }
     } else {
-      resolve(successCallback(data));
+      if (data[0] && data[0].error && data[0].error === "proxy_error") {
+        if (attempts >= MAX_RETRIES) {
+          reject(data[0]);
+        } else {
+          wait(500 * attempts).then(function() {
+            requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
+          });
+        }
+      } else {
+        resolve(successCallback(data));
+      }
     }
   };
   var argsWithCallback = args.concat(registryCallback);
@@ -36,7 +61,7 @@ function request(endpointAndMethod, args, successCallback)
   }
 
   return new RSVP.Promise(function(resolve, reject) {
-    requestWithRetries(resolve, reject, endpoint, method, args, successCallback);
+    requestWithRetries(resolve, reject, endpoint, method, args, successCallback, 0);
   });
 }
 
