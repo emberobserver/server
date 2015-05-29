@@ -16,7 +16,15 @@ function requestWithRetries(resolve, reject, endpoint, method, args, successCall
 				requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
 			}
 		} else {
-			resolve(successCallback(data));
+			if (data && data[0] && data[0].error === 'proxy_error') {
+				if (attempts >= MAX_RETRIES) {
+					reject(data[0]);
+				} else {
+					requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts + 1);
+				}
+			} else {
+				resolve(successCallback(data));
+			}
 		}
 	};
 	var argsWithCallback = args.concat(registryCallback);
@@ -34,7 +42,7 @@ function request(endpointAndMethod, args, successCallback)
 	}
 
 	return new RSVP.Promise(function(resolve, reject) {
-		requestWithRetries(resolve, reject, endpoint, method, args, successCallback);
+		requestWithRetries(resolve, reject, endpoint, method, args, successCallback, 0);
 	});
 }
 
