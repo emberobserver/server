@@ -122,7 +122,7 @@ namespace :npm do
 end
 
 def autohide?(addon)
-  /fill-murray-/.match(addon.name)
+  addon.name =~ /fill-murray/ && addon.name != 'ember-cli-fill-murray'
 end
 
 def repo_url(url)
