@@ -7,7 +7,7 @@ class AddonSerializer < ApplicationSerializer
              :open_issues, :forks, :contributors,
              :first_commit_date, :latest_commit_date,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :score, :stars, :committed_to_recently, :is_wip
+             :score, :stars, :committed_to_recently, :is_wip, :demo_url
 
   has_many :maintainers
 
