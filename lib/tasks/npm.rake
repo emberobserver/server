@@ -10,8 +10,7 @@ namespace :npm do
     end
   end
 
-  #task update: [ :environment, 'npm:fetch' ] do
-  task update: :environment do
+  task update: [ :environment, 'npm:fetch' ] do
     begin
       addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
     rescue ActiveSupport::JSON.parse_error
