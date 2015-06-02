@@ -22,13 +22,15 @@ namespace :npm do
 
       addon = Addon.find_or_initialize_by(name: name)
       latest_version = metadata['latest']['version']
+      ember_addon_info = metadata['latest']['ember-addon']
       addon_props = {
+        demo_url: (ember_addon_info ? ember_addon_info['demoURL'] : nil),
+        description: metadata['description'],
         latest_version: latest_version,
         latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
-        description: metadata['description'],
         license: metadata['license'],
-        repository_url: repo_url(metadata['repository']['url']),
         published_date: metadata['created'],
+        repository_url: repo_url(metadata['repository']['url'])
       }
       if metadata.include?('github')
         addon_props[:github_user] = metadata['github']['user']
