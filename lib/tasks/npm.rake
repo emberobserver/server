@@ -10,7 +10,8 @@ namespace :npm do
     end
   end
 
-  task update: [ :environment, 'npm:fetch' ] do
+  #task update: [ :environment, 'npm:fetch' ] do
+  task update: :environment do
     begin
       addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
     rescue ActiveSupport::JSON.parse_error
@@ -75,11 +76,16 @@ namespace :npm do
 
       metadata['versions'].each do |version, data|
         addon_version = addon.addon_versions.where(version: version).first
+        if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
+          addon_version.ember_cli_version = data['devDependencies']['ember-cli']
+          addon_version.save
+        end
         unless addon_version
           new_addon_version = AddonVersion.find_or_create_by(
             addon: addon,
             version: version,
-            released: metadata['time'][version]
+            released: metadata['time'][version],
+            ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
           )
           addon.addon_versions << new_addon_version
         end
