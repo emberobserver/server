@@ -1,3 +1,5 @@
+require 'net/http'
+
 namespace :addons do
 	namespace :update do
 		desc "Update download count for addons"
@@ -78,7 +80,23 @@ namespace :addons do
 
 		desc "Update all data for addons"
 		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores' ]
+
+		desc "Update latest version number for ember-cli"
+		task ember_cli_version: :environment do
+			result = JSON.load(get_url('http://registry.npmjs.org/ember-cli'))
+			version = result['dist-tags']['latest']
+			if version
+				ember_cli = LatestVersion.find_or_create_by(package: 'ember-cli')
+				ember_cli.version = version
+				ember_cli.save!
+			end
+		end
+
 	end
+end
+
+def get_url(url)
+	Net::HTTP.get(URI.parse(url))
 end
 
 def safe_name(name)
