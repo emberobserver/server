@@ -14,7 +14,9 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "name is required" do
+    assert_raises ActiveRecord::RecordInvalid do
+      Category.create! description: 'some description', position: 1
+    end
+  end
 end

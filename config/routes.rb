@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :addons, only: [:index, :update]
     get 'hidden' => 'addons#hidden'
     get 'addons/:name' => 'addons#show'
-    resources :categories, only: [:index]
+    resources :categories, only: [:index, :create]
     get 'categories/:name' => 'categories#show', as: 'category'
     resources :keywords, only: [:show, :index]
     resources :versions, only: [:show, :index]

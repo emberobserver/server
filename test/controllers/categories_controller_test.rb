@@ -40,4 +40,32 @@ class CategoriesControllerTest < ControllerTest
 
     assert_equal categories(:last).name, json_response['categories'].last['name']
   end
+
+  test "responds with HTTP 401 when trying to create a category while not logged in" do
+    post :create, category: { name: 'new category', description: 'New category description' }
+    assert_response :unauthorized
+  end
+
+  test "responds with HTTP 422 when name is missing" do
+    post_as_user users(:admin), :create, category: { name: '', description: 'New category description' }
+    assert_response :unprocessable_entity
+  end
+
+  test "creates a category when logged in and all required data is provided" do
+    assert_difference 'Category.count' do
+      post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+    end
+  end
+
+  test "responds with HTTP 201 (created) when new category is created" do
+    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+    assert_response :created
+  end
+
+  private
+
+  def post_as_user(user, action, params)
+    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
+    post action, params
+  end
 end
