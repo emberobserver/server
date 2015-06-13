@@ -19,7 +19,7 @@ class Category < ActiveRecord::Base
   belongs_to :parent_category, class_name: 'Category', foreign_key: 'parent_id'
 
   validates :name, presence: true
-  validates :position, presence: true
+  validates :position, presence: true, uniqueness: { scope: 'parent_id' }
 
   before_save :transform_position
 

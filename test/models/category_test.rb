@@ -26,6 +26,18 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
 
+  test "position should be unique for top-level categories" do
+    assert_raises ActiveRecord::RecordInvalid do
+      Category.create! name: 'new category', position: 1
+    end
+  end
+
+  test "duplicate positions should be allowed across parent categories" do
+    assert_nothing_raised ActiveRecord::RecordInvalid do
+      Category.create! name: 'new category', position: 1, parent_category: categories(:first)
+    end
+  end
+
   test "converts a position of -1 to the last position when saving" do
     last_position = categories(:last).position
     category = Category.create(name: 'new category', position: -1)
