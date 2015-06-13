@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
     Category.transaction do
       update_category_positions(category)
       if category.save
+        Rails.cache.delete 'api:categories:index'
         render json: category, status: :created
       else
         head :unprocessable_entity
