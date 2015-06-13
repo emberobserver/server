@@ -46,24 +46,24 @@ class CategoriesControllerTest < ControllerTest
     assert_response :unauthorized
   end
 
-  test "responds with HTTP 422 when name is missing" do
-    post_as_user users(:admin), :create, category: { name: '', description: 'New category description' }
+  test "responds with HTTP 422 when required data is missing" do
+    post_as_user users(:admin), :create, category: { description: 'New category description' }
     assert_response :unprocessable_entity
   end
 
   test "creates a category when logged in and all required data is provided" do
     assert_difference 'Category.count' do
-      post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+      post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description', position: -1 }
     end
   end
 
   test "responds with HTTP 201 (created) when new category is created" do
-    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description', position: -1 }
     assert_response :created
   end
 
   test "includes JSON with new category data in response after creating a new category" do
-    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description', position: -1 }
     assert_equal 'New category', json_response['category']['name']
   end
 

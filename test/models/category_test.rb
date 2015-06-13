@@ -20,6 +20,12 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
 
+  test "position is required" do
+    assert_raises ActiveRecord::RecordInvalid do
+      Category.create! name: 'new category'
+    end
+  end
+
   test "converts a position of -1 to the last position when saving" do
     last_position = categories(:last).position
     category = Category.create(name: 'new category', position: -1)
