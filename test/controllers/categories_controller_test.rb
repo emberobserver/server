@@ -67,6 +67,18 @@ class CategoriesControllerTest < ControllerTest
     assert_equal 'New category', json_response['category']['name']
   end
 
+  test "moves categories as needed to insert a new one" do
+    post_as_user users(:admin), :create, category: { name: 'New category at front', position: 1 }
+    assert_equal 1, json_response['category']['position'], "the new category should be at the first position"
+    assert_equal 2, categories(:first).position, "the previous first-position category should be at the second position"
+    assert_equal 1, categories(:subcategory).position, "the position of subcategories shoud not have changed"
+  end
+
+  test "does not update category positions when a new category can't be saved" do
+    post_as_user users(:admin), :create, category: { name: '', position: 1 }
+    assert_equal 1, categories(:first).position
+  end
+
   private
 
   def json_response

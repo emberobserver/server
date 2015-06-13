@@ -10,10 +10,15 @@ class CategoriesController < ApplicationController
 
   def create
     category = Category.new(category_params)
-    if category.save
-      render json: category, status: :created
-    else
-      head :unprocessable_entity
+
+    Category.transaction do
+      update_category_positions(category)
+      if category.save
+        render json: category, status: :created
+      else
+        head :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
     end
   end
 
@@ -30,5 +35,11 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit(:name, :description, :position)
+  end
+
+  def update_category_positions(category)
+    # increment the position for every category at or after the position of the given category
+    categories = Category.where('position >= ?', category.position).where(parent_id: category.parent_id)
+    categories.update_all('position = position + 1')
   end
 end
