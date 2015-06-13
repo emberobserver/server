@@ -62,7 +62,16 @@ class CategoriesControllerTest < ControllerTest
     assert_response :created
   end
 
+  test "includes JSON with new category data in response after creating a new category" do
+    post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description' }
+    assert_equal 'New category', json_response['category']['name']
+  end
+
   private
+
+  def json_response
+    @json_response ||= ActiveSupport::JSON.decode(@response.body)
+  end
 
   def post_as_user(user, action, params)
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
