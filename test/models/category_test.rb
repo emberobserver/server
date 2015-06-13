@@ -19,4 +19,10 @@ class CategoryTest < ActiveSupport::TestCase
       Category.create! description: 'some description', position: 1
     end
   end
+
+  test "converts a position of -1 to the last position when saving" do
+    last_position = categories(:last).position
+    category = Category.create(name: 'new category', position: -1)
+    assert_equal last_position + 1, category.position
+  end
 end

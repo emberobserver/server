@@ -19,4 +19,14 @@ class Category < ActiveRecord::Base
   belongs_to :parent_category, class_name: 'Category', foreign_key: 'parent_id'
 
   validates :name, presence: true
+
+  before_save :transform_position
+
+  private
+
+  def transform_position
+    return if self.position != -1
+    last_position = Category.order('position desc').first.position
+    self.position = last_position + 1
+  end
 end
