@@ -79,14 +79,50 @@ class CategoriesControllerTest < ControllerTest
     assert_equal 1, categories(:first).position
   end
 
+  test "responds with HTTP 401 unauthorized when trying to update a category while not logged in" do
+    put :update, id: categories(:first), category: { name: 'Blah' }
+    assert_response :unauthorized
+  end
+
+  test "updates a category" do
+    id = categories(:first).id
+    put_as_user users(:admin), :update, id: id, category: { name: 'New category name' }
+    assert_equal 'New category name', Category.find(id).name
+  end
+
+  test "responds with new category information in JSON after updating" do
+    put_as_user users(:admin), :update, id: categories(:first), category: { name: 'Modified category name', description: 'Modified category description' }
+    assert_equal 'Modified category name', json_response['category']['name']
+    assert_equal 'Modified category description', json_response['category']['description']
+  end
+
+  test "responds with HTTP 404 (not found) when trying to update an invalid category" do
+    put_as_user users(:admin), :update, id: -1, category: { name: 'blah' }
+    assert_response :not_found
+  end
+
+  test "responds with HTTP 422 when trying to update category and required data is missing" do
+    put_as_user users(:admin), :update, id: categories(:first), category: { name: '' }
+    assert_response :unprocessable_entity
+  end
+
   private
 
   def json_response
     @json_response ||= ActiveSupport::JSON.decode(@response.body)
   end
 
-  def post_as_user(user, action, params)
+  def add_auth_token_to_request(user)
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
+  end
+
+  def post_as_user(user, action, params)
+    add_auth_token_to_request(user)
     post action, params
+  end
+
+  def put_as_user(user, action, params)
+    add_auth_token_to_request(user)
+    put action, params
   end
 end

@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :authenticate, only: [:create]
+  before_action :authenticate, only: [:create, :update]
 
   def index
     render_cached_json 'api:categories:index' do
@@ -20,6 +20,21 @@ class CategoriesController < ApplicationController
         head :unprocessable_entity
         raise ActiveRecord::Rollback
       end
+    end
+  end
+
+  def update
+    begin
+      @category = Category.find(params[:id])
+    rescue
+      head :not_found
+      return
+    end
+    @category.update_attributes(category_params)
+    if @category.save
+      render json: @category
+    else
+      head :unprocessable_entity
     end
   end
 
