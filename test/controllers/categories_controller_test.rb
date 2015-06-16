@@ -106,6 +106,17 @@ class CategoriesControllerTest < ControllerTest
     assert_response :unprocessable_entity
   end
 
+  test "can update the position of a category" do
+    id = categories(:first).id
+    put_as_user users(:admin), :update, id: id, category: { position: 4 }
+    assert_equal 4, Category.find(id).position
+  end
+
+  test "moving the first category moves the next one to the first position" do
+    put_as_user users(:admin), :update, id: categories(:first), category: { position: 4 }
+    assert_equal 1, categories(:top_level).position
+  end
+
   private
 
   def json_response

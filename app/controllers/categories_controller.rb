@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
     category = Category.new(category_params)
 
     Category.transaction do
-      update_category_positions(category)
+      increment_category_positions(category.parent_id, category.position)
       if category.save
         Rails.cache.delete 'api:categories:index'
         render json: category, status: :created
@@ -30,11 +30,17 @@ class CategoriesController < ApplicationController
       head :not_found
       return
     end
-    @category.update_attributes(category_params)
-    if @category.save
-      render json: @category
-    else
-      head :unprocessable_entity
+    Category.transaction do
+      decrement_category_positions(@category.parent_id, @category.position + 1)
+      @category.position = -999
+      increment_category_positions(@category.parent_id, category_params[:position])
+      @category.update_attributes(category_params)
+      if @category.save
+        render json: @category
+      else
+        head :unprocessable_entity
+        raise ActiveRecord::Rollback
+      end
     end
   end
 
@@ -53,9 +59,17 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name, :description, :position)
   end
 
-  def update_category_positions(category)
-    # increment the position for every category at or after the position of the given category
-    categories = Category.where('position >= ?', category.position).where(parent_id: category.parent_id)
-    categories.update_all('position = position + 1')
+  def categories_at_or_after(parent_id, position)
+    Category.where(parent_id: parent_id).where('position >= ?', position)
+  end
+
+  def decrement_category_positions(parent_id, start_position)
+    # decrement the position for every category at or after the given positio
+    categories_at_or_after(parent_id, start_position).update_all('position = position - 1')
+  end
+
+  def increment_category_positions(parent_id, start_position)
+    # increment the position for every category at or after the given position
+    categories_at_or_after(parent_id, start_position).update_all('position = position + 1')
   end
 end
