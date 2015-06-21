@@ -22,9 +22,8 @@ namespace :npm do
 
       addon = Addon.find_or_initialize_by(name: name)
       latest_version = metadata['latest']['version']
-      ember_addon_info = metadata['latest']['ember-addon']
       addon_props = {
-        demo_url: (ember_addon_info ? ember_addon_info['demoURL'] : nil),
+        demo_url: demo_url(metadata),
         description: metadata['description'],
         latest_version: latest_version,
         latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
@@ -130,6 +129,16 @@ end
 
 def autohide?(addon)
   addon.name =~ /fill-murray/ && addon.name != 'ember-cli-fill-murray'
+end
+
+def demo_url(addon_data)
+  ember_addon_info = addon_data['latest']['ember-addon']
+  return nil if ember_addon_info.nil?
+  demo_url = ember_addon_info['demoURL']
+  if demo_url.nil? || demo_url !~ /^http/
+    return nil
+  end
+  demo_url
 end
 
 def repo_url(url)
