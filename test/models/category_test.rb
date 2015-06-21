@@ -43,4 +43,10 @@ class CategoryTest < ActiveSupport::TestCase
     category = Category.create(name: 'new category', position: -1)
     assert_equal last_position + 1, category.position
   end
+
+  test "converts a position of -1 for a subcategory to the last position among the other siblings" do
+    last_position = categories(:subcategory).position
+    category = categories(:parent).subcategories.create(name: 'new subcategory', position: -1)
+    assert_equal last_position + 1, category.position
+  end
 end
