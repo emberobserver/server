@@ -21,12 +21,12 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
   validates :position, presence: true, uniqueness: { scope: 'parent_id' }
 
-  before_save :transform_position
+  before_validation :transform_position
 
   private
 
   def transform_position
-    return if self.position != -1
+    return if self.position && self.position != -1
     last_position = Category.where(parent_id: self.parent_id).order('position desc').first.position
     self.position = last_position + 1
   end

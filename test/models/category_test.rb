@@ -16,13 +16,7 @@ require 'test_helper'
 class CategoryTest < ActiveSupport::TestCase
   test "name is required" do
     assert_raises ActiveRecord::RecordInvalid do
-      Category.create! description: 'some description', position: 1
-    end
-  end
-
-  test "position is required" do
-    assert_raises ActiveRecord::RecordInvalid do
-      Category.create! name: 'new category'
+      Category.create! description: 'some description'
     end
   end
 
@@ -40,13 +34,19 @@ class CategoryTest < ActiveSupport::TestCase
 
   test "converts a position of -1 to the last position when saving" do
     last_position = categories(:last).position
-    category = Category.create(name: 'new category', position: -1)
+    category = Category.create!(name: 'new category', position: -1)
     assert_equal last_position + 1, category.position
   end
 
   test "converts a position of -1 for a subcategory to the last position among the other siblings" do
     last_position = categories(:subcategory).position
-    category = categories(:parent).subcategories.create(name: 'new subcategory', position: -1)
+    category = categories(:parent).subcategories.create!(name: 'new subcategory', position: -1)
+    assert_equal last_position + 1, category.position
+  end
+
+  test "automatically sets position of a category when created with nil" do
+    last_position = categories(:last).position
+    category = Category.create!(name: 'new category')
     assert_equal last_position + 1, category.position
   end
 end
