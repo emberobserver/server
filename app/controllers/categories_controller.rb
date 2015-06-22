@@ -31,10 +31,20 @@ class CategoriesController < ApplicationController
       return
     end
     Category.transaction do
-      decrement_category_positions(@category.parent_id, @category.position + 1)
-      @category.position = -999
-      increment_category_positions(@category.parent_id, category_params[:position])
+      original_position = @category.position
+
+      # First move the target category to the end
+      @category.position = -1
+      @category.save
+
+      # Update the positions for categories that came after the target category
+      decrement_category_positions(@category.parent_id, original_position)
+      # Now make room for the target category
+      if category_params[:position] && category_params[:position].to_i != -1
+        increment_category_positions(@category.parent_id, category_params[:position])
+      end
       @category.update_attributes(category_params)
+
       if @category.save
         render json: @category
       else
@@ -64,7 +74,7 @@ class CategoriesController < ApplicationController
   end
 
   def decrement_category_positions(parent_id, start_position)
-    # decrement the position for every category at or after the given positio
+    # decrement the position for every category at or after the given position
     categories_at_or_after(parent_id, start_position).update_all('position = position - 1')
   end
 

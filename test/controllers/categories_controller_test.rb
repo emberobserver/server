@@ -117,6 +117,12 @@ class CategoriesControllerTest < ControllerTest
     assert_equal 1, categories(:top_level).position
   end
 
+  test "updating a category's position updates other categories' appropriately" do
+    put_as_user users(:admin), :update, id: categories(:top_level), category: { position: -1 }
+    assert_equal 1, categories(:first).position, "Preceding categories' positions are left unchanged"
+    assert_equal 2, categories(:parent).position, "Following categories' positions are decremented"
+  end
+
   private
 
   def json_response
