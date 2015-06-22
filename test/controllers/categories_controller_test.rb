@@ -95,7 +95,7 @@ class CategoriesControllerTest < ControllerTest
     assert_response :unprocessable_entity
   end
 
-  test "can update the position of a category" do
+  test "can update the position of a category FOO" do
     id = categories(:first).id
     put_as_user users(:admin), :update, id: id, category: { position: 4 }
     assert_equal 4, Category.find(id).position
@@ -113,16 +113,15 @@ class CategoriesControllerTest < ControllerTest
   end
 
   test "can update the parent of a category" do
-    put_as_user users(:admin), :update, id: categories(:subcategory), category: { parent_id: nil }
-    categories(:subcategory).reload
-    assert_equal 0, categories(:top_level).subcategories.count
+    id = categories(:subcategory).id
+    put_as_user users(:admin), :update, id: id, category: { parent_id: nil }
+    assert_equal 0, categories(:parent).subcategories.count
   end
 
   test "updating a category's parent moves it to the end" do
-    @category = categories(:subcategory)
-    put_as_user users(:admin), :update, id: @category, category: { parent_id: nil }
-    @category.reload
-    assert_equal categories(:last).position + 1, @category.position
+    id = categories(:subcategory).id
+    put_as_user users(:admin), :update, id: id, category: { parent_id: nil }
+    assert_equal categories(:last).position + 1, Category.find(id).position
   end
 
   test "after updating a category's parent, doesn't leave gaps in positions for the old parent" do
