@@ -18,21 +18,26 @@ first:
   description: A top-level category at the first position
   position: 1
 
+second:
+  name: The second top-level category
+  description: A top-level category at the second position
+  position: 2
+
 top_level:
   name: Top-level category
   description: A simple top-level category with no subcategories
-  position: 2
-
-parent:
-  id: 4
-  name: Parent category
-  description: A top-level category with a subcategory
   position: 3
 
 fourth:
   name: The fourth top-level category
   description: A top-level category at the fourth position
   position: 4
+
+parent:
+  id: 4
+  name: Parent category
+  description: A top-level category with a subcategory
+  position: 5
 
 last:
   name: The last top-level category

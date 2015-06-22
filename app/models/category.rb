@@ -20,10 +20,17 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true
   validates :position, presence: true, uniqueness: { scope: 'parent_id' }
+  validate :cannot_be_own_parent
 
   before_validation :transform_position
 
   private
+
+  def cannot_be_own_parent
+    if id && id == parent_id
+      errors.add(:parent_id, "Category cannot have itself as its parent")
+    end
+  end
 
   def transform_position
     return if self.position && self.position != -1

@@ -49,4 +49,12 @@ class CategoryTest < ActiveSupport::TestCase
     category = Category.create!(name: 'new category')
     assert_equal last_position + 1, category.position
   end
+
+  test "cannot have itself as a parent" do
+    category = Category.create!(name: 'new category')
+    assert_raises ActiveRecord::RecordInvalid do
+      category.parent_id = category.id
+      category.save!
+    end
+  end
 end

@@ -30,17 +30,6 @@ class CategoriesControllerTest < ControllerTest
     assert_response :not_found
   end
 
-  test "'index' response has categories sorted by position" do
-    get :index
-
-    assert_equal categories(:first).name, json_response['categories'].first['name']
-
-    # because of a subcategory, we need to check at index 4 instead of 3 for the fourth top-level category
-    assert_equal categories(:fourth).name, json_response['categories'][4]['name']
-
-    assert_equal categories(:last).name, json_response['categories'].last['name']
-  end
-
   test "responds with HTTP 401 when trying to create a category while not logged in" do
     post :create, category: { name: 'new category', description: 'New category description' }
     assert_response :unauthorized
@@ -114,13 +103,31 @@ class CategoriesControllerTest < ControllerTest
 
   test "moving the first category moves the next one to the first position" do
     put_as_user users(:admin), :update, id: categories(:first), category: { position: 4 }
-    assert_equal 1, categories(:top_level).position
+    assert_equal 1, categories(:second).position
   end
 
   test "updating a category's position updates other categories' appropriately" do
-    put_as_user users(:admin), :update, id: categories(:top_level), category: { position: -1 }
+    put_as_user users(:admin), :update, id: categories(:second), category: { position: -1 }
     assert_equal 1, categories(:first).position, "Preceding categories' positions are left unchanged"
-    assert_equal 2, categories(:parent).position, "Following categories' positions are decremented"
+    assert_equal 2, categories(:top_level).position, "Following categories' positions are decremented"
+  end
+
+  test "can update the parent of a category" do
+    put_as_user users(:admin), :update, id: categories(:subcategory), category: { parent_id: nil }
+    categories(:subcategory).reload
+    assert_equal 0, categories(:top_level).subcategories.count
+  end
+
+  test "updating a category's parent moves it to the end" do
+    @category = categories(:subcategory)
+    put_as_user users(:admin), :update, id: @category, category: { parent_id: nil }
+    @category.reload
+    assert_equal categories(:last).position + 1, @category.position
+  end
+
+  test "after updating a category's parent, doesn't leave gaps in positions for the old parent" do
+    put_as_user users(:admin), :update, id: categories(:first), category: { parent_id: categories(:parent) }
+    assert_equal 1, categories(:second).position
   end
 
   private

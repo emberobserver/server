@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     render_cached_json 'api:categories:index' do
-      categories = Category.includes(:addons).order(:position)
+      categories = Category.includes(:addons)
       ActiveModel::Serializer.build_json(self, categories, { })
     end
   end
@@ -33,17 +33,31 @@ class CategoriesController < ApplicationController
     Category.transaction do
       original_position = @category.position
 
-      # First move the target category to the end
-      @category.position = -1
-      @category.save
+      new_parent_id = params[:category][:parent_id]
 
-      # Update the positions for categories that came after the target category
-      decrement_category_positions(@category.parent_id, original_position)
-      # Now make room for the target category
-      if category_params[:position] && category_params[:position].to_i != -1
-        increment_category_positions(@category.parent_id, category_params[:position])
+      if new_parent_id != @category.parent_id
+        @category.update_attributes(category_params)
+
+        original_parent_id = @category.parent_id
+
+        @category.parent_id = new_parent_id
+        @category.position = -1
+
+        # Update the positions for following categories in the old parent
+        decrement_category_positions(original_parent_id, original_position)
+      else
+        # First move the target category to the end
+        @category.position = -1
+        @category.save
+
+        # Update the positions for categories that came after the target category
+        decrement_category_positions(@category.parent_id, original_position)
+        # Now make room for the target category
+        if category_params[:position] && category_params[:position].to_i != -1
+          increment_category_positions(@category.parent_id, category_params[:position])
+        end
+        @category.update_attributes(category_params)
       end
-      @category.update_attributes(category_params)
 
       if @category.save
         render json: @category
