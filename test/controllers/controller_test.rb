@@ -9,6 +9,11 @@ class ControllerTest < ActionController::TestCase
 		get action, params
 	end
 
+	def post_as_user(user, action, params={})
+		authenticate(user)
+		post action, params
+	end
+
 	def put_as_user(user, action, params={})
 		authenticate(user)
 		put action, params

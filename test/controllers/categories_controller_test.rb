@@ -128,18 +128,4 @@ class CategoriesControllerTest < ControllerTest
   def json_response
     @json_response ||= ActiveSupport::JSON.decode(@response.body)
   end
-
-  def add_auth_token_to_request(user)
-    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
-  end
-
-  def post_as_user(user, action, params)
-    add_auth_token_to_request(user)
-    post action, params
-  end
-
-  def put_as_user(user, action, params)
-    add_auth_token_to_request(user)
-    put action, params
-  end
 end
