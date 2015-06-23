@@ -40,6 +40,11 @@ class CategoriesControllerTest < ControllerTest
     assert_response :unprocessable_entity
   end
 
+  test "response body includes error messages when a new category fails to be created" do
+    post_as_user users(:admin), :create, category: { description: 'Blah' }
+    assert_not_empty json_response['errors']
+  end
+
   test "creates a category when logged in and all required data is provided" do
     assert_difference 'Category.count' do
       post_as_user users(:admin), :create, category: { name: 'New category', description: 'New category description', position: -1 }
@@ -95,7 +100,12 @@ class CategoriesControllerTest < ControllerTest
     assert_response :unprocessable_entity
   end
 
-  test "can update the position of a category FOO" do
+  test "includes error messages in JSON response body after failing to update a category" do
+    put_as_user users(:admin), :update, id: categories(:first), category: { name: '' }
+    assert_not_empty json_response['errors']
+  end
+
+  test "can update the position of a category" do
     id = categories(:first).id
     put_as_user users(:admin), :update, id: id, category: { position: 4 }
     assert_equal 4, Category.find(id).position

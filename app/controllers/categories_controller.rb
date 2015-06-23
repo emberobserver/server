@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
         Rails.cache.delete 'api:categories:index'
         render json: category, status: :created
       else
-        head :unprocessable_entity
+        render json: { errors: category.errors }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       end
     end
@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
       if category.save
         render json: category
       else
-        head :unprocessable_entity
+        render json: { errors: category.errors }, status: :unprocessable_entity
         raise ActiveRecord::Rollback
       end
     end
