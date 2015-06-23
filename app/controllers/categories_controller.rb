@@ -41,6 +41,7 @@ class CategoriesController < ApplicationController
       end
 
       if category.save
+        Rails.cache.delete 'api:categories:index'
         render json: category
       else
         render json: { errors: category.errors }, status: :unprocessable_entity
