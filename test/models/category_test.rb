@@ -57,4 +57,9 @@ class CategoryTest < ActiveSupport::TestCase
       category.save!
     end
   end
+
+  test "correctly sets position when making the category the first child of a parent" do
+    category = categories(:first).subcategories.create!(name: 'new subcategory')
+    assert_equal 1, category.position
+  end
 end

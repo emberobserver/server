@@ -34,7 +34,11 @@ class Category < ActiveRecord::Base
 
   def transform_position
     return if self.position && self.position != -1
-    last_position = Category.where(parent_id: self.parent_id).order('position desc').first.position
-    self.position = last_position + 1
+    last_sibling_category = Category.where(parent_id: self.parent_id).order('position desc').first
+    if last_sibling_category
+      self.position = last_sibling_category.position + 1
+    else
+      self.position = 1
+    end
   end
 end
