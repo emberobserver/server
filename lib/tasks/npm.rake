@@ -32,8 +32,14 @@ namespace :npm do
         repository_url: repo_url(metadata['repository']['url'])
       }
       if metadata.include?('github')
-        addon_props[:github_user] = metadata['github']['user']
-        addon_props[:github_repo] = metadata['github']['repo']
+        github_data = metadata['github']
+        if github_data['user'] && github_data['repo']
+          addon_props[:github_user] = github_data['user']
+          addon_props[:github_repo] = github_data['repo']
+        elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
+          addon_props[:github_user] = $1
+          addon_props[:github_repo] = $2
+        end
       end
       addon.update(addon_props)
 
