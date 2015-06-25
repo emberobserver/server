@@ -18,90 +18,7 @@ namespace :npm do
     end
 
     addons.each do |metadata|
-      name = metadata['name']
-
-      addon = Addon.find_or_initialize_by(name: name)
-      latest_version = metadata['latest']['version']
-      addon_props = {
-        demo_url: demo_url(metadata),
-        description: metadata['description'],
-        latest_version: latest_version,
-        latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
-        license: metadata['license'],
-        published_date: metadata['created'],
-        repository_url: repo_url(metadata['repository']['url'])
-      }
-      if metadata.include?('github')
-        github_data = metadata['github']
-        if github_data['user'] && github_data['repo']
-          addon_props[:github_user] = github_data['user']
-          addon_props[:github_repo] = github_data['repo']
-        elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
-          addon_props[:github_user] = $1
-          addon_props[:github_repo] = $2
-        end
-      end
-      addon.update(addon_props)
-
-      if metadata['downloads']['start']
-        addon_downloads = addon.downloads.find_or_create_by(date: metadata['downloads']['start'])
-        addon_downloads.downloads = metadata['downloads']['downloads']
-        addon_downloads.save
-      end
-
-      npm_author = metadata['author']
-      if npm_author
-        author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
-        author.url = npm_author['url']
-        if author != addon.author
-          addon.author = author
-        end
-        author.save
-      else
-        addon.author = nil
-      end
-
-      addon.npm_keywords.clear
-      metadata['keywords'].each do |keyword|
-        npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
-        addon.npm_keywords << npm_keyword
-      end
-
-      addon.maintainers.clear
-      metadata['maintainers'].each do |maintainer|
-        npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
-        if maintainer['gravatar_id']
-          npm_user.gravatar = maintainer['gravatar_id']
-          npm_user.save
-        end
-        addon.maintainers << npm_user
-      end
-
-      current_versions = metadata['versions'].keys
-      addon.addon_versions = AddonVersion.where(addon_id: addon.id, version: current_versions)
-
-      metadata['versions'].each do |version, data|
-        addon_version = addon.addon_versions.where(version: version).first
-        if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
-          addon_version.ember_cli_version = data['devDependencies']['ember-cli']
-          addon_version.save
-        end
-        unless addon_version
-          new_addon_version = AddonVersion.find_or_create_by(
-            addon: addon,
-            version: version,
-            released: metadata['time'][version],
-            ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
-          )
-          addon.addon_versions << new_addon_version
-        end
-      end
-
-      addon.last_seen_in_npm = DateTime.now
-      if autohide?(addon)
-        addon.hidden = true
-      end
-      addon.save!
+      create_or_update_addon(metadata)
     end
   end
 
@@ -157,4 +74,91 @@ def repo_url(url)
     url.sub!(/^git\+ssh/, 'https')
   end
   url
+end
+
+def create_or_update_addon(metadata)
+  name = metadata['name']
+
+  addon = Addon.find_or_initialize_by(name: name)
+  latest_version = metadata['latest']['version']
+  addon_props = {
+    demo_url: demo_url(metadata),
+    description: metadata['description'],
+    latest_version: latest_version,
+    latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
+    license: metadata['license'],
+    published_date: metadata['created'],
+    repository_url: repo_url(metadata['repository']['url'])
+  }
+  if metadata.include?('github')
+    github_data = metadata['github']
+    if github_data['user'] && github_data['repo']
+      addon_props[:github_user] = github_data['user']
+      addon_props[:github_repo] = github_data['repo']
+    elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
+      addon_props[:github_user] = $1
+      addon_props[:github_repo] = $2
+    end
+  end
+  addon.update(addon_props)
+
+  if metadata['downloads']['start']
+    addon_downloads = addon.downloads.find_or_create_by(date: metadata['downloads']['start'])
+    addon_downloads.downloads = metadata['downloads']['downloads']
+    addon_downloads.save
+  end
+
+  npm_author = metadata['author']
+  if npm_author
+    author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
+    author.url = npm_author['url']
+    if author != addon.author
+      addon.author = author
+    end
+    author.save
+  else
+    addon.author = nil
+  end
+
+  addon.npm_keywords.clear
+  metadata['keywords'].each do |keyword|
+    npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
+    addon.npm_keywords << npm_keyword
+  end
+
+  addon.maintainers.clear
+  metadata['maintainers'].each do |maintainer|
+    npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
+    if maintainer['gravatar_id']
+      npm_user.gravatar = maintainer['gravatar_id']
+      npm_user.save
+    end
+    addon.maintainers << npm_user
+  end
+
+  current_versions = metadata['versions'].keys
+  addon.addon_versions = AddonVersion.where(addon_id: addon.id, version: current_versions)
+
+  metadata['versions'].each do |version, data|
+    addon_version = addon.addon_versions.where(version: version).first
+    if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
+      addon_version.ember_cli_version = data['devDependencies']['ember-cli']
+      addon_version.save
+    end
+    unless addon_version
+      new_addon_version = AddonVersion.find_or_create_by(
+        addon: addon,
+        version: version,
+        released: metadata['time'][version],
+        ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
+      )
+      addon.addon_versions << new_addon_version
+    end
+  end
+
+  addon.last_seen_in_npm = DateTime.now
+  if autohide?(addon)
+    addon.hidden = true
+  end
+  addon.save!
 end
