@@ -2,9 +2,17 @@ var RSVP = require('rsvp');
 var Registry = require('npm-registry');
 var fs = require('fs');
 
+function unique(arr) {
+  return arr.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+}
+
 var npm = new Registry();
 
 const MAX_RETRIES = 5;
+const searchKeyword = 'ember-addon';
+const outputFilename = '/tmp/addons.json';
 
 function wait(ms)
 {
@@ -71,20 +79,42 @@ function packageDownloads(packageName)
   });
 }
 
-if (process.argv.length !== 3) {
-  console.error("USAGE: %s %s <package name>", process.argv[0], process.argv[1]);
-  process.exit(1);
+function packagesWithKeyword(keyword)
+{
+  return request('packages.keyword', keyword, function(data) {
+    return data.map(function(packageInfo) {
+      return packageInfo.name;
+    });
+  });
 }
 
-var packageName = process.argv[2];
-var thePackageDetails = null;
-RSVP.hash({
-  package: packageDetails(packageName),
-  downloads: packageDownloads(packageName)
-}).then(function(data) {
-  var details = data.package;
-  details.downloads = data.downloads;
-  console.log(JSON.stringify(details));
+var allPackageDetails = { };
+packagesWithKeyword(searchKeyword).then(function(packageNames) {
+  var promises = packageNames.map(function(packageName) {
+    return packageDetails(packageName);
+  });
+  return RSVP.all(promises);
+}).then(function(packages) {
+  var promises = packages.map(function(package) {
+    allPackageDetails[ package.name ] = package;
+    return packageDownloads(package.name);
+  });
+  return RSVP.all(promises);
+}).then(function(downloads) {
+  downloads.forEach(function(packageDownloads) {
+    allPackageDetails[ packageDownloads.package ].downloads = packageDownloads;
+  });
+}).then(function() {
+  var packageDetailsArray = Object.keys(allPackageDetails).map(function(packageName) {
+    return allPackageDetails[ packageName ];
+  });
+  fs.writeFile(outputFilename, JSON.stringify(packageDetailsArray), function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Fetched data for " + packageDetailsArray.length + " add-ons");
+    }
+  });
 }).catch(function(err) {
   console.log("An error occurred:", err);
 });

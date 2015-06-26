@@ -1,24 +1,35 @@
+require 'net/http'
+
 namespace :npm do
   task fetch: :environment do
-    sh 'node ./npm-fetch/fetch.js'
+    sh 'node ./npm-fetch/fetch-all.js'
   end
 
-  task fetch_addon_info: [ 'npm:update' ] do
+  task fetch_addon_info: [ 'npm:update:all' ] do
     if Rails.env.production?
       snitch_url = ENV['FETCH_SNITCH_URL']
       sh "curl #{snitch_url}"
     end
   end
 
-  task update: [ :environment, 'npm:fetch' ] do
-    begin
-      addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
-    rescue ActiveSupport::JSON.parse_error
-      raise "Invalid JSON in addons.json file"
-    end
+  task :update, [ :name ] => :environment do |_, args|
+    name = args[:name]
 
-    addons.each do |metadata|
-      create_or_update_addon(metadata)
+    metadata = JSON.parse(`node ./npm-fetch/fetch.js #{name}`)
+    create_or_update_addon(metadata)
+  end
+
+  namespace :update do
+    task all: [ :environment, 'npm:fetch' ] do
+      begin
+        addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
+      rescue ActiveSupport::JSON.parse_error
+        raise "Invalid JSON in addons.json file"
+      end
+
+      addons.each do |metadata|
+        create_or_update_addon(metadata)
+      end
     end
   end
 
@@ -74,6 +85,10 @@ def repo_url(url)
     url.sub!(/^git\+ssh/, 'https')
   end
   url
+end
+
+def get_url(url)
+  Net::HTTP.get(URI.parse(url))
 end
 
 def create_or_update_addon(metadata)
