@@ -67,6 +67,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-sidekiq (0.5.2)
+      capistrano
+      sidekiq
     capistrano-stats (1.1.1)
     capistrano3-puma (0.8.5)
       capistrano (~> 3.0)
@@ -223,6 +226,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails
   capistrano-rvm
+  capistrano-sidekiq
   capistrano3-puma
   dotenv-rails
   faraday-http-cache

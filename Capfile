@@ -10,6 +10,7 @@ require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'capistrano/puma'
+require 'capistrano/sidekiq'
 require 'whenever/capistrano'
 
 # Load custom tasks from `lib/capistrano/tasks' if you have any defined

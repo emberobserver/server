@@ -31,6 +31,7 @@ group :development do
 	gem 'capistrano-rvm'
 	gem 'capistrano-bundler'
 	gem 'capistrano3-puma'
+	gem 'capistrano-sidekiq'
 end
 
 gem 'octokit', '~> 3.0'
