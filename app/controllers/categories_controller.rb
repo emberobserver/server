@@ -3,8 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     render_cached_json 'api:categories:index' do
-      categories = Category.includes(:addons)
-      ActiveModel::Serializer.build_json(self, categories, { })
+      CategoryCacheBuilder.new.build_json
     end
   end
 
@@ -14,7 +13,7 @@ class CategoriesController < ApplicationController
     Category.transaction do
       increment_category_positions(category.parent_id, category.position)
       if category.save
-        Rails.cache.delete 'api:categories:index'
+        regenerate_caches
         render json: category, status: :created
       else
         render json: { errors: category.errors }, status: :unprocessable_entity
@@ -41,7 +40,7 @@ class CategoriesController < ApplicationController
       end
 
       if category.save
-        Rails.cache.delete 'api:categories:index'
+        regenerate_caches
         render json: category
       else
         render json: { errors: category.errors }, status: :unprocessable_entity

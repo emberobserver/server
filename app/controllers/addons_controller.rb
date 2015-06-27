@@ -8,8 +8,7 @@ class AddonsController < ApplicationController
     end
 
     render_cached_json 'api:addons:index' do
-      addons = Addon.includes(:maintainers).includes(:addon_versions).where(hidden: false).all
-      ActiveModel::Serializer.build_json(self, addons, { })
+      AddonCacheBuilder.new.build_json
     end
   end
 
@@ -39,7 +38,7 @@ class AddonsController < ApplicationController
                   has_invalid_github_repo: params[:addon][:has_invalid_github_repo],
                   is_wip: params[:addon][:is_wip]
                  })
-    invalidate_caches
+    regenerate_caches
     if params[:addon][:has_invalid_github_repo] && addon.github_stats
       addon.github_stats.delete
     end

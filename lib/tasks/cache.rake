@@ -1,34 +1,16 @@
 namespace :cache do
-	namespace :clear do
-		desc "Clear the cache for /api/addons"
+	namespace :regenerate do
+		desc "Regenerate the addons cache"
 		task addons: :environment do
-			Rails.cache.delete 'api:addons:index'
+			AddonCacheBuilder.new.perform
 		end
 
-		desc "Clear the cache for /api/categories"
+		desc "Regenerate the categories cache"
 		task categories: :environment do
-			Rails.cache.delete 'api:categories:index'
+			CategoryCacheBuilder.new.perform
 		end
 
-		desc "Clear all caches"
-		task all: [ 'cache:clear:addons', 'cache:clear:categories' ]
+		desc "Regenerate all caches"
+		task all: [ 'cache:regenerate:addons', 'cache:regenerate:categories' ]
 	end
-
-	namespace :prime do
-		desc "Prime the /api/addons cache"
-		task addons: :environment do
-			ActionDispatch::Integration::Session.new(Rails.application).get('/api/addons')
-		end
-
-		desc "Prime the /api/categories cache"
-		task categories: :environment do
-			ActionDispatch::Integration::Session.new(Rails.application).get('/api/categories')
-		end
-
-		desc "Prime all caches"
-		task all: [ 'cache:prime:addons', 'cache:prime:categories' ]
-	end
-
-	desc "Clear and prime all caches"
-	task reset: [ 'cache:clear:all', 'cache:prime:all' ]
 end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
+gem 'sinatra'
 gem 'pg'
 
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -36,3 +37,4 @@ gem 'octokit', '~> 3.0'
 gem 'faraday-http-cache'
 
 gem 'github-markdown'
+gem 'sidekiq'

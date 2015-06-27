@@ -15,17 +15,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def invalidate_caches
-    Rails.cache.delete 'api:addons:index'
-    Rails.cache.delete 'api:categories:index'
+  def regenerate_caches
+    AddonCacheBuilder.perform_async
+    CategoryCacheBuilder.perform_async
   end
 
   def render_cached_json(cache_key, options = { }, &block)
-    options[:expires_in] ||= 1.hour
+    options[:expires_in] ||= 2.hours
 
     expires_in options[:expires_in], public: true
     data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
-      block.call.to_json
+      block.call
     end
 
     render json: data

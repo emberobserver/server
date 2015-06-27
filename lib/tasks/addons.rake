@@ -74,12 +74,10 @@ namespace :addons do
 				badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
 				cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
 			end
-
-			Rake::Task['cache:clear:all'].invoke
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'cache:regenerate:all' ]
 
 		desc "Update latest version number for ember-cli"
 		task ember_cli_version: :environment do
