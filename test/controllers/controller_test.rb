@@ -1,4 +1,6 @@
 class ControllerTest < ActionController::TestCase
+	include ActiveJob::TestHelper
+
 	protected
 	def json_response
 		@json_response ||= ActiveSupport::JSON.decode(@response.body)

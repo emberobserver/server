@@ -1,6 +1,4 @@
-class AddonCacheBuilder
-	include Sidekiq::Worker
-
+class AddonCacheBuilder < ActiveJob::Base
 	def perform
 		Rails.cache.write 'api:addons:index', build_json
 	end

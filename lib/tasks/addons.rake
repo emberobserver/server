@@ -43,18 +43,8 @@ namespace :addons do
 
 		desc "Update scores for addons"
 		task scores: :environment do
-			addon_badge_dir = ENV['ADDON_BADGE_DIR'] || File.join(Rails.root, "public/badges")
 			Addon.all.each do |addon|
-				score = addon.score = AddonScoreCalculator.calculate_score(addon)
-				addon.save
-
-				if addon.is_wip
-					score = 'wip'
-				else
-					score = addon.score || 'na'
-				end
-				badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
-				cp badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
+				AddonScoreUpdater.perform_now(addon.id)
 			end
 		end
 
@@ -77,8 +67,4 @@ end
 
 def get_url(url)
 	Net::HTTP.get(URI.parse(url))
-end
-
-def safe_name(name)
-	name.gsub(/[^A-Za-z0-9]/, '-')
 end

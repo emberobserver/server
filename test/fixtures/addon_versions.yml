@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: addon_versions
+#
+#  id                :integer          not null, primary key
+#  addon_id          :integer
+#  version           :string
+#  released          :datetime
+#  addon_name        :string
+#  ember_cli_version :string
+#
+
+basic_one_point_zero:
+  addon: basic
+  version: 1.0.0
+  released: <%= 1.week.ago %>
+
+basic_one_point_one:
+  addon: basic
+  version: 1.1.0
+  released: <%= 1.day.ago %>

@@ -13,6 +13,10 @@ class ReviewsController < ApplicationController
 
   def create
     review = Review.create!(review_params)
+
+    AddonScoreUpdater.perform_now(review.addon_version.addon.id)
+    AddonCacheBuilder.perform_later
+
     render json: review
   end
 

@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def regenerate_caches
-    AddonCacheBuilder.perform_async
-    CategoryCacheBuilder.perform_async
+    AddonCacheBuilder.perform_later
+    CategoryCacheBuilder.perform_later
   end
 
   def render_cached_json(cache_key, options = { }, &block)

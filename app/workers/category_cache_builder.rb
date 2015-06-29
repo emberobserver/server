@@ -1,5 +1,4 @@
-class CategoryCacheBuilder
-	include Sidekiq::Worker
+class CategoryCacheBuilder < ActiveJob::Base
 
 	def perform
 		Rails.cache.write 'api:categories:index', build_json
