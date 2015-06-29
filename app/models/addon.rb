@@ -42,7 +42,7 @@ class Addon < ActiveRecord::Base
   has_many :npm_keywords, through: :addon_npm_keywords
   has_many :maintainers, through: :addon_maintainers, source: :npm_maintainer
 
-  has_many :downloads, foreign_key: 'addon_id', class: AddonDownload
+  has_many :downloads, foreign_key: 'addon_id', class_name: 'AddonDownload'
   has_one :github_stats
 
   has_many :addon_github_contributors
