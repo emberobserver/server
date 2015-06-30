@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     options[:expires_in] ||= 2.hours
 
     expires_in options[:expires_in], public: true
-    data = Rails.cache.fetch(cache_key, { raw: true }.merge(options)) do
+    data = Rails.cache.fetch(cache_key, options) do
       block.call
     end
 
