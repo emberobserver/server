@@ -2,7 +2,9 @@ var RSVP = require('rsvp');
 var Registry = require('npm-registry');
 var fs = require('fs');
 
-var npm = new Registry();
+var npm = new Registry({
+  registry: 'http://registry.npmjs.org'
+});
 
 const MAX_RETRIES = 5;
 

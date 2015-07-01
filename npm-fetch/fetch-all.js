@@ -8,7 +8,9 @@ function unique(arr) {
   });
 }
 
-var npm = new Registry();
+var npm = new Registry({
+  registry: 'http://registry.npmjs.org'
+});
 
 const MAX_RETRIES = 5;
 const searchKeyword = 'ember-addon';
