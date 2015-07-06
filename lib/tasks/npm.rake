@@ -62,7 +62,7 @@ namespace :npm do
 end
 
 def autohide?(addon)
-  addon.name =~ /fill-murray/ && addon.name != 'ember-cli-fill-murray'
+  addon.name =~ /fill-?murray/ && addon.name != 'ember-cli-fill-murray'
 end
 
 def demo_url(addon_data)
