@@ -23,7 +23,9 @@ class AddonScoreUpdater < ActiveJob::Base
 
 		addon_badge_dir = ENV['ADDON_BADGE_DIR'] || File.join(Rails.root, "public/badges")
 		badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
-		FileUtils.copy badge_image_path, File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
+		badge_image_name = File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
+		FileUtils.copy badge_image_path, badge_image_name
+		File.chmod 0644, badge_image_name
 	end
 
 	def safe_name(name)
