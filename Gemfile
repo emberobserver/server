@@ -36,6 +36,7 @@ end
 
 gem 'octokit', '~> 3.0'
 gem 'faraday-http-cache'
+gem 'faraday_middleware'
 
 gem 'github-markdown'
 gem 'sidekiq'
