@@ -49,7 +49,7 @@ namespace :addons do
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'cache:regenerate:all' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'cache:regenerate:all', 'addons:update:notify' ]
 
 		desc "Update latest version number for ember-cli"
 		task ember_cli_version: :environment do
@@ -59,6 +59,14 @@ namespace :addons do
 				ember_cli = LatestVersion.find_or_create_by(package: 'ember-cli')
 				ember_cli.version = version
 				ember_cli.save!
+			end
+		end
+
+		desc "Notify Dead Man's Snitch of completion"
+		task notify: :environment do
+			if Rails.env.production?
+				snitch_url = ENV['UPDATE_SNITCH_URL']
+				sh "curl #{snitch_url}"
 			end
 		end
 
