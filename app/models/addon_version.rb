@@ -13,8 +13,17 @@
 class AddonVersion < ActiveRecord::Base
 	belongs_to :addon
 	has_one :review
+	has_many :all_dependencies, foreign_key: 'addon_version_id', class_name: 'AddonVersionDependency'
 
   before_create :set_addon_name
+
+	def dependencies
+		all_dependencies.where(dependency_type: 'dependencies')
+	end
+
+	def dev_dependencies
+		all_dependencies.where(dependency_type: 'devDependencies')
+	end
 
   def set_addon_name
     self.addon_name = addon.name

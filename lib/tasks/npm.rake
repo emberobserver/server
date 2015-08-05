@@ -161,13 +161,26 @@ def create_or_update_addon(metadata)
       addon_version.save
     end
     unless addon_version
-      new_addon_version = AddonVersion.find_or_create_by(
+      addon_version = AddonVersion.find_or_create_by(
         addon: addon,
         version: version,
         released: metadata['time'][version],
         ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
       )
-      addon.addon_versions << new_addon_version
+      addon.addon_versions << addon_version
+    end
+    addon_version.dependencies.delete
+    [ 'devDependencies', 'dependencies', 'optionalDependencies', 'peerDependencies' ].each do |dependency_type|
+      next unless data[dependency_type]
+      data[dependency_type].each do |package_name, version|
+        dependency = AddonVersionDependency.create(
+          package: package_name,
+          version: version,
+          dependency_type: dependency_type,
+          addon_version: addon_version
+        )
+        addon_version.dependencies << dependency
+      end
     end
   end
 
