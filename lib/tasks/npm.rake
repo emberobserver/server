@@ -169,7 +169,7 @@ def create_or_update_addon(metadata)
       )
       addon.addon_versions << addon_version
     end
-    addon_version.dependencies.delete
+    addon_version.dependencies.clear
     [ 'devDependencies', 'dependencies', 'optionalDependencies', 'peerDependencies' ].each do |dependency_type|
       next unless data[dependency_type]
       data[dependency_type].each do |package_name, version|
