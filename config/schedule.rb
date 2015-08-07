@@ -21,11 +21,11 @@
 
 job_type :command_in_dir, "cd :path && source .env && :task :output"
 
-every 1.hour, at: 45 do
+every 1.hour, at: 20 do
   rake "addons:update:all"
 end
 
-every 1.day, at: '0515' do
+every 1.day, at: '0545' do
   rake "npm:import_downloads"
 end
 
