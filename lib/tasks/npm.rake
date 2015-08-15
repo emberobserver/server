@@ -75,6 +75,9 @@ def demo_url(addon_data)
 end
 
 def repo_url(url)
+  if url =~ %r|^http:///|
+    url.sub!('http:///', 'http://')
+  end
   if url =~ /git@github.com/
     url.sub!('git@github.com', 'github.com')
   end
