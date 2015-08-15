@@ -15,6 +15,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 
 gem 'bugsnag'
+gem 'snitcher'
+
 gem 'redis-rails'
 
 group :development, :test do

@@ -65,8 +65,7 @@ namespace :addons do
 		desc "Notify Dead Man's Snitch of completion"
 		task notify: :environment do
 			if Rails.env.production?
-				snitch_url = ENV['UPDATE_SNITCH_URL']
-				sh "curl #{snitch_url}"
+				Snitcher.snitch(ENV['UPDATE_SNITCH_ID'])
 			end
 		end
 

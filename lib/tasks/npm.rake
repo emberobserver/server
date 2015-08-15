@@ -7,8 +7,7 @@ namespace :npm do
 
   task fetch_addon_info: [ 'npm:update:all' ] do
     if Rails.env.production?
-      snitch_url = ENV['FETCH_SNITCH_URL']
-      sh "curl #{snitch_url}"
+      Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
     end
   end
 
