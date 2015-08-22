@@ -89,6 +89,14 @@ def repo_url(url)
   url
 end
 
+# This is needed because sometimes NPM makes up crazy shit for data. In the instance
+# that led to this, it decided to give back the repo name as repo-name.git#repo-name,
+# which doesn't appear anywhere in the addon's package.json or README.
+def unmangle_github_data(str)
+  str = str.split(/#/)[0]
+  str.sub(/\.git$/, '')
+end
+
 def get_url(url)
   Net::HTTP.get(URI.parse(url))
 end
@@ -110,8 +118,8 @@ def create_or_update_addon(metadata)
   if metadata.include?('github')
     github_data = metadata['github']
     if github_data['user'] && github_data['repo']
-      addon_props[:github_user] = github_data['user']
-      addon_props[:github_repo] = github_data['repo']
+      addon_props[:github_user] = unmangle_github_data(github_data['user'])
+      addon_props[:github_repo] = unmangle_github_data(github_data['repo'])
     elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
       addon_props[:github_user] = $1
       addon_props[:github_repo] = $2
