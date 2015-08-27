@@ -11,7 +11,7 @@ namespace :cache do
     end
 
 		desc "Regenerate the maintainers cache"
-		task categories: :environment do
+		task maintainers: :environment do
 			MaintainerCacheBuilder.new.perform
 		end
 
