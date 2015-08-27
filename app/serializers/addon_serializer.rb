@@ -1,15 +1,18 @@
-class AddonSerializer < ApplicationSerializer
-  attributes :id, :name, :rendered_note, :repository_url,
-             :latest_version_date, :latest_reviewed_version_date,
-             :description, :license, :is_deprecated,
-             :note, :is_official, :is_cli_dependency,
-             :is_hidden, :is_new_addon, :has_invalid_github_repo,
+class AddonSerializer < SimpleAddonSerializer
+  attributes :rendered_note, :repository_url,
+             :latest_reviewed_version_date,
+             :license, :note,
+             :is_new_addon, :has_invalid_github_repo,
              :open_issues, :forks, :contributors,
              :first_commit_date, :latest_commit_date,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :score, :stars, :committed_to_recently, :is_wip, :demo_url
+             :stars, :committed_to_recently, :demo_url
 
   has_many :maintainers
+
+  def is_fully_loaded
+    true
+  end
 
   def is_deprecated
     object.deprecated

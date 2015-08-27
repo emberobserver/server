@@ -25,11 +25,6 @@ class AddonsControllerTest < ControllerTest
 		assert_response :not_found
 	end
 
-	test "index response includes maintainer data" do
-		get :index
-		assert_not_nil json_response['maintainers']
-	end
-
 	test "individual addon response includes maintainer data" do
 		get :show, name: addons(:basic).name
 		assert_not_nil json_response['maintainers']

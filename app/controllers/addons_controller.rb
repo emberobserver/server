@@ -7,6 +7,8 @@ class AddonsController < ApplicationController
       redirect_to :hidden and return
     end
 
+    render_single_addon and return if params[:name]
+
     render_cached_json 'api:addons:index' do
       AddonCacheBuilder.new.build_json
     end
@@ -18,12 +20,7 @@ class AddonsController < ApplicationController
   end
 
   def show
-    addon = Addon.where(name: params[:name]).first
-    if addon
-      render json: addon
-    else
-      head :not_found
-    end
+    render_single_addon
   end
 
   def update
@@ -46,6 +43,15 @@ class AddonsController < ApplicationController
   end
 
   private
+
+  def render_single_addon
+    addon = Addon.where(name: params[:name]).first
+    if addon
+      render json: addon
+    else
+      head :not_found
+    end
+  end
 
   def render_markdown(text)
     GitHub::Markdown.to_html(text, :gfm)

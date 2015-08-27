@@ -3,7 +3,7 @@ class MaintainersController < ApplicationController
     if params[:addon_id]
       maintainers = Addon.find(params[:addon_id]).maintainers
     else
-      maintainers = NpmMaintainer.includes(:addons).all
+      maintainers = NpmMaintainer.all
     end
 
     render json: maintainers
