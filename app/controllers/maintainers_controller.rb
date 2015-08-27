@@ -2,11 +2,12 @@ class MaintainersController < ApplicationController
   def index
     if params[:addon_id]
       maintainers = Addon.find(params[:addon_id]).maintainers
+      render json: maintainers
     else
-      maintainers = NpmMaintainer.includes(:addons).all
+      render_cached_json 'api:maintainers:index' do
+        MaintainerCacheBuilder.new.build_json
+      end
     end
-
-    render json: maintainers
   end
 
   def show
