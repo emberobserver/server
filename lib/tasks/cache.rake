@@ -16,6 +16,6 @@ namespace :cache do
 		end
 
 		desc "Regenerate all caches"
-		task all: [ 'cache:regenerate:addons', 'cache:regenerate:categories'. 'cache:regenerate:maintainers' ]
+		task all: [ 'cache:regenerate:addons', 'cache:regenerate:categories', 'cache:regenerate:maintainers' ]
 	end
 end
