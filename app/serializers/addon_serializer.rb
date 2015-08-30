@@ -1,6 +1,5 @@
 class AddonSerializer < SimpleAddonSerializer
   attributes :rendered_note, :repository_url,
-             :latest_reviewed_version_date,
              :license, :note,
              :is_new_addon, :has_invalid_github_repo,
              :open_issues, :forks, :contributors,
@@ -52,10 +51,6 @@ class AddonSerializer < SimpleAddonSerializer
 
   def committed_to_recently
     object.recently_committed_to?
-  end
-
-  def latest_reviewed_version_date
-    object.newest_review ? object.newest_review.addon_version.released : nil
   end
 
   def contributors

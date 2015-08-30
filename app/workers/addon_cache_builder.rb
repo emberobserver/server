@@ -4,7 +4,7 @@ class AddonCacheBuilder < ActiveJob::Base
 	end
 
 	def build_json
-		addons = Addon.where(hidden: false).all
+		addons = Addon.where(hidden: false).includes(:addon_versions).includes(:reviews).all
 		ActiveModel::ArraySerializer.new(addons, { each_serializer: SimpleAddonSerializer, root: 'addons' }).to_json
 	end
 end

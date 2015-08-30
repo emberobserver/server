@@ -1,6 +1,7 @@
 class SimpleAddonSerializer < ApplicationSerializer
   attributes :id, :name,
              :latest_version_date,
+             :latest_reviewed_version_date,
              :description, :is_deprecated,
              :is_official, :is_cli_dependency,
              :is_hidden,
@@ -20,6 +21,10 @@ class SimpleAddonSerializer < ApplicationSerializer
 
   def is_hidden
     object.hidden
+  end
+
+  def latest_reviewed_version_date
+    object.newest_review ? object.newest_review.addon_version.released : nil
   end
 
   def is_fully_loaded
