@@ -13,4 +13,8 @@
 class NpmMaintainer < ActiveRecord::Base
   has_many :addon_maintainers
   has_many :addons, through: :addon_maintainers
+
+  def visible_addons
+    addons.where(hidden: false)
+  end
 end
