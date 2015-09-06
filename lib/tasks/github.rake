@@ -18,8 +18,12 @@ namespace :github do
 
 	namespace :update do
 		task all: [ :setup_octokit, :environment ] do
-			Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
-				update_github_data(addon)
+			begin
+				Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
+					update_github_data(addon)
+				end
+			rescue Octokit::TooManyRequests
+				puts "WARN: Github API limit exceeded"
 			end
 		end
 	end
