@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804225101) do
+ActiveRecord::Schema.define(version: 20150906014228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,14 @@ ActiveRecord::Schema.define(version: 20150804225101) do
     t.integer "addon_id"
     t.integer "npm_keyword_id"
   end
+
+  create_table "addon_version_compatibilities", force: :cascade do |t|
+    t.integer "addon_version_id"
+    t.string  "package"
+    t.string  "version"
+  end
+
+  add_index "addon_version_compatibilities", ["addon_version_id"], name: "index_addon_version_compatibilities_on_addon_version_id", using: :btree
 
   create_table "addon_version_dependencies", force: :cascade do |t|
     t.string  "package"
@@ -181,5 +189,6 @@ ActiveRecord::Schema.define(version: 20150804225101) do
   end
 
   add_foreign_key "addon_downloads", "addons"
+  add_foreign_key "addon_version_compatibilities", "addon_versions"
   add_foreign_key "github_stats", "addons"
 end

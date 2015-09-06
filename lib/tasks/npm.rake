@@ -101,6 +101,21 @@ def get_url(url)
   Net::HTTP.get(URI.parse(url))
 end
 
+def update_version_compatibility(addon_version, version_data)
+  return unless version_data.include?('ember-addon')
+  return unless version_data['ember-addon'].include?('versionCompatibility')
+
+  addon_version.compatible_versions.clear
+
+  version_data['ember-addon']['versionCompatibility'].each do |package_name, package_version|
+    version_compatibility = AddonVersionCompatibility.create(
+      package: package_name,
+      version: package_version
+    )
+    addon_version.compatible_versions << version_compatibility
+  end
+end
+
 def create_or_update_addon(metadata)
   name = metadata['name']
 
@@ -191,6 +206,8 @@ def create_or_update_addon(metadata)
         )
         addon_version.dependencies << dependency
       end
+
+      update_version_compatibility(addon_version, data)
     end
   end
 

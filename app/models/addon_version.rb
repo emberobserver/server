@@ -14,6 +14,7 @@ class AddonVersion < ActiveRecord::Base
 	belongs_to :addon
 	has_one :review
 	has_many :all_dependencies, foreign_key: 'addon_version_id', class_name: 'AddonVersionDependency'
+	has_many :compatible_versions, foreign_key: 'addon_version_id', class_name: 'AddonVersionCompatibility'
 
   before_create :set_addon_name
 
