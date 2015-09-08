@@ -86,7 +86,7 @@ def repo_url(url)
   elsif url =~ %r|^git\+ssh://github.com|
     url.sub!(/^git\+ssh/, 'https')
   end
-  url
+  url.sub(/`$/, '')
 end
 
 # This is needed because sometimes NPM makes up crazy shit for data. In the instance
@@ -94,7 +94,8 @@ end
 # which doesn't appear anywhere in the addon's package.json or README.
 def unmangle_github_data(str)
   str = str.split(/#/)[0]
-  str.sub(/\.git$/, '')
+  str.sub!(/\.git$/, '')
+  str.sub(/`$/, '')
 end
 
 def get_url(url)
