@@ -75,6 +75,7 @@ def demo_url(addon_data)
 end
 
 def repo_url(url)
+  return nil if url.nil?
   if url =~ %r|^http:///|
     url.sub!('http:///', 'http://')
   end
