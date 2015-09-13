@@ -13,12 +13,10 @@ class AddonDataUpdater
 		update_keywords
 		update_maintainers
 		update_addon_versions
+		update_last_seen
+		update_hidden_flag
 
-		@addon.last_seen_in_npm = DateTime.now
-		if autohide?
-			@addon.hidden = true
-		end
-		@addon.save!
+		save_addon
 	end
 
 	private
@@ -52,6 +50,10 @@ class AddonDataUpdater
 			url.sub!(/^git\+ssh/, 'https')
 		end
 		url.sub(/`$/, '')
+	end
+
+	def save_addon
+		@addon.save!
 	end
 
 	# This is needed because sometimes NPM makes up crazy shit for data. In the instance
@@ -141,12 +143,22 @@ class AddonDataUpdater
 		end
 	end
 
+	def update_hidden_flag
+		if autohide?
+			@addon.hidden = true
+		end
+	end
+
 	def update_keywords
 		@addon.npm_keywords.clear
 		@metadata['keywords'].each do |keyword|
 			npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
 			@addon.npm_keywords << npm_keyword
 		end
+	end
+
+	def update_last_seen
+		@addon.last_seen_in_npm = DateTime.now
 	end
 
 	def update_maintainers
