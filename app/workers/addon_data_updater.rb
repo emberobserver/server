@@ -1,12 +1,12 @@
 class AddonDataUpdater
 	def initialize(metadata)
 		@metadata = metadata
+
+		name = @metadata['name']
+		@addon = Addon.find_or_initialize_by(name: name)
 	end
 
 	def update
-		name = @metadata['name']
-		@addon = Addon.find_or_initialize_by(name: name)
-
 		update_metadata
 		update_downloads
 		update_author
