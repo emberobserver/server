@@ -6,15 +6,12 @@ class AddonDataUpdater
 	def update
 		name = @metadata['name']
 		@addon = Addon.find_or_initialize_by(name: name)
-		is_new_record = @addon.new_record?
 
 		update_metadata
 		update_downloads
-		if is_new_record
-			update_author
-			update_keywords
-			update_maintainers
-		end
+		update_author
+		update_keywords
+		update_maintainers
 		update_addon_versions
 
 		@addon.last_seen_in_npm = DateTime.now
