@@ -15,7 +15,7 @@ namespace :npm do
     name = args[:name]
 
     metadata = JSON.parse(`node ./npm-fetch/fetch.js #{name}`)
-    create_or_update_addon(metadata)
+    AddonDataUpdater.new(metadata).update
   end
 
   namespace :update do
@@ -27,7 +27,7 @@ namespace :npm do
       end
 
       addons.each do |metadata|
-        create_or_update_addon(metadata)
+        AddonDataUpdater.new(metadata).update
       end
     end
   end
@@ -60,162 +60,6 @@ namespace :npm do
   end
 end
 
-def autohide?(addon)
-  addon.name =~ /fill-?murray/ && addon.name != 'ember-cli-fill-murray'
-end
-
-def demo_url(addon_data)
-  ember_addon_info = addon_data['latest']['ember-addon']
-  return nil if ember_addon_info.nil?
-  demo_url = ember_addon_info['demoURL']
-  if demo_url.nil? || demo_url !~ /^http/
-    return nil
-  end
-  demo_url
-end
-
-def repo_url(url)
-  return nil if url.nil?
-  if url =~ %r|^http:///|
-    url.sub!('http:///', 'http://')
-  end
-  if url =~ /git@github.com/
-    url.sub!('git@github.com', 'github.com')
-  end
-  if url =~ %r|^git\+https://github.com|
-    url.sub!(/^git\+/, '')
-  elsif url =~ %r|^git\+ssh://github.com|
-    url.sub!(/^git\+ssh/, 'https')
-  end
-  url.sub(/`$/, '')
-end
-
-# This is needed because sometimes NPM makes up crazy shit for data. In the instance
-# that led to this, it decided to give back the repo name as repo-name.git#repo-name,
-# which doesn't appear anywhere in the addon's package.json or README.
-def unmangle_github_data(str)
-  str = str.split(/#/)[0]
-  str.sub!(/\.git$/, '')
-  str.sub(/`$/, '')
-end
-
 def get_url(url)
   Net::HTTP.get(URI.parse(url))
-end
-
-def update_version_compatibility(addon_version, version_data)
-  return unless version_data.include?('ember-addon')
-  return unless version_data['ember-addon'].include?('versionCompatibility')
-
-  addon_version.compatible_versions.clear
-
-  version_data['ember-addon']['versionCompatibility'].each do |package_name, package_version|
-    version_compatibility = AddonVersionCompatibility.create(
-      package: package_name,
-      version: package_version
-    )
-    addon_version.compatible_versions << version_compatibility
-  end
-end
-
-def create_or_update_addon(metadata)
-  name = metadata['name']
-
-  addon = Addon.find_or_initialize_by(name: name)
-  latest_version = metadata['latest']['version']
-  addon_props = {
-    demo_url: demo_url(metadata),
-    description: metadata['description'],
-    latest_version: latest_version,
-    latest_version_date: metadata['time'] ? metadata['time'][ latest_version ] : nil,
-    license: metadata['license'],
-    published_date: metadata['created'],
-    repository_url: repo_url(metadata['repository']['url'])
-  }
-  if metadata.include?('github')
-    github_data = metadata['github']
-    if github_data['user'] && github_data['repo']
-      addon_props[:github_user] = unmangle_github_data(github_data['user'])
-      addon_props[:github_repo] = unmangle_github_data(github_data['repo'])
-    elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
-      addon_props[:github_user] = $1
-      addon_props[:github_repo] = $2
-    end
-  end
-  addon.update(addon_props)
-
-  if metadata['downloads']['start']
-    addon_downloads = addon.downloads.find_or_create_by(date: metadata['downloads']['start'])
-    addon_downloads.downloads = metadata['downloads']['downloads']
-    addon_downloads.save
-  end
-
-  npm_author = metadata['author']
-  if npm_author
-    author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
-    author.url = npm_author['url']
-    if author != addon.author
-      addon.author = author
-    end
-    author.save
-  else
-    addon.author = nil
-  end
-
-  addon.npm_keywords.clear
-  metadata['keywords'].each do |keyword|
-    npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
-    addon.npm_keywords << npm_keyword
-  end
-
-  addon.maintainers.clear
-  metadata['maintainers'].each do |maintainer|
-    npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
-    if maintainer['gravatar_id']
-      npm_user.gravatar = maintainer['gravatar_id']
-      npm_user.save
-    end
-    addon.maintainers << npm_user
-  end
-
-  current_versions = metadata['versions'].keys
-  addon.addon_versions = AddonVersion.where(addon_id: addon.id, version: current_versions)
-
-  metadata['versions'].each do |version, data|
-    addon_version = addon.addon_versions.where(version: version).first
-    if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
-      addon_version.ember_cli_version = data['devDependencies']['ember-cli']
-      addon_version.save
-    end
-    unless addon_version
-      addon_version = AddonVersion.find_or_create_by(
-        addon: addon,
-        version: version,
-        released: metadata['time'][version],
-        ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
-      )
-      addon.addon_versions << addon_version
-    end
-    addon_version.dependencies.clear
-    [ 'devDependencies', 'dependencies', 'optionalDependencies', 'peerDependencies' ].each do |dependency_type|
-      next unless data[dependency_type]
-      data[dependency_type].each do |package_name, version|
-        dependency = AddonVersionDependency.create(
-          package: package_name,
-          version: version,
-          dependency_type: dependency_type,
-          addon_version: addon_version
-        )
-        addon_version.dependencies << dependency
-      end
-
-      update_version_compatibility(addon_version, data)
-    end
-  end
-
-  addon.last_seen_in_npm = DateTime.now
-  if autohide?(addon)
-    addon.hidden = true
-  end
-  addon.save!
 end
