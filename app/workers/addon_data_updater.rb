@@ -7,7 +7,7 @@ class AddonDataUpdater
 	end
 
 	def update
-		update_metadata
+		update_addon_data
 		update_downloads
 		update_author
 		update_keywords
@@ -63,6 +63,30 @@ class AddonDataUpdater
 		str = str.split(/#/)[0]
 		str.sub!(/\.git$/, '')
 		str.sub(/`$/, '')
+	end
+
+	def update_addon_data
+		latest_version = @metadata['latest']['version']
+		addon_props = {
+			demo_url: demo_url,
+			description: @metadata['description'],
+			latest_version: latest_version,
+			latest_version_date: @metadata['time'] ? @metadata['time'][ latest_version ] : nil,
+			license: @metadata['license'],
+			published_date: @metadata['created'],
+			repository_url: repo_url
+		}
+		if @metadata.include?('github')
+			github_data = @metadata['github']
+			if github_data['user'] && github_data['repo']
+				addon_props[:github_user] = unmangle_github_data(github_data['user'])
+				addon_props[:github_repo] = unmangle_github_data(github_data['repo'])
+			elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
+				addon_props[:github_user] = $1
+				addon_props[:github_repo] = $2
+			end
+		end
+		@addon.update(addon_props)
 	end
 
 	def update_addon_versions
@@ -171,29 +195,5 @@ class AddonDataUpdater
 			end
 			@addon.maintainers << npm_user
 		end
-	end
-
-	def update_metadata
-		latest_version = @metadata['latest']['version']
-		addon_props = {
-			demo_url: demo_url,
-			description: @metadata['description'],
-			latest_version: latest_version,
-			latest_version_date: @metadata['time'] ? @metadata['time'][ latest_version ] : nil,
-			license: @metadata['license'],
-			published_date: @metadata['created'],
-			repository_url: repo_url
-		}
-		if @metadata.include?('github')
-			github_data = @metadata['github']
-			if github_data['user'] && github_data['repo']
-				addon_props[:github_user] = unmangle_github_data(github_data['user'])
-				addon_props[:github_repo] = unmangle_github_data(github_data['repo'])
-			elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
-				addon_props[:github_user] = $1
-				addon_props[:github_repo] = $2
-			end
-		end
-		@addon.update(addon_props)
 	end
 end
