@@ -150,9 +150,7 @@ class AddonDataUpdater
 		if npm_author
 			author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
 			author.url = npm_author['url']
-			if author != @addon.author
-				@addon.author = author
-			end
+			@addon.author = author
 			author.save
 		else
 			@addon.author = nil
