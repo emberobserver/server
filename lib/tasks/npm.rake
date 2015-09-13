@@ -15,8 +15,7 @@ namespace :npm do
     name = args[:name]
 
     metadata = JSON.parse(`node ./npm-fetch/fetch.js #{name}`)
-    updater = AddonDataUpdater.new(metadata)
-    updater.update
+    AddonDataUpdater.new(metadata).update
   end
 
   namespace :update do
@@ -28,8 +27,7 @@ namespace :npm do
       end
 
       addons.each do |metadata|
-        updater = AddonDataUpdater.new(metadata)
-        updater.update
+        AddonDataUpdater.new(metadata).update
       end
     end
   end
