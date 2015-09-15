@@ -2,7 +2,7 @@
 
 require 'dotenv'
 
-app_path="/srv/app/ember-site/server"
+app_path="/srv/app/ember-observer/server"
 Dotenv.load "#{app_path}/shared/.env"
 db_config=YAML.load(ERB.new(File.read("#{app_path}/current/config/database.yml")).result)['production']
 backup_config=YAML.load_file("#{app_path}/shared/backup.yml")
