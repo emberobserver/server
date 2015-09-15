@@ -74,6 +74,7 @@ chown -R "${USER}:${GROUP}" "${SERVER_ROOT}"
 
 # create postgres user and database
 sudo -u postgres psql <<< "create user ember_observer login password '${EMBER_OBSERVER_DATABASE_PASSWORD}'; create database ember_observer with owner ember_observer;"
+
 # create nginx config
 cat << END_OF_NGINX_CONFIG | tee /etc/nginx/sites-available/ember-observer > /dev/null
 upstream ember-observer-server {
@@ -173,6 +174,10 @@ ufw allow ssh
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw --force enable
+
+# generate SSH key for backups
+ssh-keygen -f ~eo/.ssh/id_rsa_backup -N ''
+echo "New SSH key for sending backups created; add it to the authorized_keys file on the remote backup target!"
 
 exit
 
