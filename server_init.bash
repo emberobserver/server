@@ -166,7 +166,13 @@ echo "eo ALL=(ALL:ALL) ALL" > /etc/sudoers.d/ember-observer
 chmod 0440 /etc/sudoers.d/ember-observer
 
 sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
+sed -e 's/^#PasswordAuthentication yes/PasswordAuthentication no/' -i /etc/ssh/sshd_config
 service ssh reload
+
+ufw allow ssh
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw --force enable
 
 exit
 
