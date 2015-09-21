@@ -163,7 +163,10 @@ ADDON_BADGE_DIR=${CLIENT_ROOT}/www/badges
 END_OF_ENV
 chown eo.eo "${SERVER_ROOT}/shared/.env"
 
-echo "eo ALL=(ALL:ALL) ALL" > /etc/sudoers.d/ember-observer
+cat << END_OF_SUDOERS > /etc/sudoers.d/ember-observer
+eo ALL=(ALL:ALL) ALL
+eo ALL=(postgres) NOPASSWD:/usr/bin/psql
+END_OF_SUDOERS
 chmod 0440 /etc/sudoers.d/ember-observer
 
 sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
@@ -177,7 +180,7 @@ ufw --force enable
 
 # generate SSH key for backups
 ssh-keygen -f ~eo/.ssh/id_rsa_backup -N ''
-echo "New SSH key for sending backups created; add it to the authorized_keys file on the remote backup target!"
+echo "New SSH key for sending backups created. Add it to the authorized_keys file on the remote backup target!"
 
 exit
 
