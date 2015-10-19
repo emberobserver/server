@@ -92,7 +92,7 @@ def update_github_data(addon)
 		end
 
 		github_stats.save
-	rescue Octokit::ServiceUnavailable, Errno::ETIMEDOUT
+	rescue Octokit::ServiceUnavailable, Octokit::InternalServerError, Errno::ETIMEDOUT
 		puts "WARN: Unable to update data for #{addon.name}"
 	rescue Octokit::NotFound, URI::InvalidURIError
 		puts "WARN: Addon #{addon.name} has invalid Github data"
