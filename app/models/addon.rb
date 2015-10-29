@@ -72,4 +72,8 @@ class Addon < ActiveRecord::Base
     return false unless github_stats.penultimate_commit_date
     github_stats.penultimate_commit_date > 3.months.ago
   end
+
+  def self.active
+    where('(hidden is null or hidden != true) and (is_wip is null or is_wip != true)')
+  end
 end
