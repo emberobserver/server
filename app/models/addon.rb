@@ -12,18 +12,18 @@
 #  license                 :string
 #  npm_author_id           :integer
 #  latest_version_date     :datetime
-#  deprecated              :boolean          default("false")
+#  deprecated              :boolean          default(FALSE)
 #  note                    :text
-#  official                :boolean          default("false")
-#  cli_dependency          :boolean          default("false")
-#  hidden                  :boolean          default("false")
+#  official                :boolean          default(FALSE)
+#  cli_dependency          :boolean          default(FALSE)
+#  hidden                  :boolean          default(FALSE)
 #  github_user             :string
 #  github_repo             :string
-#  has_invalid_github_repo :boolean          default("false")
+#  has_invalid_github_repo :boolean          default(FALSE)
 #  rendered_note           :text
 #  last_month_downloads    :integer
-#  is_top_downloaded       :boolean          default("false")
-#  is_top_starred          :boolean          default("false")
+#  is_top_downloaded       :boolean          default(FALSE)
+#  is_top_starred          :boolean          default(FALSE)
 #  score                   :integer
 #  published_date          :datetime
 #  last_seen_in_npm        :datetime

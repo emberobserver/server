@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: addon_versions
+#
+#  id                :integer          not null, primary key
+#  addon_id          :integer
+#  version           :string
+#  released          :datetime
+#  addon_name        :string
+#  ember_cli_version :string
+#
+
 require 'test_helper'
 
 class AddonVersionTest < ActiveSupport::TestCase
