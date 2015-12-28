@@ -186,11 +186,12 @@ class AddonDataUpdater
   def update_maintainers
     @addon.maintainers.clear
     @metadata['maintainers'].each do |maintainer|
-      npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'], email: maintainer['email'])
+      npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'])
+      npm_user.email = maintainer['email']
       if maintainer['gravatar_id']
         npm_user.gravatar = maintainer['gravatar_id']
-        npm_user.save
       end
+      npm_user.save
       @addon.maintainers << npm_user
     end
   end
