@@ -22,6 +22,15 @@ namespace :addons do
 			end
 		end
 
+		desc "Update ranking for top 100 addons"
+		task ranking: [ :environment ] do
+			Addon.update_all(ranking: nil)
+			Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(100).each_with_index do |addon, index|
+				addon.ranking = index + 1
+				addon.save
+			end
+		end
+
 		desc "Update 'top 10%' flag for Github stars"
 		task stars_flag: :environment do
 			addons_with_stars = Addon.active.includes(:github_stats).references(:github_stats).where('github_stats.addon_id is not null and stars is not null')
@@ -43,7 +52,7 @@ namespace :addons do
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'cache:regenerate:all', 'addons:update:notify' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'cache:regenerate:all', 'addons:update:notify' ]
 
 		desc "Update latest version number for ember-cli"
 		task ember_cli_version: :environment do

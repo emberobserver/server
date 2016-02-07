@@ -76,4 +76,8 @@ class Addon < ActiveRecord::Base
   def self.active
     where('(hidden is null or hidden != true) and (is_wip is null or is_wip != true)')
   end
+
+  def self.top_scoring
+    where('score > ?', 7)
+  end
 end
