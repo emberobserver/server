@@ -21,31 +21,37 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "position should be unique for top-level categories" do
+    category = create :category
     assert_raises ActiveRecord::RecordInvalid do
-      Category.create! name: 'new category', position: 1
+      Category.create! name: 'new category', position: category.position
     end
   end
 
   test "duplicate positions should be allowed across parent categories" do
     assert_nothing_raised ActiveRecord::RecordInvalid do
-      Category.create! name: 'new category', position: 1, parent_category: categories(:first)
+      Category.create! name: 'new category', position: 1, parent_category: create(:category)
     end
   end
 
   test "converts a position of -1 to the last position when saving" do
-    last_position = categories(:last).position
+    create_list :category, 4
+    last_position = Category.last.position
+
     category = Category.create!(name: 'new category', position: -1)
-    assert_equal last_position + 1, category.position
+    assert_equal last_position + 1, category.reload.position
   end
 
   test "converts a position of -1 for a subcategory to the last position among the other siblings" do
-    last_position = categories(:subcategory).position
-    category = categories(:parent).subcategories.create!(name: 'new subcategory', position: -1)
-    assert_equal last_position + 1, category.position
+    subcategory = create :subcategory
+    parent = subcategory.parent_category
+    last_position = subcategory.position
+
+    category = parent.subcategories.create!(name: 'new subcategory', position: -1)
+    assert_equal last_position + 1, category.reload.position
   end
 
   test "automatically sets position of a category when created with nil" do
-    last_position = categories(:last).position
+    last_position = create(:category).position
     category = Category.create!(name: 'new category')
     assert_equal last_position + 1, category.position
   end
@@ -59,7 +65,7 @@ class CategoryTest < ActiveSupport::TestCase
   end
 
   test "correctly sets position when making the category the first child of a parent" do
-    category = categories(:first).subcategories.create!(name: 'new subcategory')
+    category = create(:category).subcategories.create!(name: 'new subcategory')
     assert_equal 1, category.position
   end
 end
