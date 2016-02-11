@@ -18,4 +18,10 @@ FactoryGirl.define do
     released { 1.day.ago }
   end
 
+  trait :with_review do
+    after(:build) do |addon_version|
+      addon_version.review = build :review, addon_version: addon_version
+    end
+  end
+
 end

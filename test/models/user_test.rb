@@ -13,7 +13,17 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "can clear the auth token" do
+    user = create :user, auth_token: 'something'
+    user.clear_auth_token!
+
+    assert_nil user.reload.auth_token
+  end
+
+  test "can set an auth token" do
+    user = create :user, auth_token: nil
+    user.set_auth_token!
+
+    assert_not_nil user.reload.auth_token
+  end
 end
