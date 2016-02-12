@@ -4,7 +4,7 @@ class VersionsController < ApplicationController
     if params[:addon_id]
       addon_versions = Addon.find(params[:addon_id]).addon_versions.includes(:review)
     else
-      addon_versions = AddonVersion.includes(:reviews).all
+      addon_versions = AddonVersion.includes(:review).all
     end
 
     render json: addon_versions
