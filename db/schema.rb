@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312225045) do
+ActiveRecord::Schema.define(version: 20160325021711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,13 @@ ActiveRecord::Schema.define(version: 20160312225045) do
     t.integer  "ranking"
   end
 
+  create_table "build_servers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
@@ -115,6 +122,16 @@ ActiveRecord::Schema.define(version: 20160312225045) do
 
   add_index "category_addons", ["addon_id"], name: "index_category_addons_on_addon_id", using: :btree
   add_index "category_addons", ["category_id"], name: "index_category_addons_on_category_id", using: :btree
+
+  create_table "ember_version_compatibilities", force: :cascade do |t|
+    t.integer  "test_result_id"
+    t.string   "ember_version"
+    t.boolean  "compatible"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "ember_version_compatibilities", ["test_result_id"], name: "index_ember_version_compatibilities_on_test_result_id", using: :btree
 
   create_table "github_stats", force: :cascade do |t|
     t.integer  "addon_id"
@@ -168,6 +185,17 @@ ActiveRecord::Schema.define(version: 20160312225045) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pending_builds", force: :cascade do |t|
+    t.integer  "addon_version_id"
+    t.datetime "build_assigned_at"
+    t.integer  "build_server_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "pending_builds", ["addon_version_id"], name: "index_pending_builds_on_addon_version_id", using: :btree
+  add_index "pending_builds", ["build_server_id"], name: "index_pending_builds_on_build_server_id", using: :btree
+
   create_table "readmes", force: :cascade do |t|
     t.text    "contents"
     t.integer "addon_id"
@@ -186,6 +214,16 @@ ActiveRecord::Schema.define(version: 20160312225045) do
     t.string   "addon_name"
   end
 
+  create_table "test_results", force: :cascade do |t|
+    t.integer  "addon_version_id"
+    t.boolean  "succeeded"
+    t.string   "status_message"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "test_results", ["addon_version_id"], name: "index_test_results_on_addon_version_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
@@ -196,5 +234,9 @@ ActiveRecord::Schema.define(version: 20160312225045) do
 
   add_foreign_key "addon_downloads", "addons"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
+  add_foreign_key "ember_version_compatibilities", "test_results"
   add_foreign_key "github_stats", "addons"
+  add_foreign_key "pending_builds", "addon_versions"
+  add_foreign_key "pending_builds", "build_servers"
+  add_foreign_key "test_results", "addon_versions"
 end

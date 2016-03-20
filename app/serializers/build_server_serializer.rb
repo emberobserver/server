@@ -1,16 +1,14 @@
 # == Schema Information
 #
-# Table name: npm_keywords
+# Table name: build_servers
 #
 #  id         :integer          not null, primary key
-#  keyword    :string
+#  name       :string
+#  token      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
-  factory :npm_keyword do
-
-  end
-
+class BuildServerSerializer < ApplicationSerializer
+  attributes :id, :name, :token, :created_at
 end

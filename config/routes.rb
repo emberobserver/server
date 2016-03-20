@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     resources :maintainers, only: [:index]
     post 'corrections' => 'corrections#submit'
 
+    resources :build_servers, only: [:index, :create, :update, :destroy]
+    resources :test_results, only: [:create]
+
+    post 'build_queue/get_build' => 'build_queue#get_build'
+
     scope :authentication do
       post :login, to: 'auth#login'
       post :logout, to: 'auth#logout'
