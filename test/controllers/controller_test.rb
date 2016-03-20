@@ -21,6 +21,11 @@ class ControllerTest < ActionController::TestCase
 		put action, params
 	end
 
+	def delete_as_user(user, action, params={})
+		authenticate(user)
+		delete action, params
+	end
+
 	private
 	def authenticate(user)
 		request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)

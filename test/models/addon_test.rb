@@ -29,6 +29,7 @@
 #  last_seen_in_npm        :datetime
 #  is_wip                  :boolean
 #  demo_url                :string
+#  ranking                 :integer
 #
 
 require 'test_helper'

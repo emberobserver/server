@@ -1,3 +1,37 @@
+# == Schema Information
+#
+# Table name: addons
+#
+#  id                      :integer          not null, primary key
+#  name                    :string
+#  repository_url          :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  latest_version          :string
+#  description             :string
+#  license                 :string
+#  npm_author_id           :integer
+#  latest_version_date     :datetime
+#  deprecated              :boolean          default(FALSE)
+#  note                    :text
+#  official                :boolean          default(FALSE)
+#  cli_dependency          :boolean          default(FALSE)
+#  hidden                  :boolean          default(FALSE)
+#  github_user             :string
+#  github_repo             :string
+#  has_invalid_github_repo :boolean          default(FALSE)
+#  rendered_note           :text
+#  last_month_downloads    :integer
+#  is_top_downloaded       :boolean          default(FALSE)
+#  is_top_starred          :boolean          default(FALSE)
+#  score                   :integer
+#  published_date          :datetime
+#  last_seen_in_npm        :datetime
+#  is_wip                  :boolean
+#  demo_url                :string
+#  ranking                 :integer
+#
+
 FactoryGirl.define do
 
   factory :addon do

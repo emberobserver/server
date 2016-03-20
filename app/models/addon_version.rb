@@ -15,6 +15,7 @@ class AddonVersion < ActiveRecord::Base
 	has_one :review, -> { order 'created_at DESC' }
 	has_many :all_dependencies, foreign_key: 'addon_version_id', class_name: 'AddonVersionDependency'
 	has_many :compatible_versions, foreign_key: 'addon_version_id', class_name: 'AddonVersionCompatibility'
+	has_many :test_results
 
   before_create :set_addon_name
 
@@ -24,6 +25,10 @@ class AddonVersion < ActiveRecord::Base
 
 	def dev_dependencies
 		all_dependencies.where(dependency_type: 'devDependencies')
+	end
+
+	def latest_test_result
+		test_results.order('created_at desc').first
 	end
 
   def set_addon_name

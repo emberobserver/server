@@ -11,6 +11,7 @@ gem 'active_model_serializers', '~> 0.8.3'
 gem 'whenever', require: false
 
 gem 'bcrypt', '~> 3.1.7'
+gem 'has_secure_token'
 
 gem 'puma'
 
