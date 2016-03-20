@@ -49,6 +49,8 @@ class Addon < ActiveRecord::Base
   has_many :addon_github_contributors
   has_many :github_contributors, through: :addon_github_contributors, source: :github_user
 
+  has_one :readme, dependent: :destroy
+
   def oldest_version
     addon_versions.first
   end

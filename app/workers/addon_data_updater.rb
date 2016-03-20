@@ -8,6 +8,7 @@ class AddonDataUpdater
 
   def update
     update_addon_data
+    update_readme
     update_downloads
     update_author
     update_keywords
@@ -87,6 +88,12 @@ class AddonDataUpdater
       end
     end
     @addon.update(addon_props)
+  end
+
+  def update_readme
+    if @metadata['readme']
+      @addon.readme = Readme.new(contents: @metadata['readme'])
+    end
   end
 
   def update_addon_versions

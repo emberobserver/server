@@ -26,6 +26,7 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal 'a-addon', addon.github_repo
     assert_equal Time.utc(2015, 9, 7, 7, 19, 9).to_s, addon.published_date.to_s
     assert_equal 'http://a-person.github.io/a-addon', addon.demo_url
+    assert_equal 'THIS IS A README', addon.readme.contents
   end
 
 end
