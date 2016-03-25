@@ -6,7 +6,7 @@ class SimpleAddonSerializer < ApplicationSerializer
              :is_official, :is_cli_dependency,
              :is_hidden,
              :score, :is_wip, :is_fully_loaded,
-             :ranking
+             :ranking, :published_date
 
   def is_deprecated
     object.deprecated
