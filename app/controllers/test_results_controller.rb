@@ -29,13 +29,15 @@ class TestResultsController < ApplicationController
       return
     end
 
-    test_result = TestResult.create(addon_version_id: build.addon_version.id, succeeded: succeeded?, status_message: params[:status_message])
+    ActiveRecord::Base.transaction do
+      test_result = TestResult.create!(addon_version_id: build.addon_version.id, succeeded: succeeded?, status_message: params[:status_message])
 
-    if succeeded?
-      record_version_compatibilities test_result
+      if succeeded?
+        record_version_compatibilities(test_result)
+      end
+
+      build.destroy!
     end
-
-    build.destroy
 
     head :ok
   end
@@ -67,7 +69,7 @@ class TestResultsController < ApplicationController
     @results['scenarios'].each do |scenario|
       next if scenario['dependencies'].empty?
       ember_version = extract_ember_version(scenario)
-      EmberVersionCompatibility.create test_result: test_result, ember_version: ember_version, compatible: scenario['passed']
+      EmberVersionCompatibility.create!(test_result: test_result, ember_version: ember_version, compatible: scenario['passed'])
     end
   end
 
