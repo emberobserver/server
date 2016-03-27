@@ -2,8 +2,8 @@ class ReviewsController < ApplicationController
   before_action :authenticate, only: [:create]
 
   def show
-		review = Review.find(params[:id])
-		render json: review
+    review = Review.find(params[:id])
+    render json: review
   end
 
   def index

@@ -9,5 +9,5 @@
 #
 
 class AddonDownload < ActiveRecord::Base
-	belongs_to :addon
+  belongs_to :addon
 end

@@ -11,5 +11,5 @@
 #
 
 class NpmAuthor < ActiveRecord::Base
-	has_many :addons
+  has_many :addons
 end
