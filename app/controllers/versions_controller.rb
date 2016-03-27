@@ -11,7 +11,7 @@ class VersionsController < ApplicationController
   end
 
   def show
-		@addon_version = AddonVersion.find(params[:id])
-		render json: @addon_version
-	end
+    @addon_version = AddonVersion.find(params[:id])
+    render json: @addon_version
+  end
 end

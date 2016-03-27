@@ -7,6 +7,6 @@
 #
 
 class AddonNpmKeyword < ActiveRecord::Base
-	belongs_to :addon
-	belongs_to :npm_keyword
+  belongs_to :addon
+  belongs_to :npm_keyword
 end

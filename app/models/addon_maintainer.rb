@@ -7,6 +7,6 @@
 #
 
 class AddonMaintainer < ActiveRecord::Base
-	belongs_to :addon
-	belongs_to :npm_maintainer
+  belongs_to :addon
+  belongs_to :npm_maintainer
 end
