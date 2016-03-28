@@ -11,5 +11,6 @@
 #
 
 class TestResult < ActiveRecord::Base
+  belongs_to :addon_version
   has_many :ember_version_compatibilities
 end
