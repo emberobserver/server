@@ -81,6 +81,6 @@ class Addon < ActiveRecord::Base
   end
 
   def self.top_scoring
-    where('score > ?', 7)
+    where('score > ?', 7).where(deprecated: false)
   end
 end

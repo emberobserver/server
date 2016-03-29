@@ -138,4 +138,11 @@ class AddonTest < ActiveSupport::TestCase
 
     assert_equal [top, also_top], Addon.top_scoring.to_a
   end
+
+  test "top_scoring excludes addons marked as deprecated" do
+    top = create(:addon, score: 8)
+    top_but_deprecated = create(:addon, score: 10, deprecated: true)
+
+    assert_equal [top], Addon.top_scoring.to_a
+  end
 end
