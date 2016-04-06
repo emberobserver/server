@@ -52,7 +52,7 @@ def update_github_data(addon)
 		github_stats.stars = data.stargazers_count || 0
 		github_stats.repo_created_date = data.created_at || 0
 
-		contributors = @github.contributors(slug)
+		contributors = remove_dummy_contributors(@github.contributors(slug))
 		github_stats.contributors = contributors.length
 		if contributors.length > 0
 			addon.github_contributors.clear
@@ -99,4 +99,8 @@ def update_github_data(addon)
 		addon.has_invalid_github_repo = true
 		addon.save
 	end
+end
+
+def remove_dummy_contributors(contributors)
+	contributors.reject { |contributors| contributors.login == 'ember-tomster' }
 end
