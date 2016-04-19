@@ -24,10 +24,10 @@ module EmberObserverServer
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_mailer.smtp_settings = {
-      address: 'smtp.mandrillapp.com',
+      address: 'smtp.mailgun.org',
       port: 587,
-      user_name: Rails.application.secrets.mandrill_username,
-      password: Rails.application.secrets.mandrill_password
+      user_name: Rails.application.secrets.smtp_username,
+      password: Rails.application.secrets.smtp_password
     }
   end
 end
