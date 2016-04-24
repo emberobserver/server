@@ -10,12 +10,12 @@ namespace :addons do
 			end
 		end
 
-		desc "Update 'top 10%' flag for addon downloads"
+		desc "Update 'top 5%' flag for addon downloads"
 		task downloads_flag: [ :environment, 'addons:update:download_count' ] do
 			total_addons = Addon.active.count
 			Addon.update_all(is_top_downloaded: false)
 			Addon.active.order('last_month_downloads desc').each_with_index do |addon, index|
-				if (index + 1).to_f / total_addons <= 0.1
+				if (index + 1).to_f / total_addons <= 0.05
 					addon.is_top_downloaded = true
 					addon.save
 				end
@@ -31,13 +31,13 @@ namespace :addons do
 			end
 		end
 
-		desc "Update 'top 10%' flag for Github stars"
+		desc "Update 'top 5%' flag for Github stars"
 		task stars_flag: :environment do
 			addons_with_stars = Addon.active.includes(:github_stats).references(:github_stats).where('github_stats.addon_id is not null and stars is not null')
 			total_addons_with_stars = addons_with_stars.count
 			Addon.update_all(is_top_starred: false)
 			addons_with_stars.order('stars desc').each_with_index do |addon, index|
-				if (index + 1).to_f / total_addons_with_stars <= 0.1
+				if (index + 1).to_f / total_addons_with_stars <= 0.05
 					addon.is_top_starred = true
 					addon.save
 				end
