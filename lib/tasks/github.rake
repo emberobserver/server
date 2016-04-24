@@ -102,5 +102,6 @@ def update_github_data(addon)
 end
 
 def remove_dummy_contributors(contributors)
-	contributors.reject { |contributors| contributors.login == 'ember-tomster' }
+	dummy_contributors = [ 'ember-tomster', 'travis-ci-ciena', 'greenkeeperio-bot' ]
+	contributors - dummy_contributors
 end
