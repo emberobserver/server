@@ -44,3 +44,5 @@ gem 'faraday_middleware'
 
 gem 'github-markdown'
 gem 'sidekiq'
+gem 'pg_search'
+gem 'scenic'
