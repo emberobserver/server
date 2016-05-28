@@ -51,13 +51,15 @@ class BuildQueueControllerTest < ControllerTest
     assert_not_nil pending_build.build_assigned_at
   end
 
-  test "returns HTTP 423 (locked) when a request is made using a token that already has a build assigned" do
+  test "returns the assigned build for a token that already has a build assigned" do
     addon_version = create(:addon_version)
-    create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 1.day.ago)
+    pending_build = create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 1.day.ago)
 
     authed_post :get_build
 
-    assert_response :locked
+    assert_response :not_modified
+    assert_equal build_server.id, pending_build.build_server_id
+    assert_not_nil pending_build.build_assigned_at
   end
 
   private

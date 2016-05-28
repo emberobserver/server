@@ -2,8 +2,9 @@ class BuildQueueController < ApplicationController
   before_filter :authenticate
 
   def get_build
-    if PendingBuild.find_by(build_server: @build_server)
-      head :locked
+    current_build = PendingBuild.find_by(build_server: @build_server)
+    if current_build
+      render json: current_build, status: :not_modified
       return
     end
 
