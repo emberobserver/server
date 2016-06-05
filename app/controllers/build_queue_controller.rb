@@ -4,7 +4,7 @@ class BuildQueueController < ApplicationController
   def get_build
     current_build = PendingBuild.find_by(build_server: @build_server)
     if current_build
-      render json: current_build, status: :not_modified
+      render json: current_build
       return
     end
 

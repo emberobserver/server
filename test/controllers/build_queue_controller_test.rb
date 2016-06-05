@@ -57,7 +57,7 @@ class BuildQueueControllerTest < ControllerTest
 
     authed_post :get_build
 
-    assert_response :not_modified
+    assert_response :success
     assert_equal build_server.id, pending_build.build_server_id
     assert_not_nil pending_build.build_assigned_at
   end
