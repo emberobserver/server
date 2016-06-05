@@ -11,11 +11,7 @@
 #  canary           :boolean          default(FALSE), not null
 #
 
-class TestResultSerializer < ApplicationSerializer
-  attributes :id, :succeeded, :status_message, :tests_run_at
-  has_many :ember_version_compatibilities
+FactoryGirl.define do
 
-  def tests_run_at
-    object.created_at
-  end
+  factory :test_result
 end

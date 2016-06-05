@@ -8,10 +8,11 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  canary            :boolean          default(FALSE), not null
 #
 
 class PendingBuildSerializer < ApplicationSerializer
-  attributes :id, :addon_name, :repository_url, :version
+  attributes :id, :addon_name, :repository_url, :version, :canary
 
   def addon_name
     object.addon_version.addon_name

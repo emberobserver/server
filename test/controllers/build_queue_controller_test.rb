@@ -62,6 +62,15 @@ class BuildQueueControllerTest < ControllerTest
     assert_not_nil pending_build.build_assigned_at
   end
 
+  test "includes the 'canary' flag in the response" do
+    addon_version = create(:addon_version)
+    pending_build = create(:pending_build, addon_version: addon_version, canary: true)
+
+    authed_post :get_build
+
+    assert_equal true, json_response['pending_build']['canary']
+  end
+
   private
 
   def build_server

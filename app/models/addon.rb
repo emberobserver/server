@@ -83,4 +83,8 @@ class Addon < ActiveRecord::Base
   def self.top_scoring
     where('score > ?', 7).where(deprecated: false)
   end
+
+  def self.ranked
+    where('ranking is not null')
+  end
 end

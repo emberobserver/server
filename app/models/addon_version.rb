@@ -28,7 +28,7 @@ class AddonVersion < ActiveRecord::Base
   end
 
   def latest_test_result
-    test_results.order('created_at desc').first
+    test_results.where(canary: false).order('created_at desc').first
   end
 
   def set_addon_name

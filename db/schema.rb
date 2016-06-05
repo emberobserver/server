@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325021711) do
+ActiveRecord::Schema.define(version: 20160605192820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,8 +189,9 @@ ActiveRecord::Schema.define(version: 20160325021711) do
     t.integer  "addon_version_id"
     t.datetime "build_assigned_at"
     t.integer  "build_server_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "canary",            default: false, null: false
   end
 
   add_index "pending_builds", ["addon_version_id"], name: "index_pending_builds_on_addon_version_id", using: :btree
@@ -218,8 +219,9 @@ ActiveRecord::Schema.define(version: 20160325021711) do
     t.integer  "addon_version_id"
     t.boolean  "succeeded"
     t.string   "status_message"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "canary",           default: false, null: false
   end
 
   add_index "test_results", ["addon_version_id"], name: "index_test_results_on_addon_version_id", using: :btree

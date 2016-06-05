@@ -51,6 +51,10 @@ class TestResultsControllerTest < ControllerTest
   end
 
   test "records the correct information when a successful build is reported" do
+    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(2)
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version.id)
+    assert_equal true, test_result.succeeded?
   end
 
   test "responds with HTTP 422 (unprocessable entity) when results is not a valid JSON string" do
@@ -85,6 +89,15 @@ class TestResultsControllerTest < ControllerTest
     assert_difference 'EmberVersionCompatibility.count', 2 do
       authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: test_result_str
     end
+  end
+
+  test "the value of the 'canary' flag is preserved" do
+    @pending_build.update(canary: true)
+
+    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1)
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version.id)
+    assert_equal true, test_result.canary?
   end
 
   private

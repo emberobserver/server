@@ -30,7 +30,12 @@ class TestResultsController < ApplicationController
     end
 
     ActiveRecord::Base.transaction do
-      test_result = TestResult.create!(addon_version_id: build.addon_version.id, succeeded: succeeded?, status_message: params[:status_message])
+      test_result = TestResult.create!(
+        addon_version_id: build.addon_version.id,
+        succeeded: succeeded?,
+        status_message: params[:status_message],
+        canary: build.canary?
+      )
 
       if succeeded?
         record_version_compatibilities(test_result)
