@@ -71,6 +71,25 @@ class BuildQueueControllerTest < ControllerTest
     assert_equal true, json_response['pending_build']['canary']
   end
 
+  test "includes the addon's reported Ember version compatibility string for tests, if present" do
+    ember_version_compatibility_string = '>= 2.0.0'
+    addon_version = create(:addon_version_with_ember_version_compatibility, ember_version_compatibility: ember_version_compatibility_string)
+    pending_build = create(:pending_build, addon_version: addon_version)
+
+    authed_post :get_build
+
+    assert_equal ember_version_compatibility_string, json_response['pending_build']['ember_version_compatibility']
+  end
+
+  test "includes default Ember version compatibility string for tests, if not specified for the addon version" do
+    addon_version = create(:addon_version)
+    create(:pending_build, addon_version: addon_version)
+
+    authed_post :get_build
+
+    assert_equal '>= 1.12.0', json_response['pending_build']['ember_version_compatibility']
+  end
+
   private
 
   def build_server

@@ -18,6 +18,15 @@ FactoryGirl.define do
     addon
     version { generate(:version_number) }
     released { 2.weeks.ago }
+
+    factory :addon_version_with_ember_version_compatibility do
+      transient do
+        ember_version_compatibility '>= 1.13.0'
+      end
+      after(:build) do |addon_version, evaluator|
+        create(:addon_version_compatibility, addon_version: addon_version, package: 'ember', version: evaluator.ember_version_compatibility)
+      end
+    end
   end
 
   trait :basic_one_point_zero do

@@ -34,4 +34,8 @@ class AddonVersion < ActiveRecord::Base
   def set_addon_name
     self.addon_name = addon.name
   end
+
+  def ember_version_compatibility
+    compatible_versions.find_by(package: 'ember')&.version
+  end
 end
