@@ -11,8 +11,10 @@
 #  canary            :boolean          default(FALSE), not null
 #
 
+DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING='>= 1.12.0'
+
 class PendingBuildSerializer < ApplicationSerializer
-  attributes :id, :addon_name, :repository_url, :version, :canary
+  attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility
 
   def addon_name
     object.addon_version.addon_name
@@ -24,5 +26,9 @@ class PendingBuildSerializer < ApplicationSerializer
 
   def version
     object.addon_version.version
+  end
+
+  def ember_version_compatibility
+    object.addon_version.ember_version_compatibility || DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING
   end
 end
