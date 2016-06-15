@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605192820) do
+ActiveRecord::Schema.define(version: 20160615174508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -222,9 +222,11 @@ ActiveRecord::Schema.define(version: 20160605192820) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.boolean  "canary",           default: false, null: false
+    t.integer  "build_server_id"
   end
 
   add_index "test_results", ["addon_version_id"], name: "index_test_results_on_addon_version_id", using: :btree
+  add_index "test_results", ["build_server_id"], name: "index_test_results_on_build_server_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
@@ -241,4 +243,5 @@ ActiveRecord::Schema.define(version: 20160605192820) do
   add_foreign_key "pending_builds", "addon_versions"
   add_foreign_key "pending_builds", "build_servers"
   add_foreign_key "test_results", "addon_versions"
+  add_foreign_key "test_results", "build_servers"
 end

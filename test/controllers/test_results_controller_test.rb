@@ -100,6 +100,12 @@ class TestResultsControllerTest < ControllerTest
     assert_equal true, test_result.canary?
   end
 
+  test "saves build server ID with record result" do
+    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1)
+
+    assert_equal build_server, TestResult.find_by(addon_version_id: @pending_build.addon_version_id).build_server
+  end
+
   private
 
   def create_pending_build

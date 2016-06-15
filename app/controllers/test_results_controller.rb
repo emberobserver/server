@@ -34,7 +34,8 @@ class TestResultsController < ApplicationController
         addon_version_id: build.addon_version.id,
         succeeded: succeeded?,
         status_message: params[:status_message],
-        canary: build.canary?
+        canary: build.canary?,
+        build_server: build.build_server
       )
 
       if succeeded?
