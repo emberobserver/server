@@ -103,5 +103,5 @@ end
 
 def remove_dummy_contributors(contributors)
 	dummy_contributors = [ 'ember-tomster', 'travis-ci-ciena', 'greenkeeperio-bot' ]
-	contributors - dummy_contributors
+	contributors.reject { |contributor| dummy_contributors.include?(contributor.login) }
 end
