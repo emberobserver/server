@@ -14,7 +14,7 @@
 #
 
 class TestResultSerializer < ApplicationSerializer
-  attributes :id, :succeeded, :status_message, :tests_run_at
+  attributes :id, :succeeded, :status_message, :tests_run_at, :semver_string
   has_many :ember_version_compatibilities
 
   def tests_run_at
