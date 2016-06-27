@@ -106,6 +106,22 @@ class TestResultsControllerTest < ControllerTest
     assert_equal build_server, TestResult.find_by(addon_version_id: @pending_build.addon_version_id).build_server
   end
 
+  test "saves the version compatibility string that was used" do
+    addon_version = create(:addon_version_with_ember_version_compatibility, ember_version_compatibility: '>= 2.0.0')
+    pending_build = create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 5.minutes.ago)
+    authed_post :create, pending_build_id: pending_build.id, status: 'succeeded', results: build_test_result_string(1)
+
+    assert_equal '>= 2.0.0', TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
+  end
+
+  test "does not save semver string for canary builds" do
+    addon_version = create(:addon_version_with_ember_version_compatibility, ember_version_compatibility: '>= 2.0.0')
+    pending_build = create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 5.minutes.ago, canary: true)
+    authed_post :create, pending_build_id: pending_build.id, status: 'succeeded', results: build_test_result_string(1)
+
+    assert_nil TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
+  end
+
   private
 
   def create_pending_build

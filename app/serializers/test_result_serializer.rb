@@ -10,6 +10,7 @@
 #  updated_at       :datetime         not null
 #  canary           :boolean          default(FALSE), not null
 #  build_server_id  :integer
+#  semver_string    :string
 #
 
 class TestResultSerializer < ApplicationSerializer

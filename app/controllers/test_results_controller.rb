@@ -30,12 +30,17 @@ class TestResultsController < ApplicationController
     end
 
     ActiveRecord::Base.transaction do
+      semver_string = build.addon_version.ember_version_compatibility
+      if build.canary?
+        semver_string = nil
+      end
       test_result = TestResult.create!(
         addon_version_id: build.addon_version.id,
         succeeded: succeeded?,
         status_message: params[:status_message],
         canary: build.canary?,
-        build_server: build.build_server
+        build_server: build.build_server,
+        semver_string: semver_string
       )
 
       if succeeded?
