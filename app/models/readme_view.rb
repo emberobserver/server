@@ -10,7 +10,8 @@ class ReadmeView < ActiveRecord::Base
     :using => {
       :tsearch => {
         dictionary: :english,
-        tsvector_column: ["contents_tsvector"]
+        tsvector_column: ['contents_tsvector'],
+        highlight: true
       }
     }
   )

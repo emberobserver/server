@@ -249,6 +249,7 @@ ActiveRecord::Schema.define(version: 20160825021506) do
 
   create_view :readmes_indexed_for_fts, materialized: true,  sql_definition: <<-SQL
       SELECT readmes.id,
+      readmes.contents,
       to_tsvector('english'::regconfig, readmes.contents) AS contents_tsvector,
       addons.id AS addon_id
      FROM (readmes
@@ -257,4 +258,5 @@ ActiveRecord::Schema.define(version: 20160825021506) do
 
   add_index "readmes_indexed_for_fts", ["contents_tsvector"], name: "gin_index_on_contents", using: :gin
   add_index "readmes_indexed_for_fts", ["id"], name: "unique_index_on_id", unique: true, using: :btree
+
 end

@@ -1,4 +1,5 @@
 select readmes.id as id,
+readmes.contents as contents,
 to_tsvector('english', readmes.contents) as contents_tsvector,
 addons.id as addon_id
 from readmes
