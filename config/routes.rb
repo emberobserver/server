@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     post 'build_queue/get_build' => 'build_queue#get_build'
     post 'test_results/:id/retry' => 'test_results#retry'
 
+    get 'search' => 'search#search'
+
     scope :authentication do
       post :login, to: 'auth#login'
       post :logout, to: 'auth#logout'

@@ -11,10 +11,17 @@ class ReadmeView < ActiveRecord::Base
       :tsearch => {
         dictionary: :english,
         tsvector_column: ['contents_tsvector'],
-        highlight: true
+        highlight: {
+          max_fragments: 5
+        }
       }
     }
   )
+
+  def self.find_matches_for(query)
+    results = search(query).with_pg_search_highlight
+    results.map { |r| { addon_id: r.addon_id, matches: r.pg_search_highlight.split(' ... ') } }
+  end
 
   def self.refresh
     Scenic.database.refresh_materialized_view(table_name, concurrently: true)
