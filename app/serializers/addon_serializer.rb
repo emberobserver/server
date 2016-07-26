@@ -42,6 +42,7 @@ class AddonSerializer < SimpleAddonSerializer
              :stars, :committed_to_recently, :demo_url
 
   has_many :maintainers
+  has_one :readme
 
   def is_fully_loaded
     true
