@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: readmes_indexed_for_fts
+#
+#  id                :integer          primary key
+#  contents          :text
+#  contents_tsvector :tsvector
+#  addon_id          :integer
+#
+
 class ReadmeView < ActiveRecord::Base
   self.table_name = 'readmes_indexed_for_fts'
   self.primary_key = 'id'
