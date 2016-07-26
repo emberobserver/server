@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :versions, only: [:show, :index]
     resources :reviews, only: [:show, :create, :index]
     resources :maintainers, only: [:index]
+    resources :readmes, only: [:show]
     post 'corrections' => 'corrections#submit'
 
     resources :build_servers, only: [:index, :create, :update, :destroy]
