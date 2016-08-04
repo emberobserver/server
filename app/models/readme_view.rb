@@ -22,7 +22,7 @@ class ReadmeView < ActiveRecord::Base
         dictionary: :english,
         tsvector_column: ['contents_tsvector'],
         highlight: {
-          max_fragments: 5
+          max_fragments: 1
         }
       }
     }

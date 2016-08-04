@@ -17,9 +17,8 @@ class SearchControllerTest < ControllerTest
     assert_equal(3, results.size)
 
     first_result = results.first
-    assert_equal(2, first_result['matches'].size)
+    assert_equal(1, first_result['matches'].size)
     assert first_result['matches'].first =~ /<b>test<\/b>/
-    assert first_result['matches'].last =~ /<b>tests<\/b>/
 
     last_result = results.last
     assert_equal(1, last_result['matches'].size)
