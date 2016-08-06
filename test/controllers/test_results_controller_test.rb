@@ -128,6 +128,14 @@ class TestResultsControllerTest < ControllerTest
     assert_nil TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
   end
 
+  test "captures provided 'stdout' and 'stderr' values" do
+    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1), stdout: 'This is stdout', stderr: 'This is stderr'
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
+    assert_equal 'This is stdout', test_result.stdout
+    assert_equal 'This is stderr', test_result.stderr
+  end
+
   private
 
   def create_pending_build

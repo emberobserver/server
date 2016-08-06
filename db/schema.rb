@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627134448) do
+ActiveRecord::Schema.define(version: 20160806205911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,8 @@ ActiveRecord::Schema.define(version: 20160627134448) do
     t.boolean  "canary",           default: false, null: false
     t.integer  "build_server_id"
     t.string   "semver_string"
+    t.text     "stdout"
+    t.text     "stderr"
   end
 
   add_index "test_results", ["addon_version_id"], name: "index_test_results_on_addon_version_id", using: :btree

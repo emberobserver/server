@@ -40,7 +40,9 @@ class TestResultsController < ApplicationController
         status_message: params[:status_message],
         canary: build.canary?,
         build_server: build.build_server,
-        semver_string: semver_string
+        semver_string: semver_string,
+        stdout: params[:stdout],
+        stderr: params[:stderr]
       )
 
       if succeeded?
