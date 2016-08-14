@@ -1,5 +1,9 @@
 class TestResultsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, except: [:index]
+
+  def index
+    render json: TestResult.all
+  end
 
   def create
     begin

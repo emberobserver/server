@@ -3,6 +3,14 @@ require 'test_helper'
 class TestResultsControllerTest < ControllerTest
   setup :create_pending_build
 
+  test "index responds with all results" do
+    user = create(:user)
+    create_list(:test_result, 7)
+    get_as_user user, :index
+
+    assert_equal 7, json_response['test_results'].length
+  end
+
   test "responds with HTTP unauthorized if request does not include token" do
     post :create
 
