@@ -11,6 +11,24 @@ class TestResultsControllerTest < ControllerTest
     assert_equal 7, json_response['test_results'].length
   end
 
+  test "'show' returns a single result" do
+    user = create(:user)
+    test_result = create(:test_result)
+    get_as_user user, :show, id: test_result.id
+
+    assert_response :success
+
+    assert_equal test_result.id, json_response['test_result']['id']
+    assert_equal test_result.succeeded, json_response['test_result']['succeeded']
+  end
+
+  test "'show' returns HTTP 404 when ID is invalid" do
+    user = create(:user)
+    get_as_user user, :show, id: 42
+
+    assert_response :not_found
+  end
+
   test "responds with HTTP unauthorized if request does not include token" do
     post :create
 

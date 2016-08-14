@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'corrections' => 'corrections#submit'
 
     resources :build_servers, only: [:index, :create, :update, :destroy]
-    resources :test_results, only: [:index, :create]
+    resources :test_results, only: [:index, :create, :show]
 
     post 'build_queue/get_build' => 'build_queue#get_build'
 

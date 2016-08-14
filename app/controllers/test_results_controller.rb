@@ -1,8 +1,19 @@
 class TestResultsController < ApplicationController
-  before_filter :authenticate, except: [:index]
+  before_filter :authenticate, except: [:index, :show]
 
   def index
     render json: TestResult.all
+  end
+
+  def show
+    begin
+      test_result = TestResult.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      head :not_found
+      return
+    end
+
+    render json: test_result
   end
 
   def create
