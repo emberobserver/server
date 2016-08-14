@@ -13,7 +13,7 @@ class TestResultsController < ApplicationController
       return
     end
 
-    render json: test_result
+    render json: test_result, serializer: FullTestResultSerializer
   end
 
   def create

@@ -13,13 +13,15 @@ class TestResultsControllerTest < ControllerTest
 
   test "'show' returns a single result" do
     user = create(:user)
-    test_result = create(:test_result)
+    test_result = create(:test_result, stdout: 'this is stdout', stderr: 'this is stderr')
     get_as_user user, :show, id: test_result.id
 
     assert_response :success
 
     assert_equal test_result.id, json_response['test_result']['id']
     assert_equal test_result.succeeded, json_response['test_result']['succeeded']
+    assert_equal test_result.stdout, json_response['test_result']['stdout']
+    assert_equal test_result.stderr, json_response['test_result']['stderr']
   end
 
   test "'show' returns HTTP 404 when ID is invalid" do
