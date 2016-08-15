@@ -23,12 +23,4 @@ class AddonVersionTest < ActiveSupport::TestCase
 
     assert_equal 'newer', addon_version.review.review
   end
-
-  test "latest_test_result excludes canary-only results" do
-    addon_version = create(:addon_version)
-    full_suite_results = create(:test_result, addon_version: addon_version, canary: false, created_at: 10.minutes.ago)
-    create(:test_result, addon_version: addon_version, canary: true, created_at: 5.minutes.ago)
-
-    assert_equal full_suite_results.id, addon_version.latest_test_result.id
-  end
 end

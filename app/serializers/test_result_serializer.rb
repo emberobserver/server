@@ -16,7 +16,7 @@
 #
 
 class TestResultSerializer < ApplicationSerializer
-  attributes :id, :succeeded, :status_message, :tests_run_at, :semver_string
+  attributes :id, :succeeded, :status_message, :tests_run_at, :semver_string, :canary
   has_many :ember_version_compatibilities
   has_one :version
 

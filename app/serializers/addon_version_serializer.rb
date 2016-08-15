@@ -13,9 +13,5 @@
 class AddonVersionSerializer < ApplicationSerializer
   attributes :id, :version, :released, :addon_id, :ember_cli_version
   has_one :review
-  has_one :test_result
-
-  def test_result
-    object.latest_test_result
-  end
+  has_many :test_results
 end

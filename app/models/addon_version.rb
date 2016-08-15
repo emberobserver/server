@@ -27,10 +27,6 @@ class AddonVersion < ActiveRecord::Base
     all_dependencies.where(dependency_type: 'devDependencies')
   end
 
-  def latest_test_result
-    test_results.where(canary: false).order('created_at desc').first
-  end
-
   def set_addon_name
     self.addon_name = addon.name
   end

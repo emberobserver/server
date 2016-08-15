@@ -1,6 +1,6 @@
 class FullTestResultSerializer < ApplicationSerializer
   self.root = :test_result
-  attributes :id, :succeeded, :status_message, :tests_run_at, :semver_string, :stdout, :stderr
+  attributes :id, :succeeded, :status_message, :tests_run_at, :semver_string, :canary, :stdout, :stderr
   has_many :ember_version_compatibilities
   has_one :version
 
