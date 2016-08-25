@@ -56,8 +56,7 @@ class TestResultsController < ApplicationController
         canary: build.canary?,
         build_server: build.build_server,
         semver_string: semver_string,
-        stdout: params[:stdout],
-        stderr: params[:stderr]
+        output: params[:output]&.read
       )
 
       if succeeded?

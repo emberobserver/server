@@ -11,8 +11,7 @@
 #  canary           :boolean          default(FALSE), not null
 #  build_server_id  :integer
 #  semver_string    :string
-#  stdout           :text
-#  stderr           :text
+#  output           :text
 #
 
 class TestResultSerializer < ApplicationSerializer

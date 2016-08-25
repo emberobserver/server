@@ -13,15 +13,15 @@ class TestResultsControllerTest < ControllerTest
 
   test "'show' returns a single result" do
     user = create(:user)
-    test_result = create(:test_result, stdout: 'this is stdout', stderr: 'this is stderr')
+    output_file = fixture_file_upload('build.output')
+    test_result = create(:test_result, output: output_file)
     get_as_user user, :show, id: test_result.id
 
     assert_response :success
 
     assert_equal test_result.id, json_response['test_result']['id']
     assert_equal test_result.succeeded, json_response['test_result']['succeeded']
-    assert_equal test_result.stdout, json_response['test_result']['stdout']
-    assert_equal test_result.stderr, json_response['test_result']['stderr']
+    assert_equal test_result.output, json_response['test_result']['output']
   end
 
   test "'show' returns HTTP 404 when ID is invalid" do
@@ -156,12 +156,12 @@ class TestResultsControllerTest < ControllerTest
     assert_nil TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
   end
 
-  test "captures provided 'stdout' and 'stderr' values" do
-    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1), stdout: 'This is stdout', stderr: 'This is stderr'
+  test "captures provided 'output' file" do
+    output_file = fixture_file_upload('build.output', 'text/plain')
+    authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1), output: output_file
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
-    assert_equal 'This is stdout', test_result.stdout
-    assert_equal 'This is stderr', test_result.stderr
+    assert_equal 'This is the output', test_result.output.chomp
   end
 
   private
