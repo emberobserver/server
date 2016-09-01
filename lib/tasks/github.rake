@@ -103,5 +103,8 @@ end
 
 def remove_dummy_contributors(contributors)
 	dummy_contributors = [ 'ember-tomster', 'travis-ci-ciena', 'greenkeeperio-bot' ]
+	unless contributors.respond_to?(:reject)
+		return [ ]
+	end
 	contributors.reject { |contributor| dummy_contributors.include?(contributor.login) }
 end
