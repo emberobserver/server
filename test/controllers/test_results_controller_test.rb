@@ -164,6 +164,37 @@ class TestResultsControllerTest < ControllerTest
     assert_equal 'This is the output', test_result.output.chomp
   end
 
+  test "'retry' action responds with HTTP unauthorized if request..." do
+    test_result = create(:test_result)
+
+    post :retry, id: test_result.id
+
+    assert_response :unauthorized
+  end
+
+  test "'retry' action responds with HTTP 404 if test result is invalid" do
+    user = create(:user)
+
+    post_as_user user, :retry, id: 42
+
+    assert_response :not_found
+  end
+
+  test "'retry' action enqueues a new pending build with same parameters" do
+    user = create(:user)
+    test_result = create(:test_result, canary: true)
+
+    assert_difference 'PendingBuild.count' do
+      post_as_user user, :retry, id: test_result.id
+    end
+
+    assert_response :created
+
+    new_build = PendingBuild.last
+    assert_equal test_result.addon_version_id, new_build.addon_version_id, 'new build is created for same addon version'
+    assert_equal test_result.canary?, new_build.canary?, 'new build is created with same value for "canary" flag'
+  end
+
   private
 
   def create_pending_build

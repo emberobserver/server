@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :test_results, only: [:index, :create, :show]
 
     post 'build_queue/get_build' => 'build_queue#get_build'
+    post 'test_results/:id/retry' => 'test_results#retry'
 
     scope :authentication do
       post :login, to: 'auth#login'

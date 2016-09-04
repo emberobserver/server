@@ -1,19 +1,14 @@
 class TestResultsController < ApplicationController
-  before_filter :authenticate, except: [:index, :show]
+  before_filter :authenticate_server, only: [:create]
+  before_filter :authenticate_user, only: [:retry]
+  before_filter :find_test_result, only: [:show, :retry]
 
   def index
     render json: TestResult.all
   end
 
   def show
-    begin
-      test_result = TestResult.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      head :not_found
-      return
-    end
-
-    render json: test_result, serializer: FullTestResultSerializer
+    render json: @test_result, serializer: FullTestResultSerializer
   end
 
   def create
@@ -69,16 +64,25 @@ class TestResultsController < ApplicationController
     head :ok
   end
 
+  def retry
+    PendingBuild.create!(
+      addon_version_id: @test_result.addon_version_id,
+      canary: @test_result.canary?
+    )
+
+    head :created
+  end
+
   private
+
+  def find_test_result
+    @test_result = TestResult.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    head :not_found
+  end
 
   def succeeded?
     params[:status] == 'succeeded'
-  end
-
-  def authenticate_token
-    authenticate_with_http_token do |token|
-      @build_server = BuildServer.find_by(token: token)
-    end
   end
 
   def verify_test_results(results_str)

@@ -12,7 +12,7 @@ class AuthController < ApplicationController
   end
 
   def logout
-    user = authenticate_token
+    user = authenticate_user_token
     user.clear_auth_token! if user
     render json: {}, status: 200
   end

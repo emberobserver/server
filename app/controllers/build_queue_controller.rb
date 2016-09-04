@@ -1,5 +1,5 @@
 class BuildQueueController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate_server
 
   def get_build
     current_build = PendingBuild.find_by(build_server: @build_server)
@@ -19,13 +19,5 @@ class BuildQueueController < ApplicationController
     oldest_build.save
 
     render json: oldest_build
-  end
-
-  private
-
-  def authenticate_token
-    authenticate_with_http_token do |token|
-      @build_server = BuildServer.find_by(token: token)
-    end
   end
 end
