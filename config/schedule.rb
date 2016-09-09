@@ -25,9 +25,9 @@ every 1.hour, at: 20 do
   rake "addons:update:all"
 end
 
-#every 1.day, at: '0400' do
-#  rake "tests:queue_canary_tests"
-#end
+every 1.day, at: '0400' do
+ rake "tests:queue_canary_tests"
+end
 
 every 1.day, at: '0545' do
   rake "npm:import_downloads"
