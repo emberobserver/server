@@ -165,7 +165,7 @@ class AddonDataUpdater
   end
 
   def update_downloads
-    if @metadata['downloads']['start']
+    if @metadata['downloads'] && @metadata['downloads']['start']
       addon_downloads = @addon.downloads.find_or_create_by(date: @metadata['downloads']['start'])
       addon_downloads.downloads = @metadata['downloads']['downloads']
       addon_downloads.save
