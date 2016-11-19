@@ -4,7 +4,13 @@ class TestResultsController < ApplicationController
   before_filter :find_test_result, only: [:show, :retry]
 
   def index
-    render json: TestResult.all
+    unless params[:date]
+      head :unprocessable_entity
+      return
+    end
+
+    test_results = TestResult.where('DATE(created_at) = ?', params[:date])
+    render json: test_results
   end
 
   def show
