@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:show, :create, :index]
     resources :maintainers, only: [:index]
     post 'corrections' => 'corrections#submit'
+    get 'search/addons' => 'search#addons'
+    get 'search/source' => 'search#source'
 
     resources :build_servers, only: [:index, :create, :update, :destroy]
     resources :test_results, only: [:index, :create, :show]
