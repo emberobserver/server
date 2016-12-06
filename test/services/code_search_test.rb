@@ -4,7 +4,7 @@ class CodeSearchTest < ActiveSupport::TestCase
 
   test 'can search for files containing source code within an addon' do
     code_search = CodeSearch.new(SearchEngineStub.new, SedStub.new)
-    results = code_search.retrieve_source('Ember.computed', 'ember-foo')
+    results = code_search.retrieve_source('Ember.computed', 'ember-foo', false)
 
     assert_equal(1, results.length)
 
@@ -25,7 +25,7 @@ class CodeSearchTest < ActiveSupport::TestCase
 
   test 'can search for all addons containing code' do
     code_search = CodeSearch.new(SearchEngineStub.new, SedStub.new)
-    results = code_search.retrieve_addons('Ember.computed')
+    results = code_search.retrieve_addons('Ember.computed', false)
 
     assert_equal(2, results.length)
     foo_addon_result = results.find { |result| result[:addon] == 'ember-foo' }
@@ -36,8 +36,8 @@ class CodeSearchTest < ActiveSupport::TestCase
   end
 
   class SearchEngineStub
-    def query(term, addon_dir = nil)
-      if addon_dir
+    def query(term, opts={})
+      if opts[:directory]
         ["#{Rails.root}/source/ember-foo/app/routes/search.js:8:  headers: Ember.computed(function() {"]
       else
         [
