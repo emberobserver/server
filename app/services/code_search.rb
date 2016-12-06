@@ -1,12 +1,12 @@
 class CodeSearch
   EXCLUDED_DIRS = %w[node_modules bower_components tmp dist]
 
-  def self.retrieve_source(term, addon_dir)
-    self.new.retrieve_source(term, addon_dir)
+  def self.retrieve_source(term, addon_dir, regex_search = false)
+    self.new.retrieve_source(term, addon_dir, regex_search)
   end
 
-  def self.retrieve_addons(term)
-    self.new.retrieve_addons(term)
+  def self.retrieve_addons(term, regex_search = false)
+    self.new.retrieve_addons(term, regex_search)
   end
 
   def initialize(search_engine = SearchEngine.new, sed = LineRetrieval.new)
@@ -30,10 +30,10 @@ class CodeSearch
     EXCLUDED_DIRS.any? { |dir| file_path =~ /\/#{dir}\// }
   end
 
-  def retrieve_addons(term)
+  def retrieve_addons(term, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.query(term)
+    raw_result = @search_engine.query(term, {regex: regex_search})
     addon_list = raw_result.map do |line|
       match_data = line.match(addon_name_regex)
       full_path = match_data[0]
@@ -44,10 +44,10 @@ class CodeSearch
     addon_list.group_by{ |v| v }.map{ |k, v| {addon: k, count: v.size} }
   end
 
-  def retrieve_source(term, addon_dir)
+  def retrieve_source(term, addon_dir, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.query(term, File.join(source_dir, addon_dir))
+    raw_result = @search_engine.query(term, {directory: File.join(source_dir, addon_dir), regex: regex_search})
     raw_result.map { |line| extract_source_context_for_line(line) }.compact
   end
 
