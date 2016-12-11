@@ -23,8 +23,9 @@ class AddonSourceUpdater < ActiveJob::Base
 
   def update_addon(addon, addon_source_dir)
     FileUtils.cd(addon_source_dir) do
-      puts("Running 'git pull' in #{addon_source_dir}")
-      unless system('GIT_TERMINAL_PROMPT=0 git pull')
+      puts "Updating #{addon.name}..."
+      pull_command = 'GIT_TERMINAL_PROMPT=0 git pull'
+      unless system(pull_command)
         puts "Source for #{addon.name} no longer available, removing directory"
         FileUtils.rm_rf(addon_source_dir)
       end
@@ -33,8 +34,9 @@ class AddonSourceUpdater < ActiveJob::Base
 
   def clone_addon(addon)
     FileUtils.cd(code_index_dir) do
-      puts("Running 'git clone #{addon.repository_url} #{addon.name}'")
-      unless system("GIT_TERMINAL_PROMPT=0 git clone #{addon.repository_url} #{addon.name}")
+      puts "Cloning #{addon.name}..."
+      clone_command = "GIT_TERMINAL_PROMPT=0 git clone --single-branch #{addon.repository_url} #{addon.name}"
+      unless system(clone_command)
         puts "Source for #{addon.name} is not available, skipping"
       end
     end
