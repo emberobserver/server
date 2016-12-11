@@ -45,7 +45,7 @@ class AddonDataUpdater
     if url =~ /git@github.com/
       url.sub!('git@github.com', 'github.com')
     end
-    if url =~ %r|^git\+https://github.com|
+    if url =~ %r|^git\+https://|
       url.sub!(/^git\+/, '')
     elsif url =~ %r|^git\+ssh://github.com|
       url.sub!(/^git\+ssh/, 'https')
