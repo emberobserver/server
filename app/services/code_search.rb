@@ -1,5 +1,5 @@
 class CodeSearch
-  EXCLUDED_DIRS = %w[node_modules bower_components tmp dist]
+  EXCLUDED_DIRS = %w[node_modules bower_components tmp dist public vendor coverage]
 
   def self.retrieve_source(term, addon_dir, regex_search = false)
     self.new.retrieve_source(term, addon_dir, regex_search)
