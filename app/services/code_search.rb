@@ -1,5 +1,5 @@
 class CodeSearch
-  EXCLUDED_DIRS = %w[node_modules bower_components tmp dist public vendor coverage]
+  EXCLUDED_DIR_REGEX = %r[node_modules/|bower_components/|tmp/|dist/|public/|vendor/|coverage/]
 
   def self.retrieve_source(term, addon_dir, regex_search = false)
     self.new.retrieve_source(term, addon_dir, regex_search)
@@ -15,7 +15,7 @@ class CodeSearch
   end
 
   def source_dir
-    ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
+    @source_dir ||= ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
   end
 
   def path_filename_line_number_regex
@@ -23,11 +23,7 @@ class CodeSearch
   end
 
   def addon_name_regex
-    /#{source_dir}\/(.*?)\/.*:/
-  end
-
-  def should_exclude_file?(file_path)
-    EXCLUDED_DIRS.any? { |dir| file_path =~ /\/#{dir}\// }
+    @addon_name_regex ||= /#{source_dir}\/(.*?)\/.*:/
   end
 
   def retrieve_addons(term, regex_search)
@@ -35,11 +31,8 @@ class CodeSearch
 
     raw_result = @search_engine.query(term, {regex: regex_search})
     addon_list = raw_result.map do |line|
-      match_data = line.match(addon_name_regex)
-      full_path = match_data[0]
-      addon_name = match_data[1]
-      should_exclude_file?(full_path) ? nil : addon_name
-    end.compact
+      line.match(addon_name_regex)[1]
+    end
 
     addon_list.group_by{ |v| v }.map{ |k, v| {addon: k, count: v.size} }
   end
@@ -54,11 +47,9 @@ class CodeSearch
   def extract_source_context_for_line(search_result)
     match_result = search_result.match(path_filename_line_number_regex)
     path_from_source_dir = match_result[1]
-
-    return nil if should_exclude_file?(path_from_source_dir)
-
     path_from_addon_dir = match_result[2]
     line_number = match_result[3].to_i
+
     lines = @sed.retrieve_match(path_from_source_dir, line_number)
 
     json_lines = lines.map { |line| {text: line.first, number: line.last} }
