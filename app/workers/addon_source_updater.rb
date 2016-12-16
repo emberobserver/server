@@ -1,39 +1,39 @@
 class AddonSourceUpdater < ActiveJob::Base
+  EXCLUDED_DIRS = %w(bower_components node_modules tmp dist vendor public coverage)
 
-  def perform(addon_id)
-    fetch_or_clone_repo(addon_id)
+  def perform(addon_id, source_directory)
+    @source_directory = source_directory
+    @addon = Addon.find(addon_id)
+    @addon_directory = File.join(source_directory, addon.name)
+
+    fetch_or_clone_repo
+    remove_excluded_directories
   end
 
   private
 
-  def code_index_dir
-    ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
-  end
-
-  def fetch_or_clone_repo(addon_id)
-    addon = Addon.find(addon_id)
-    addon_source_dir = File.join(code_index_dir, addon.name)
-
-    if File.exist?(addon_source_dir)
-      update_addon(addon, addon_source_dir)
+  def fetch_or_clone_repo
+    if File.exist?(addon_directory)
+      update_addon
     else
-      clone_addon(addon)
+      clone_addon
     end
   end
 
-  def update_addon(addon, addon_source_dir)
-    FileUtils.cd(addon_source_dir) do
+  def update_addon
+    FileUtils.cd(addon_directory) do
       puts "Updating #{addon.name}..."
+      system('git reset --hard HEAD')
       pull_command = 'GIT_TERMINAL_PROMPT=0 git pull'
       unless system(pull_command)
         puts "Source for #{addon.name} no longer available, removing directory"
-        FileUtils.rm_rf(addon_source_dir)
+        FileUtils.rm_rf(addon_directory)
       end
     end
   end
 
-  def clone_addon(addon)
-    FileUtils.cd(code_index_dir) do
+  def clone_addon
+    FileUtils.cd(source_directory) do
       puts "Cloning #{addon.name}..."
       clone_command = "GIT_TERMINAL_PROMPT=0 git clone --single-branch #{addon.repository_url} #{addon.name}"
       unless system(clone_command)
@@ -41,4 +41,13 @@ class AddonSourceUpdater < ActiveJob::Base
       end
     end
   end
+
+  def remove_excluded_directories
+    return unless File.exist?(addon_directory)
+    FileUtils.cd addon_directory do
+      FileUtils.rmtree EXCLUDED_DIRS
+    end
+  end
+
+  attr_reader :source_directory, :addon_directory, :addon
 end

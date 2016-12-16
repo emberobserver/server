@@ -9,10 +9,11 @@ namespace :search do
   end
 
   task fetch_source: :environment do
+    code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
     addons_to_fetch = Addon.where(has_invalid_github_repo: false, hidden: false).where.not(repository_url: nil, github_repo: nil)
     puts "Fetching source for #{addons_to_fetch.size} addons..."
     addons_to_fetch.select(:id).each do |addon|
-      AddonSourceUpdater.perform_now(addon.id)
+      AddonSourceUpdater.perform_now(addon.id, code_index_dir)
     end
   end
 
