@@ -1,5 +1,5 @@
 class AddonSourceUpdater < ActiveJob::Base
-  EXCLUDED_DIRS = %w(bower_components node_modules tmp dist vendor public coverage)
+  EXCLUDED_DIRS = %w(bower_components node_modules tmp dist vendor public coverage tests/fixtures)
 
   def perform(addon_id, source_directory)
     @source_directory = source_directory
