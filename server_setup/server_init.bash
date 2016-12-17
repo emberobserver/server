@@ -26,6 +26,14 @@ require_env_variable() {
 	fi
 }
 
+ALLOW_ROOT_LOGIN=false
+while true; do
+  case "$1" in
+    -r | --allow-root-login ) ALLOW_ROOT_LOGIN=true; shift ;;
+    * ) break ;;
+  esac
+done
+
 if [[ $# == 0 || $# > 2 ]]; then
 	echo "USAGE: ./server_init.bash <host> [env file]" 2>&1
 	exit 1
@@ -63,6 +71,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 \curl -sSL https://get.rvm.io | bash -s stable --ruby=${RUBY_VERSION}
 source /usr/local/rvm/scripts/rvm
 rvm gemset create "${RUBY_GEMSET}"
+gem install bundler
 
 mkdir -p "${CLIENT_ROOT}/www/badges"
 mkdir -p "${CLIENT_ROOT}/logs"
@@ -169,7 +178,9 @@ eo ALL=(postgres) NOPASSWD:/usr/bin/psql
 END_OF_SUDOERS
 chmod 0440 /etc/sudoers.d/ember-observer
 
-sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
+if [[ ! ${ALLOW_ROOT_LOGIN} ]]; then
+	sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
+fi
 sed -e 's/^#PasswordAuthentication yes/PasswordAuthentication no/' -i /etc/ssh/sshd_config
 service ssh reload
 

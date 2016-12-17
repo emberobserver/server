@@ -1,7 +1,7 @@
 # Initializing a new server for Ember Observer
 
 ## The steps
-1. Create a basic Ubuntu 14.04 host.
+1. Create a basic Ubuntu 16.04 host.
 2. Log in as root and add your SSH public key to the root user's `.ssh/authorized_keys` file. [Note that a Digital Ocean droplet can be created with this already set up.]
 3. Set the new machine's hostname. There are three parts to this: setting it in `/etc/hostname`, adding it to the `127.0.0.1` entry in `/etc/hosts`, and running the `hostname` command. [Note that Digital Ocean droplets will already be set up with the hostname given at creation.]
 4. Back on your local machine, set up a file with `name=value` pairs for required fields. The simplest way to do this is to copy the `.env` file from the existing production server and make changes as required. You will need to add a `SUDO_PASSWORD` entry.
