@@ -1,5 +1,4 @@
 class CodeSearch
-  EXCLUDED_DIR_REGEX = %r[node_modules/|bower_components/|tmp/|dist/|public/|vendor/|coverage/]
 
   def self.retrieve_source(term, addon_dir, regex_search = false)
     self.new.retrieve_source(term, addon_dir, regex_search)
@@ -19,7 +18,7 @@ class CodeSearch
   end
 
   def path_filename_line_number_regex
-    /(#{source_dir}\/.*?\/(.*?)):(\d+)/
+    @filename_regex = /(#{source_dir}\/.*?\/(.*?)):(\d+)/
   end
 
   def addon_name_regex
