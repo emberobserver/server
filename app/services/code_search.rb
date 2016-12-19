@@ -22,7 +22,7 @@ class CodeSearch
   end
 
   def addon_name_regex
-    @addon_name_regex ||= /#{source_dir}\/(.*?)\/.*:/
+    @addon_name_regex ||= /#{source_dir}\/(.*?)\//
   end
 
   def retrieve_addons(term, regex_search)
