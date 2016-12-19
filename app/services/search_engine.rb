@@ -1,3 +1,5 @@
+require 'open3'
+
 class SearchEngine
 
   def query(term, options={})
@@ -5,9 +7,8 @@ class SearchEngine
     regex_enabled = !!options[:regex]
 
     search_term = search_term(term, regex_enabled)
-    raw_results = `#{command(search_term, addon_dir)}`
-
-    raw_results.split("\n")
+    raw_results = Open3.capture2(*command(search_term, addon_dir))
+    raw_results.first.split("\n")
   end
 
   private
@@ -18,9 +19,9 @@ class SearchEngine
 
   def command(search_term, addon_dir)
     if addon_dir
-      "csearch -f #{addon_dir} -n '#{search_term}'"
+      ['csearch', '-f', addon_dir, '-n', search_term]
     else
-      "csearch -l '#{search_term}'"
+      ['csearch', '-l', search_term]
     end
   end
 
