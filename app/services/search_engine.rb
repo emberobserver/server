@@ -18,9 +18,9 @@ class SearchEngine
 
   def command(search_term, addon_dir)
     if addon_dir
-      "csearch -f #{addon_dir} -i -n '#{search_term}'"
+      "csearch -f #{addon_dir} -n '#{search_term}'"
     else
-      "csearch -i -n '#{search_term}'"
+      "csearch -l '#{search_term}'"
     end
   end
 
