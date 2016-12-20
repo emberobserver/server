@@ -15,6 +15,14 @@ namespace :search do
     addons_to_fetch.select(:id).each do |addon|
       AddonSourceUpdater.perform_now(addon.id, code_index_dir)
     end
+
+    all_addon_directories = Dir.entries(code_index_dir)
+    all_indexed_addons = addons_to_fetch.select(:name).all.map(&:name)
+
+    directories_to_clean_up = all_addon_directories - all_indexed_addons - ['.', '..']
+    directories_to_clean_up.each do |dir|
+      FileUtils.rm_rf File.join(code_index_dir, dir)
+    end
   end
 
   task :index do
