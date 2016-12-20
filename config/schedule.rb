@@ -21,6 +21,10 @@
 
 job_type :command_in_dir, "cd :path && source .env && :task :output"
 
+every 1.hour do
+  rake "search:prepare"
+end
+
 every 1.hour, at: 20 do
   rake "addons:update:all"
 end
