@@ -6,9 +6,8 @@
 3. Set the new machine's hostname. There are three parts to this: setting it in `/etc/hostname`, adding it to the `127.0.0.1` entry in `/etc/hosts`, and running the `hostname` command. [Note that Digital Ocean droplets will already be set up with the hostname given at creation.]
 4. Back on your local machine, set up a file with `name=value` pairs for required fields. The simplest way to do this is to copy the `.env` file from the existing production server and make changes as required. You will need to add a `SUDO_PASSWORD` entry.
 5. Run the `server_init.bash` script, passing the hostname or IP of the new server and the name of the file created in step 4 as command-line arguments.
-6. Wait for the script to exit, then run it again. Yes, I know, it's weird; for some reason the first run bails out after installing packages, and the second run then runs to completion.
-7. Deploy the server code. (`cap <environment> deploy`, where `environment` specifies the new server)
-8. Deploy the client code. (`./deploy.sh` in the client repo; you'll want to change the hostname in there to that of the new server)
+6. Deploy the server code. (`cap <environment> deploy`, where `environment` specifies the new server)
+7. Deploy the client code. (`./deploy.sh` in the client repo; you'll want to change the hostname in there to that of the new server)
 
 At this point, you'll have a fully set up production configured server, but it won't have any data.
 The addon update process will automatically run as usual, and populate basic data, but stuff like reviews won't exist.

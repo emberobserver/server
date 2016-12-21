@@ -37,7 +37,7 @@ scp -r "${WORK_DIR}/letsencrypt" root@${DEPLOY_HOST}:/etc/
 ssh -T root@${DEPLOY_HOST} << END_SSH
 
 apt-get update
-apt-get install letsencrypt
+apt-get -y install letsencrypt
 
 # Prep for SSL
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
