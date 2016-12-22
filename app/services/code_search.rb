@@ -40,7 +40,7 @@ class CodeSearch
     return [] if term.blank?
 
     raw_result = @search_engine.find_addon_usages(term, File.join(source_dir, addon_dir), {regex: regex_search})
-    raw_result.map { |line| extract_source_context_for_line(line) }.compact
+    raw_result.map { |line| extract_source_context_for_line(line) }
   end
 
   def extract_source_context_for_line(search_result)
