@@ -28,7 +28,7 @@ class CodeSearch
   def retrieve_addons(term, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.query(term, {regex: regex_search})
+    raw_result = @search_engine.find_all_matches(term, source_dir, {regex: regex_search})
     addon_list = raw_result.map do |line|
       line.match(addon_name_regex)[1]
     end
@@ -39,7 +39,7 @@ class CodeSearch
   def retrieve_source(term, addon_dir, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.query(term, {directory: File.join(source_dir, addon_dir), regex: regex_search})
+    raw_result = @search_engine.find_addon_usages(term, File.join(source_dir, addon_dir), {regex: regex_search})
     raw_result.map { |line| extract_source_context_for_line(line) }.compact
   end
 

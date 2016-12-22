@@ -36,16 +36,16 @@ class CodeSearchTest < ActiveSupport::TestCase
   end
 
   class SearchEngineStub
-    def query(term, opts={})
-      if opts[:directory]
+    def find_addon_usages(term, addon_dir, opts={})
         ["#{Rails.root}/source/ember-foo/app/routes/search.js:8:  headers: Ember.computed(function() {"]
-      else
-        [
-          "#{Rails.root}/source/ember-foo/app/routes/search.js:8:  headers: Ember.computed(function() {",
-          "#{Rails.root}/source/ember-bar/app/routes/index.js:8:  headers: Ember.computed(function() {",
-          "#{Rails.root}/source/ember-bar/app/components/contact-form.js:8:  headers: Ember.computed(function() {"
-        ]
-      end
+    end
+
+    def find_all_matches(term, source_dir, opts={})
+      [
+        "#{Rails.root}/source/ember-foo/app/routes/search.js:  headers: Ember.computed(function() {",
+        "#{Rails.root}/source/ember-bar/app/routes/index.js:  headers: Ember.computed(function() {",
+        "#{Rails.root}/source/ember-bar/app/components/contact-form.js:  headers: Ember.computed(function() {"
+      ]
     end
   end
 
