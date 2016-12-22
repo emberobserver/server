@@ -18,7 +18,7 @@ class CodeSearch
   end
 
   def path_filename_line_number_regex
-    @filename_regex = /(#{source_dir}\/.*?\/(.*?)):(\d+)/
+    @filename_regex ||= /(#{source_dir}\/.*?\/(.*?)):(\d+)/
   end
 
   def addon_name_regex
