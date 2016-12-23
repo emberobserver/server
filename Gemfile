@@ -20,6 +20,8 @@ gem 'snitcher'
 
 gem 'redis-rails'
 
+gem 'skylight'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

@@ -206,6 +206,8 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    skylight (1.0.1)
+      activesupport (>= 3.0.0)
     snitcher (0.3.2)
     spring (1.4.0)
     sprockets (3.5.2)
@@ -265,6 +267,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   sinatra
+  skylight
   snitcher
   spring
   web-console (~> 2.0)
