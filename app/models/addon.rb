@@ -52,6 +52,8 @@ class Addon < ActiveRecord::Base
 
   has_one :readme, dependent: :destroy
 
+  has_many :test_results, through: :addon_versions
+
   def oldest_version
     addon_versions.first
   end
@@ -61,8 +63,11 @@ class Addon < ActiveRecord::Base
   end
 
   def newest_review
-    newest_version_with_review = addon_versions.reverse.find { |version| !version.review.nil? }
-    newest_version_with_review ? newest_version_with_review.review : nil
+    reviews.order('created_at DESC').first
+  end
+
+  def newest_review_version_release_time
+    newest_review.addon_version.released
   end
 
   def recently_released?

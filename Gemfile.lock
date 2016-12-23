@@ -115,6 +115,9 @@ GEM
     hitimes (1.2.3)
     i18n (0.7.0)
     json (1.8.3)
+    jsonapi-resources (0.8.1)
+      concurrent-ruby
+      rails (>= 4.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -257,6 +260,7 @@ DEPENDENCIES
   faraday_middleware
   github-markdown
   has_secure_token
+  jsonapi-resources
   octokit (~> 3.0)
   pg
   pg_search

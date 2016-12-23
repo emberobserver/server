@@ -24,4 +24,14 @@ Rails.application.routes.draw do
       post :logout, to: 'auth#logout'
     end
   end
+
+  namespace :api do
+    namespace :v2 do
+      get 'autocomplete_data' => 'autocomplete#data'
+      jsonapi_resources :addons
+      jsonapi_resources :categories
+      jsonapi_resources :maintainers
+      jsonapi_resources :test_results
+    end
+  end
 end
