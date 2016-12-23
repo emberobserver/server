@@ -52,7 +52,7 @@ namespace :addons do
 		end
 
 		desc "Update all data for addons"
-		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'cache:regenerate:all', 'addons:update:notify' ]
+		task all: [ :environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'addons:update:search_indexes', 'cache:regenerate:all', 'addons:update:notify' ]
 
 		desc "Update latest version number for ember-cli"
 		task ember_cli_version: :environment do
@@ -63,7 +63,12 @@ namespace :addons do
 				ember_cli.version = version
 				ember_cli.save!
 			end
-		end
+    end
+
+    desc "Update indexes for full text search"
+    task search_indexes: :environment do
+      ReadmeView.refresh
+    end
 
 		desc "Notify Dead Man's Snitch of completion"
 		task notify: :environment do
