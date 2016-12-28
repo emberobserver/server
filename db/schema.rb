@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160825021506) do
+ActiveRecord::Schema.define(version: 20161223174123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,7 +253,8 @@ ActiveRecord::Schema.define(version: 20160825021506) do
       to_tsvector('english'::regconfig, readmes.contents) AS contents_tsvector,
       addons.id AS addon_id
      FROM (readmes
-       JOIN addons ON ((readmes.addon_id = addons.id)));
+       JOIN addons ON ((readmes.addon_id = addons.id)))
+    WHERE ((addons.hidden = false) AND (addons.has_invalid_github_repo = false));
   SQL
 
   add_index "readmes_indexed_for_fts", ["contents_tsvector"], name: "gin_index_on_contents", using: :gin
