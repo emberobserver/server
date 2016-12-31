@@ -19,13 +19,13 @@ PUBLIC_KEY=$(cat ~/.ssh/id_rsa.pub)
 #####################################################################
 
 require_env_variable() {
-	var_name=$1
-	value="${!var_name}"
+  var_name=$1
+  value="${!var_name}"
 
-	if [[ -z "${value}" ]]; then
-		echo "ERROR: Environment variable ${var_name} is not set" >&2
-		exit 1
-	fi
+  if [[ -z "${value}" ]]; then
+    echo "ERROR: Environment variable ${var_name} is not set" >&2
+    exit 1
+  fi
 }
 
 ALLOW_ROOT_LOGIN=false
@@ -37,8 +37,8 @@ while true; do
 done
 
 if [[ $# == 0 || $# > 2 ]]; then
-	echo "USAGE: ./server_init.bash <host> [env file]" 2>&1
-	exit 1
+  echo "USAGE: ./server_init.bash <host> [env file]" 2>&1
+  exit 1
 fi
 
 DEPLOY_HOST=$1
@@ -57,8 +57,6 @@ require_env_variable 'SUDO_PASSWORD'
 require_env_variable 'UPDATE_SNITCH_ID'
 
 ssh -T root@${DEPLOY_HOST} << END_SSH
-
-set -e
 
 # Create user
 useradd -m -s /bin/bash -U ${USER}
@@ -94,34 +92,36 @@ sudo -u postgres psql <<< "create user ember_observer login password '${EMBER_OB
 # create nginx config
 cat << END_OF_NGINX_CONFIG | tee /etc/nginx/sites-available/ember-observer > /dev/null
 upstream ember-observer-server {
-        server unix:${SERVER_ROOT}/shared/tmp/sockets/puma.sock fail_timeout=0;
+  server unix:${SERVER_ROOT}/shared/tmp/sockets/puma.sock fail_timeout=0;
 }
 
 server {
-        listen 80;
-        server_name emberobserver.com www.emberobserver.com;
+  listen 80;
+  server_name emberobserver.com www.emberobserver.com;
 
-        gzip on;
-        gzip_types text/html text/css application/x-javascript application/json image/svg+xml;
+  gzip on;
+  gzip_types text/html text/css application/x-javascript application/json image/svg+xml;
 
-        root ${CLIENT_ROOT}/www;
-        access_log ${CLIENT_ROOT}/logs/access.log;
-        error_log ${CLIENT_ROOT}/logs/error.log;
+  root ${CLIENT_ROOT}/www;
+  access_log ${CLIENT_ROOT}/logs/access.log;
+  error_log ${CLIENT_ROOT}/logs/error.log;
 
-        location /api {
-                proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
-                proxy_set_header Host \\\$http_host;
-                proxy_redirect off;
-                proxy_pass http://ember-observer-server;
-        }
+  client_max_body_size 1G;
 
-        location /badges {
-                add_header Cache-Control no-cache;
-        }
+  location /api {
+    proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
+    proxy_set_header Host \\\$http_host;
+    proxy_redirect off;
+    proxy_pass http://ember-observer-server;
+  }
 
-        location / {
-                try_files \\\$uri \\\$uri/ /index.html?/\\\$request_uri;
-        }
+  location /badges {
+    add_header Cache-Control no-cache;
+  }
+
+  location / {
+    try_files \\\$uri \\\$uri/ /index.html?/\\\$request_uri;
+  }
 }
 END_OF_NGINX_CONFIG
 ln -s /etc/nginx/sites-available/ember-observer /etc/nginx/sites-enabled/
@@ -133,33 +133,33 @@ service nginx reload
 # create logrotate config
 cat << END_OF_LOGROTATE_CONFIG | tee /etc/logrotate.d/ember-observer > /dev/null
 ${CLIENT_ROOT}/logs/*.log {
-        weekly
-        missingok
-        rotate 52
-        compress
-        delaycompress
-        notifempty
-        create 0640 ${WEB_USER} ${GROUP}
-        sharedscripts
-        prerotate
-                if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
-                        run-parts /etc/logrotate.d/httpd-prerotate; \
-                fi \
-        endscript
-        postrotate
-                [ -s /run/nginx.pid ] && kill -USR1 \`cat /run/nginx.pid\`
-        endscript
+  weekly
+  missingok
+  rotate 52
+  compress
+  delaycompress
+  notifempty
+  create 0640 ${WEB_USER} ${GROUP}
+  sharedscripts
+  prerotate
+    if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
+      run-parts /etc/logrotate.d/httpd-prerotate; \
+    fi \
+    endscript
+  postrotate
+    [ -s /run/nginx.pid ] && kill -USR1 \`cat /run/nginx.pid\`
+    endscript
 }
 
 ${SERVER_ROOT}/log/*.log {
-        daily
-        missingok
-        rotate 52
-        compress
-        delaycompress
-        notifempty
-        create 0644 ${USER} ${GROUP}
-        sharedscripts
+  daily
+  missingok
+  rotate 52
+  compress
+  delaycompress
+  notifempty
+  create 0644 ${USER} ${GROUP}
+  sharedscripts
 }
 END_OF_LOGROTATE_CONFIG
 
@@ -182,12 +182,12 @@ chown ${USER}.${GROUP} "${SERVER_ROOT}/shared/.env"
 
 cat << END_OF_SUDOERS > /etc/sudoers.d/ember-observer
 ${USER} ALL=(ALL:ALL) ALL
-${USER} ALL=(postgres) NOPASSWD:/usr/bin/psql
+${USER} ALL=(postgres) NOPASSWD:/usr/bin/psql,/usr/bin/pg_dump
 END_OF_SUDOERS
 chmod 0440 /etc/sudoers.d/ember-observer
 
 if [[ ! ${ALLOW_ROOT_LOGIN} ]]; then
-	sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
+  sed -e 's/^PermitRootLogin yes/PermitRootLogin no/' -i /etc/ssh/sshd_config
 fi
 sed -e 's/^#PasswordAuthentication yes/PasswordAuthentication no/' -i /etc/ssh/sshd_config
 service ssh reload
@@ -209,7 +209,7 @@ ln -s ${GO_PATH}/bin/cindex /usr/local/bin/
 ln -s ${GO_PATH}/bin/csearch /usr/local/bin/
 
 # generate SSH key for backups
-ssh-keygen -f ~${USER}/.ssh/id_rsa_backup -N ''
+ssh-keygen -f ~${USER}/.ssh/id_rsa_backup -N '' -C "backups@emberobserver.com"
 echo "New SSH key for sending backups created. Add it to the authorized_keys file on the remote backup target!"
 
 exit

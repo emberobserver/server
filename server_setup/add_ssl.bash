@@ -8,24 +8,24 @@ SERVER_ROOT=/srv/app/ember-observer/server
 WORK_DIR=$(mktemp -d)
 
 require_env_variable() {
-	var_name=$1
-	value="${!var_name}"
+  var_name=$1
+  value="${!var_name}"
 
-	if [[ -z "${value}" ]]; then
-		echo "ERROR: Environment variable ${var_name} is not set" >&2
-		exit 1
-	fi
+  if [[ -z "${value}" ]]; then
+    echo "ERROR: Environment variable ${var_name} is not set" >&2
+    exit 1
+  fi
 }
 
 cleanup() {
-	rm -rf "${WORK_DIR}"
+  rm -rf "${WORK_DIR}"
 }
 
 trap cleanup EXIT
 
 if [[ $# == 0 || $# > 2 ]]; then
-	echo "USAGE: ./add_ssl.bash <old host> <new host>" 2>&1
-	exit 1
+  echo "USAGE: ./add_ssl.bash <old host> <new host>" 2>&1
+  exit 1
 fi
 
 OLD_HOST=$1
@@ -74,39 +74,41 @@ server {
   listen 80;
   server_name emberobserver.com www.emberobserver.com ${DEPLOY_HOST};
 
-	return 301 https://\\\$host\\\$request_uri;
+  return 301 https://\\\$host\\\$request_uri;
 }
 
 server {
-	listen 443;
-	server_name emberobserver.com www.emberobserver.com ${DEPLOY_HOST};
+  listen 443;
+  server_name emberobserver.com www.emberobserver.com ${DEPLOY_HOST};
 
-	ssl on;
-	ssl_certificate /etc/letsencrypt/live/emberobserver.com/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/emberobserver.com/privkey.pem;
-	include /etc/nginx/ssl.conf;
+  ssl on;
+  ssl_certificate /etc/letsencrypt/live/emberobserver.com/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/emberobserver.com/privkey.pem;
+  include /etc/nginx/ssl.conf;
 
-	gzip on;
-	gzip_types text/html text/css application/x-javascript application/json image/svg+xml;
+  gzip on;
+  gzip_types text/html text/css application/x-javascript application/json image/svg+xml;
 
-	root ${CLIENT_ROOT}/www;
-	access_log ${CLIENT_ROOT}/logs/access.log;
-	error_log ${CLIENT_ROOT}/logs/error.log;
+  root ${CLIENT_ROOT}/www;
+  access_log ${CLIENT_ROOT}/logs/access.log;
+  error_log ${CLIENT_ROOT}/logs/error.log;
 
-	location /api {
-		proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
-		proxy_set_header Host \\\$http_host;
-		proxy_redirect off;
-		proxy_pass http://ember-observer-server;
-	}
+  client_max_body_size 1G;
 
-	location /badges {
-		add_header Cache-Control no-cache;
-	}
+  location /api {
+    proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
+    proxy_set_header Host \\\$http_host;
+    proxy_redirect off;
+    proxy_pass http://ember-observer-server;
+  }
 
-	location / {
-		try_files \\\$uri \\\$uri/ /index.html?/\\\$request_uri;
-	}
+  location /badges {
+    add_header Cache-Control no-cache;
+  }
+
+  location / {
+    try_files \\\$uri \\\$uri/ /index.html?/\\\$request_uri;
+  }
 }
 END_OF_NGINX_CONFIG
 

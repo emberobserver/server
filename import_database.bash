@@ -12,16 +12,15 @@ DEST_DB_USER=
 FILENAME=ember-observer.$(date +%Y-%m-%d).sql
 COMPRESSED_FILENAME="${FILENAME}.bz2"
 
-ssh -tt "${SOURCE_USER}"@"${SOURCE_HOST}" << END_SOURCE
+ssh -T "${SOURCE_USER}"@"${SOURCE_HOST}" << END_SOURCE
 sudo -u postgres pg_dump --no-owner --no-acl ${SOURCE_DB_NAME} > "/tmp/${FILENAME}"
 bzip2 "/tmp/${FILENAME}"
-exit
 END_SOURCE
 
 scp "${SOURCE_USER}"@"${SOURCE_HOST}":/tmp/${COMPRESSED_FILENAME} .
 scp "${COMPRESSED_FILENAME}" "${DEST_USER}"@"${DEST_HOST}":/tmp/
 
-ssh -tt "${DEST_USER}"@"${DEST_HOST}" << END_DEST
+ssh -T "${DEST_USER}"@"${DEST_HOST}" << END_DEST
 sudo -u postgres psql <<< "drop database ${DEST_DB_NAME}; create database ${DEST_DB_NAME} with owner ${DEST_DB_USER};"
 bzcat /tmp/${COMPRESSED_FILENAME} | sudo -u postgres psql "${DEST_DB_NAME}"
 
@@ -38,8 +37,6 @@ for table_name in \$(sudo -u postgres psql -qAt -c "select table_name from infor
 done
 
 rm /tmp/${COMPRESSED_FILENAME}
-
-exit
 
 END_DEST
 
