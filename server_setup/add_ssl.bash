@@ -7,16 +7,6 @@ SERVER_ROOT=/srv/app/ember-observer/server
 
 WORK_DIR=$(mktemp -d)
 
-require_env_variable() {
-  var_name=$1
-  value="${!var_name}"
-
-  if [[ -z "${value}" ]]; then
-    echo "ERROR: Environment variable ${var_name} is not set" >&2
-    exit 1
-  fi
-}
-
 cleanup() {
   rm -rf "${WORK_DIR}"
 }
