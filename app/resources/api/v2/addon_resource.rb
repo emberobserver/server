@@ -8,9 +8,10 @@ class API::V2::AddonResource < JSONAPI::Resource
              :ranking, :published_date,
              :rendered_note, :repository_url,
              :license, :note,
-             :is_new_addon, :has_invalid_github_repo,
+             :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :demo_url
+             :demo_url,
+             :published_date
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
@@ -60,10 +61,4 @@ class API::V2::AddonResource < JSONAPI::Resource
   def is_fully_loaded
     true
   end
-
-  def is_new_addon
-    @model.oldest_version && @model.oldest_version.released > 2.weeks.ago
-  end
-
-  #TODO: put oldest release date on model
 end
