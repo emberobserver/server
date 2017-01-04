@@ -10,8 +10,7 @@ class API::V2::AddonResource < JSONAPI::Resource
              :license, :note,
              :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :demo_url,
-             :published_date
+             :demo_url
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
@@ -20,9 +19,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   has_many :reviews
   has_many :categories
   has_one :github_stats
-  # has_one :readme
-
-  # Need: has_one :latest_review
+  has_one :readme
 
   paginator :offset
   filter :name
