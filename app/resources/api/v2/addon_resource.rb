@@ -9,13 +9,13 @@ class API::V2::AddonResource < JSONAPI::Resource
              :rendered_note, :repository_url,
              :license, :note,
              :is_new_addon, :has_invalid_github_repo,
-             :contributors,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
              :demo_url
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
   has_many :keywords, class_name: 'Keyword', relation_name: 'npm_keywords'
+  has_many :github_users
   has_many :reviews
   has_many :categories
   has_one :github_stats
@@ -65,13 +65,5 @@ class API::V2::AddonResource < JSONAPI::Resource
     @model.oldest_version && @model.oldest_version.released > 2.weeks.ago
   end
 
-  def contributors
-    @model.github_contributors.map do |contributor|
-      { name: contributor.login, avatar_url: contributor.avatar_url }
-    end
-  end
-
-  #TODO: Make github stats a relationship
   #TODO: put oldest release date on model
-  #TODO: make contributors a relationship
 end
