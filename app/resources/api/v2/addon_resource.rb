@@ -9,16 +9,16 @@ class API::V2::AddonResource < JSONAPI::Resource
              :rendered_note, :repository_url,
              :license, :note,
              :is_new_addon, :has_invalid_github_repo,
-             :open_issues, :forks, :contributors,
-             :first_commit_date, :latest_commit_date,
+             :contributors,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :stars, :committed_to_recently, :demo_url
+             :demo_url
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
   has_many :keywords, class_name: 'Keyword', relation_name: 'npm_keywords'
   has_many :reviews
   has_many :categories
+  has_one :github_stats
   # has_one :readme
 
   # Need: has_one :latest_review
@@ -65,34 +65,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     @model.oldest_version && @model.oldest_version.released > 2.weeks.ago
   end
 
-  def open_issues
-    @model.github_stats ? @model.github_stats.open_issues : nil
-  end
-
-  def forks
-    @model.github_stats ? @model.github_stats.forks : nil
-  end
-
-  def first_commit_date
-    @model.github_stats ? @model.github_stats.first_commit_date : nil
-  end
-
-  def latest_commit_date
-    @model.github_stats ? @model.github_stats.latest_commit_date : nil
-  end
-
-  def committed_to_recently
-    @model.recently_committed_to?
-  end
-
   def contributors
     @model.github_contributors.map do |contributor|
       { name: contributor.login, avatar_url: contributor.avatar_url }
     end
-  end
-
-  def stars
-    @model.github_stats ? @model.github_stats.stars : nil
   end
 
   #TODO: Make github stats a relationship

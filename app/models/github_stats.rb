@@ -20,4 +20,9 @@
 
 class GithubStats < ActiveRecord::Base
   belongs_to :addon
+
+  def addon_recently_committed_to?
+    return false unless penultimate_commit_date
+    penultimate_commit_date > 3.months.ago
+  end
 end
