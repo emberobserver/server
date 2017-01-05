@@ -1,2 +1,2 @@
-class API::V2::MaintainersController < JSONAPI::ResourceController
+class API::V2::MaintainersController < API::V2::JsonapiBaseController
 end

@@ -1,2 +1,2 @@
-class API::V2::ReviewsController < JSONAPI::ResourceController
+class API::V2::ReviewsController < API::V2::JsonapiBaseController
 end

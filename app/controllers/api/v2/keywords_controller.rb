@@ -1,2 +1,2 @@
-class API::V2::KeywordsController < JSONAPI::ResourceController
+class API::V2::KeywordsController < API::V2::JsonapiBaseController
 end

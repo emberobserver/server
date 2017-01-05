@@ -1,2 +1,2 @@
-class API::V2::GithubUsersController < JSONAPI::ResourceController
+class API::V2::GithubUsersController < API::V2::JsonapiBaseController
 end
