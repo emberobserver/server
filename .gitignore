@@ -17,6 +17,7 @@
 !/log/.keep
 /tmp
 
+/source/
 /node_modules/
 /addons.json
 npm-debug.log

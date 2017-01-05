@@ -25,4 +25,18 @@ class SearchControllerTest < ControllerTest
     assert last_result['matches'].first =~ /<b>testing<\/b>/
   end
 
+  test 'addon search returns empty results if no query' do
+    get :addons, query: ''
+
+    assert_response :ok
+    assert_equal 0, json_response['results'].size
+  end
+
+  test 'source search returns empty results if no query' do
+    get :source, query: '', addon: 'ember-foo'
+
+    assert_response :ok
+    assert_equal 0, json_response['results'].size
+  end
+
 end
