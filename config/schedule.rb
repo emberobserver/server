@@ -21,6 +21,8 @@
 
 job_type :command_in_dir, "cd :path && source .env && :task :output"
 
+set :output, "log/cron_log.log"
+
 every 1.hour do
   rake "search:prepare"
 end
