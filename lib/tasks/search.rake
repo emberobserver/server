@@ -1,7 +1,7 @@
 namespace :search do
   task prepare: [:ensure_directory, :fetch_source, :index]
 
-  task :ensure_directory do
+  task ensure_directory: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
     unless File.exist?(code_index_dir)
       FileUtils.mkdir_p code_index_dir
@@ -25,7 +25,7 @@ namespace :search do
     end
   end
 
-  task :index do
+  task index: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
     index_cmd = "cindex #{code_index_dir}"
     puts "Running '#{index_cmd}'..."
@@ -33,7 +33,7 @@ namespace :search do
     puts 'Done indexing!'
   end
 
-  task :remove do
+  task remove: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
     puts "Removing source directory at #{code_index_dir}"
     FileUtils.rm_rf code_index_dir
