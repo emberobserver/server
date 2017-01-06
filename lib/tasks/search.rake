@@ -27,7 +27,7 @@ namespace :search do
 
   task index: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
-    index_cmd = "cindex #{code_index_dir}"
+    index_cmd = "/usr/local/bin/cindex #{code_index_dir}"
     puts "Running '#{index_cmd}'..."
     `#{index_cmd}`
     puts 'Done indexing!'
