@@ -23,7 +23,7 @@ job_type :command_in_dir, "cd :path && source .env && :task :output"
 
 set :output, "log/cron_log.log"
 
-every 1.hour do
+every 1.day, at: '0900' do
   rake "search:prepare"
 end
 
