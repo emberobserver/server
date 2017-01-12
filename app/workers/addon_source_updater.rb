@@ -1,5 +1,8 @@
 class AddonSourceUpdater < ActiveJob::Base
-  EXCLUDED_DIRS = %w(bower_components node_modules tmp dist vendor public coverage tests/fixtures demo typings)
+  EXCLUDED_PATHS = %w(bower_components node_modules tmp dist vendor public coverage tests/fixtures demo
+                     typings website docs support dependencies jsdocTemplates test/vendor example examples
+                     npm-shrinkwrap.json dependency-snapshot.json)
+  EXCLUDED_PATTERNS = %w(**/*.log **/yarn.lock **/Gemfile.lock)
 
   def perform(addon_id, source_directory)
     @source_directory = source_directory
@@ -7,7 +10,7 @@ class AddonSourceUpdater < ActiveJob::Base
     @addon_directory = File.join(source_directory, addon.name)
 
     fetch_or_clone_repo
-    remove_excluded_directories
+    remove_excluded_paths
   end
 
   private
@@ -42,10 +45,11 @@ class AddonSourceUpdater < ActiveJob::Base
     end
   end
 
-  def remove_excluded_directories
+  def remove_excluded_paths
     return unless File.exist?(addon_directory)
     FileUtils.cd addon_directory do
-      FileUtils.rmtree EXCLUDED_DIRS
+      FileUtils.rmtree EXCLUDED_PATHS
+      EXCLUDED_PATTERNS.each { |pattern| FileUtils.rmtree Dir.glob(pattern) }
     end
   end
 
