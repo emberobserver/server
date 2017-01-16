@@ -34,6 +34,12 @@ class API::V2::AddonResource < JSONAPI::Resource
 
   filter :hidden, default: 'false'
 
+  filter :is_wip
+
+  filter :not_categorized, apply: -> (records, value, _options) {
+    records.includes(:categories).where(categories: { id: nil })
+  }
+
   filter :recently_reviewed, apply: ->(records, value, _options) {
     limit = _options[:paginator] ? _options[:paginator].limit : 10
     Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
