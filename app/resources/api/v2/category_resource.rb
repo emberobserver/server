@@ -8,4 +8,58 @@ class API::V2::CategoryResource < JSONAPI::Resource
   def addon_count
     @model.addons.count
   end
+
+  def position=(new_position)
+    if new_position != -1
+      Category.transaction do
+        move_category_to_new_position(@model, new_position)
+        # increment_category_positions(@model.parent_id, new_position)
+      end
+    end
+    @model.position = new_position
+  end
+
+  def self.updatable_fields(context)
+    super - [:addon_count]
+  end
+
+  def self.creatable_fields(context)
+    super - [:addon_count]
+  end
+
+  private
+
+  def move_category_to_new_position(category, new_position)
+    original_position = category.position
+
+    if category.persisted?
+      # First move the target category to the end
+      category.position = -1
+      category.save
+    end
+
+    if original_position
+      # Update the positions for categories that came after the target category
+      decrement_category_positions(category.parent_id, original_position)
+    end
+
+    # Now make room for the target category
+    if new_position && new_position != -1
+      increment_category_positions(category.parent_id, new_position)
+    end
+  end
+
+  def decrement_category_positions(parent_id, start_position)
+    # decrement the position for every category at or after the given position
+    categories_at_or_after(parent_id, start_position).update_all('position = position - 1')
+  end
+
+  def increment_category_positions(parent_id, start_position)
+    # increment the position for every category at or after the given position
+    categories_at_or_after(parent_id, start_position).update_all('position = position + 1')
+  end
+
+  def categories_at_or_after(parent_id, position)
+    Category.where(parent_id: parent_id).where('position >= ?', position)
+  end
 end

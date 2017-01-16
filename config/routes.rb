@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v2 do
       get 'autocomplete_data' => 'autocomplete#data'
+      get 'search' => 'search#search'
+      get 'search/addons' => 'search#addons'
+      get 'search/source' => 'search#source'
+
       jsonapi_resources :addons
       jsonapi_resources :categories
       jsonapi_resources :maintainers
