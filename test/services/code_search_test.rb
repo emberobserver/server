@@ -3,7 +3,7 @@ require 'test_helper'
 class CodeSearchTest < ActiveSupport::TestCase
 
   test 'can search for files containing source code within an addon' do
-    code_search = CodeSearch.new(SearchEngineStub.new, SedStub.new)
+    code_search = CodeSearch.new(SearchEngineStub.new, LineReaderStub.new)
     results = code_search.retrieve_source('Ember.computed', 'ember-foo', false)
 
     assert_equal(1, results.length)
@@ -24,7 +24,7 @@ class CodeSearchTest < ActiveSupport::TestCase
   end
 
   test 'can search for all addons containing code' do
-    code_search = CodeSearch.new(SearchEngineStub.new, SedStub.new)
+    code_search = CodeSearch.new(SearchEngineStub.new, LineReaderStub.new)
     results = code_search.retrieve_addons('Ember.computed', false)
 
     assert_equal(2, results.length)
@@ -49,8 +49,8 @@ class CodeSearchTest < ActiveSupport::TestCase
     end
   end
 
-  class SedStub
-    def retrieve_match(filename, matched_line_number)
+  class LineReaderStub
+    def retrieve_context(filename, matched_line_number)
       [
         ["if (user) {", 4],
         ["  return { userId: user.id, token: user.token };", 5],
