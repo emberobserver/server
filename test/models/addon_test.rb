@@ -35,6 +35,41 @@
 require 'test_helper'
 
 class AddonTest < ActiveSupport::TestCase
+
+  # Addons hasMany AddonVersions
+  # AddonVersion hasOne Review
+  # Review belongsTo AddonVersion
+  #
+  # I need the Addons who’s latest version doesn’t have a review
+
+  # addon has one version with a review - not in result
+  # addon has one version with no review - in result
+
+  # addon has two versions with no reviews - latest in result
+  # addon has two versions with reviews - not in result
+
+  # addon has two versions and latest has no review - in result
+  # addon has two versions and earliest has no review - in result
+
+  test "can find addons whose latest version does not have a review" do
+    addon1 = create :addon, name: 'addon1' # one version, with review - not in result
+    addon1_v1 = create :addon_version, :with_review, addon: addon1
+
+    addon2 = create :addon, name: 'addon2' # one version, no review - in result
+    addon2_v1 = create :addon_version, addon: addon2
+
+    addon3 = create :addon, name: 'addon3' # two versions, latest has no review - in result
+    addon3_v1 = create :addon_version, :with_review, addon: addon3
+    addon3_v2 = create :addon_version, addon: addon3
+
+    addon4 = create :addon, name: 'addon4' # two versions, latest has review - not in result
+    addon4_v1 = create :addon_version, addon: addon4
+    addon4_v2 = create :addon_version, :with_review, addon: addon4
+
+    addons = Addon.latest_version_not_reviewed.to_a
+    assert_equal [addon2, addon3], addons
+  end
+
   test "oldest_version returns the earliest addon version" do
     addon = create :addon
 

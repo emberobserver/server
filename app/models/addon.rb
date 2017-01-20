@@ -55,6 +55,15 @@ class Addon < ActiveRecord::Base
 
   has_many :test_results, through: :addon_versions
 
+  def self.latest_version_not_reviewed
+    addon_versions_without_review = AddonVersion.where("not exists (select * from reviews where addon_version_id = addon_versions.id)")
+    latest_addon_versions = Addon.joins(:addon_versions)
+      .where('addon_versions.released = (select max(addon_versions.released) from addon_versions where addon_versions.addon_id = addons.id)')
+      .group('addons.id')
+
+    latest_addon_versions.merge(addon_versions_without_review)
+  end
+
   def oldest_version
     addon_versions.first
   end
