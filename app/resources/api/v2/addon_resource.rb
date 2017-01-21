@@ -41,13 +41,11 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :not_reviewed, apply: -> (records, value, _options) {
-    records.where("name NOT IN (?)", Review.select("addon_name"))
+    records.where("name NOT IN (?)", Review.select(:addon_name))
   }
 
   filter :needs_re_review, apply: -> (records, value, _options) {
-    latest_versions_without_review = records.to_a.map(&:newest_version).find_all { |a| a.review_id === nil }.map(&:id)
-    records.newest_review_version_release_time
-    records.where("id IN (?)", latest_versions_without_review)
+    records.where("name in (?)", Review.select(:addon_name)).joins(:latest_addon_version).where("addon_versions.id NOT IN (?)", Review.select(:addon_version_id))
   }
 
   filter :recently_reviewed, apply: ->(records, value, _options) {
