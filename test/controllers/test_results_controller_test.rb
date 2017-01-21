@@ -13,9 +13,9 @@ class TestResultsControllerTest < ControllerTest
 
   test "index responds with all results for the given date" do
     user = create(:user)
-    create_list(:test_result, 7, created_at: Time.now)
+    create_list(:test_result, 7, created_at: Time.zone.now)
     create_list(:test_result, 5, created_at: 1.day.ago)
-    get_as_user user, :index, date: Time.now.strftime('%F')
+    get_as_user user, :index, date: Time.zone.now.strftime('%F')
 
     assert_response :success
     assert_equal 7, json_response['test_results'].length

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223174123) do
+ActiveRecord::Schema.define(version: 20170120234156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,7 +95,10 @@ ActiveRecord::Schema.define(version: 20161223174123) do
     t.boolean  "is_wip"
     t.string   "demo_url"
     t.integer  "ranking"
+    t.integer  "latest_addon_version_id"
   end
+
+  add_index "addons", ["latest_addon_version_id"], name: "index_addons_on_latest_addon_version_id", using: :btree
 
   create_table "build_servers", force: :cascade do |t|
     t.string   "name"
@@ -240,6 +243,7 @@ ActiveRecord::Schema.define(version: 20161223174123) do
 
   add_foreign_key "addon_downloads", "addons"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
+  add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
   add_foreign_key "ember_version_compatibilities", "test_results"
   add_foreign_key "github_stats", "addons"
   add_foreign_key "pending_builds", "addon_versions"

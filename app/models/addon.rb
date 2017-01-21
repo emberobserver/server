@@ -34,6 +34,7 @@
 
 class Addon < ActiveRecord::Base
   has_many :addon_versions, -> { order(released: :asc) }
+  belongs_to :latest_addon_version, class_name: "AddonVersion"
   has_many :reviews, through: :addon_versions
   has_many :addon_maintainers
   has_many :addon_npm_keywords
