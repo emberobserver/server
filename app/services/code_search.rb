@@ -8,9 +8,9 @@ class CodeSearch
     self.new.retrieve_addons(term, regex_search)
   end
 
-  def initialize(search_engine = SearchEngine.new, sed = LineRetrieval.new)
+  def initialize(search_engine = SearchEngine.new, line_reader = LineReader.new)
     @search_engine = search_engine
-    @sed = sed
+    @line_reader = line_reader
   end
 
   def source_dir
@@ -49,7 +49,7 @@ class CodeSearch
     path_from_addon_dir = match_result[2]
     line_number = match_result[3].to_i
 
-    lines = @sed.retrieve_match(path_from_source_dir, line_number)
+    lines = @line_reader.retrieve_context(path_from_source_dir, line_number)
 
     json_lines = lines.map { |line| {text: line.first, number: line.last} }
     {line_number: line_number, filename: path_from_addon_dir, lines: json_lines}
