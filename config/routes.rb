@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get 'search/source' => 'search#source'
 
       jsonapi_resources :addons
+      jsonapi_resources :reviews
       jsonapi_resources :categories
       jsonapi_resources :maintainers
       jsonapi_resources :test_results
