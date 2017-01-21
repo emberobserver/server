@@ -79,6 +79,7 @@ rvm gemset use "${RUBY_GEMSET}"
 gem install bundler
 
 mkdir -p "${CLIENT_ROOT}/badges"
+mkdir -p "${CLIENT_ROOT}/www"
 mkdir -p "${CLIENT_ROOT}/logs"
 chown -R "${USER}:${GROUP}" "${CLIENT_ROOT}"
 chown "${WEB_USER}" "${CLIENT_ROOT}/logs"
