@@ -24,6 +24,12 @@ class Review < ActiveRecord::Base
     addon_version.addon
   end
 
+  def version_id=(value)
+    self.addon_version_id = value
+  end
+
+  private
+
   def set_addon_name
     self.addon_name = addon_version.addon_name
   end

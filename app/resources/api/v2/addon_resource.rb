@@ -6,7 +6,7 @@ class API::V2::AddonResource < JSONAPI::Resource
              :is_hidden,
              :score, :is_wip, :is_fully_loaded,
              :ranking, :published_date,
-             :rendered_note, :repository_url,
+             :repository_url,
              :license, :note,
              :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
@@ -57,19 +57,47 @@ class API::V2::AddonResource < JSONAPI::Resource
     @model.deprecated
   end
 
+  def is_deprecated=(value)
+    @model.deprecated = value
+  end
+
   def is_official
     @model.official
+  end
+
+  def is_official=(value)
+    @model.official = value
   end
 
   def is_cli_dependency
     @model.cli_dependency
   end
 
+  def is_cli_dependency=(value)
+    @model.cli_dependency = value
+  end
+
   def is_hidden
     @model.hidden
   end
 
+  def is_hidden=(value)
+    @model.hidden = value
+  end
+
   def is_fully_loaded
     true
+  end
+
+  def self.updatable_fields(context)
+    [
+     :is_deprecated, :is_official, :is_cli_dependency,
+     :is_hidden, :is_wip, :note, :has_invalid_github_repo,
+     :categories
+    ]
+  end
+
+  def self.creatable_fields(context)
+    []
   end
 end
