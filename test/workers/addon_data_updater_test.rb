@@ -27,6 +27,8 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal Time.utc(2015, 9, 7, 7, 19, 9).to_s, addon.published_date.to_s
     assert_equal 'http://a-person.github.io/a-addon', addon.demo_url
     assert_equal 'THIS IS A README', addon.readme.contents
+    assert_equal 5, addon.addon_versions.count
+    assert_equal addon.latest_addon_version_id, addon.addon_versions.find_by(version: '1.0.1').id
   end
 
 end

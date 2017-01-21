@@ -16,6 +16,7 @@ class AddonDataUpdater
     update_addon_versions
     update_last_seen
     update_hidden_flag
+    update_latest_addon_version
 
     save_addon
   end
@@ -117,6 +118,11 @@ class AddonDataUpdater
         update_addon_version_dependencies(addon_version, data)
       end
     end
+  end
+
+  def update_latest_addon_version
+    latest_version = @metadata['latest']['version']
+    @addon.latest_addon_version = @addon.addon_versions.find_by(version: latest_version)
   end
 
   def update_addon_version_compatibility(addon_version, addon_version_metadata)

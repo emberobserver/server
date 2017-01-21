@@ -40,6 +40,16 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.includes(:categories).where(categories: { id: nil })
   }
 
+  filter :not_reviewed, apply: -> (records, value, _options) {
+    records.where("name NOT IN (?)", Review.select("addon_name"))
+  }
+
+  filter :needs_re_review, apply: -> (records, value, _options) {
+    latest_versions_without_review = records.to_a.map(&:newest_version).find_all { |a| a.review_id === nil }.map(&:id)
+    records.newest_review_version_release_time
+    records.where("id IN (?)", latest_versions_without_review)
+  }
+
   filter :recently_reviewed, apply: ->(records, value, _options) {
     limit = _options[:paginator] ? _options[:paginator].limit : 10
     Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
