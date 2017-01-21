@@ -78,7 +78,7 @@ gem install bundler
 rvm gemset use "${RUBY_GEMSET}"
 gem install bundler
 
-mkdir -p "${CLIENT_ROOT}/www/badges"
+mkdir -p "${CLIENT_ROOT}/badges"
 mkdir -p "${CLIENT_ROOT}/logs"
 chown -R "${USER}:${GROUP}" "${CLIENT_ROOT}"
 chown "${WEB_USER}" "${CLIENT_ROOT}/logs"
@@ -117,6 +117,7 @@ server {
 
   location /badges {
     add_header Cache-Control no-cache;
+    root ${CLIENT_ROOT};
   }
 
   location / {
@@ -175,7 +176,7 @@ BACKUP_SNITCH_URL=${BACKUP_SNITCH_URL}
 GITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN}
 SMTP_USERNAME=${SMTP_USERNAME}
 SMTP_PASSWORD=${SMTP_PASSWORD}
-ADDON_BADGE_DIR=${CLIENT_ROOT}/www/badges
+ADDON_BADGE_DIR=${CLIENT_ROOT}/badges
 INDEX_SOURCE_DIR=${ADDON_SOURCE_DIR}
 END_OF_ENV
 chown ${USER}.${GROUP} "${SERVER_ROOT}/shared/.env"

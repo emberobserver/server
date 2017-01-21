@@ -95,6 +95,7 @@ server {
 
   location /badges {
     add_header Cache-Control no-cache;
+    root ${CLIENT_ROOT};
   }
 
   location / {
