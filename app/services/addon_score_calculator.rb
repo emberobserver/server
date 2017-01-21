@@ -11,10 +11,12 @@ class AddonScoreCalculator
       score = score + 1 if review.has_build == 1
 
       score = score + 1 if addon.recently_released?
-      score = score + 1 if addon.recently_committed_to?
       score = score + 1 if addon.is_top_downloaded
-      score = score + 1 if addon.is_top_starred
-      score = score + 1 if addon.github_contributors.length > 1
+      unless addon.has_invalid_github_repo?
+        score = score + 1 if addon.github_contributors.length > 1
+        score = score + 1 if addon.recently_committed_to?
+        score = score + 1 if addon.is_top_starred
+      end
     end
 
     score
