@@ -32,6 +32,7 @@
 #  ranking                 :integer
 #
 
+# TODO: drop `rendered_note` once entirely on API v2
 class Addon < ActiveRecord::Base
   has_many :addon_versions, -> { order(released: :asc) }
   belongs_to :latest_addon_version, class_name: "AddonVersion"
