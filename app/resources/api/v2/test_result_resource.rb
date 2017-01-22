@@ -1,4 +1,5 @@
 class API::V2::TestResultResource < JSONAPI::Resource
+  immutable
   attributes :succeeded, :status_message, :created_at, :semver_string, :canary
   has_one :version, class_name: 'Version', relation_name: 'addon_version'
   has_many :ember_version_compatibilities
