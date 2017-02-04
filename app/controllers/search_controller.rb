@@ -8,12 +8,14 @@ class SearchController < ApplicationController
   end
 
   def addons
-    results = CodeSearch.retrieve_addons(params[:query])
+    regex_search = params[:regex] == 'true'
+    results = CodeSearch.retrieve_addons(params[:query], regex_search)
     render json: {results: results}
   end
 
   def source
-    results = CodeSearch.retrieve_source(params[:query], params[:addon])
+    regex_search = params[:regex] == 'true'
+    results = CodeSearch.retrieve_source(params[:query], params[:addon], regex_search)
     render json: {results: results}
   end
 
