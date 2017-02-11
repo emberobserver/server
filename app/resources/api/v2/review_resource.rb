@@ -10,6 +10,7 @@ class API::V2::ReviewResource < JSONAPI::Resource
   end
 
   def self.creatable_fields(context)
+    return [] unless context[:current_user]
     [
         :has_tests, :has_readme, :is_more_than_empty_addon,
         :review, :is_open_source, :has_build, :version

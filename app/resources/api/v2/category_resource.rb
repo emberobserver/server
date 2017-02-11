@@ -20,10 +20,12 @@ class API::V2::CategoryResource < JSONAPI::Resource
   end
 
   def self.updatable_fields(context)
+    return [] unless context[:current_user]
     super - [:addon_count]
   end
 
   def self.creatable_fields(context)
+    return [] unless context[:current_user]
     super - [:addon_count]
   end
 
