@@ -24,27 +24,34 @@ class API::V2::AddonResource < JSONAPI::Resource
   paginator :offset
   filter :name
 
+  REQUIRE_ADMIN = ->(values, context) {
+    if values.include?("true") && context[:current_user].nil?
+      raise Forbidden
+    end
+    values
+  }
+
   filter :in_category, apply: ->(records, category_id, _options) {
-    Category.where(id: category_id).first.addons
+    Category.find(category_id.first).addons
   }
 
   filter :top, apply: ->(records, value, _options) {
     records.where('ranking is not null')
   }
 
-  filter :hidden, default: 'false'
+  filter :hidden, verify: REQUIRE_ADMIN, default: 'false'
 
   filter :is_wip
 
-  filter :not_categorized, apply: -> (records, value, _options) {
+  filter :not_categorized, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
     records.includes(:categories).where(categories: { id: nil })
   }
 
-  filter :not_reviewed, apply: -> (records, value, _options) {
+  filter :not_reviewed, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
     records.where("name NOT IN (?)", Review.select(:addon_name))
   }
 
-  filter :needs_re_review, apply: -> (records, value, _options) {
+  filter :needs_re_review, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
     records.where("name in (?)", Review.select(:addon_name)).joins(:latest_addon_version).where("addon_versions.id NOT IN (?)", Review.select(:addon_version_id))
   }
 
@@ -52,6 +59,12 @@ class API::V2::AddonResource < JSONAPI::Resource
     limit = _options[:paginator] ? _options[:paginator].limit : 10
     Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
   }
+
+  def self.find(filters, options = {})
+    the_only_filter_is_the_default = filters.keys == [:hidden] && filters[:hidden] == %w(false)
+    raise Forbidden if the_only_filter_is_the_default
+    super
+  end
 
   def is_deprecated
     @model.deprecated
@@ -89,12 +102,18 @@ class API::V2::AddonResource < JSONAPI::Resource
     true
   end
 
+  UPDATABLE_ATTRIBUTES = [
+    :is_deprecated, :is_official, :is_cli_dependency,
+    :is_hidden, :is_wip, :note, :has_invalid_github_repo,
+  ]
+
+  UPDATABLE_RELATIONSHIPS = [
+    :categories
+  ]
+
   def self.updatable_fields(context)
-    [
-     :is_deprecated, :is_official, :is_cli_dependency,
-     :is_hidden, :is_wip, :note, :has_invalid_github_repo,
-     :categories
-    ]
+    return [] unless context[:current_user]
+    UPDATABLE_ATTRIBUTES + UPDATABLE_RELATIONSHIPS
   end
 
   def self.creatable_fields(context)
