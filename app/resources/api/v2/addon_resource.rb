@@ -6,7 +6,7 @@ class API::V2::AddonResource < JSONAPI::Resource
              :is_hidden,
              :score, :is_wip, :is_fully_loaded,
              :ranking, :published_date,
-             :rendered_note, :repository_url,
+             :repository_url,
              :license, :note,
              :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
@@ -24,30 +24,35 @@ class API::V2::AddonResource < JSONAPI::Resource
   paginator :offset
   filter :name
 
+  REQUIRE_ADMIN = ->(values, context) {
+    if values.include?("true") && context[:current_user].nil?
+      raise Forbidden
+    end
+    values
+  }
+
   filter :in_category, apply: ->(records, category_id, _options) {
-    Category.where(id: category_id).first.addons
+    Category.find(category_id.first).addons
   }
 
   filter :top, apply: ->(records, value, _options) {
     records.where('ranking is not null')
   }
 
-  filter :hidden, default: 'false'
+  filter :hidden, verify: REQUIRE_ADMIN, default: 'false'
 
   filter :is_wip
 
-  filter :not_categorized, apply: -> (records, value, _options) {
+  filter :not_categorized, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
     records.includes(:categories).where(categories: { id: nil })
   }
 
-  filter :not_reviewed, apply: -> (records, value, _options) {
-    records.where("name NOT IN (?)", Review.select("addon_name"))
+  filter :not_reviewed, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
+    records.where("name NOT IN (?)", Review.select(:addon_name))
   }
 
-  filter :needs_re_review, apply: -> (records, value, _options) {
-    latest_versions_without_review = records.to_a.map(&:newest_version).find_all { |a| a.review_id === nil }.map(&:id)
-    records.newest_review_version_release_time
-    records.where("id IN (?)", latest_versions_without_review)
+  filter :needs_re_review, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
+    records.where("name in (?)", Review.select(:addon_name)).joins(:latest_addon_version).where("addon_versions.id NOT IN (?)", Review.select(:addon_version_id))
   }
 
   filter :recently_reviewed, apply: ->(records, value, _options) {
@@ -55,23 +60,63 @@ class API::V2::AddonResource < JSONAPI::Resource
     Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
   }
 
+  def self.find(filters, options = {})
+    the_only_filter_is_the_default = filters.keys == [:hidden] && filters[:hidden] == %w(false)
+    raise Forbidden if the_only_filter_is_the_default
+    super
+  end
+
   def is_deprecated
     @model.deprecated
+  end
+
+  def is_deprecated=(value)
+    @model.deprecated = value
   end
 
   def is_official
     @model.official
   end
 
+  def is_official=(value)
+    @model.official = value
+  end
+
   def is_cli_dependency
     @model.cli_dependency
+  end
+
+  def is_cli_dependency=(value)
+    @model.cli_dependency = value
   end
 
   def is_hidden
     @model.hidden
   end
 
+  def is_hidden=(value)
+    @model.hidden = value
+  end
+
   def is_fully_loaded
     true
+  end
+
+  UPDATABLE_ATTRIBUTES = [
+    :is_deprecated, :is_official, :is_cli_dependency,
+    :is_hidden, :is_wip, :note, :has_invalid_github_repo,
+  ]
+
+  UPDATABLE_RELATIONSHIPS = [
+    :categories
+  ]
+
+  def self.updatable_fields(context)
+    return [] unless context[:current_user]
+    UPDATABLE_ATTRIBUTES + UPDATABLE_RELATIONSHIPS
+  end
+
+  def self.creatable_fields(context)
+    []
   end
 end

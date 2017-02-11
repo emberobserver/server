@@ -33,8 +33,10 @@ Rails.application.routes.draw do
       get 'search' => 'search#search'
       get 'search/addons' => 'search#addons'
       get 'search/source' => 'search#source'
+      post 'corrections' => 'corrections#submit'
 
       jsonapi_resources :addons
+      jsonapi_resources :reviews
       jsonapi_resources :categories
       jsonapi_resources :maintainers
       jsonapi_resources :test_results

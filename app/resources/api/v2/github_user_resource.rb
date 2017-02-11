@@ -1,4 +1,5 @@
 class API::V2::GithubUserResource < JSONAPI::Resource
+  immutable
   attributes :name, :avatar_url
 
   def name
