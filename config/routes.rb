@@ -39,8 +39,13 @@ Rails.application.routes.draw do
         jsonapi_related_resources :github_stats
         jsonapi_related_resources :readme
         jsonapi_related_resources :github_users
+        jsonapi_related_resources :reviews
       end
-      jsonapi_resources :reviews
+
+      jsonapi_resources :reviews, only: [:create] do
+
+      end
+
       jsonapi_resources :categories
       jsonapi_resources :maintainers
       jsonapi_resources :test_results

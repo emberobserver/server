@@ -16,6 +16,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
   has_many :keywords, class_name: 'Keyword', relation_name: 'npm_keywords'
   has_many :github_users
+  #TODO: Make has_one :review
   has_many :reviews
   has_many :categories
   has_one :github_stats
