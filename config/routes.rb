@@ -35,7 +35,11 @@ Rails.application.routes.draw do
       get 'search/source' => 'search#source'
       post 'corrections' => 'corrections#submit'
 
-      jsonapi_resources :addons
+      jsonapi_resources :addons do
+        jsonapi_related_resources :github_stats
+        jsonapi_related_resources :readme
+        jsonapi_related_resources :github_users
+      end
       jsonapi_resources :reviews
       jsonapi_resources :categories
       jsonapi_resources :maintainers

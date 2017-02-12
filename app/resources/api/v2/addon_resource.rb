@@ -22,6 +22,9 @@ class API::V2::AddonResource < JSONAPI::Resource
   has_one :readme
 
   paginator :offset
+
+  DEFAULT_PAGE_SIZE = 977
+
   filter :name
 
   REQUIRE_ADMIN = ->(values, context) {
@@ -56,13 +59,15 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :recently_reviewed, apply: ->(records, value, _options) {
-    limit = _options[:paginator] ? _options[:paginator].limit : 10
+    limit = _options[:paginator] && _options[:paginator].limit != DEFAULT_PAGE_SIZE ? _options[:paginator].limit : 10
     Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
   }
 
   def self.find(filters, options = {})
     the_only_filter_is_the_default = filters.keys == [:hidden] && filters[:hidden] == %w(false)
-    raise Forbidden if the_only_filter_is_the_default
+    has_invalid_limit = options[:pagination] ? options[:pagination].limit > 100 : true
+    has_no_sort = options[:sort_criteria] ? [:sort_criteria].length == 0 : true
+    raise Forbidden if the_only_filter_is_the_default && (has_invalid_limit && has_no_sort)
     super
   end
 
