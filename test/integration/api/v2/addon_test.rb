@@ -1,12 +1,6 @@
 require "test_helper"
 
-class API::V2::AddonTest < ActionDispatch::IntegrationTest
-  JSONAPI_TYPE = "application/vnd.api+json"
-
-  setup do
-    @integration_session = open_session
-    @integration_session.accept = JSONAPI_TYPE
-  end
+class API::V2::AddonTest < IntegrationTest
 
   ADDON_ATTRIBUTES = %w(
     name
@@ -483,16 +477,6 @@ class API::V2::AddonTest < ActionDispatch::IntegrationTest
       res["attributes"]["name"]
     end
     assert_equal addon_names.sort, addons_in_response_names.sort, "Only these addons are in response"
-  end
-
-  def json_response
-    ActiveSupport::JSON.decode(@response.body)
-  end
-
-  def authentication_headers_for(user = create(:user))
-    {
-      'HTTP_AUTHORIZATION': ActionController::HttpAuthentication::Token.encode_credentials(user.auth_token)
-    }
   end
 
   def update_addon(addon, options = {})
