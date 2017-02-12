@@ -457,6 +457,22 @@ class API::V2::AddonTest < ActionDispatch::IntegrationTest
     assert_response 403, "End user cannot fetch all addons"
   end
 
+  test "end user can fetch all addons with a limit and a sort" do
+    create_list :addon, 15
+
+    get "/api/v2/addons", { page: { limit: 10 }, sort: '-publishedDate' }
+
+    assert_response 200, "End user can fetch all addons with sort and limit"
+    assert_equal 10, json_response["data"].length, "Responds with limit # of addons"
+  end
+
+  test "no relationship routes" do
+    addon = create :addon
+    assert_raises ActionController::RoutingError do
+      post "/api/v2/addons/#{addon.id}/relationships/categories"
+    end
+  end
+
   private
 
   def assert_response_only_contains_these_addons(addon_names)
