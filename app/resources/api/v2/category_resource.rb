@@ -1,7 +1,7 @@
 class API::V2::CategoryResource < JSONAPI::Resource
   attributes :name, :description, :position, :addon_count
   has_many :subcategories, class_name: 'Category'
-  has_one :parent, class_name: 'Category'
+  has_one :parent, class_name: 'Category', relation_name: 'parent_category'
 
   has_many :addons
 
@@ -13,7 +13,6 @@ class API::V2::CategoryResource < JSONAPI::Resource
     if new_position != -1
       Category.transaction do
         move_category_to_new_position(@model, new_position)
-        # increment_category_positions(@model.parent_id, new_position)
       end
     end
     @model.position = new_position

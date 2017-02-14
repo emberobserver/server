@@ -89,6 +89,16 @@ class API::V2::ReviewTest < IntegrationTest
     assert_equal first_review_response["relationships"].keys, REVIEW_RELATIONSHIPS, "Review response includes expected relationships"
   end
 
+  test "end user cannot delete review" do
+    addon = create :addon
+    addon_version = create :addon_version, addon: addon
+    review = create :review, addon_version: addon_version
+
+    assert_raises ActionController::RoutingError, "Reviews only have create routes" do
+      delete "/api/v2/reviews/#{review.id}", {}, { CONTENT_TYPE: JSONAPI_TYPE }
+    end
+  end
+
   private
 
   def create_review(options)
