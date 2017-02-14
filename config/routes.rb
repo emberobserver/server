@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
+  post 'api/v2/test_results/:id/retry' => 'test_results#retry'
   namespace :api do
     namespace :v2 do
       get 'autocomplete_data' => 'autocomplete#data'
