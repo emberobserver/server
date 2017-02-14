@@ -50,8 +50,13 @@ Rails.application.routes.draw do
         # This block intentionally left empty to not generate relationship routes
       end
 
-      jsonapi_resources :maintainers
-      jsonapi_resources :test_results
+      jsonapi_resources :maintainers, only: [:index] do
+        # This block intentionally left empty to not generate relationship routes
+      end
+
+      jsonapi_resources :test_results do
+        # This block intentionally left empty to not generate relationship routes
+      end
     end
   end
 end
