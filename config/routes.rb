@@ -51,11 +51,11 @@ Rails.application.routes.draw do
       end
 
       jsonapi_resources :maintainers, only: [:index] do
-        # This block intentionally left empty to not generate relationship routes
+        jsonapi_related_resources :addons
       end
 
       jsonapi_resources :test_results do
-        # This block intentionally left empty to not generate relationship routes
+        jsonapi_related_resources :version
       end
     end
   end
