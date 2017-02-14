@@ -43,10 +43,13 @@ Rails.application.routes.draw do
       end
 
       jsonapi_resources :reviews, only: [:create] do
-
+        # This block intentionally left empty to not generate relationship routes
       end
 
-      jsonapi_resources :categories
+      jsonapi_resources :categories do
+        # This block intentionally left empty to not generate relationship routes
+      end
+
       jsonapi_resources :maintainers
       jsonapi_resources :test_results
     end
