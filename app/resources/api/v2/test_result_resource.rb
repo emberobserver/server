@@ -11,5 +11,9 @@ class API::V2::TestResultResource < JSONAPI::Resource
     records.joins(:addon_version).where('addon_versions.addon_id = ?', addon.id)
   }
 
+  filter :date, apply: ->(records, value, _options) {
+    records.where('DATE(created_at) = ?', value)
+  }
+
   filter :canary
 end
