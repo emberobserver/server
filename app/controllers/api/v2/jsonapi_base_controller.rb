@@ -9,8 +9,7 @@ class API::V2::JsonapiBaseController < JSONAPI::ResourceController
   private
 
   def allow_page_caching
-    # TODO: make more sophisticated ... code search are posts
-    if request.get?
+    if current_user.nil? && request.get?
       expires_in(1.hour, public: true)
     end
   end
