@@ -10,7 +10,7 @@ class API::V2::JsonapiBaseController < JSONAPI::ResourceController
 
   def allow_page_caching
     if current_user.nil? && request.get?
-      if [200, 301, 302].include?(response.code)
+      if ["200", "301", "302"].include?(response.code)
         expires_in(1.hour, public: true)
       end
     end
