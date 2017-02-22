@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120234156) do
+ActiveRecord::Schema.define(version: 20170222030121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170120234156) do
     t.integer  "score"
     t.datetime "published_date"
     t.datetime "last_seen_in_npm"
-    t.boolean  "is_wip"
+    t.boolean  "is_wip",                  default: false, null: false
     t.string   "demo_url"
     t.integer  "ranking"
     t.integer  "latest_addon_version_id"

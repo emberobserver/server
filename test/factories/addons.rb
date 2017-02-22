@@ -27,9 +27,10 @@
 #  score                   :integer
 #  published_date          :datetime
 #  last_seen_in_npm        :datetime
-#  is_wip                  :boolean
+#  is_wip                  :boolean          default(FALSE), not null
 #  demo_url                :string
 #  ranking                 :integer
+#  latest_addon_version_id :integer
 #
 
 FactoryGirl.define do
