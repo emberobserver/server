@@ -414,7 +414,6 @@ class API::V2::AddonTest < IntegrationTest
   test "end user can filter by is_wip" do
     create :addon, name: "test-foo", is_wip: false
     create :addon, name: "test-bah", is_wip: true
-    create :addon, name: "test-zoo", is_wip: nil
 
     get "/api/v2/addons", { filter: { isWip: true } }
 
