@@ -125,7 +125,7 @@ class AddonTest < ActiveSupport::TestCase
     create :addon, is_wip: true
 
     active = create :addon, hidden: false, is_wip: false
-    also_active = create :addon, hidden: nil, is_wip: nil
+    also_active = create :addon, hidden: nil, is_wip: false
 
     assert_equal [active, also_active], Addon.active.to_a
   end

@@ -46,7 +46,7 @@ class AddonsControllerTest < ControllerTest
   test "authorized users can update addon information" do
     addon = create :addon
 
-    put_as_user create(:user), :update, id: addon.id, addon: { is_hidden: true }
+    put_as_user create(:user), :update, id: addon.id, addon: { is_hidden: true, is_wip: false }
     assert_response :success
     addon.reload
     assert_equal true, addon.hidden
