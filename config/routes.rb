@@ -59,6 +59,8 @@ Rails.application.routes.draw do
         jsonapi_related_resources :version
       end
 
+      jsonapi_resources :build_servers
+
       scope :authentication do
         post :login, to: 'auth#login'
         post :logout, to: 'auth#logout'
