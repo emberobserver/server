@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-job_type :command_in_dir, "cd :path && source .env && :task :output"
+job_type :command_in_dir, "cd :path && source .env && :task"
 
 set :output, "log/cron_log.log"
 
