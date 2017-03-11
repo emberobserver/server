@@ -49,3 +49,6 @@ gem 'github-markdown'
 gem 'sidekiq'
 gem 'pg_search'
 gem 'scenic'
+
+gem 'simplecov', :require => false, :group => :test
+gem 'codecov', :require => false, :group => :test
