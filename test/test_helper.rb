@@ -1,4 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
+
+require 'simplecov'
+SimpleCov.start
+
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require_relative './controllers/controller_test'

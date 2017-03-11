@@ -26,3 +26,5 @@ npm-fetch/node_modules
 .env
 
 /public/badges/*.svg
+
+/coverage
