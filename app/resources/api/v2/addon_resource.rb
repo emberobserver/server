@@ -65,10 +65,10 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   def self.find(filters, options = {})
-    the_only_filter_is_the_default = filters.keys == [:hidden] && filters[:hidden] == %w(false)
-    has_invalid_limit = options[:pagination] ? options[:pagination].limit > 100 : true
-    has_no_sort = options[:sort_criteria] ? [:sort_criteria].length == 0 : true
-    raise Forbidden if the_only_filter_is_the_default && (has_invalid_limit && has_no_sort)
+    has_specified_filter = !(filters.keys == [:hidden] && filters[:hidden] == %w(false))
+    has_valid_limit = options[:paginator] ? options[:paginator].limit <= 100 : false
+    has_sort = options[:sort_criteria] ? [:sort_criteria].length > 0 : false
+    raise Forbidden unless has_specified_filter || (has_valid_limit && has_sort)
     super
   end
 
