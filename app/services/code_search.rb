@@ -22,18 +22,24 @@ class CodeSearch
   end
 
   def addon_name_regex
-    @addon_name_regex ||= /#{source_dir}\/(.*?)\//
+    @addon_name_regex ||= /#{source_dir}\/(.*?)\/(.*?):/
   end
 
   def retrieve_addons(term, regex_search)
     return [] if term.blank?
 
     raw_result = @search_engine.find_all_matches(term, source_dir, {regex: regex_search})
-    addon_list = raw_result.map do |line|
-      line.match(addon_name_regex)[1]
+    addon_matches = Hash.new { |h, k| h[k] = [] }
+    raw_result.each do |line|
+      match = line.match(addon_name_regex)
+      addon_name = match[1]
+      file_path = match[2]
+      addon_matches[addon_name] << file_path
     end
 
-    addon_list.group_by{ |v| v }.map{ |k, v| {addon: k, count: v.size} }
+    addon_matches.map do |addon, files|
+      {addon: addon, files: files, count: files.size }
+    end
   end
 
   def retrieve_source(term, addon_dir, regex_search)

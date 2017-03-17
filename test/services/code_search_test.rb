@@ -33,6 +33,9 @@ class CodeSearchTest < ActiveSupport::TestCase
 
     assert_equal(1, foo_addon_result[:count])
     assert_equal(2, bar_addon_result[:count])
+
+    assert_equal(['app/routes/search.js'], foo_addon_result[:files])
+    assert_equal(['app/routes/index.js', 'app/components/contact-form.js'], bar_addon_result[:files])
   end
 
   class SearchEngineStub
