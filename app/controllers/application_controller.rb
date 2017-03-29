@@ -6,20 +6,4 @@ class ApplicationController < ActionController::Base
   protected
 
   include TokenAuth
-
-  def regenerate_caches
-    AddonCacheBuilder.perform_later
-    CategoryCacheBuilder.perform_later
-  end
-
-  def render_cached_json(cache_key, options = { }, &block)
-    options[:expires_in] ||= 2.hours
-
-    expires_in options[:expires_in], public: true
-    data = Rails.cache.fetch(cache_key, options) do
-      block.call
-    end
-
-    render json: data
-  end
 end
