@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class CorrectionsControllerTest < ControllerTest
-  
+class API::V2::CorrectionsControllerTest < ControllerTest
+
   setup do
     CorrectionMailer.deliveries = []
   end

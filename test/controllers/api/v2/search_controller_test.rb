@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SearchControllerTest < ControllerTest
+class API::V2::SearchControllerTest < ControllerTest
 
   test 'returns search results' do
     create :addon, readme: (create :readme, contents: 'test booo happy Beef ribs pork chop rump capicola

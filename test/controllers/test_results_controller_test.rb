@@ -3,44 +3,6 @@ require 'test_helper'
 class TestResultsControllerTest < ControllerTest
   setup :create_pending_build
 
-  test "index requires a date param" do
-    user = create(:user)
-
-    get_as_user user, :index
-
-    assert_response :unprocessable_entity
-  end
-
-  test "index responds with all results for the given date" do
-    user = create(:user)
-    create_list(:test_result, 7, created_at: Time.zone.now)
-    create_list(:test_result, 5, created_at: 1.day.ago)
-    get_as_user user, :index, date: Time.zone.now.strftime('%F')
-
-    assert_response :success
-    assert_equal 7, json_response['test_results'].length
-  end
-
-  test "'show' returns a single result" do
-    user = create(:user)
-    output_file = fixture_file_upload('build.output')
-    test_result = create(:test_result, output: output_file)
-    get_as_user user, :show, id: test_result.id
-
-    assert_response :success
-
-    assert_equal test_result.id, json_response['test_result']['id']
-    assert_equal test_result.succeeded, json_response['test_result']['succeeded']
-    assert_equal test_result.output, json_response['test_result']['output']
-  end
-
-  test "'show' returns HTTP 404 when ID is invalid" do
-    user = create(:user)
-    get_as_user user, :show, id: 42
-
-    assert_response :not_found
-  end
-
   test "responds with HTTP unauthorized if request does not include token" do
     post :create
 
