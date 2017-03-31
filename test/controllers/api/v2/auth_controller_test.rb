@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AuthControllerTest < ControllerTest
+class API::V2::AuthControllerTest < ControllerTest
 
   test "user can log in" do
     user = create :user, email: 'test@example.com', password: 'abc123', auth_token: nil

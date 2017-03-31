@@ -1,21 +1,7 @@
 class TestResultsController < ApplicationController
   before_filter :authenticate_server, only: [:create]
   before_filter :authenticate_user, only: [:retry]
-  before_filter :find_test_result, only: [:show, :retry]
-
-  def index
-    unless params[:date]
-      head :unprocessable_entity
-      return
-    end
-
-    test_results = TestResult.where('DATE(created_at) = ?', params[:date])
-    render json: test_results
-  end
-
-  def show
-    render json: @test_result, serializer: FullTestResultSerializer
-  end
+  before_filter :find_test_result, only: [:retry]
 
   def create
     begin
