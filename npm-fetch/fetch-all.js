@@ -1,6 +1,9 @@
 var RSVP = require('rsvp');
 var Registry = require('npm-registry');
+var async = require('async');
 var fs = require('fs');
+
+var eachLimit = RSVP.denodeify(async.eachLimit);
 
 function unique(arr) {
   return arr.filter(function(value, index, self) {
@@ -8,11 +11,23 @@ function unique(arr) {
   });
 }
 
+function promiseEachLimit(array, limit, workFunction) {
+  let results = [ ];
+  return eachLimit(array, limit, (value, cb) => {
+    workFunction(value)
+      .then((result) => results.push({ state: 'fulfilled', value: result }))
+      .catch((err) => results.push({ state: 'rejected', reason: err }))
+      .finally(() => cb());
+  })
+  .then(() => RSVP.resolve(results));
+}
+
 var npm = new Registry({
   registry: 'http://registry.npmjs.org'
 });
 
 const MAX_RETRIES = 5;
+const MAX_CONCURRENCY = 5;
 const searchKeyword = 'ember-addon';
 const outputFilename = '/tmp/addons.json';
 
@@ -92,17 +107,15 @@ function packagesWithKeyword(keyword)
 
 var allPackageDetails = { };
 packagesWithKeyword(searchKeyword).then(function(packageNames) {
-  var promises = packageNames.map(function(packageName) {
-    return packageDetails(packageName);
-  });
-  return RSVP.all(promises);
-}).then(function(packages) {
-  var promises = packages.map(function(package) {
+  return promiseEachLimit(packageNames, MAX_CONCURRENCY, packageDetails);
+}).then(function(promises) {
+  var packages = promises.filter(p => p.state === 'fulfilled').map(p => p.value);
+  return promiseEachLimit(packages, MAX_CONCURRENCY, (package) => {
     allPackageDetails[ package.name ] = package;
     return packageDownloads(package.name);
   });
-  return RSVP.all(promises);
-}).then(function(downloads) {
+}).then(function(promises) {
+  let downloads = promises.filter(p => p.state === 'fulfilled').map(p => p.value);
   downloads.forEach(function(packageDownloads) {
     allPackageDetails[ packageDownloads.package ].downloads = packageDownloads;
   });
