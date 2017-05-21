@@ -62,6 +62,8 @@ ssh -T root@${DEPLOY_HOST} << END_SSH
 # Create user
 useradd -m -s /bin/bash -U ${USER}
 chpasswd <<< "${USER}:${SUDO_PASSWORD}"
+touch ~${USER}/.bash_profile
+chown ${USER}.${USER} ~${USER}/.bash_profile
 
 # Add current local user's SSH key to user
 mkdir ~${USER}/.ssh
@@ -85,7 +87,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | N
 source /usr/local/nvm/nvm.sh
 nvm install "${NODE_VERSION}"
 nvm alias default "${NODE_VERSION}"
-echo "source /usr/local/nvm/nvm.sh" >> ~${USER}/.bashrc
+echo "source /usr/local/nvm/nvm.sh" >> ~${USER}/.bash_profile
 
 mkdir -p "${CLIENT_ROOT}/badges"
 mkdir -p "${CLIENT_ROOT}/www"
