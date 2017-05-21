@@ -4,6 +4,7 @@
   "description": "Helper utility for ember-addon-review-server",
   "main": "fetch.js",
   "dependencies": {
+    "async": "^2.4.0",
     "npm-registry": "^0.1.13",
     "rsvp": "^3.0.16"
   },
