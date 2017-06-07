@@ -27,7 +27,7 @@ every 1.day, at: '0900' do
   rake "search:prepare"
 end
 
-every 1.hour, at: 20 do
+every 1.hour, at: 5 do
   rake "addons:update:all"
 end
 
