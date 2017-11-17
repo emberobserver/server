@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222030121) do
+ActiveRecord::Schema.define(version: 20171117132508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,17 @@ ActiveRecord::Schema.define(version: 20170222030121) do
     t.integer "npm_maintainer_id"
   end
 
+  add_index "addon_maintainers", ["addon_id", "npm_maintainer_id"], name: "index_addon_maintainers_on_addon_id_and_npm_maintainer_id", using: :btree
+  add_index "addon_maintainers", ["addon_id"], name: "index_addon_maintainers_on_addon_id", using: :btree
+  add_index "addon_maintainers", ["npm_maintainer_id"], name: "index_addon_maintainers_on_npm_maintainer_id", using: :btree
+
   create_table "addon_npm_keywords", id: false, force: :cascade do |t|
     t.integer "addon_id"
     t.integer "npm_keyword_id"
   end
+
+  add_index "addon_npm_keywords", ["addon_id"], name: "index_addon_npm_keywords_on_addon_id", using: :btree
+  add_index "addon_npm_keywords", ["npm_keyword_id"], name: "index_addon_npm_keywords_on_npm_keyword_id", using: :btree
 
   create_table "addon_version_compatibilities", force: :cascade do |t|
     t.integer "addon_version_id"
@@ -66,6 +73,8 @@ ActiveRecord::Schema.define(version: 20170222030121) do
     t.string   "addon_name"
     t.string   "ember_cli_version"
   end
+
+  add_index "addon_versions", ["addon_id"], name: "index_addon_versions_on_addon_id", using: :btree
 
   create_table "addons", force: :cascade do |t|
     t.string   "name"
@@ -99,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170222030121) do
   end
 
   add_index "addons", ["latest_addon_version_id"], name: "index_addons_on_latest_addon_version_id", using: :btree
+  add_index "addons", ["npm_author_id"], name: "index_addons_on_npm_author_id", using: :btree
 
   create_table "build_servers", force: :cascade do |t|
     t.string   "name"
@@ -115,6 +125,8 @@ ActiveRecord::Schema.define(version: 20170222030121) do
     t.integer  "parent_id"
     t.integer  "position"
   end
+
+  add_index "categories", ["parent_id"], name: "index_categories_on_parent_id", using: :btree
 
   create_table "category_addons", force: :cascade do |t|
     t.integer  "category_id"
@@ -205,6 +217,8 @@ ActiveRecord::Schema.define(version: 20170222030121) do
     t.integer "addon_id"
   end
 
+  add_index "readmes", ["addon_id"], name: "index_readmes_on_addon_id", using: :btree
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "has_tests"
     t.integer  "has_readme"
@@ -217,6 +231,8 @@ ActiveRecord::Schema.define(version: 20170222030121) do
     t.integer  "has_build"
     t.string   "addon_name"
   end
+
+  add_index "reviews", ["addon_version_id"], name: "index_reviews_on_addon_version_id", using: :btree
 
   create_table "test_results", force: :cascade do |t|
     t.integer  "addon_version_id"
