@@ -92,11 +92,13 @@ class TestResultsController < ApplicationController
     @results['scenarios'].each do |scenario|
       next if scenario['dependencies'].empty?
       ember_version = extract_ember_version(scenario)
+      next if ember_version.blank?
       EmberVersionCompatibility.create!(test_result: test_result, ember_version: ember_version, compatible: scenario['passed'])
     end
   end
 
   def extract_ember_version(scenario)
-    scenario['dependencies'].select { |dep| dep['name'] == 'ember' }.first['versionSeen']
+    ember_dependency = scenario['dependencies'].select { |dep| dep['name'] == 'ember' }.first
+    ember_dependency.blank? ? nil : ember_dependency['versionSeen']
   end
 end
