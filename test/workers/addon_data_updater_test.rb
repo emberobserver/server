@@ -17,7 +17,7 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal 'An ember addon that does stuff', addon.description
     assert_equal 'MIT', addon.license
     assert_equal Time.utc(2016, 2, 13, 6, 33, 27).to_s, addon.latest_version_date.to_s
-    assert_equal nil, addon.note
+    assert_nil addon.note
     assert_equal false, addon.deprecated
     assert_equal false, addon.official
     assert_equal false, addon.cli_dependency
