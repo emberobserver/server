@@ -1,10 +1,26 @@
 var RSVP = require('rsvp');
 var Registry = require('npm-registry');
+var async = require('async');
 var fs = require('fs');
 
-var npm = new Registry();
+var eachLimit = RSVP.denodeify(async.eachLimit);
+var npm = new Registry({
+  registry: 'http://registry.npmjs.org'
+});
 
 const MAX_RETRIES = 5;
+const MAX_CONCURRENCY = 5;
+
+function promiseEachLimit(array, limit, workFunction) {
+  let results = [ ];
+  return eachLimit(array, limit, (value, cb) => {
+    workFunction(value)
+      .then((result) => results.push({ state: 'fulfilled', value: result }))
+      .catch((err) => results.push({ state: 'rejected', reason: err, inputValue: value }))
+      .finally(() => cb());
+  })
+  .then(() => RSVP.resolve(results));
+}
 
 function requestWithRetries(resolve, reject, endpoint, method, args, successCallback, attempts)
 {
@@ -54,15 +70,15 @@ function downloads(packageName)
 }
 
 var packageNames = JSON.parse(fs.readFileSync('/tmp/addon-names.json'));
-var promises = packageNames.map(function(packageName) {
-	return downloads(packageName);
-});
-RSVP.all(promises).then(function(downloadData) {
-	fs.writeFile("/tmp/addon-downloads.json", JSON.stringify(downloadData), function(err) {
-		if (err) {
-			console.log("Error writing output file:", err);
-		}
+promiseEachLimit(packageNames, MAX_CONCURRENCY, (packageName) => downloads(packageName))
+	.then(function(promises) {
+		promises.filter(p => p.state === 'rejected').map(p => p.inputValue).forEach(packageName => console.log('WARN: failed to get download data for', packageName));
+		let downloadData = promises.filter(p => p.state === 'fulfilled').map(p => p.value);
+		fs.writeFile("/tmp/addon-downloads.json", JSON.stringify(downloadData), function(err) {
+			if (err) {
+				console.log("Error writing output file:", err);
+			}
+		});
+	}).catch(function(err) {
+		console.log("Error:", err);
 	});
-}).catch(function(err) {
-	console.log("Error:", err);
-});
