@@ -3,11 +3,11 @@ require 'test_helper'
 class API::V2::SearchControllerTest < ControllerTest
 
   test 'returns search results' do
-    create :addon, readme: (create :readme, contents: 'test booo happy Beef ribs pork chop rump capicola
+    create :readme, contents: 'test booo happy Beef ribs pork chop rump capicola
 . Tenderloin capicola beef ribs spare ribs, brisket pork chop pork belly frankfurter jerky bresaola sirloin ball tip. Meatball shank short ribs venison. Biltong chicken ribeye, andouille short ribs ham hock sirloin drumstick pastrami cow prosciutto beef landjaeger pancetta. dodo dod oo dooo do helps to speed
- up tests and blah')
-    create :addon, readme: (create :readme, contents: 'please submit test cases with pull requests')
-    create :addon, readme: (create :readme, contents: 'this is an addon for testing things')
+ up tests and blah'
+    create :readme, contents: 'please submit test cases with pull requests'
+    create :readme, contents: 'this is an addon for testing things'
 
     ReadmeView.refresh
 
