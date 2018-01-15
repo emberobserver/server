@@ -36,14 +36,14 @@
 # TODO: drop `rendered_note` once entirely on API v2
 class Addon < ApplicationRecord
   has_many :addon_versions, -> { order(released: :asc) }
-  belongs_to :latest_addon_version, class_name: "AddonVersion"
+  belongs_to :latest_addon_version, class_name: "AddonVersion", optional: true
   has_many :reviews, through: :addon_versions
   has_many :addon_maintainers
   has_many :addon_npm_keywords
 
   has_many :category_addons
   has_many :categories, through: :category_addons
-  belongs_to :author, class_name: 'NpmAuthor', foreign_key: :npm_author_id
+  belongs_to :author, class_name: 'NpmAuthor', foreign_key: :npm_author_id, optional: true
   has_many :npm_keywords, through: :addon_npm_keywords
   has_many :maintainers, through: :addon_maintainers, source: :npm_maintainer
 

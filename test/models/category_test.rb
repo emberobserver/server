@@ -29,7 +29,8 @@ class CategoryTest < ActiveSupport::TestCase
 
   test "duplicate positions should be allowed across parent categories" do
     assert_nothing_raised do
-      Category.create! name: 'new category', position: 1, parent_category: create(:category)
+      parent_category = create(:category)
+      Category.create! name: 'new category', position: 1, parent_category: parent_category
     end
   end
 

@@ -13,7 +13,7 @@
 
 class PendingBuild < ApplicationRecord
   belongs_to :addon_version
-  belongs_to :build_server
+  belongs_to :build_server, optional: true
 
   def self.unassigned
     where('build_assigned_at is null')

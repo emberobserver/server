@@ -88,7 +88,7 @@ class AddonDataUpdater
         addon_props[:github_repo] = $2
       end
     end
-    @addon.update(addon_props)
+    @addon.update!(addon_props)
   end
 
   def update_readme
@@ -105,7 +105,7 @@ class AddonDataUpdater
       addon_version = @addon.addon_versions.find_by(version: version)
       if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
         addon_version.ember_cli_version = data['devDependencies']['ember-cli']
-        addon_version.save
+        addon_version.save!
       end
       unless addon_version
         addon_version = AddonVersion.create!(
@@ -164,7 +164,7 @@ class AddonDataUpdater
       author = NpmAuthor.find_or_create_by(name: npm_author['name'], email: npm_author['email'])
       author.url = npm_author['url']
       @addon.author = author
-      author.save
+      author.save!
     else
       @addon.author = nil
     end
@@ -174,7 +174,7 @@ class AddonDataUpdater
     if @metadata['downloads'] && @metadata['downloads']['start']
       addon_downloads = @addon.downloads.find_or_create_by(date: @metadata['downloads']['start'])
       addon_downloads.downloads = @metadata['downloads']['downloads']
-      addon_downloads.save
+      addon_downloads.save!
     end
   end
 
@@ -204,7 +204,7 @@ class AddonDataUpdater
       if maintainer['gravatar_id']
         npm_user.gravatar = maintainer['gravatar_id']
       end
-      npm_user.save
+      npm_user.save!
       @addon.maintainers << npm_user
     end
   end

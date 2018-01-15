@@ -16,5 +16,8 @@
 
 FactoryGirl.define do
 
-  factory :test_result
+  factory :test_result do
+    association :addon_version
+    association :build_server
+  end
 end
