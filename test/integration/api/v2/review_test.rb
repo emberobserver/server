@@ -95,7 +95,7 @@ class API::V2::ReviewTest < IntegrationTest
     review = create :review, addon_version: addon_version
 
     assert_raises ActionController::RoutingError, "Reviews only have create routes" do
-      delete "/api/v2/reviews/#{review.id}", {}, { CONTENT_TYPE: JSONAPI_TYPE }
+      delete "/api/v2/reviews/#{review.id}", headers: { CONTENT_TYPE: JSONAPI_TYPE }
     end
   end
 
@@ -103,13 +103,13 @@ class API::V2::ReviewTest < IntegrationTest
 
   def create_review(options)
     post "/api/v2/reviews",
-         {
+         params: {
            data: {
              type: "reviews",
              attributes: options[:attrs] || {},
              relationships: options[:relationships] || {}
            }
          }.to_json,
-         { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+         headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end

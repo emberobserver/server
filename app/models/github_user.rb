@@ -7,7 +7,7 @@
 #  avatar_url :string
 #
 
-class GithubUser < ActiveRecord::Base
+class GithubUser < ApplicationRecord
   has_many :addon_github_contributors
   has_many :addons, through: :addon_github_contributors
 end

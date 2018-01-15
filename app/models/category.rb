@@ -11,7 +11,7 @@
 #  position    :integer
 #
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   has_many :category_addons
   has_many :addons, through: :category_addons
 

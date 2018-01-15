@@ -10,6 +10,6 @@
 #  updated_at :datetime         not null
 #
 
-class NpmAuthor < ActiveRecord::Base
+class NpmAuthor < ApplicationRecord
   has_many :addons
 end

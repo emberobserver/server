@@ -10,7 +10,7 @@
 #  ember_cli_version :string
 #
 
-class AddonVersion < ActiveRecord::Base
+class AddonVersion < ApplicationRecord
   belongs_to :addon
   has_one :review, -> { order 'created_at DESC' }
   has_many :all_dependencies, foreign_key: 'addon_version_id', class_name: 'AddonVersionDependency'

@@ -139,7 +139,7 @@ class TestResultsControllerTest < ControllerTest
   test "'retry' action responds with HTTP unauthorized if request..." do
     test_result = create(:test_result)
 
-    post :retry, id: test_result.id
+    post :retry, params: { id: test_result.id }
 
     assert_response :unauthorized
   end
@@ -194,6 +194,6 @@ class TestResultsControllerTest < ControllerTest
 
   def authed_post(action, data=nil)
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(build_server.token)
-    post action, data
+    post action, params: data
   end
 end

@@ -141,7 +141,7 @@ class AddonDataUpdater
   end
 
   def update_addon_version_dependencies(addon_version, addon_version_metadata)
-    addon_version.dependencies.clear
+    addon_version.all_dependencies.clear
     [ 'devDependencies', 'dependencies', 'optionalDependencies', 'peerDependencies' ].each do |dependency_type|
       next unless addon_version_metadata[dependency_type]
       addon_version_metadata[dependency_type].each do |package_name, version|
@@ -151,7 +151,7 @@ class AddonDataUpdater
           dependency_type: dependency_type,
           addon_version: addon_version
         )
-        addon_version.dependencies << dependency
+        addon_version.all_dependencies << dependency
       end
 
       update_addon_version_compatibility(addon_version, addon_version_metadata)

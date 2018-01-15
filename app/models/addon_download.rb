@@ -8,6 +8,6 @@
 #  downloads :integer
 #
 
-class AddonDownload < ActiveRecord::Base
+class AddonDownload < ApplicationRecord
   belongs_to :addon
 end

@@ -12,7 +12,7 @@
 
 require 'securerandom'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_secure_password
 
   def clear_auth_token!

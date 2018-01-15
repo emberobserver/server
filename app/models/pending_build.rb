@@ -11,7 +11,7 @@
 #  canary            :boolean          default(FALSE), not null
 #
 
-class PendingBuild < ActiveRecord::Base
+class PendingBuild < ApplicationRecord
   belongs_to :addon_version
   belongs_to :build_server
 

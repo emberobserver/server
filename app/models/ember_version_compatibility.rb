@@ -10,6 +10,6 @@
 #  updated_at     :datetime         not null
 #
 
-class EmberVersionCompatibility < ActiveRecord::Base
+class EmberVersionCompatibility < ApplicationRecord
   belongs_to :test_result
 end

@@ -18,7 +18,7 @@
 #  repo_created_date       :datetime
 #
 
-class GithubStats < ActiveRecord::Base
+class GithubStats < ApplicationRecord
   belongs_to :addon
 
   def addon_recently_committed_to?

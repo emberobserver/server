@@ -129,31 +129,31 @@ class API::V2::BuildResultTest < IntegrationTest
   end
 
   def authenticated_get(url)
-    get url, {}, auth_header
+    get url, headers: auth_header
   end
 
   def create_build_server(options)
-    post "/api/v2/build-servers", {
+    post "/api/v2/build-servers", params: {
       data: {
         type: 'build-servers',
         attributes: options[:attrs] || {}
       }
     }.to_json,
-    { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+    headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 
   def delete_build_server(id, options={})
-    delete "/api/v2/build-servers/#{id}", {}, options[:headers] || {}
+    delete "/api/v2/build-servers/#{id}", headers: options[:headers] || {}
   end
 
   def update_build_server(id, options)
-    patch "/api/v2/build-servers/#{id}", {
+    patch "/api/v2/build-servers/#{id}", params: {
       data: {
         type: 'build-servers',
         id: id,
         attributes: options[:attrs] || {}
       }
     }.to_json,
-    { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+    headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end
