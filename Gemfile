@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.4'
 gem 'sinatra'
 gem 'pg', '~> 0.20.0'
 
@@ -12,7 +12,7 @@ gem 'whenever', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'has_secure_token'
 
-gem 'puma'
+gem 'puma', '~> 3.7'
 
 gem 'bugsnag'
 gem 'snitcher'
