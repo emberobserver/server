@@ -8,6 +8,6 @@
 #  version          :string
 #
 
-class AddonVersionCompatibility < ActiveRecord::Base
+class AddonVersionCompatibility < ApplicationRecord
   belongs_to :addon_version
 end

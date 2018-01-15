@@ -9,7 +9,7 @@ class API::V2::CorrectionsControllerTest < ControllerTest
   test 'can submit a correction' do
     create :addon, name: 'blah'
 
-    post :submit, name: '', email: '', addon: 'blah', correction: ''
+    post :submit, params: { name: '', email: '', addon: 'blah', correction: '' }
 
     assert_response :no_content
     assert_equal 1, CorrectionMailer.deliveries.size
@@ -18,7 +18,7 @@ class API::V2::CorrectionsControllerTest < ControllerTest
   test 'cannot submit a correction with nonexistent addon' do
     create :addon, name: 'blah'
 
-    post :submit, name: '', email: '', addon: 'blerg', correction: ''
+    post :submit, params: { name: '', email: '', addon: 'blerg', correction: '' }
 
     assert_response :unprocessable_entity
     assert_equal 0, CorrectionMailer.deliveries.size

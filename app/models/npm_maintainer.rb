@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class NpmMaintainer < ActiveRecord::Base
+class NpmMaintainer < ApplicationRecord
   has_many :addon_maintainers
   has_many :addons, through: :addon_maintainers
 

@@ -40,7 +40,7 @@ class API::V2::AddonTest < IntegrationTest
     create_list :addon, 3, ranking: 2
     hidden_addon = create :addon, :hidden, ranking: 4
 
-    get "/api/v2/addons", { filter: { top: true } }
+    get "/api/v2/addons", params: { filter: { top: true } }
 
     assert_response 200
 
@@ -126,13 +126,13 @@ class API::V2::AddonTest < IntegrationTest
 
   test "end user cannot create addons with no attributes" do
     assert_no_difference "Addon.count" do
-      post "/api/v2/addons", {
+      post "/api/v2/addons", params: {
         data: {
           type: "addons",
           attributes: {}
         }
       }.to_json,
-      { CONTENT_TYPE: JSONAPI_TYPE }
+      headers: { CONTENT_TYPE: JSONAPI_TYPE }
     end
 
     assert_response 403, "Creating addons is not permitted"
@@ -144,13 +144,13 @@ class API::V2::AddonTest < IntegrationTest
       attrs[field] = "New #{field}"
       assert_no_difference 'Addon.count' do
         post "/api/v2/addons/",
-              {
+              params: {
                 data: {
                   type: "addons",
                   attributes: attrs
                 }
               }.to_json,
-              { CONTENT_TYPE: JSONAPI_TYPE }
+              headers: { CONTENT_TYPE: JSONAPI_TYPE }
       end
       assert_response 400, "End user cannot create addon with #{field}"
       assert_match /#{field}/, json_response["errors"][0]["detail"], "Cannot created addon with #{field}"
@@ -169,13 +169,13 @@ class API::V2::AddonTest < IntegrationTest
 
       assert_no_difference 'Addon.count' do
         post "/api/v2/addons",
-             {
+             params: {
                data: {
                  type: "addons",
                  relationships: relationships
                }
              }.to_json,
-             { CONTENT_TYPE: JSONAPI_TYPE }
+             headers: { CONTENT_TYPE: JSONAPI_TYPE }
       end
 
       assert_response 400, "End user cannot create addon with relationship #{relationship}"
@@ -285,7 +285,7 @@ class API::V2::AddonTest < IntegrationTest
 
     auth_headers = authentication_headers_for(create(:user))
 
-    get "/api/v2/addons", { filter: { hidden: true } }, auth_headers
+    get "/api/v2/addons", params: { filter: { hidden: true } }, headers: auth_headers
 
     assert_response 200
 
@@ -307,7 +307,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, name: "test-raa", categories: [category, other_category]
 
 
-    get "/api/v2/addons", { filter: { notCategorized: true } }, auth_headers
+    get "/api/v2/addons", params: { filter: { notCategorized: true } }, headers: auth_headers
 
     assert_response_only_contains_these_addons(%w(test-zoo test-foo))
   end
@@ -321,7 +321,7 @@ class API::V2::AddonTest < IntegrationTest
     not_reviewed_addon = create :addon, name: "test-bah"
     create :addon_version, addon: not_reviewed_addon
 
-    get "/api/v2/addons", { filter: { notReviewed: true } }, auth_headers
+    get "/api/v2/addons", params: { filter: { notReviewed: true } }, headers: auth_headers
 
     assert_response_only_contains_these_addons(%w(test-bah))
   end
@@ -347,25 +347,25 @@ class API::V2::AddonTest < IntegrationTest
     another_needs_re_review_addon.latest_addon_version = latest_addon_version_c
     another_needs_re_review_addon.save!
 
-    get "/api/v2/addons", { filter: { needsReReview: true } }, auth_headers
+    get "/api/v2/addons", params: { filter: { needsReReview: true } }, headers: auth_headers
 
     assert_response_only_contains_these_addons(%w(test-foo test-review-me))
   end
 
   test "end user cannot filter by needs re-review" do
-    get "/api/v2/addons", { filter: { needsReReview: true } }
+    get "/api/v2/addons", params: { filter: { needsReReview: true } }
 
     assert_response 403, "End user cannot use not needs re-review filter"
   end
 
   test "end user cannot filter by not reviewed" do
-    get "/api/v2/addons", { filter: { notReviewed: true } }
+    get "/api/v2/addons", params: { filter: { notReviewed: true } }
 
     assert_response 403, "End user cannot use not reviewed filter"
   end
 
   test "end user cannot filter by not categorized" do
-    get "/api/v2/addons", { filter: { notCategorized: true } }
+    get "/api/v2/addons", params: { filter: { notCategorized: true } }
 
     assert_response 403, "End user cannot use not categorized filter"
   end
@@ -375,7 +375,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, :hidden
     create :addon, :hidden
 
-    get "/api/v2/addons", { filter: { hidden: true } }
+    get "/api/v2/addons", params: { filter: { hidden: true } }
 
     assert_response 403, "End user cannot use hidden filter"
   end
@@ -384,7 +384,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, name: "test-foo"
     create :addon, name: "test-bah"
 
-    get "/api/v2/addons", { filter: { name: "test-foo" } }
+    get "/api/v2/addons", params: { filter: { name: "test-foo" } }
 
     assert_response_only_contains_these_addons(%w(test-foo))
   end
@@ -396,7 +396,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, name: "test-bah", categories: [other_category]
     create :addon, name: "test-zoo", categories: [category]
 
-    get "/api/v2/addons", { filter: { inCategory: category.id } }
+    get "/api/v2/addons", params: { filter: { inCategory: category.id } }
 
     assert_response_only_contains_these_addons(%w(test-zoo test-foo))
   end
@@ -406,7 +406,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, name: "test-bah", ranking: 0
     create :addon, name: "test-zoo", ranking: nil
 
-    get "/api/v2/addons", { filter: { top: true } }
+    get "/api/v2/addons", params: { filter: { top: true } }
 
     assert_response_only_contains_these_addons(%w(test-foo test-bah))
   end
@@ -415,7 +415,7 @@ class API::V2::AddonTest < IntegrationTest
     create :addon, name: "test-foo", is_wip: false
     create :addon, name: "test-bah", is_wip: true
 
-    get "/api/v2/addons", { filter: { isWip: true } }
+    get "/api/v2/addons", params: { filter: { isWip: true } }
 
     assert_response_only_contains_these_addons(%w(test-bah))
   end
@@ -427,7 +427,7 @@ class API::V2::AddonTest < IntegrationTest
       create :review, addon_version: reviewed_version
     end
 
-    get "/api/v2/addons", { filter: { recentlyReviewed: true } }
+    get "/api/v2/addons", params: { filter: { recentlyReviewed: true } }
 
     assert_response_only_contains_these_addons(%w(test-10 test-11 test-2 test-3 test-4 test-5 test-6 test-7 test-8 test-9))
   end
@@ -439,7 +439,7 @@ class API::V2::AddonTest < IntegrationTest
       create :review, addon_version: reviewed_version
     end
 
-    get "/api/v2/addons", { filter: { recentlyReviewed: true }, page: { limit: 100 } }
+    get "/api/v2/addons", params: { filter: { recentlyReviewed: true }, page: { limit: 100 } }
 
     assert_response_only_contains_these_addons(%w(test-0 test-10 test-11 test-1 test-2 test-3 test-4 test-5 test-6 test-7 test-8 test-9))
   end
@@ -453,7 +453,7 @@ class API::V2::AddonTest < IntegrationTest
   test "end user can fetch all addons with a limit and a sort" do
     create_list :addon, 15
 
-    get "/api/v2/addons", { page: { limit: 10 }, sort: '-publishedDate' }
+    get "/api/v2/addons", params: { page: { limit: 10 }, sort: '-publishedDate' }
 
     assert_response 200, "End user can fetch all addons with sort and limit"
     assert_equal 10, json_response["data"].length, "Responds with limit # of addons"
@@ -480,7 +480,7 @@ class API::V2::AddonTest < IntegrationTest
 
   def update_addon(addon, options = {})
     patch "/api/v2/addons/#{addon.id}",
-          {
+          params: {
             data: {
               type: "addons",
               id: addon.id,
@@ -488,7 +488,7 @@ class API::V2::AddonTest < IntegrationTest
               relationships: options[:relationships] || {}
             }
           }.to_json,
-          { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+          headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end
 

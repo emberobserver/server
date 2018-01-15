@@ -1,4 +1,4 @@
-class CorrectionMailer < ActionMailer::Base
+class CorrectionMailer < ApplicationMailer
   def correction(args, addon)
     @correction = args
     @addon = addon

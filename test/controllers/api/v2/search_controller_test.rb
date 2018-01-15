@@ -11,7 +11,7 @@ class API::V2::SearchControllerTest < ControllerTest
 
     ReadmeView.refresh
 
-    get :search, query: 'test'
+    get :search, params: { query: 'test' }
 
     results = JSON.parse(response.body)['search']
     assert_equal(3, results.size)
@@ -26,14 +26,14 @@ class API::V2::SearchControllerTest < ControllerTest
   end
 
   test 'addon search returns empty results if no query' do
-    get :addons, query: ''
+    get :addons, params: { query: '' }
 
     assert_response :ok
     assert_equal 0, json_response['results'].size
   end
 
   test 'source search returns empty results if no query' do
-    get :source, query: '', addon: 'ember-foo'
+    get :source, params: { query: '', addon: 'ember-foo' }
 
     assert_response :ok
     assert_equal 0, json_response['results'].size

@@ -1,5 +1,5 @@
 class BuildQueueController < ApplicationController
-  before_filter :authenticate_server
+  before_action :authenticate_server
 
   def get_build
     current_build = PendingBuild.find_by(build_server: @build_server)

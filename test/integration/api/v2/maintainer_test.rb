@@ -14,7 +14,7 @@ class API::V2::MaintainerTest < IntegrationTest
   test "end user can fetch an individual maintainer by name" do
     NpmMaintainer.create!(name: 'Jsmith')
 
-    get "/api/v2/maintainers", { filter: { name: 'Jsmith' } }
+    get "/api/v2/maintainers", params: { filter: { name: 'Jsmith' } }
 
     assert_response 200
     maintainer_response = json_response["data"][0]

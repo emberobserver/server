@@ -34,7 +34,7 @@
 #
 
 # TODO: drop `rendered_note` once entirely on API v2
-class Addon < ActiveRecord::Base
+class Addon < ApplicationRecord
   has_many :addon_versions, -> { order(released: :asc) }
   belongs_to :latest_addon_version, class_name: "AddonVersion"
   has_many :reviews, through: :addon_versions

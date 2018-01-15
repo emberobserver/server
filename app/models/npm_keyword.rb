@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 
-class NpmKeyword < ActiveRecord::Base
+class NpmKeyword < ApplicationRecord
   has_many :addon_npm_keywords
   has_many :addons, through: :addon_npm_keywords
 end

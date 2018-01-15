@@ -6,7 +6,7 @@
 #  npm_maintainer_id :integer
 #
 
-class AddonMaintainer < ActiveRecord::Base
+class AddonMaintainer < ApplicationRecord
   belongs_to :addon
   belongs_to :npm_maintainer
 end

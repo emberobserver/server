@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 5.0.0'
 gem 'sinatra'
-gem 'pg'
-
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'pg', '~> 0.20.0'
 
 gem 'active_model_serializers', '~> 0.8.3'
 gem 'jsonapi-resources'
@@ -23,20 +21,22 @@ gem 'redis-rails'
 
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'factory_girl_rails'
 end
 
 gem 'annotate'
 gem 'dotenv-rails'
 group :development do
-	gem 'capistrano', '~> 3.0'
-	gem 'capistrano-rails'
-	gem 'capistrano-rvm'
-	gem 'capistrano-bundler'
-	gem 'capistrano3-puma'
-	gem 'capistrano-sidekiq'
+  gem 'web-console', '>= 3.3.0'
+
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
 end
 
 gem 'octokit', '~> 3.0'
