@@ -13,7 +13,7 @@ namespace :npm do
 
   task :update, [ :name ] => :environment do |_, args|
     name = args[:name]
-    metadata = JSON.parse(`node ./npm-fetch/fetch.js ember-try`)
+    metadata = JSON.parse(`node ./npm-fetch/fetch.js #{name}`)
     AddonDataUpdater.new(metadata).update
   end
 
