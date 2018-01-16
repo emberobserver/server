@@ -39,9 +39,9 @@ class AddonTest < ActiveSupport::TestCase
   test "oldest_version returns the earliest addon version" do
     addon = create :addon
 
-    v1 = create :addon_version, addon: addon
-    v2 = create :addon_version, addon: addon
-    v3 = create :addon_version, addon: addon
+    v1 = create :addon_version, addon: addon, version: '1'
+    v2 = create :addon_version, addon: addon, version: '2'
+    v3 = create :addon_version, addon: addon, version: '3'
 
     assert_equal v1, addon.oldest_version
   end
@@ -49,9 +49,9 @@ class AddonTest < ActiveSupport::TestCase
   test "newest_version returns the most recent addon version" do
     addon = create :addon
 
-    v1 = create :addon_version, addon: addon
-    v2 = create :addon_version, addon: addon
-    v3 = create :addon_version, addon: addon
+    v1 = create :addon_version, addon: addon, version: '1'
+    v2 = create :addon_version, addon: addon, version: '2'
+    v3 = create :addon_version, addon: addon, version: '3'
 
     assert_equal v3, addon.newest_version
   end

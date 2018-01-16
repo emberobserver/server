@@ -8,7 +8,7 @@
 #  addon_id          :integer
 #
 
-class ReadmeView < ActiveRecord::Base
+class ReadmeView < ApplicationRecord
   self.table_name = 'readmes_indexed_for_fts'
   self.primary_key = 'id'
 

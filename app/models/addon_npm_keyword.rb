@@ -6,7 +6,7 @@
 #  npm_keyword_id :integer
 #
 
-class AddonNpmKeyword < ActiveRecord::Base
+class AddonNpmKeyword < ApplicationRecord
   belongs_to :addon
   belongs_to :npm_keyword
 end

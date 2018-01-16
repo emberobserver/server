@@ -11,12 +11,12 @@
 #  position    :integer
 #
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   has_many :category_addons
   has_many :addons, through: :category_addons
 
   has_many :subcategories, class_name: 'Category', foreign_key: 'parent_id'
-  belongs_to :parent_category, class_name: 'Category', foreign_key: 'parent_id'
+  belongs_to :parent_category, class_name: 'Category', foreign_key: 'parent_id', optional: true
 
   validates :name, presence: true
   validates :position, presence: true, uniqueness: { scope: 'parent_id' }

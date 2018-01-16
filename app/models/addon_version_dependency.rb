@@ -9,6 +9,6 @@
 #  addon_version_id :integer
 #
 
-class AddonVersionDependency < ActiveRecord::Base
+class AddonVersionDependency < ApplicationRecord
   belongs_to :addon_version
 end

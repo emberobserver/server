@@ -9,6 +9,6 @@
 #  updated_at :datetime         not null
 #
 
-class LatestVersion < ActiveRecord::Base
+class LatestVersion < ApplicationRecord
   validates :package, uniqueness: true
 end

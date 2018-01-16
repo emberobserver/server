@@ -139,7 +139,7 @@ class TestResultsControllerTest < ControllerTest
   test "'retry' action responds with HTTP unauthorized if request..." do
     test_result = create(:test_result)
 
-    post :retry, id: test_result.id
+    post :retry, params: { id: test_result.id }
 
     assert_response :unauthorized
   end
@@ -154,7 +154,8 @@ class TestResultsControllerTest < ControllerTest
 
   test "'retry' action enqueues a new pending build with same parameters" do
     user = create(:user)
-    test_result = create(:test_result, canary: true)
+    addon_version = create(:addon_version)
+    test_result = create(:test_result, canary: true, addon_version: addon_version)
 
     assert_difference 'PendingBuild.count' do
       post_as_user user, :retry, id: test_result.id
@@ -163,7 +164,7 @@ class TestResultsControllerTest < ControllerTest
     assert_response :created
 
     new_build = PendingBuild.last
-    assert_equal test_result.addon_version_id, new_build.addon_version_id, 'new build is created for same addon version'
+    assert_equal addon_version.id, new_build.addon_version_id, 'new build is created for same addon version'
     assert_equal test_result.canary?, new_build.canary?, 'new build is created with same value for "canary" flag'
   end
 
@@ -193,6 +194,6 @@ class TestResultsControllerTest < ControllerTest
 
   def authed_post(action, data=nil)
     request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(build_server.token)
-    post action, data
+    post action, params: data
   end
 end
