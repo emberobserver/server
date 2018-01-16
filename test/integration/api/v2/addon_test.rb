@@ -73,6 +73,16 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal first_addon_response["relationships"].keys, ADDON_RELATIONSHIPS, "Addon response includes expected relationships"
   end
 
+  test "end user can fetch an individual addon with some included resources" do
+    addon = create :addon
+    addon_version = create :addon_version, addon: addon
+    create :review, addon_version: addon_version
+
+    get "/api/v2/addons/#{addon.id}", params: { include: "versions,maintainers,keywords,reviews,reviews.version,categories" }
+
+    assert_response 200
+  end
+
   test "end user cannot update addons with no attributes" do
     addon = create :addon
 
