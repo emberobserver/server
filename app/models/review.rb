@@ -24,6 +24,10 @@ class Review < ApplicationRecord
     addon_version.addon
   end
 
+  def version_id
+    self.addon_version_id
+  end
+
   def version_id=(value)
     self.addon_version_id = value
   end
