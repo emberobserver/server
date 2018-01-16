@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class BuildServer < ActiveRecord::Base
+class BuildServer < ApplicationRecord
   validates :name, uniqueness: true, presence: true
   validates :token, uniqueness: true
 

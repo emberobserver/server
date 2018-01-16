@@ -5,7 +5,7 @@ class API::V2::AuthControllerTest < ControllerTest
   test "user can log in" do
     user = create :user, email: 'test@example.com', password: 'abc123', auth_token: nil
 
-    post :login, email: 'test@example.com', password: 'abc123'
+    post :login, params: { email: 'test@example.com', password: 'abc123' }
 
     assert_response 200
     assert user.reload.auth_token
@@ -14,7 +14,7 @@ class API::V2::AuthControllerTest < ControllerTest
   test "user cannot log in without correct password" do
     user = create :user, email: 'test@example.com', password: 'abc123', auth_token: nil
 
-    post :login, email: 'test@example.com', password: 'wrong'
+    post :login, params: { email: 'test@example.com', password: 'wrong' }
 
     assert_response 401
     assert !user.reload.auth_token

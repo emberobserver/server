@@ -7,7 +7,7 @@
 #  github_user_id :integer
 #
 
-class AddonGithubContributor < ActiveRecord::Base
+class AddonGithubContributor < ApplicationRecord
   belongs_to :addon
   belongs_to :github_user
 end

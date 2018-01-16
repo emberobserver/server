@@ -15,7 +15,7 @@
 #  addon_name               :string
 #
 
-class Review < ActiveRecord::Base
+class Review < ApplicationRecord
   belongs_to :addon_version
 
   before_create :set_addon_name

@@ -14,7 +14,7 @@
 #  output           :text
 #
 
-class TestResult < ActiveRecord::Base
+class TestResult < ApplicationRecord
   belongs_to :addon_version
   belongs_to :build_server
   has_many :ember_version_compatibilities

@@ -7,6 +7,6 @@
 #  addon_id :integer
 #
 
-class Readme < ActiveRecord::Base
+class Readme < ApplicationRecord
   belongs_to :addon
 end

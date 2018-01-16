@@ -40,6 +40,7 @@ FactoryGirl.define do
     deprecated false
     official false
     hidden false
+    association :author, factory: :npm_author
   end
 
   trait :basic do

@@ -1,7 +1,7 @@
 class TestResultsController < ApplicationController
-  before_filter :authenticate_server, only: [:create]
-  before_filter :authenticate_user, only: [:retry]
-  before_filter :find_test_result, only: [:retry]
+  before_action :authenticate_server, only: [:create]
+  before_action :authenticate_user, only: [:retry]
+  before_action :find_test_result, only: [:retry]
 
   def create
     begin

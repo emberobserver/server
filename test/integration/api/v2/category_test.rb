@@ -238,19 +238,19 @@ class API::V2::CategoryTest < IntegrationTest
 
   def create_category(options)
     post "/api/v2/categories",
-         {
+         params: {
            data: {
              type: "categories",
              attributes: options[:attrs] || {},
              relationships: options[:relationships] || {}
            }
          }.to_json,
-         { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+         headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 
   def update_category(category, options)
     patch "/api/v2/categories/#{category.id}",
-         {
+         params: {
            data: {
              type: "categories",
              id: category.id,
@@ -258,10 +258,10 @@ class API::V2::CategoryTest < IntegrationTest
              relationships: options[:relationships] || {}
            }
          }.to_json,
-         { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+         headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 
   def delete_category(category, options = {})
-    delete "/api/v2/categories/#{category.id}", {}, { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+    delete "/api/v2/categories/#{category.id}", headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end

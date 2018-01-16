@@ -1,0 +1,15 @@
+machine:
+  ruby:
+    version: 2.5.0
+
+dependencies:
+  pre:
+    - gem update --system
+  override:
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+database:
+  override:
+    - bundle exec bin/rails db:create db:schema:load
+test:
+  override:
+    - bundle exec bin/rails test

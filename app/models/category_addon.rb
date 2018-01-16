@@ -9,7 +9,7 @@
 #  updated_at  :datetime         not null
 #
 
-class CategoryAddon < ActiveRecord::Base
+class CategoryAddon < ApplicationRecord
   belongs_to :category
   belongs_to :addon
 end
