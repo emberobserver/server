@@ -39,7 +39,7 @@ group :development do
   gem 'capistrano-sidekiq'
 end
 
-gem 'octokit', '~> 3.0'
+gem 'octokit', '~> 4.0'
 gem 'faraday-http-cache'
 gem 'faraday_middleware'
 
