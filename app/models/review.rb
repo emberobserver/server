@@ -20,10 +20,6 @@ class Review < ApplicationRecord
 
   before_create :set_addon_name
 
-  def addon
-    addon_version.addon
-  end
-
   def version_id
     self.addon_version_id
   end
