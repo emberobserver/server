@@ -164,7 +164,7 @@ ${CLIENT_ROOT}/logs/*.log {
     endscript
 }
 
-${SERVER_ROOT}/log/*.log {
+${SERVER_ROOT}/shared/log/*.log {
   daily
   missingok
   rotate 52
