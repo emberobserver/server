@@ -1,5 +1,6 @@
-class API::V2::ReviewProcessor < JSONAPI::Processor
+# frozen_string_literal: true
 
+class API::V2::ReviewProcessor < JSONAPI::Processor
   before_remove_resource do
     raise Forbidden
   end

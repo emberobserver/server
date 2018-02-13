@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class API::V2::CorrectionsController < ApplicationController
   def submit
-    fields = [ :name, :email, :addon, :correction ]
-    args = { }
+    fields = %i[name email addon correction]
+    args = {}
     fields.each do |field|
       unless params.include?(field)
         head :unprocessable_entity

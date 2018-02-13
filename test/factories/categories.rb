@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -26,5 +28,4 @@ FactoryGirl.define do
       create :category, parent_category: category
     end
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -27,14 +29,13 @@ class Category < ApplicationRecord
   private
 
   def cannot_be_own_parent
-    if id && id == parent_id
-      errors.add(:parent_id, "Category cannot have itself as its parent")
-    end
+    return unless id && id == parent_id
+    errors.add(:parent_id, 'Category cannot have itself as its parent')
   end
 
   def transform_position
-    return if self.position && self.position != -1
-    last_sibling_category = Category.where(parent_id: self.parent_id).order('position desc').first
+    return if position && position != -1
+    last_sibling_category = Category.where(parent_id: parent_id).order('position desc').first
     if last_sibling_category
       self.position = last_sibling_category.position + 1
     else

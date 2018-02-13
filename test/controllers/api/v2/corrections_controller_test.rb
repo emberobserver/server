@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class API::V2::CorrectionsControllerTest < ControllerTest
-
   setup do
     CorrectionMailer.deliveries = []
   end
@@ -23,5 +24,4 @@ class API::V2::CorrectionsControllerTest < ControllerTest
     assert_response :unprocessable_entity
     assert_equal 0, CorrectionMailer.deliveries.size
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: build_servers
@@ -12,7 +14,7 @@
 require 'test_helper'
 
 class BuildServerTest < ActiveSupport::TestCase
-  test "requires a unique name" do
+  test 'requires a unique name' do
     assert_raises ActiveRecord::RecordInvalid do
       BuildServer.create!
     end
@@ -22,7 +24,7 @@ class BuildServerTest < ActiveSupport::TestCase
       BuildServer.create!(name: build_server.name)
     end
   end
-  test "generates a token when creating" do
+  test 'generates a token when creating' do
     build_server = BuildServer.create(name: 'build server')
     assert_not_nil build_server.token
   end

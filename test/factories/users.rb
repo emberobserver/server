@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -12,7 +14,7 @@
 
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |n| "test_#{n}@example.com"}
+    sequence(:email) { |n| "test_#{n}@example.com" }
     auth_token 'solongandthanksforallthefish'
     password_digest SecureRandom.hex
   end

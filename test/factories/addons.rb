@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addons
@@ -34,7 +36,6 @@
 #
 
 FactoryGirl.define do
-
   factory :addon do
     name { SecureRandom.hex }
     deprecated false
@@ -61,5 +62,4 @@ FactoryGirl.define do
     name 'hidden-addon'
     hidden true
   end
-
 end

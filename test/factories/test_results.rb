@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: test_results
@@ -15,7 +17,6 @@
 #
 
 FactoryGirl.define do
-
   factory :test_result do
     association :addon_version
     association :build_server

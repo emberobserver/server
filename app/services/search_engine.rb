@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'open3'
 
 class SearchEngine
-
   def find_all_matches(term, source_dir, options)
     search_term = search_term(term, options)
     find_all_usages(search_term, source_dir)
@@ -35,13 +36,10 @@ class SearchEngine
       end
     end
 
-    threads.flat_map do |t|
-      t.value
-    end
+    threads.flat_map(&:value)
   end
 
   def addon_directories(source_dir)
-    Dir.entries(source_dir).reject { |d| d == '.' || d == '..'}.map { |d| File.join(source_dir, d) + File::Separator }
+    Dir.entries(source_dir).reject { |d| d == '.' || d == '..' }.map { |d| File.join(source_dir, d) + File::Separator }
   end
-
 end
