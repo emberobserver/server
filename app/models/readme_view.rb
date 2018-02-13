@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: readmes_indexed_for_fts
@@ -8,6 +7,11 @@
 #  contents          :text
 #  contents_tsvector :tsvector
 #  addon_id          :integer
+#
+# Indexes
+#
+#  gin_index_on_contents  (contents_tsvector)
+#  unique_index_on_id     (id) UNIQUE
 #
 
 class ReadmeView < ApplicationRecord

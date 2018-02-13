@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: reviews
@@ -15,6 +14,10 @@
 #  is_open_source           :integer
 #  has_build                :integer
 #  addon_name               :string
+#
+# Indexes
+#
+#  index_reviews_on_addon_version_id  (addon_version_id)
 #
 
 class Review < ApplicationRecord

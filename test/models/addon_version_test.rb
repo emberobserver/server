@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: addon_versions
@@ -10,6 +9,10 @@
 #  released          :datetime
 #  addon_name        :string
 #  ember_cli_version :string
+#
+# Indexes
+#
+#  index_addon_versions_on_addon_id  (addon_id)
 #
 
 require 'test_helper'

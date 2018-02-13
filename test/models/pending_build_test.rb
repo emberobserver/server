@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: pending_builds
@@ -11,6 +10,16 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  canary            :boolean          default(FALSE), not null
+#
+# Indexes
+#
+#  index_pending_builds_on_addon_version_id  (addon_version_id)
+#  index_pending_builds_on_build_server_id   (build_server_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (addon_version_id => addon_versions.id)
+#  fk_rails_...  (build_server_id => build_servers.id)
 #
 
 require 'test_helper'
