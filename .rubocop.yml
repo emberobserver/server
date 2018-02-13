@@ -18,6 +18,10 @@ Style/ConditionalAssignment:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+Layout/IndentHash:
+  EnforcedStyle: consistent
 AllCops:
   Include:
     - '**/Rakefile'

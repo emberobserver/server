@@ -43,15 +43,15 @@ class API::V2::CategoryTest < IntegrationTest
     category = create :category
 
     update_category(category, {
-                      attrs: {
-                        "name": "Updated cat",
-                        "description": "An updated thing",
-                        "position": 2
-                      },
-                      relationships: {
-                        parent: { data: { type: "categories", id: new_parent.id } },
-                      }
-                    })
+      attrs: {
+        "name": "Updated cat",
+        "description": "An updated thing",
+        "position": 2
+      },
+      relationships: {
+        parent: { data: { type: "categories", id: new_parent.id } },
+      }
+    })
 
     assert_response 400, 'Responds with 400 for non-permitted attributes'
   end
@@ -60,9 +60,9 @@ class API::V2::CategoryTest < IntegrationTest
     category = create :category
 
     update_category(category, {
-                      attrs: {},
-                      relationships: {}
-                    })
+      attrs: {},
+      relationships: {}
+    })
 
     assert_response 403, 'Responds with 403 when it hits the category processor'
   end
@@ -128,15 +128,15 @@ class API::V2::CategoryTest < IntegrationTest
     auth_headers = authentication_headers_for(create(:user))
 
     update_category(category,
-                    attrs: {
-                      "name": 'Updated cat',
-                      "description": 'An updated thing',
-                      "position": 2
-                    },
-                    relationships: {
-                      parent: { data: { type: 'categories', id: new_parent.id } }
-                    },
-                    headers: auth_headers)
+      attrs: {
+        "name": 'Updated cat',
+        "description": 'An updated thing',
+        "position": 2
+      },
+      relationships: {
+        parent: { data: { type: 'categories', id: new_parent.id } }
+      },
+      headers: auth_headers)
 
     assert_response 200
 
@@ -154,7 +154,7 @@ class API::V2::CategoryTest < IntegrationTest
 
     assert_difference 'Category.count', -1 do
       delete_category(category,
-                      headers: auth_headers)
+        headers: auth_headers)
     end
 
     assert_response 204
@@ -177,11 +177,11 @@ class API::V2::CategoryTest < IntegrationTest
     auth_headers = authentication_headers_for(create(:user))
 
     update_category(first,
-                    attrs: {
-                      position: 4
-                    },
-                    relationships: {},
-                    headers: auth_headers)
+      attrs: {
+        position: 4
+      },
+      relationships: {},
+      headers: auth_headers)
 
     assert_equal 1, second.reload.position
   end
@@ -194,13 +194,13 @@ class API::V2::CategoryTest < IntegrationTest
     auth_headers = authentication_headers_for(create(:user))
 
     update_category(category,
-                    attrs: {
-                      position: -1
-                    },
-                    relationships: {
-                      parent: { data: nil }
-                    },
-                    headers: auth_headers)
+      attrs: {
+        position: -1
+      },
+      relationships: {
+        parent: { data: nil }
+      },
+      headers: auth_headers)
 
     assert_equal last_position + 1, category.reload.position
   end
@@ -214,18 +214,18 @@ class API::V2::CategoryTest < IntegrationTest
     auth_headers = authentication_headers_for(create(:user))
 
     update_category(first,
-                    attrs: {
-                      position: -1
-                    },
-                    relationships: {
-                      parent: {
-                        data: {
-                          type: 'categories',
-                          id: parent.id
-                        }
-                      }
-                    },
-                    headers: auth_headers)
+      attrs: {
+        position: -1
+      },
+      relationships: {
+        parent: {
+          data: {
+            type: 'categories',
+            id: parent.id
+          }
+        }
+      },
+      headers: auth_headers)
 
     assert_equal 1, second.reload.position
   end
@@ -234,27 +234,27 @@ class API::V2::CategoryTest < IntegrationTest
 
   def create_category(options)
     post '/api/v2/categories',
-         params: {
-           data: {
-             type: 'categories',
-             attributes: options[:attrs] || {},
-             relationships: options[:relationships] || {}
-           }
-         }.to_json,
-         headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+      params: {
+        data: {
+          type: 'categories',
+          attributes: options[:attrs] || {},
+          relationships: options[:relationships] || {}
+        }
+      }.to_json,
+      headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 
   def update_category(category, options)
     patch "/api/v2/categories/#{category.id}",
-          params: {
-            data: {
-              type: 'categories',
-              id: category.id,
-              attributes: options[:attrs] || {},
-              relationships: options[:relationships] || {}
-            }
-          }.to_json,
-          headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+      params: {
+        data: {
+          type: 'categories',
+          id: category.id,
+          attributes: options[:attrs] || {},
+          relationships: options[:relationships] || {}
+        }
+      }.to_json,
+      headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 
   def delete_category(category, options = {})
