@@ -3,11 +3,11 @@
 class API::V2::GithubStatsResource < JSONAPI::Resource
   immutable
   attributes :stars,
-             :latest_commit_date,
-             :first_commit_date,
-             :forks,
-             :open_issues,
-             :committed_to_recently
+    :latest_commit_date,
+    :first_commit_date,
+    :forks,
+    :open_issues,
+    :committed_to_recently
 
   has_one :addon
 

@@ -56,7 +56,7 @@ class API::V2::BuildResultTest < IntegrationTest
     build_server = create(:build_server)
 
     update_build_server(build_server.id,
-                        attrs: { name: 'new-name' })
+      attrs: { name: 'new-name' })
 
     assert_response :forbidden
     assert_not_equal 'new-name', BuildServer.find(build_server.id).name
@@ -66,8 +66,8 @@ class API::V2::BuildResultTest < IntegrationTest
     build_server = create(:build_server)
 
     update_build_server(build_server.id,
-                        attrs: { name: 'new-name' },
-                        headers: auth_header)
+      attrs: { name: 'new-name' },
+      headers: auth_header)
 
     assert_response :success
     assert_equal 'new-name', BuildServer.find(build_server.id).name
@@ -78,8 +78,8 @@ class API::V2::BuildResultTest < IntegrationTest
     build_server = create(:build_server)
 
     update_build_server(build_server.id + 1,
-                        attrs: { name: 'abc' },
-                        headers: auth_header)
+      attrs: { name: 'abc' },
+      headers: auth_header)
 
     assert_response :not_found
   end
@@ -88,8 +88,8 @@ class API::V2::BuildResultTest < IntegrationTest
     build_server = create(:build_server)
 
     update_build_server(build_server.id,
-                        attrs: { name: '' },
-                        headers: auth_header)
+      attrs: { name: '' },
+      headers: auth_header)
 
     assert_response :unprocessable_entity
     assert_not_empty BuildServer.find(build_server.id).name
