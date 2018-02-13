@@ -154,13 +154,13 @@ class API::V2::AddonTest < IntegrationTest
       attrs[field] = "New #{field}"
       assert_no_difference 'Addon.count' do
         post '/api/v2/addons/',
-             params: {
-               data: {
-                 type: 'addons',
-                 attributes: attrs
-               }
-             }.to_json,
-             headers: { CONTENT_TYPE: JSONAPI_TYPE }
+          params: {
+            data: {
+              type: 'addons',
+              attributes: attrs
+            }
+          }.to_json,
+          headers: { CONTENT_TYPE: JSONAPI_TYPE }
       end
       assert_response 400, "End user cannot create addon with #{field}"
       assert_match /#{field}/, json_response['errors'][0]['detail'], "Cannot created addon with #{field}"
@@ -179,13 +179,13 @@ class API::V2::AddonTest < IntegrationTest
 
       assert_no_difference 'Addon.count' do
         post '/api/v2/addons',
-             params: {
-               data: {
-                 type: 'addons',
-                 relationships: relationships
-               }
-             }.to_json,
-             headers: { CONTENT_TYPE: JSONAPI_TYPE }
+          params: {
+            data: {
+              type: 'addons',
+              relationships: relationships
+            }
+          }.to_json,
+          headers: { CONTENT_TYPE: JSONAPI_TYPE }
       end
 
       assert_response 400, "End user cannot create addon with relationship #{relationship}"
@@ -489,15 +489,15 @@ class API::V2::AddonTest < IntegrationTest
 
   def update_addon(addon, options = {})
     patch "/api/v2/addons/#{addon.id}",
-          params: {
-            data: {
-              type: 'addons',
-              id: addon.id,
-              attributes: options[:attrs] || {},
-              relationships: options[:relationships] || {}
-            }
-          }.to_json,
-          headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+      params: {
+        data: {
+          type: 'addons',
+          id: addon.id,
+          attributes: options[:attrs] || {},
+          relationships: options[:relationships] || {}
+        }
+      }.to_json,
+      headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end
 
