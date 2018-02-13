@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: github_stats
@@ -18,6 +17,14 @@
 #  penultimate_commit_date :datetime
 #  penultimate_commit_sha  :string
 #  repo_created_date       :datetime
+#
+# Indexes
+#
+#  index_github_stats_on_addon_id  (addon_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (addon_id => addons.id)
 #
 
 FactoryGirl.define do

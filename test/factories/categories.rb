@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: categories
@@ -11,6 +10,10 @@
 #  description :text
 #  parent_id   :integer
 #  position    :integer
+#
+# Indexes
+#
+#  index_categories_on_parent_id  (parent_id)
 #
 
 FactoryGirl.define do
