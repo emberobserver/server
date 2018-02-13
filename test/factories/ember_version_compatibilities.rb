@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ember_version_compatibilities
@@ -12,7 +14,7 @@
 
 FactoryGirl.define do
   factory :version_compatibility do
-    ember_version "1.0.0"
+    ember_version '1.0.0'
     compatible true
   end
 end

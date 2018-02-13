@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class IntegrationTest < ActionDispatch::IntegrationTest
-  JSONAPI_TYPE = "application/vnd.api+json"
+  JSONAPI_TYPE = 'application/vnd.api+json'
 
   setup do
     @integration_session = open_session

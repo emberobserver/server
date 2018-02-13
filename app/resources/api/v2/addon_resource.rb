@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop:disable all Metrics/LineLength Naming/PredicateName
 class API::V2::AddonResource < JSONAPI::Resource
   attributes :name,
              :latest_version_date,
@@ -16,7 +19,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
   has_many :keywords, class_name: 'Keyword', relation_name: 'npm_keywords'
   has_many :github_users
-  #TODO: Make has_one :review
+  # TODO: Make has_one :review
   has_many :reviews
   has_many :categories
   has_one :github_stats
@@ -29,17 +32,17 @@ class API::V2::AddonResource < JSONAPI::Resource
   filter :name
 
   REQUIRE_ADMIN = ->(values, context) {
-    if values.include?("true") && context[:current_user].nil?
+    if values.include?('true') && context[:current_user].nil?
       raise Forbidden
     end
     values
   }
 
-  filter :in_category, apply: ->(records, category_id, _options) {
+  filter :in_category, apply: ->(_records, category_id, _options) {
     Category.find(category_id.first).addons
   }
 
-  filter :top, apply: ->(records, value, _options) {
+  filter :top, apply: ->(records, _value, _options) {
     records.where('ranking is not null')
   }
 
@@ -47,27 +50,27 @@ class API::V2::AddonResource < JSONAPI::Resource
 
   filter :is_wip
 
-  filter :not_categorized, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
+  filter :not_categorized, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
     records.includes(:categories).where(categories: { id: nil })
   }
 
-  filter :not_reviewed, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
-    records.where("name NOT IN (?)", Review.select(:addon_name))
+  filter :not_reviewed, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
+    records.where('name NOT IN (?)', Review.select(:addon_name))
   }
 
-  filter :needs_re_review, verify: REQUIRE_ADMIN, apply: -> (records, value, _options) {
-    records.where("name in (?)", Review.select(:addon_name)).joins(:latest_addon_version).where("addon_versions.id NOT IN (?)", Review.select(:addon_version_id))
+  filter :needs_re_review, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
+    records.where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
   }
 
-  filter :recently_reviewed, apply: ->(records, value, _options) {
-    limit = _options[:paginator] && _options[:paginator].limit != DEFAULT_PAGE_SIZE ? _options[:paginator].limit : 10
-    Addon.joins(:addon_versions).where("addon_versions.id IN (?)", Review.order('created_at DESC').limit(limit).select('addon_version_id'))
+  filter :recently_reviewed, apply: ->(_records, _value, options) {
+    limit = options[:paginator] && options[:paginator].limit != DEFAULT_PAGE_SIZE ? options[:paginator].limit : 10
+    Addon.joins(:addon_versions).where('addon_versions.id IN (?)', Review.order('created_at DESC').limit(limit).select('addon_version_id'))
   }
 
   def self.find(filters, options = {})
-    has_specified_filter = !(filters.keys == [:hidden] && filters[:hidden] == %w(false))
+    has_specified_filter = !(filters.keys == [:hidden] && filters[:hidden] == %w[false])
     has_valid_limit = options[:paginator] ? options[:paginator].limit <= 100 : false
-    has_sort = options[:sort_criteria] ? [:sort_criteria].length > 0 : false
+    has_sort = options[:sort_criteria] ? ![:sort_criteria].empty? : false
     raise Forbidden unless has_specified_filter || (has_valid_limit && has_sort)
     super
   end
@@ -108,21 +111,22 @@ class API::V2::AddonResource < JSONAPI::Resource
     true
   end
 
-  UPDATABLE_ATTRIBUTES = [
-    :is_deprecated, :is_official, :is_cli_dependency,
-    :is_hidden, :is_wip, :note, :has_invalid_github_repo,
-  ]
+  UPDATABLE_ATTRIBUTES = %i[
+    is_deprecated is_official is_cli_dependency
+    is_hidden is_wip note has_invalid_github_repo
+  ].freeze
 
   UPDATABLE_RELATIONSHIPS = [
     :categories
-  ]
+  ].freeze
 
   def self.updatable_fields(context)
     return [] unless context[:current_user]
     UPDATABLE_ATTRIBUTES + UPDATABLE_RELATIONSHIPS
   end
 
-  def self.creatable_fields(context)
+  def self.creatable_fields(_context)
     []
   end
 end
+# rubocop:enable all Metrics/LineLength Naming/PredicateName

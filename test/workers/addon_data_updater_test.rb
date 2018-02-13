@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class AddonDataUpdaterTest < ActiveSupport::TestCase
-
-  test "addon data updater updates addons from json data" do
+  test 'addon data updater updates addons from json data' do
     fixture_file_path = File.join(Rails.root, 'test', 'fixtures', 'addons.json')
     addons = ActiveSupport::JSON.decode(File.read(fixture_file_path))
 
     AddonDataUpdater.new(addons.first).update
-    assert_first_addon_data(Addon.find_by_name(addons.first['name']))
+    assert_first_addon_data(Addon.find_by(name: addons.first['name']))
   end
 
   def assert_first_addon_data(addon)
@@ -30,5 +31,4 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal 5, addon.addon_versions.count
     assert_equal addon.latest_addon_version_id, addon.addon_versions.find_by(version: '1.0.1').id
   end
-
 end

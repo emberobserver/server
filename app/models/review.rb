@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reviews
@@ -21,7 +23,7 @@ class Review < ApplicationRecord
   before_create :set_addon_name
 
   def version_id
-    self.addon_version_id
+    addon_version_id
   end
 
   def version_id=(value)

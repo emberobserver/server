@@ -1,0 +1,31 @@
+inherit_from: .rubocop_todo.yml
+
+Rails:
+  Enabled: true
+Style/IfUnlessModifier:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/Lambda:
+  Enabled: false
+Rails/Output:
+  Enabled: false
+Metrics/ClassLength:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Metrics/LineLength:
+  Enabled: false
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'Gemfile'
+    - 'Capfile'

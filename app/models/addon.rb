@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addons
@@ -36,7 +38,7 @@
 # TODO: drop `rendered_note` once entirely on API v2
 class Addon < ApplicationRecord
   has_many :addon_versions, -> { order(released: :asc) }
-  belongs_to :latest_addon_version, class_name: "AddonVersion", optional: true
+  belongs_to :latest_addon_version, class_name: 'AddonVersion', optional: true
   has_many :reviews, through: :addon_versions
   has_many :addon_maintainers
   has_many :addon_npm_keywords

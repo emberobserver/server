@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -17,17 +19,17 @@ class User < ApplicationRecord
 
   def clear_auth_token!
     self.auth_token = nil
-    self.save!
+    save!
   end
 
   def set_auth_token!
     self.auth_token = generate_auth_token
-    self.save!
+    save!
   end
 
   private
 
   def generate_auth_token
-    SecureRandom.uuid.gsub(/\-/,'')
+    SecureRandom.uuid.delete('-')
   end
 end

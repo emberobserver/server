@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class API::V2::GithubStatsResource < JSONAPI::Resource
   immutable
   attributes :stars,

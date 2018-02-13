@@ -1,5 +1,6 @@
-class AddonScoreUpdater < ActiveJob::Base
+# frozen_string_literal: true
 
+class AddonScoreUpdater < ApplicationJob
   def perform(addon_id)
     addon = Addon.find(addon_id)
     update_score(addon)
@@ -21,8 +22,8 @@ class AddonScoreUpdater < ActiveJob::Base
       score = addon.score || 'na'
     end
 
-    addon_badge_dir = ENV['ADDON_BADGE_DIR'] || File.join(Rails.root, "public/badges")
-    badge_image_path = File.join(Rails.root, "app/assets/images/badges/#{score}.svg")
+    addon_badge_dir = ENV['ADDON_BADGE_DIR'] || Rails.root.join('public/badges')
+    badge_image_path = Rails.root.join("app/assets/images/badges/#{score}.svg")
     badge_image_name = File.join(addon_badge_dir, "#{safe_name addon.name}.svg")
     FileUtils.copy badge_image_path, badge_image_name
     File.chmod 0644, badge_image_name

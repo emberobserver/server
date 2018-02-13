@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addon_versions
@@ -11,7 +13,6 @@
 #
 
 FactoryGirl.define do
-
   sequence(:version_number, 1) { |n| "1.0.#{n}" }
 
   factory :addon_version do
@@ -30,13 +31,13 @@ FactoryGirl.define do
   end
 
   trait :basic_one_point_zero do
-    association :addon, :factory => [:addon, :basic]
+    association :addon, factory: %i[addon basic]
     version '1.0.0'
-    released { 1.weeks.ago }
+    released { 1.week.ago }
   end
 
   trait :basic_one_point_one do
-    association :addon, :factory => [:addon, :basic]
+    association :addon, factory: %i[addon basic]
     version '1.1.0'
     released { 1.day.ago }
   end
@@ -46,5 +47,4 @@ FactoryGirl.define do
       addon_version.review = build :review, addon_version: addon_version
     end
   end
-
 end

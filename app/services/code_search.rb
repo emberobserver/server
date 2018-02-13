@@ -1,11 +1,12 @@
-class CodeSearch
+# frozen_string_literal: true
 
+class CodeSearch
   def self.retrieve_source(term, addon_dir, regex_search = false)
-    self.new.retrieve_source(term, addon_dir, regex_search)
+    new.retrieve_source(term, addon_dir, regex_search)
   end
 
   def self.retrieve_addons(term, regex_search = false)
-    self.new.retrieve_addons(term, regex_search)
+    new.retrieve_addons(term, regex_search)
   end
 
   def initialize(search_engine = SearchEngine.new, line_reader = LineReader.new)
@@ -28,7 +29,7 @@ class CodeSearch
   def retrieve_addons(term, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.find_all_matches(term, source_dir, {regex: regex_search})
+    raw_result = @search_engine.find_all_matches(term, source_dir, regex: regex_search)
     addon_matches = Hash.new { |h, k| h[k] = [] }
     raw_result.each do |line|
       match = line.match(addon_name_regex)
@@ -38,14 +39,14 @@ class CodeSearch
     end
 
     addon_matches.map do |addon, files|
-      {addon: addon, files: files, count: files.size }
+      { addon: addon, files: files, count: files.size }
     end
   end
 
   def retrieve_source(term, addon_dir, regex_search)
     return [] if term.blank?
 
-    raw_result = @search_engine.find_addon_usages(term, File.join(source_dir, addon_dir), {regex: regex_search})
+    raw_result = @search_engine.find_addon_usages(term, File.join(source_dir, addon_dir), regex: regex_search)
     raw_result.map { |line| extract_source_context_for_line(line) }
   end
 
@@ -57,7 +58,7 @@ class CodeSearch
 
     lines = @line_reader.retrieve_context(path_from_source_dir, line_number)
 
-    json_lines = lines.map { |line| {text: line.first, number: line.last} }
-    {line_number: line_number, filename: path_from_addon_dir, lines: json_lines}
+    json_lines = lines.map { |line| { text: line.first, number: line.last } }
+    { line_number: line_number, filename: path_from_addon_dir, lines: json_lines }
   end
 end

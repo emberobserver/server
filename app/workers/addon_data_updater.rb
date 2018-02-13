@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddonDataUpdater
   def initialize(metadata)
     @metadata = metadata
@@ -40,15 +42,15 @@ class AddonDataUpdater
   def repo_url
     url = @metadata['repository']['url']
     return nil if url.nil?
-    if url =~ %r|^http:///|
+    if url.match?(%r{^http:///})
       url.sub!('http:///', 'http://')
     end
-    if url =~ /git@github.com/
+    if url.match?(/git@github.com/)
       url.sub!('git@github.com', 'github.com')
     end
-    if url =~ %r|^git\+https://|
+    if url.match?(%r{^git\+https://})
       url.sub!(/^git\+/, '')
-    elsif url =~ %r|^git\+ssh://github.com|
+    elsif url.match?(%r{^git\+ssh://github.com})
       url.sub!(/^git\+ssh/, 'https')
     end
     url.sub(/`$/, '')
@@ -73,7 +75,7 @@ class AddonDataUpdater
       demo_url: demo_url,
       description: @metadata['description'],
       latest_version: latest_version,
-      latest_version_date: @metadata['time'] ? @metadata['time'][ latest_version ] : nil,
+      latest_version_date: @metadata['time'] ? @metadata['time'][latest_version] : nil,
       license: @metadata['license'],
       published_date: @metadata['created'],
       repository_url: repo_url
@@ -84,8 +86,8 @@ class AddonDataUpdater
         addon_props[:github_user] = unmangle_github_data(github_data['user'])
         addon_props[:github_repo] = unmangle_github_data(github_data['repo'])
       elsif github_data['repo'].nil? && github_data['user'] =~ %r{^http://www\.github\.com/(.+?)/(.+?)\.git}
-        addon_props[:github_user] = $1
-        addon_props[:github_repo] = $2
+        addon_props[:github_user] = Regexp.last_match(1)
+        addon_props[:github_repo] = Regexp.last_match(2)
       end
     end
     @addon.update!(addon_props)
@@ -107,16 +109,15 @@ class AddonDataUpdater
         addon_version.ember_cli_version = data['devDependencies']['ember-cli']
         addon_version.save!
       end
-      unless addon_version
-        addon_version = AddonVersion.create!(
-          addon: @addon,
-          version: version,
-          released: @metadata['time'][version],
-          ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
-        )
-        @addon.addon_versions << addon_version
-        update_addon_version_dependencies(addon_version, data)
-      end
+      next if addon_version
+      addon_version = AddonVersion.create!(
+        addon: @addon,
+        version: version,
+        released: @metadata['time'][version],
+        ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
+      )
+      @addon.addon_versions << addon_version
+      update_addon_version_dependencies(addon_version, data)
     end
   end
 
@@ -142,7 +143,7 @@ class AddonDataUpdater
 
   def update_addon_version_dependencies(addon_version, addon_version_metadata)
     addon_version.all_dependencies.clear
-    [ 'devDependencies', 'dependencies', 'optionalDependencies', 'peerDependencies' ].each do |dependency_type|
+    %w[devDependencies dependencies optionalDependencies peerDependencies].each do |dependency_type|
       next unless addon_version_metadata[dependency_type]
       addon_version_metadata[dependency_type].each do |package_name, version|
         dependency = AddonVersionDependency.create(

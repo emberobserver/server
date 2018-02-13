@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pending_builds
@@ -14,7 +16,7 @@
 require 'test_helper'
 
 class PendingBuildTest < ActiveSupport::TestCase
-  test "PendingBuild.unassigned returns only unassigned builds" do
+  test 'PendingBuild.unassigned returns only unassigned builds' do
     create_list(:build_server, 2).each do |build_server|
       addon_version = create(:addon_version)
       create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 1.hour.ago)
@@ -26,7 +28,7 @@ class PendingBuildTest < ActiveSupport::TestCase
     assert_equal 3, PendingBuild.unassigned.count
   end
 
-  test "PendingBuild.oldest_unassigned returns the oldest unassigned build" do
+  test 'PendingBuild.oldest_unassigned returns the oldest unassigned build' do
     addon = create(:addon)
     old_but_assigned_addon_version = create(:addon_version, addon: addon, version: '1.0.0')
     old_addon_version = create(:addon_version, addon: addon, version: '1.5.0')

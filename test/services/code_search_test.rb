@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class CodeSearchTest < ActiveSupport::TestCase
-
   test 'can search for files containing source code within an addon' do
     code_search = CodeSearch.new(SearchEngineStub.new, LineReaderStub.new)
     results = code_search.retrieve_source('Ember.computed', 'ember-foo', false)
@@ -15,11 +16,11 @@ class CodeSearchTest < ActiveSupport::TestCase
     lines = result[:lines]
 
     first_line = lines.first
-    assert_equal("if (user) {", first_line[:text])
+    assert_equal('if (user) {', first_line[:text])
     assert_equal(4, first_line[:number])
 
     last_line = lines.last
-    assert_equal("});", last_line[:text])
+    assert_equal('});', last_line[:text])
     assert_equal(9, last_line[:number])
   end
 
@@ -39,11 +40,11 @@ class CodeSearchTest < ActiveSupport::TestCase
   end
 
   class SearchEngineStub
-    def find_addon_usages(term, addon_dir, opts={})
-        ["#{Rails.root}/source/ember-foo/app/routes/search.js:8:  headers: Ember.computed(function() {"]
+    def find_addon_usages(_term, _addon_dir, _opts = {})
+      ["#{Rails.root}/source/ember-foo/app/routes/search.js:8:  headers: Ember.computed(function() {"]
     end
 
-    def find_all_matches(term, source_dir, opts={})
+    def find_all_matches(_term, _source_dir, _opts = {})
       [
         "#{Rails.root}/source/ember-foo/app/routes/search.js:  headers: Ember.computed(function() {",
         "#{Rails.root}/source/ember-bar/app/routes/index.js:  headers: Ember.computed(function() {",
@@ -53,14 +54,14 @@ class CodeSearchTest < ActiveSupport::TestCase
   end
 
   class LineReaderStub
-    def retrieve_context(filename, matched_line_number)
+    def retrieve_context(_filename, _matched_line_number)
       [
-        ["if (user) {", 4],
-        ["  return { userId: user.id, token: user.token };", 5],
-        ["} else {", 6],
-        ["<b>      return new Mirage.Response(401);</b>", 7],
-        ["}", 8],
-        ["});", 9]
+        ['if (user) {', 4],
+        ['  return { userId: user.id, token: user.token };', 5],
+        ['} else {', 6],
+        ['<b>      return new Mirage.Response(401);</b>', 7],
+        ['}', 8],
+        ['});', 9]
       ]
     end
   end

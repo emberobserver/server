@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: npm_keywords
@@ -10,7 +12,5 @@
 
 FactoryGirl.define do
   factory :npm_keyword do
-
   end
-
 end

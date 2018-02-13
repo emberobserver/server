@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: npm_maintainers
@@ -17,7 +19,7 @@ class NpmMaintainerTest < ActiveSupport::TestCase
     maintainer = NpmMaintainer.create!(name: 'maintainer')
     maintainer.addons << create(:addon, name: 'hidden addon', hidden: true)
     maintainer.addons << create(:addon, name: 'visible addon')
-    
+
     assert_equal 1, maintainer.visible_addons.count
     assert_equal 'visible addon', maintainer.visible_addons.first.name
   end
