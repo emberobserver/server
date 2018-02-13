@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class API::V2::CategoryResource < JSONAPI::Resource
   attributes :name, :description, :position, :addon_count
   has_many :subcategories, class_name: 'Category'
@@ -45,19 +47,23 @@ class API::V2::CategoryResource < JSONAPI::Resource
     end
 
     # Now make room for the target category
-    if new_position && new_position != -1
+    if new_position && new_position != -1 # rubocop:disable Style/GuardClause
       increment_category_positions(category.parent_id, new_position)
     end
   end
 
   def decrement_category_positions(parent_id, start_position)
     # decrement the position for every category at or after the given position
+    # rubocop:disable Rails/SkipsModelValidations
     categories_at_or_after(parent_id, start_position).update_all('position = position - 1')
+    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def increment_category_positions(parent_id, start_position)
     # increment the position for every category at or after the given position
+    # rubocop:disable Rails/SkipsModelValidations
     categories_at_or_after(parent_id, start_position).update_all('position = position + 1')
+    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def categories_at_or_after(parent_id, position)

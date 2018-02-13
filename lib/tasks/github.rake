@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 namespace :github do
   task setup_octokit: :environment do
     unless ENV['GITHUB_ACCESS_TOKEN']
-      puts "Environment variable GITHUB_ACCESS_TOKEN not set!"
+      puts 'Environment variable GITHUB_ACCESS_TOKEN not set!'
     end
 
     stack = Faraday::RackBuilder.new do |builder|
@@ -54,7 +56,7 @@ def update_github_data(addon)
 
     contributors = remove_dummy_contributors(@github.contributors(slug))
     github_stats.contributors = contributors.length
-    if contributors.length > 0
+    unless contributors.empty?
       addon.github_contributors.clear
       contributors.each do |contributor|
         github_user = GithubUser.find_or_create_by(login: contributor.login)
@@ -66,7 +68,7 @@ def update_github_data(addon)
 
     commits = @github.commits(slug).to_a
     # Sort in descending date order
-    commits.sort! {|a, b| b.commit.committer.date <=> a.commit.committer.date}
+    commits.sort! { |a, b| b.commit.committer.date <=> a.commit.committer.date }
 
     github_stats.commits = commits.length
     if commits.last
@@ -106,5 +108,5 @@ def remove_dummy_contributors(contributors)
   unless contributors.respond_to?(:reject)
     return []
   end
-  contributors.reject {|contributor| dummy_contributors.include?(contributor.login)}
+  contributors.reject { |contributor| dummy_contributors.include?(contributor.login) }
 end

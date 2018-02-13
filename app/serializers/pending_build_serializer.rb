@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pending_builds
@@ -11,7 +13,7 @@
 #  canary            :boolean          default(FALSE), not null
 #
 
-DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING='>= 1.12.0'
+DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '>= 1.12.0'
 
 class PendingBuildSerializer < ApplicationSerializer
   attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility

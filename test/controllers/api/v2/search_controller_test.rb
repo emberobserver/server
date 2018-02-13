@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class API::V2::SearchControllerTest < ControllerTest
-
   test 'returns search results' do
     create :readme, contents: 'test booo happy Beef ribs pork chop rump capicola
 . Tenderloin capicola beef ribs spare ribs, brisket pork chop pork belly frankfurter jerky bresaola sirloin ball tip. Meatball shank short ribs venison. Biltong chicken ribeye, andouille short ribs ham hock sirloin drumstick pastrami cow prosciutto beef landjaeger pancetta. dodo dod oo dooo do helps to speed
@@ -38,5 +39,4 @@ class API::V2::SearchControllerTest < ControllerTest
     assert_response :ok
     assert_equal 0, json_response['results'].size
   end
-
 end

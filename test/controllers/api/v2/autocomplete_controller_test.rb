@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class API::V2::AutocompleteControllerTest < ActionController::TestCase

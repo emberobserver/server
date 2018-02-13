@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 namespace :search do
-  task prepare: [:ensure_directory, :fetch_source, :index]
+  task prepare: %i[ensure_directory fetch_source index]
 
   task ensure_directory: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')

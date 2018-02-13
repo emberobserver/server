@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class API::V2::KeywordResource < JSONAPI::Resource
   immutable
   model_name 'NpmKeyword'

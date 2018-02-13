@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestResultsController < ApplicationController
   before_action :authenticate_server, only: [:create]
   before_action :authenticate_user, only: [:retry]

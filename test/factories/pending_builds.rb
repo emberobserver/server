@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pending_builds
@@ -13,6 +15,6 @@
 
 FactoryGirl.define do
   factory :pending_build do
-    association :addon_version, :factory => [:addon_version, :basic]
+    association :addon_version, factory: %i[addon_version basic]
   end
 end

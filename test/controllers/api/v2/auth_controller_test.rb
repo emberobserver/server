@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class API::V2::AuthControllerTest < ControllerTest
-
-  test "user can log in" do
+  test 'user can log in' do
     user = create :user, email: 'test@example.com', password: 'abc123', auth_token: nil
 
     post :login, params: { email: 'test@example.com', password: 'abc123' }
@@ -11,7 +12,7 @@ class API::V2::AuthControllerTest < ControllerTest
     assert user.reload.auth_token
   end
 
-  test "user cannot log in without correct password" do
+  test 'user cannot log in without correct password' do
     user = create :user, email: 'test@example.com', password: 'abc123', auth_token: nil
 
     post :login, params: { email: 'test@example.com', password: 'wrong' }
@@ -20,7 +21,7 @@ class API::V2::AuthControllerTest < ControllerTest
     assert !user.reload.auth_token
   end
 
-  test "user can log out" do
+  test 'user can log out' do
     user = create :user, auth_token: 'something'
 
     post_as_user user, :logout

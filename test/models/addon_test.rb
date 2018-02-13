@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addons
@@ -36,7 +38,7 @@
 require 'test_helper'
 
 class AddonTest < ActiveSupport::TestCase
-  test "oldest_version returns the earliest addon version" do
+  test 'oldest_version returns the earliest addon version' do
     addon = create :addon
 
     v1 = create :addon_version, addon: addon, version: '1'
@@ -46,7 +48,7 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal v1, addon.oldest_version
   end
 
-  test "newest_version returns the most recent addon version" do
+  test 'newest_version returns the most recent addon version' do
     addon = create :addon
 
     v1 = create :addon_version, addon: addon, version: '1'
@@ -56,7 +58,7 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal v3, addon.newest_version
   end
 
-  test "newest_review returns most recent addon version with a review" do
+  test 'newest_review returns most recent addon version with a review' do
     addon = create :addon
 
     v1 = create :addon_version, :with_review, addon: addon
@@ -66,61 +68,61 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal v2.review, addon.newest_review
   end
 
-  test "newest_review returns nil if no addon versions have a review" do
+  test 'newest_review returns nil if no addon versions have a review' do
     addon = create :addon
 
     v1 = create :addon_version, addon: addon
     assert_nil addon.newest_review
   end
 
-  test "is recently_released if newest version released less than 3 months ago" do
+  test 'is recently_released if newest version released less than 3 months ago' do
     addon = create :addon, latest_version: '1.2.3'
     create :addon_version, addon: addon, released: 2.months.ago
 
     assert addon.recently_released?
   end
 
-  test "not recently_released if newest version released over 3 months ago" do
+  test 'not recently_released if newest version released over 3 months ago' do
     addon = create :addon, latest_version: '1.2.3'
     create :addon_version, addon: addon, released: 4.months.ago
 
     assert !addon.recently_released?
   end
 
-  test "not recently released if no latest version" do
+  test 'not recently released if no latest version' do
     addon = build :addon, latest_version: nil
 
     assert !addon.recently_released?
   end
 
-  test "recently committed to if penultimate commit date less than 3 months ago" do
+  test 'recently committed to if penultimate commit date less than 3 months ago' do
     stats = build :github_stats, penultimate_commit_date: 2.months.ago
     addon = build :addon, github_stats: stats
 
     assert addon.recently_committed_to?
   end
 
-  test "not recently committed to if no github stats" do
+  test 'not recently committed to if no github stats' do
     addon = build :addon, github_stats: nil
 
     assert !addon.recently_committed_to?
   end
 
-  test "not recently committed to if no penultimate commit date" do
+  test 'not recently committed to if no penultimate commit date' do
     stats = build :github_stats, penultimate_commit_date: nil
     addon = build :addon, github_stats: stats
 
     assert !addon.recently_committed_to?
   end
 
-  test "not recently committed to if penultimate commit date over 3 months ago" do
+  test 'not recently committed to if penultimate commit date over 3 months ago' do
     stats = build :github_stats, penultimate_commit_date: 4.months.ago
     addon = build :addon, github_stats: stats
 
     assert !addon.recently_committed_to?
   end
 
-  test "query for active addons returns those that are not hidden and not wip" do
+  test 'query for active addons returns those that are not hidden and not wip' do
     create :addon, hidden: true
     create :addon, is_wip: true
 
@@ -130,7 +132,7 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal [active, also_active], Addon.active.to_a
   end
 
-  test "top_scoring returns addons with score above 7" do
+  test 'top_scoring returns addons with score above 7' do
     create :addon, score: 1
     create :addon, score: 7
 
@@ -140,7 +142,7 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal [top, also_top], Addon.top_scoring.to_a
   end
 
-  test "top_scoring excludes addons marked as deprecated" do
+  test 'top_scoring excludes addons marked as deprecated' do
     top = create(:addon, score: 8)
     top_but_deprecated = create(:addon, score: 10, deprecated: true)
 

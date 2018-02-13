@@ -1,8 +1,10 @@
-class AddonSourceUpdater < ActiveJob::Base
-  EXCLUDED_PATHS = %w(bower_components node_modules tmp dist vendor public coverage tests/fixtures demo
-                     typings website docs support dependencies jsdocTemplates test/vendor example examples
-                     npm-shrinkwrap.json dependency-snapshot.json)
-  EXCLUDED_PATTERNS = %w(**/*.log **/yarn.lock **/Gemfile.lock)
+# frozen_string_literal: true
+
+class AddonSourceUpdater < ApplicationJob
+  EXCLUDED_PATHS = %w[bower_components node_modules tmp dist vendor public coverage tests/fixtures demo
+                      typings website docs support dependencies jsdocTemplates test/vendor example examples
+                      npm-shrinkwrap.json dependency-snapshot.json].freeze
+  EXCLUDED_PATTERNS = %w[**/*.log **/yarn.lock **/Gemfile.lock].freeze
 
   def perform(addon_id, source_directory)
     @source_directory = source_directory

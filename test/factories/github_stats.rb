@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: github_stats
@@ -20,7 +22,5 @@
 
 FactoryGirl.define do
   factory :github_stats do
-
   end
-
 end

@@ -1,5 +1,6 @@
-class API::V2::CategoryProcessor < JSONAPI::Processor
+# frozen_string_literal: true
 
+class API::V2::CategoryProcessor < JSONAPI::Processor
   before_remove_resource do
     raise Forbidden unless @context[:current_user]
   end

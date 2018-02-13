@@ -1,7 +1,9 @@
 machine:
+  pre:
+    - sudo rm -rf /home/travis
+    - sudo ln -s /home/ubuntu /home/travis
   ruby:
     version: 2.5.0
-
 dependencies:
   pre:
     - gem update --system
@@ -13,3 +15,4 @@ database:
 test:
   override:
     - bundle exec bin/rails test
+    - bundle exec rubocop

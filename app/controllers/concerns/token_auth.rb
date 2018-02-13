@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TokenAuth
   def authenticate
     authenticate_user
@@ -18,7 +20,7 @@ module TokenAuth
   end
 
   def authenticate_user_token
-    authenticate_with_http_token do |token, options|
+    authenticate_with_http_token do |token, _options|
       User.find_by(auth_token: token)
     end
   end
@@ -28,7 +30,7 @@ module TokenAuth
   end
 
   def render_unauthorized
-    self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+    headers['WWW-Authenticate'] = 'Token realm="Application"'
     render json: 'Bad credentials', status: 401
   end
 end

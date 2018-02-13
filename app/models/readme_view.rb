@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: readmes_indexed_for_fts
@@ -17,8 +19,8 @@ class ReadmeView < ApplicationRecord
   pg_search_scope(
     :search,
     against: :contents,
-    :using => {
-      :tsearch => {
+    using: {
+      tsearch: {
         dictionary: :english,
         tsvector_column: ['contents_tsvector'],
         highlight: {
