@@ -104,13 +104,13 @@ class API::V2::ReviewTest < IntegrationTest
 
   def create_review(options)
     post '/api/v2/reviews',
-         params: {
-           data: {
-             type: 'reviews',
-             attributes: options[:attrs] || {},
-             relationships: options[:relationships] || {}
-           }
-         }.to_json,
-         headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
+      params: {
+        data: {
+          type: 'reviews',
+          attributes: options[:attrs] || {},
+          relationships: options[:relationships] || {}
+        }
+      }.to_json,
+      headers: { CONTENT_TYPE: JSONAPI_TYPE }.merge(options[:headers] || {})
   end
 end
