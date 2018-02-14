@@ -3,12 +3,29 @@
 require 'test_helper'
 
 class AddonDataUpdaterTest < ActiveSupport::TestCase
-  test 'addon data updater updates addons from json data' do
+  setup do
     fixture_file_path = File.join(Rails.root, 'test', 'fixtures', 'addons.json')
-    addons = ActiveSupport::JSON.decode(File.read(fixture_file_path))
+    @addon_data = ActiveSupport::JSON.decode(File.read(fixture_file_path))
+  end
 
-    AddonDataUpdater.new(addons.first).update
-    assert_first_addon_data(Addon.find_by(name: addons.first['name']))
+  test 'addon data updater creates addons from json data' do
+    AddonDataUpdater.new(@addon_data.first).update
+    assert_first_addon_data(Addon.find_by(name: @addon_data.first['name']))
+  end
+
+  test 'addon data updater updates addons from json data' do
+    addon = create(:addon, name: 'a-addon', license: 'BSD')
+
+    AddonDataUpdater.new(@addon_data.first).update
+    assert_first_addon_data(addon.reload)
+  end
+
+  test 'sets package_info_last_updated_at' do
+    addon = create(:addon, name: 'a-addon', package_info_last_updated_at: 10.days.ago)
+
+    AddonDataUpdater.new(@addon_data.first).update
+    addon.reload
+    assert(addon.package_info_last_updated_at > 1.day.ago, 'package_info_last_updated_at set to nowish')
   end
 
   def assert_first_addon_data(addon)
