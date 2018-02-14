@@ -94,6 +94,8 @@ def update_github_data(addon)
     end
 
     github_stats.save
+    addon.repo_info_last_updated_at = Time.current
+    addon.save
   rescue Octokit::BadGateway, Octokit::Conflict, Octokit::InternalServerError, Octokit::ServiceUnavailable, Errno::ECONNREFUSED, Errno::ECONNRESET, Errno::ETIMEDOUT, Net::OpenTimeout
     puts "WARN: Temporarily unable to update data for #{addon.name}"
   rescue Octokit::NotFound, URI::InvalidURIError
