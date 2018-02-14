@@ -19,7 +19,7 @@ class AddonDataUpdater
     update_last_seen
     update_hidden_flag
     update_latest_addon_version
-
+    update_update_timestamp
     save_addon
   end
 
@@ -208,5 +208,9 @@ class AddonDataUpdater
       npm_user.save!
       @addon.maintainers << npm_user
     end
+  end
+
+  def update_update_timestamp
+    @addon.package_info_last_updated_at = DateTime.now
   end
 end
