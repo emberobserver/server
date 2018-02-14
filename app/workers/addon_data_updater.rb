@@ -211,6 +211,6 @@ class AddonDataUpdater
   end
 
   def update_update_timestamp
-    @addon.package_info_last_updated_at = DateTime.now
+    @addon.package_info_last_updated_at = Time.current
   end
 end
