@@ -23,7 +23,7 @@ namespace :github do
       begin
         hour = Time.current.hour % 12
         Addon.where('github_user is not null').where('github_repo is not null').where(has_invalid_github_repo: false).each do |addon|
-          addon_updated_since_last_github_fetch = (addon.latest_version_date > addon.repo_info_last_updated_at)
+          addon_updated_since_last_github_fetch = (addon.latest_version_date > addon.repo_info_last_updated_at) if addon.latest_version_date && addon.repo_info_last_updated_at
           addon_scheduled_to_be_updated = (addon.id % 12 == hour)
           if addon_scheduled_to_be_updated || addon_updated_since_last_github_fetch
             update_github_data(addon)
