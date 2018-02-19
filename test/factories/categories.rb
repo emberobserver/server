@@ -17,7 +17,7 @@
 #  index_categories_on_parent_id  (parent_id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :category do
     name { SecureRandom.hex }
     description 'Thing'

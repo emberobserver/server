@@ -20,7 +20,7 @@
 #  fk_rails_...  (test_result_id => test_results.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :version_compatibility do
     ember_version '1.0.0'
     compatible true

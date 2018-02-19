@@ -26,7 +26,7 @@
 #  fk_rails_...  (build_server_id => build_servers.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :test_result do
     association :addon_version
     association :build_server
