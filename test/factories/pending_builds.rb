@@ -23,7 +23,7 @@
 #  fk_rails_...  (build_server_id => build_servers.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :pending_build do
     association :addon_version, factory: %i[addon_version basic]
   end

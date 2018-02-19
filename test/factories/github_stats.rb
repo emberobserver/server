@@ -28,7 +28,7 @@
 #  fk_rails_...  (addon_id => addons.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :github_stats do
   end
 end
