@@ -3,10 +3,11 @@
 require 'test_helper'
 
 class AddonDataUpdaterTest < ActiveSupport::TestCase
-  test "updates addons with all-yes reviews" do
+  test 'updates addons with all-yes reviews' do
     addon = create(:addon)
     addon_version = create(:addon_version, addon: addon, released: 2.weeks.ago)
-    create(:review,
+    create(
+      :review,
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
@@ -25,7 +26,8 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
   test "does not update addons that don't have all-yes reviews" do
     addon = create(:addon)
     addon_version = create(:addon_version, addon: addon, released: 2.weeks.ago)
-    create(:review,
+    create(
+      :review,
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
@@ -41,10 +43,11 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     end
   end
 
-  test "preserves note in reviews" do
+  test 'preserves note in reviews' do
     addon = create(:addon)
     addon_version = create(:addon_version, addon: addon, released: 2.weeks.ago)
-    create(:review,
+    create(
+      :review,
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
