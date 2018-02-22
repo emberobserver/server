@@ -3,7 +3,7 @@
 class AutoReviewer
   def self.rereview_addons
     # get addons needing re-review
-    addons = Addon.where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
+    addons = Addon.needing_rereview
 
     # filter list to addons with all 5 points on most recent reviews
     addons = addons.select do |addon|

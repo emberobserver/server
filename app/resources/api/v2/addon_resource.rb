@@ -59,7 +59,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :needs_re_review, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
-    records.where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
+    records.needing_rereview
   }
 
   filter :recently_reviewed, apply: ->(_records, _value, options) {
