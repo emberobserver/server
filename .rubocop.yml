@@ -22,6 +22,8 @@ Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 Layout/IndentHash:
   EnforcedStyle: consistent
+Style/NumericLiterals:
+  Enabled: false
 AllCops:
   Include:
     - '**/Rakefile'
