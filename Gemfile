@@ -23,7 +23,7 @@ gem 'redis-rails'
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

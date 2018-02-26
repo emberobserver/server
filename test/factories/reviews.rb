@@ -21,7 +21,7 @@
 #  index_reviews_on_addon_version_id  (addon_version_id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :review do
     has_tests true
     has_readme true

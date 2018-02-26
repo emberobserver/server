@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:hostname) { |n| "build-server-#{n}" }
 
   factory :build_server do
