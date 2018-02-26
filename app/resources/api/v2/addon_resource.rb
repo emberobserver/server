@@ -62,6 +62,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.needing_rereview
   }
 
+  filter :code_search, apply: ->(records, _value, _options) {
+    records.active
+  }
+
   filter :recently_reviewed, apply: ->(_records, _value, options) {
     limit = options[:paginator] && options[:paginator].limit != DEFAULT_PAGE_SIZE ? options[:paginator].limit : 10
     Addon.joins(:addon_versions).where('addon_versions.id IN (?)', Review.order('created_at DESC').limit(limit).select('addon_version_id'))

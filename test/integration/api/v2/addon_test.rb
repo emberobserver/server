@@ -453,6 +453,15 @@ class API::V2::AddonTest < IntegrationTest
     assert_response_only_contains_these_addons(%w[test-0 test-10 test-11 test-1 test-2 test-3 test-4 test-5 test-6 test-7 test-8 test-9])
   end
 
+  test 'end user can fetch all addons with code search filter' do
+    create_list :addon, 5
+
+    get '/api/v2/addons', params: { filter: { codeSearch: true }, page: { limit: 10000 } }
+
+    assert_response 200, 'End user can fetch all addons with code search filter'
+    assert_equal 5, json_response['data'].length, 'Responds with all expected addons'
+  end
+
   test 'end user cannot fetch all addons' do
     get '/api/v2/addons'
 

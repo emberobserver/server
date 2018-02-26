@@ -3,5 +3,5 @@ JSONAPI.configure do |config|
   config.default_paginator = :none
 
   config.default_page_size = 977
-  config.maximum_page_size = 1000
+  config.maximum_page_size = 10000
 end
