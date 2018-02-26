@@ -455,11 +455,13 @@ class API::V2::AddonTest < IntegrationTest
 
   test 'end user can fetch all addons with code search filter' do
     create_list :addon, 5
+    create :addon, is_wip: true
+    create :addon, hidden: true
 
     get '/api/v2/addons', params: { filter: { codeSearch: true }, page: { limit: 10000 } }
 
     assert_response 200, 'End user can fetch all addons with code search filter'
-    assert_equal 5, json_response['data'].length, 'Responds with all expected addons'
+    assert_equal 6, json_response['data'].length, 'Responds with all expected addons'
   end
 
   test 'end user cannot fetch all addons' do
