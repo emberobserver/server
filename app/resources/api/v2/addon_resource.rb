@@ -63,7 +63,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :code_search, apply: ->(records, _value, _options) {
-    records.active
+    records.not_hidden
   }
 
   filter :recently_reviewed, apply: ->(_records, _value, options) {

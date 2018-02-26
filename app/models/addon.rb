@@ -102,6 +102,10 @@ class Addon < ApplicationRecord
     where('(hidden is null or hidden != true) and (is_wip is null or is_wip != true)')
   end
 
+  def self.not_hidden
+    where('hidden is null or hidden != true')
+  end
+
   def self.needing_rereview
     where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
   end
