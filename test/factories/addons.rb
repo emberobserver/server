@@ -46,7 +46,7 @@
 #  fk_rails_...  (latest_addon_version_id => addon_versions.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :addon do
     name { SecureRandom.hex }
     deprecated false

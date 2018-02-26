@@ -16,7 +16,7 @@
 #  index_addon_versions_on_addon_id  (addon_id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:version_number, 1) { |n| "1.0.#{n}" }
 
   factory :addon_version do

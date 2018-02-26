@@ -18,7 +18,7 @@
 #  fk_rails_...  (addon_version_id => addon_versions.id)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :addon_version_compatibility do
     package 'package-name'
     version '1.0.0'
