@@ -39,21 +39,8 @@ class AddonDataUpdater
     demo_url
   end
 
-  def repo_url
-    url = @metadata['repository']['url']
-    return nil if url.nil?
-    if url.match?(%r{^http:///})
-      url.sub!('http:///', 'http://')
-    end
-    if url.match?(/git@github.com/)
-      url.sub!('git@github.com', 'github.com')
-    end
-    if url.match?(%r{^git\+https://})
-      url.sub!(/^git\+/, '')
-    elsif url.match?(%r{^git\+ssh://github.com})
-      url.sub!(/^git\+ssh/, 'https')
-    end
-    url.sub(/`$/, '')
+  def repo_url(url)
+    NpmDataSanitizer.repository_url(url)
   end
 
   def save_addon
@@ -78,7 +65,7 @@ class AddonDataUpdater
       latest_version_date: @metadata['time'] ? @metadata['time'][latest_version] : nil,
       license: @metadata['license'],
       published_date: @metadata['created'],
-      repository_url: repo_url
+      repository_url: repo_url(@metadata['repository']['url'])
     }
     if @metadata.include?('github')
       github_data = @metadata['github']
