@@ -47,5 +47,19 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal 'THIS IS A README', addon.readme.contents
     assert_equal 5, addon.addon_versions.count
     assert_equal addon.latest_addon_version_id, addon.addon_versions.find_by(version: '1.0.1').id
+    assert_equal addon.downloads.count, 1
+    assert_equal addon.downloads.first.downloads, 6
+    assert_equal addon.author.name, 'person_name'
+
+    addon_keywords = addon.npm_keywords.map(&:keyword)
+    expected_keywords = ['ember-addon', 'ember accessibility', 'ember router', 'a-addon']
+    expected_keywords.each do |keyword|
+      assert addon_keywords.include?(keyword), "Expected addon to have keyword #{keyword}"
+    end
+
+    addon_maintainer = addon.maintainers.first
+    assert_equal 'a-person', addon_maintainer.name
+    assert_equal 'test@example.com', addon_maintainer.email
+    assert_equal '1234', addon_maintainer.gravatar
   end
 end
