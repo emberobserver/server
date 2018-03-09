@@ -9,8 +9,7 @@ class AddonSourceUpdater < ApplicationJob
   def perform(addon_id, source_directory)
     @source_directory = source_directory
     @addon = Addon.find(addon_id)
-    @addon_directory = File.join(source_directory, addon.name)
-
+    @addon_directory = File.join(source_directory, addon.id.to_s)
     fetch_or_clone_repo
     remove_excluded_paths
   end
@@ -27,7 +26,7 @@ class AddonSourceUpdater < ApplicationJob
 
   def update_addon
     FileUtils.cd(addon_directory) do
-      puts "Updating #{addon.name}..."
+      puts "Updating #{addon.name} into '#{addon.id}'..."
       system('git reset --hard HEAD')
       pull_command = 'GIT_TERMINAL_PROMPT=0 git pull'
       unless system(pull_command)
@@ -40,7 +39,7 @@ class AddonSourceUpdater < ApplicationJob
   def clone_addon
     FileUtils.cd(source_directory) do
       puts "Cloning #{addon.name}..."
-      clone_command = "GIT_TERMINAL_PROMPT=0 git clone --single-branch #{addon.repository_url} #{addon.name}"
+      clone_command = "GIT_TERMINAL_PROMPT=0 git clone --single-branch #{addon.repository_url} #{addon.id}"
       unless system(clone_command)
         puts "Source for #{addon.name} is not available, skipping"
       end
