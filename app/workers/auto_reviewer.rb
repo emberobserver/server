@@ -8,6 +8,7 @@ class AutoReviewer
     # filter list to addons with all 5 points on most recent reviews
     addons = addons.select do |addon|
       review = addon.newest_review
+      next if review.nil?
       review.has_tests == 1 &&
         review.has_readme == 1 &&
         review.is_more_than_empty_addon == 1 &&
