@@ -18,6 +18,8 @@ Style/ConditionalAssignment:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
+Style/NumericPredicate:
+  Enabled: false
 Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 Layout/IndentHash:
