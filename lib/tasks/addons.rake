@@ -3,6 +3,10 @@
 require 'net/http'
 
 namespace :addons do
+  task update_all: :environment do
+    AddonsUpdater.run
+  end
+
   namespace :update do
     desc 'Update download count for addons'
     task download_count: :environment do

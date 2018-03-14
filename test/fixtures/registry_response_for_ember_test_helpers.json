@@ -1,0 +1,3000 @@
+{
+  "___comment": "From url: https://registry.npmjs.org/@ember%2Ftest-helpers",
+  "_id": "@ember/test-helpers",
+  "_rev": "19-090546112f14719db2eda01a2c82f6b7",
+  "name": "@ember/test-helpers",
+  "description": "Helpers for testing Ember.js applications",
+  "dist-tags": {
+    "latest": "0.7.18"
+  },
+  "versions": {
+    "0.7.0": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.0",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "test": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.8.1"
+      },
+      "devDependencies": {
+        "ember-cli": "~2.15.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.15.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.15.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.2",
+        "eslint-plugin-prettier": "^2.3.1",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "c8734ec9c25298950dbd8ad6411ba3f353d22868",
+      "_id": "@ember/test-helpers@0.7.0",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-kCHljLPuWeeXwRlLzurbYwBiO5NKuWOTxs8+WGv0XcNSR9YkdxHaCwazh7REssdXIJtTubRQrv/SuLbXAzwtzA==",
+        "shasum": "4ba5a98eb0aab81dbe8b3318f421a919aa0b8548",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.0.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.0.tgz_1510418848381_0.8323903745040298"
+      }
+    },
+    "0.7.1": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.1",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "test": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.8.1"
+      },
+      "devDependencies": {
+        "ember-cli": "~2.15.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.15.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.15.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.2",
+        "eslint-plugin-prettier": "^2.3.1",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "2ac472f0bd60e2733a3c2a7c3a95e79d0fd548c2",
+      "_id": "@ember/test-helpers@0.7.1",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-NYRXO6Kn/d+86V4PtTUEQZzOAZIR4Okck/mWCW3XtjN9zYi+Zuwn7l6lhq8Z3QKEfi4NrDW+v+mJv4jvmx/agA==",
+        "shasum": "14ba828ebc5b7b0e6eb7889352cb40af0c995349",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.1.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.1.tgz_1510428237522_0.2503460405860096"
+      }
+    },
+    "0.7.2": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.2",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "test": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.8.1"
+      },
+      "devDependencies": {
+        "ember-cli": "~2.15.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.15.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.15.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.2",
+        "eslint-plugin-prettier": "^2.3.1",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "3954b8bc17016c28473ca500bf76a06ab7bc5365",
+      "_id": "@ember/test-helpers@0.7.2",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-EkKuCN1wsAPzRv6IAA3YIA9bbQQ7b/HUOli4bPyHmOxMe6sNd8r8zGIC6m42BVZCh+tTcuj37dmEKNSEjaJBrQ==",
+        "shasum": "ca33170a5ce82bc921d7e84e4132aee425b7e67a",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.2.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.2.tgz_1512014505945_0.4053605659864843"
+      }
+    },
+    "0.7.3": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.3",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.8.1"
+      },
+      "devDependencies": {
+        "ember-cli": "~2.15.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "a1b7ac1a2d56586408cd0725bbefb6d552f3f44c",
+      "_id": "@ember/test-helpers@0.7.3",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-JDUM5DfYjXAzFBA+IuFayRXpM98S2nrUT0QJ5jxAuRAFBWQ8OTjn5b+5NgZwY2tQiR1k+kVgrvu4FVHIs6WSIA==",
+        "shasum": "49bdaeda12e1016d064f5c8857e0b31cd109e031",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.3.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.3.tgz_1512509948343_0.7086984408088028"
+      }
+    },
+    "0.7.4": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.4",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.8.1"
+      },
+      "devDependencies": {
+        "ember-cli": "~2.15.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.1.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "99804eaa7325331bcbacc9087185cd365141379e",
+      "_id": "@ember/test-helpers@0.7.4",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-8mjhJfq6iDqSiBHa326CvY+ndd1cS3hwK4UqpNN3zJ9nBvF2C3L2G03fmsTMdTCSDKhW7doTA6CeEOfHq4YZSw==",
+        "shasum": "02e2ef6633d177b1f5136f1f62e7e7b5ed8e2bea",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.4.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.4.tgz_1513185941366_0.6385666248388588"
+      }
+    },
+    "0.7.5": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.5",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-cli-shims": "^1.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "d47abd729f58e662e5d716d52236dbb77a0d92f4",
+      "_id": "@ember/test-helpers@0.7.5",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-GJ9TzoPFypubZ86cCyCWtV9O37fjurjcayXK/XsKVwPlXYEvW8Z8eJNMFqew6C/2rxwsKU4DAlbLNojjdbBpHQ==",
+        "shasum": "dd384d8e3c60c02249ae6e37da369aeb2ec06527",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.5.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.5.tgz_1513348397559_0.12461238563992083"
+      }
+    },
+    "0.7.6": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.6",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "722d2d88f9866cb18fb1eab93ab3221f723b3e95",
+      "_id": "@ember/test-helpers@0.7.6",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-HabU1J7EZEYUdquNdI21oFbiQ+Z0zb7Vin2pK7u54x6OuuWeeCfL3QxKG6QLhNSN36LGC3GfReP+0wqjE4SZBg==",
+        "shasum": "c0deffb0228c16a2784b020c5ffd63a1128ae596",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.6.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.6.tgz_1513355998430_0.5871529260184616"
+      }
+    },
+    "0.7.7": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.7",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "140d0ea934ea3954decf0659f3030d35100333b4",
+      "_id": "@ember/test-helpers@0.7.7",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-pf+1udBNPBHKWwr+S+5dtz5O8afsejUT1/JikXbX/YjFR29nurtBVCj8JnKSPuj3PxKSwJV0lvADeC/HYb4IOw==",
+        "shasum": "ddd455e25ad1404d85c708dcb57337581abf0485",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.7.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.7.tgz_1513363709378_0.1257111739832908"
+      }
+    },
+    "0.7.8": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.8",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "76f011eda70f28173a501fe3650c7c034dae54d2",
+      "_id": "@ember/test-helpers@0.7.8",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-j1bGJ0K/5d3FkNP1rokfju1acIZIHl1YSEwn2znmPPnI0z1mIenCBlsz3pdfkXp+ISXbhB0r0FYUUmLbXWZxuA==",
+        "shasum": "f717f1c952b8fe408004cf328d0e3771696d18e5",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.8.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.8.tgz_1513373150066_0.38355553010478616"
+      }
+    },
+    "0.7.9": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.9",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "617ec0e91d72e39ec72687b6dfba2636e8d2f47b",
+      "_id": "@ember/test-helpers@0.7.9",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-n6BDVCVTXupSbqVgrW0dQP6v8V/DhQu/EzY5MW5QRqjFOcBwbwCoiWgXn2UXiyHl3xEbeUeFjcEXZgI9JsHoFg==",
+        "shasum": "97d06e077a70028ca8e7a11ede7e8725e1a53167",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.9.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.9.tgz_1513441800941_0.5145755591802299"
+      }
+    },
+    "0.7.10": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.10",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "4fbc32f53c221cc4ac709ae9b99095197d6e3282",
+      "_id": "@ember/test-helpers@0.7.10",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-bXuxtx7BDVU399jW5kZb8l7o12Oq+zCU22PXO7U9h8Egnd+uDPFjzJMaV+uNebD46u7w20GEryH/eX8A4OEccQ==",
+        "shasum": "6c083d25c6cbc9d7a1593e3336616cb47113185f",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.10.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.10.tgz_1513789173558_0.7379379794001579"
+      }
+    },
+    "0.7.11": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.11",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f html -o docs",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "06f75bb83a6698b6d9c42261582088848dd90c24",
+      "_id": "@ember/test-helpers@0.7.11",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-LB1Ybjhl3VjLsL+uZ0uyHyIgMykGQr6J0PAOLr771cSE0nsVJd5ChroBp4OwxbYUNhhkvNY/V4AGtK5gqQf1CQ==",
+        "shasum": "6435746ea6045a5d52a4294d095e5bf296faecc8",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.11.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.11.tgz_1514403670447_0.025977368699386716"
+      }
+    },
+    "0.7.12": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.12",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "696015f38fc8072b8dd9ad132dc9419db1b7e90a",
+      "_id": "@ember/test-helpers@0.7.12",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-I2eyzCUQVZm6FesdHzWwDLcqWPRLUrgKbWGoVH8PsMDeNS30/YHtSrV/2O4qxiiMpSMx51c+xPIqXja1e46rDQ==",
+        "shasum": "6c8cb8f9d5969de5d417a8e8145bd458cac586eb",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.12.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.12.tgz_1514685696369_0.8377845410723239"
+      }
+    },
+    "0.7.13": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.13",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "^2.17.1",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.17.0",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "28f3b1de3a3da429bdbaf02c6a9563093ad278f9",
+      "_id": "@ember/test-helpers@0.7.13",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-bdvZPD7iP3wCY3Cfk2fZgfJpVTOywycURDbFJUXdmPtVIWUrioAPaYWjQhkUGyQs9laWBD1bgyMLtbhhqK890A==",
+        "shasum": "89523a101b5bd731e9dcaf7d0c57155b6386a4e3",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.13.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.13.tgz_1514906537934_0.24844590504653752"
+      }
+    },
+    "0.7.14": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.14",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "~2.18.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.18.0",
+        "ember-source-channel-url": "^1.0.1",
+        "ember-try": "^0.2.23",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "d1bbf4d78af64ba2a3fc49059e5f001c391ebc5b",
+      "_id": "@ember/test-helpers@0.7.14",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-3ke3ag20jn36EktyIdlPFu+sSQgM2xTuhYcne9pFNnPqSo7xrjrOIaPihgPVF3nMuVoNd6d2FVQddy2g1QDcOw==",
+        "shasum": "e53b0a66f144a0a85579c4432e56960971a3f739",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.14.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.14.tgz_1516989682590_0.3540497114881873"
+      }
+    },
+    "0.7.15": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.15",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "~2.18.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.18.0",
+        "ember-source-channel-url": "^1.0.1",
+        "ember-try": "^0.2.23",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "8333c1b7e9b62902978c76f4a129b17fb57be2d2",
+      "_id": "@ember/test-helpers@0.7.15",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-xW/lSyLjJFujxyTBE9G6oUvlOSgyKyvCqiuJT9xsI+k4jAd5FR1veb2VRGfFU4XliQQrrdfaVuXBN8/A4ll3Qg==",
+        "shasum": "8e57f9fb944367b8b335c7678dec78128add2231",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.15.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.15.tgz_1517435441336_0.6984205837361515"
+      }
+    },
+    "0.7.16": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.16",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "documentation": "^5.3.5",
+        "ember-cli": "~2.18.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.18.0",
+        "ember-source-channel-url": "^1.0.1",
+        "ember-try": "^0.2.23",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.4.1"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "380a9915dd817963fb2b1924d72320b2e3819765",
+      "_id": "@ember/test-helpers@0.7.16",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-4hECIjZUOf82d13I1eueUeR+Kp/A1t4nfX7K/GebMuShmFUM46h8cNp33aXML+UGCGiC8TkNNML8Rb8vTObk5Q==",
+        "shasum": "73a4acf4c7d1b92ce866f4c9e40c9723da4cf1e8",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.16.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers-0.7.16.tgz_1517458906708_0.34745085681788623"
+      }
+    },
+    "0.7.17": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.17",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "@ember/optional-features": "^0.5.1",
+        "documentation": "^5.3.5",
+        "ember-cli": "~2.18.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~3.0.0-beta.5",
+        "ember-source-channel-url": "^1.0.1",
+        "ember-try": "^1.0.0-beta.1",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.5.0"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "7a92c721f8e55096a7bdb217e7cd294102aa82f8",
+      "_id": "@ember/test-helpers@0.7.17",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-pLz4FV8IGty+9CEGttEl6clLiQkap4w7T0So8lbCb4XO38OxGfjhfz8uKpI+UH6fgaTeboh8myixqOdfXvklfA==",
+        "shasum": "17ff5f1d005d8b6331585e99013d66626a8d8068",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.17.tgz",
+        "fileCount": 57,
+        "unpackedSize": 491934
+      },
+      "maintainers": [
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers_0.7.17_1518291023547_0.179900388332898"
+      },
+      "_hasShrinkwrap": false
+    },
+    "0.7.18": {
+      "name": "@ember/test-helpers",
+      "version": "0.7.18",
+      "description": "Helpers for testing Ember.js applications",
+      "keywords": [
+        "ember-addon"
+      ],
+      "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+      "bugs": {
+        "url": "https://github.com/emberjs/ember-test-helpers/issues"
+      },
+      "license": "(MIT OR Apache-2.0)",
+      "contributors": [
+        {
+          "name": "Dan Gebhardt"
+        },
+        {
+          "name": "Robert Jackson"
+        },
+        {
+          "name": "Stefan Penner"
+        },
+        {
+          "name": "Ryan Florence"
+        },
+        {
+          "name": "Adolfo Builes"
+        }
+      ],
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+      },
+      "scripts": {
+        "build": "ember build",
+        "changelog": "lerna-changelog",
+        "docs": "documentation build --document-exported \"addon-test-support/@ember/test-helpers/index.js\" --config documentation.yml -f md -o API.md",
+        "lint": "eslint *.js addon addon-test-support app config lib node-tests server tests test-support",
+        "start": "ember server",
+        "test": "ember test",
+        "test:all": "ember try:each"
+      },
+      "dependencies": {
+        "broccoli-funnel": "^2.0.1",
+        "ember-cli-babel": "^6.10.0",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0"
+      },
+      "devDependencies": {
+        "@ember/optional-features": "^0.5.1",
+        "documentation": "5.3.5",
+        "ember-cli": "~2.18.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-eslint": "^4.2.1",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-pretender": "^1.0.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-test-loader": "^2.2.0",
+        "ember-data": "~2.17.0",
+        "ember-debug-handlers-polyfill": "^1.0.3",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-fetch": "^3.4.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-maybe-import-regenerator-for-testing": "^1.0.0",
+        "ember-native-dom-event-dispatcher": "^0.6.3",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~3.0.0-beta.5",
+        "ember-source-channel-url": "^1.0.1",
+        "ember-try": "^1.0.0-beta.1",
+        "eslint-config-prettier": "^2.6.0",
+        "eslint-plugin-disable-features": "^0.1.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-prettier": "^2.3.1",
+        "lerna-changelog": "^0.7.0",
+        "loader.js": "^4.2.3",
+        "prettier": "^1.7.4",
+        "qunit": "^2.5.0"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "publishConfig": {
+        "access": "public"
+      },
+      "changelog": {
+        "repo": "emberjs/ember-test-helpers",
+        "labels": {
+          "breaking": ":boom: Breaking Change",
+          "enhancement": ":rocket: Enhancement",
+          "bug": ":bug: Bug Fix",
+          "documentation": ":memo: Documentation",
+          "internal": ":house: Internal"
+        }
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "11dc844fe2d17eff2fd528e55ed7b0beb0df9f0b",
+      "_id": "@ember/test-helpers@0.7.18",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-AHsjhRs8AN22W/QduxsvDzGT7lHuRhfveyfpa4HVTA5bGTM/ryO8sgHyDmdjHobrnmA7DLWj5YH/VMUoc2i49Q==",
+        "shasum": "a0c474c3029588ec46d2e406252fc072b7f9aa3c",
+        "tarball": "https://registry.npmjs.org/@ember/test-helpers/-/test-helpers-0.7.18.tgz",
+        "fileCount": 57,
+        "unpackedSize": 492492
+      },
+      "maintainers": [
+        {
+          "name": "chadhietala",
+          "email": "chadhietala@gmail.com"
+        },
+        {
+          "name": "chancancode",
+          "email": "godfreykfc@gmail.com"
+        },
+        {
+          "name": "dgeb",
+          "email": "dan@cerebris.com"
+        },
+        {
+          "name": "krisselden",
+          "email": "kris.selden@gmail.com"
+        },
+        {
+          "name": "locks",
+          "email": "rokusu@gmail.com"
+        },
+        {
+          "name": "mmun",
+          "email": "im.mmun@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        },
+        {
+          "name": "tomdale",
+          "email": "tom@tomdale.net"
+        },
+        {
+          "name": "wycats",
+          "email": "wycats@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/test-helpers_0.7.18_1518727006360_0.6577365151630845"
+      },
+      "_hasShrinkwrap": false
+    }
+  },
+  "readme": "# @ember/test-helpers [![Build Status](https://secure.travis-ci.org/emberjs/ember-test-helpers.svg?branch=master)](http://travis-ci.org/emberjs/ember-test-helpers)\n\nA test-framework-agnostic set of helpers for testing Ember.js applications.\n\n## Usage\n\nThe exports of this library are intended to be utility functions that can be used to bring the\nstandard Ember testing experience to any testing framework.\n\nThis library is best used by way of a test-framework-specific\nwrapper, such as [ember-qunit](https://github.com/emberjs/ember-qunit) or\n[ember-mocha](https://github.com/emberjs/ember-mocha).\n\n**Full documentation can be found in [API.md](API.md).**\n\n## Collaborating\n\n### Installation\n\n* `git clone <repository-url>` this repository\n* `cd ember-test-helpers`\n* `yarn install`\n\n### Running\n\n* `ember serve`\n* Visit your app at [http://localhost:4200](http://localhost:4200).\n\n### Running Tests\n\n* `yarn test` (Runs `ember try:each` to test your addon against multiple Ember versions)\n* `ember test`\n* `ember test --server`\n\n### Building\n\n* `ember build`\n\nFor more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).\n\n## Attribution\n\nMuch of `ember-test-helpers` was extracted from the original `ember-qunit`,\nwhich was written by Stefan Penner, Robert Jackson, and Ryan Florence.\n\n## Copyright and License\n\nCopyright 2015 [Switchfly](https://github.com/switchfly) and contributors.\n\nDual-licensed under the [Apache License, Version 2.0](./APACHE-LICENSE) and\nthe [MIT License](./MIT-LICENSE).\n",
+  "maintainers": [
+    {
+      "name": "chadhietala",
+      "email": "chadhietala@gmail.com"
+    },
+    {
+      "name": "chancancode",
+      "email": "godfreykfc@gmail.com"
+    },
+    {
+      "name": "dgeb",
+      "email": "dan@cerebris.com"
+    },
+    {
+      "name": "krisselden",
+      "email": "kris.selden@gmail.com"
+    },
+    {
+      "name": "locks",
+      "email": "rokusu@gmail.com"
+    },
+    {
+      "name": "mmun",
+      "email": "im.mmun@gmail.com"
+    },
+    {
+      "name": "rwjblue",
+      "email": "me@rwjblue.com"
+    },
+    {
+      "name": "stefanpenner",
+      "email": "stefan.penner@gmail.com"
+    },
+    {
+      "name": "tomdale",
+      "email": "tom@tomdale.net"
+    },
+    {
+      "name": "wycats",
+      "email": "wycats@gmail.com"
+    }
+  ],
+  "time": {
+    "modified": "2018-02-15T20:36:47.883Z",
+    "created": "2017-11-11T16:47:29.496Z",
+    "0.7.0": "2017-11-11T16:47:29.496Z",
+    "0.7.1": "2017-11-11T19:23:57.645Z",
+    "0.7.2": "2017-11-30T04:01:47.095Z",
+    "0.7.3": "2017-12-05T21:39:09.492Z",
+    "0.7.4": "2017-12-13T17:25:42.795Z",
+    "0.7.5": "2017-12-15T14:33:17.639Z",
+    "0.7.6": "2017-12-15T16:39:58.509Z",
+    "0.7.7": "2017-12-15T18:48:30.586Z",
+    "0.7.8": "2017-12-15T21:25:51.205Z",
+    "0.7.9": "2017-12-16T16:30:02.035Z",
+    "0.7.10": "2017-12-20T16:59:34.661Z",
+    "0.7.11": "2017-12-27T19:41:11.627Z",
+    "0.7.12": "2017-12-31T02:01:37.444Z",
+    "0.7.13": "2018-01-02T15:22:18.014Z",
+    "0.7.14": "2018-01-26T18:01:22.720Z",
+    "0.7.15": "2018-01-31T21:50:41.459Z",
+    "0.7.16": "2018-02-01T04:21:46.862Z",
+    "0.7.17": "2018-02-10T19:30:24.584Z",
+    "0.7.18": "2018-02-15T20:36:46.445Z"
+  },
+  "homepage": "https://github.com/emberjs/ember-test-helpers#readme",
+  "keywords": [
+    "ember-addon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emberjs/ember-test-helpers.git"
+  },
+  "contributors": [
+    {
+      "name": "Dan Gebhardt"
+    },
+    {
+      "name": "Robert Jackson"
+    },
+    {
+      "name": "Stefan Penner"
+    },
+    {
+      "name": "Ryan Florence"
+    },
+    {
+      "name": "Adolfo Builes"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/emberjs/ember-test-helpers/issues"
+  },
+  "license": "(MIT OR Apache-2.0)",
+  "readmeFilename": "README.md",
+  "_attachments": {}
+}
+

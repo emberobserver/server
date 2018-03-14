@@ -15,6 +15,8 @@ require 'rails/test_help'
 require_relative './controllers/controller_test'
 require_relative './integration/integration_test'
 
+require 'mocha/mini_test'
+
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
 
