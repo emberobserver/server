@@ -1,0 +1,4167 @@
+{
+  "___comment": "From url: https://registry.npmjs.org/ember-try",
+  "_id": "ember-try",
+  "_rev": "45-32fb14704732a56add950f5e100840dc",
+  "name": "ember-try",
+  "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+  "dist-tags": {
+    "latest": "0.2.23",
+    "beta": "1.0.0-beta.1"
+  },
+  "versions": {
+    "0.0.1": {
+      "name": "ember-try",
+      "version": "0.0.1",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.0",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "promise-map-series": "^0.2.1",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "b55e2b9b05a3e3dc1bac70ada8fbb177175e77e0",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.1",
+      "_shasum": "a92a00ddeed208284570b90e4672dea9ede98c10",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "a92a00ddeed208284570b90e4672dea9ede98c10",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.1.tgz"
+      }
+    },
+    "0.0.2": {
+      "name": "ember-try",
+      "version": "0.0.2",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.0",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "promise-map-series": "^0.2.1",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "17a60316a1397b54652dd9e4db32aeee04ee18fc",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.2",
+      "_shasum": "07abf280c719e03b2c9590fde622cfcd8552c660",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "07abf280c719e03b2c9590fde622cfcd8552c660",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.2.tgz"
+      }
+    },
+    "0.0.3": {
+      "name": "ember-try",
+      "version": "0.0.3",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.0",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "f223da4ecd18f6faf3b0e557cc35c51c9f761b5e",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.3",
+      "_shasum": "21452768e554690146ccfedbd7f0dbbbeeb92f1a",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "21452768e554690146ccfedbd7f0dbbbeeb92f1a",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.3.tgz"
+      }
+    },
+    "0.0.4": {
+      "name": "ember-try",
+      "version": "0.0.4",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.0",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "d4fef861adb673d5b36252e7256b0ed4e8ff9103",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.4",
+      "_shasum": "c0b0dc1471ec538e2f3b7d4d5add17f4520812cf",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "c0b0dc1471ec538e2f3b7d4d5add17f4520812cf",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.4.tgz"
+      }
+    },
+    "0.0.5": {
+      "name": "ember-try",
+      "version": "0.0.5",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.0",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "0d0dc04819d63ef15ac890d5dfeac57581b3fa20",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.5",
+      "_shasum": "ce0ec39a13b478262c2d13344234406095e27343",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "ce0ec39a13b478262c2d13344234406095e27343",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.5.tgz"
+      }
+    },
+    "0.0.6": {
+      "name": "ember-try",
+      "version": "0.0.6",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.6",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "56a646488e46c7d308307ce2a3366367c6e98fa4",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.6",
+      "_shasum": "bc70d78cfb046a9827dc8ff94e61cab6643ad0c6",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "bc70d78cfb046a9827dc8ff94e61cab6643ad0c6",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.6.tgz"
+      }
+    },
+    "0.0.7": {
+      "name": "ember-try",
+      "version": "0.0.7",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "test": "ember test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/kategengler/ember-try"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.0",
+        "ember-cli": "0.2.6",
+        "ember-cli-app-version": "0.3.2",
+        "ember-cli-babel": "^4.0.0",
+        "ember-cli-content-security-policy": "0.3.0",
+        "ember-cli-dependency-checker": "0.0.8",
+        "ember-cli-htmlbars": "0.7.4",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.9",
+        "ember-cli-uglify": "1.0.1",
+        "ember-export-application-global": "^1.0.2"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "5b4e6e050d07dd8af443c6bebc877a5bfdef0392",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try",
+      "_id": "ember-try@0.0.7",
+      "_shasum": "441a7564c7c639406de40af77cf9463a770f4935",
+      "_from": ".",
+      "_npmVersion": "2.1.10",
+      "_nodeVersion": "0.10.33",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "441a7564c7c639406de40af77cf9463a770f4935",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.7.tgz"
+      }
+    },
+    "0.0.8": {
+      "name": "ember-try",
+      "version": "0.0.8",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "start": "ember server",
+        "build": "ember build",
+        "client-test": "ember test",
+        "node-test": "node_modules/mocha/bin/mocha .",
+        "test": "npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.0.2",
+        "ember-cli": "0.2.7",
+        "ember-cli-app-version": "0.3.3",
+        "ember-cli-babel": "^5.0.0",
+        "ember-cli-content-security-policy": "0.4.0",
+        "ember-cli-dependency-checker": "^1.0.0",
+        "ember-cli-htmlbars": "0.7.6",
+        "ember-cli-ic-ajax": "0.1.1",
+        "ember-cli-inject-live-reload": "^1.3.0",
+        "ember-cli-qunit": "0.3.13",
+        "ember-cli-uglify": "^1.0.1",
+        "ember-export-application-global": "^1.0.2",
+        "mocha": "^2.2.5",
+        "should": "^7.0.1"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "core-object": "^1.1.0",
+        "fs-extra": "^0.18.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.5.0"
+      },
+      "gitHead": "9a3beb0bfbf605fc0162f9d74305aa15ab0887c4",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.0.8",
+      "_shasum": "bd64c21c8424d4d81fd5e2f901bafffc48961930",
+      "_from": ".",
+      "_npmVersion": "2.11.3",
+      "_nodeVersion": "0.12.7",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "bd64c21c8424d4d81fd5e2f901bafffc48961930",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.0.8.tgz"
+      }
+    },
+    "0.1.0": {
+      "name": "ember-try",
+      "version": "0.1.0",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "ember try:testall",
+        "node-test": "mocha .",
+        "lint": "jshint lib test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "ember-cli": "2.3.0-beta.1",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.0.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-resolver": "^2.0.3",
+        "jscs": "^2.0.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "should": "^7.0.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table": "^0.3.1",
+        "core-object": "^1.1.0",
+        "ember-cli-babel": "^5.1.3",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.24.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "5aee9680cacf447e1b2426ca9bbaf397f6ba6caf",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.1.0",
+      "_shasum": "93fbcff31c2b1a4a418413bfce344a23cc548892",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.3.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "93fbcff31c2b1a4a418413bfce344a23cc548892",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.1.0.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ]
+    },
+    "0.1.1": {
+      "name": "ember-try",
+      "version": "0.1.1",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "ember try:testall",
+        "node-test": "mocha .",
+        "lint": "jshint lib test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "ember-cli": "2.3.0-beta.1",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.0.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-resolver": "^2.0.3",
+        "jscs": "^2.0.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "should": "^7.0.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table": "^0.3.1",
+        "core-object": "^1.1.0",
+        "ember-cli-babel": "^5.1.3",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.24.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "bbc9716f6c6cfe18dd3c8eb7557b5e29e4a7bdd3",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.1.1",
+      "_shasum": "c7293cbd92858ba602a25dd80c9d677e99f378a4",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.3.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "c7293cbd92858ba602a25dd80c9d677e99f378a4",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.1.1.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ]
+    },
+    "0.1.2": {
+      "name": "ember-try",
+      "version": "0.1.2",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "ember try:testall",
+        "node-test": "mocha .",
+        "lint": "jshint lib test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "ember-cli": "2.3.0-beta.1",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.0.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-resolver": "^2.0.3",
+        "jscs": "^2.0.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "should": "^7.0.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.1.9",
+        "core-object": "^1.1.0",
+        "ember-cli-babel": "^5.1.3",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.24.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "27fb75603e35045c5672f240ba67bf7c70be0c30",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.1.2",
+      "_shasum": "ed9bb44b5ca718d15eb7c30758538a7c17aba193",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.1.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "ed9bb44b5ca718d15eb7c30758538a7c17aba193",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.1.2.tgz"
+      },
+      "_npmOperationalInternal": {
+        "host": "packages-9-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.1.2.tgz_1454629503531_0.48125633294694126"
+      }
+    },
+    "0.1.3": {
+      "name": "ember-try",
+      "version": "0.1.3",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha .",
+        "lint": "jshint lib test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "ember-cli": "2.3.0-beta.1",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.0.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-resolver": "^2.0.3",
+        "jscs": "^2.0.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "should": "^7.0.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.1.9",
+        "core-object": "^1.1.0",
+        "ember-cli-babel": "^5.1.3",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.24.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "48f9faa3c6e103262f34d31942881c3af5cad1ec",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.1.3",
+      "_shasum": "af24cda7f67959faa5aaa29ff629ed702ddfa770",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.3.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "af24cda7f67959faa5aaa29ff629ed702ddfa770",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.1.3.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-6-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.1.3.tgz_1455658650356_0.012901089619845152"
+      }
+    },
+    "0.2.0": {
+      "name": "ember-try",
+      "version": "0.2.0",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha .",
+        "lint": "jshint lib test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "ember-cli": "2.3.0-beta.1",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.0.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-resolver": "^2.0.3",
+        "jscs": "^2.0.0",
+        "jshint": "^2.8.0",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "should": "^7.0.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.1.9",
+        "core-object": "^1.1.0",
+        "ember-cli-babel": "^5.1.3",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.24.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "7233935ef1980565aab31c5311caf64f0eba6c27",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.2.0",
+      "_shasum": "4e7ff2ed12e91a76617cb5230bddbfe43bb8a126",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.3.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "4e7ff2ed12e91a76617cb5230bddbfe43bb8a126",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.0.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-6-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.0.tgz_1455928611905_0.09286771737970412"
+      }
+    },
+    "0.2.1": {
+      "name": "ember-try",
+      "version": "0.2.1",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-try-config": "latest",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "62b715c92605498dba73f9bd1022e2a0895ee431",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.2.1",
+      "_shasum": "22bcddcc26d891653bf47f96d9a2b8aac0a8b0ec",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.3.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "22bcddcc26d891653bf47f96d9a2b8aac0a8b0ec",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.1.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.1.tgz_1457904386926_0.4934889746364206"
+      }
+    },
+    "0.2.2": {
+      "name": "ember-try",
+      "version": "0.2.2",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kategengler/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-try-config": "latest",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "9affa05d25130683fae0760977113a66f4e6efe3",
+      "bugs": {
+        "url": "https://github.com/kategengler/ember-try/issues"
+      },
+      "homepage": "https://github.com/kategengler/ember-try#readme",
+      "_id": "ember-try@0.2.2",
+      "_shasum": "247e8b9433af678393dcdcc508a14c9ef64f7d1e",
+      "_from": ".",
+      "_npmVersion": "3.3.12",
+      "_nodeVersion": "5.1.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        }
+      ],
+      "dist": {
+        "shasum": "247e8b9433af678393dcdcc508a14c9ef64f7d1e",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.2.tgz"
+      },
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.2.tgz_1458009982085_0.24687110097147524"
+      }
+    },
+    "0.2.3": {
+      "name": "ember-try",
+      "version": "0.2.3",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-try-config": "latest",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "0b9a6b82c127cd64df23145f2ea8f8b0d0bbd064",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.3",
+      "_shasum": "e3a3d5a5ad6271fe3726d8a47660a5bfafdb9ae6",
+      "_from": ".",
+      "_npmVersion": "3.8.6",
+      "_nodeVersion": "6.0.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "robert.w.jackson@me.com"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "dist": {
+        "shasum": "e3a3d5a5ad6271fe3726d8a47660a5bfafdb9ae6",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.3.tgz"
+      },
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.3.tgz_1466524940927_0.48695795400999486"
+      }
+    },
+    "0.2.4": {
+      "name": "ember-try",
+      "version": "0.2.4",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-try-config": "latest",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "ca55f2c38c81af5969b4948ec605abffd475572d",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.4",
+      "_shasum": "c921e6a03a61319db550f030ced74048c4b070df",
+      "_from": ".",
+      "_npmVersion": "3.8.6",
+      "_nodeVersion": "6.0.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "robert.w.jackson@me.com"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "dist": {
+        "shasum": "c921e6a03a61319db550f030ced74048c4b070df",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.4.tgz"
+      },
+      "_npmOperationalInternal": {
+        "host": "packages-16-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.4.tgz_1466528278614_0.730437258258462"
+      }
+    },
+    "0.2.5": {
+      "name": "ember-try",
+      "version": "0.2.5",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "f00e6ee34411da954710c7b4553a4651eb2c77d8",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.5",
+      "_shasum": "bfd12b404e0693e8ae50fcd3c5c98f9d77a97900",
+      "_from": ".",
+      "_npmVersion": "3.9.5",
+      "_nodeVersion": "6.2.2",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "bfd12b404e0693e8ae50fcd3c5c98f9d77a97900",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.5.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.5.tgz_1470200217855_0.9983547369483858"
+      }
+    },
+    "0.2.6": {
+      "name": "ember-try",
+      "version": "0.2.6",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.2.0",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.3.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.3.1",
+        "ember-cli-qunit": "^1.2.1",
+        "ember-cli-release": "0.2.8",
+        "ember-cli-sri": "^2.0.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-disable-proxy-controllers": "^1.0.1",
+        "ember-export-application-global": "^1.0.4",
+        "ember-load-initializers": "^0.5.0",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.0",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "00b7d01bbf276ff69d365cb7841a33725a4c2e96",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.6",
+      "_shasum": "10a0a694dc0178e45385077e035b1fd86f7cca03",
+      "_from": ".",
+      "_npmVersion": "3.10.3",
+      "_nodeVersion": "6.4.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "shasum": "10a0a694dc0178e45385077e035b1fd86f7cca03",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.6.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.6.tgz_1475067457037_0.14976587891578674"
+      }
+    },
+    "0.2.7": {
+      "name": "ember-try",
+      "version": "0.2.7",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "a39d5568b9cfb50f36f00aded0fa2a530ac61001",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.7",
+      "_shasum": "26628f904548b647fe7551263def36d93ed7b9b4",
+      "_from": ".",
+      "_npmVersion": "3.10.8",
+      "_nodeVersion": "7.0.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "26628f904548b647fe7551263def36d93ed7b9b4",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.7.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-18-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.7.tgz_1477869702854_0.9318369149696082"
+      }
+    },
+    "0.2.8": {
+      "name": "ember-try",
+      "version": "0.2.8",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "dff03b10d3df6ed9bacf60938d76da4b4b5535e1",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.8",
+      "_shasum": "5f135d23d83561dc8dfb4a4d998420b69b740acd",
+      "_from": ".",
+      "_npmVersion": "3.10.8",
+      "_nodeVersion": "7.0.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "5f135d23d83561dc8dfb4a4d998420b69b740acd",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.8.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-18-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.8.tgz_1477961950677_0.3705196916125715"
+      }
+    },
+    "0.2.9": {
+      "name": "ember-try",
+      "version": "0.2.9",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "70a9279e19aff8bcb0dc1b3656e0d209113a1e8a",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.9",
+      "_shasum": "eb06c8512b7d62c2cac74b260538319e64144b86",
+      "_from": ".",
+      "_npmVersion": "3.10.8",
+      "_nodeVersion": "7.0.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "eb06c8512b7d62c2cac74b260538319e64144b86",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.9.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.9.tgz_1484450338185_0.4951502224430442"
+      }
+    },
+    "0.2.10": {
+      "name": "ember-try",
+      "version": "0.2.10",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "mocha lint-test",
+        "jscs": "jscs lib test",
+        "test": "npm run-script jscs && npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 0.10.0"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "jscs": "^2.0.0",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mocha-eslint": "^2.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "fcd3da7bbfd43543695a53e9f1291217525f1e8b",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.10",
+      "_shasum": "8a11191fe8e5a45fb94b3bfdb0dc57d71899f16c",
+      "_from": ".",
+      "_npmVersion": "3.10.9",
+      "_nodeVersion": "7.1.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "shasum": "8a11191fe8e5a45fb94b3bfdb0dc57d71899f16c",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.10.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-18-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.10.tgz_1487681254993_0.3482817669864744"
+      }
+    },
+    "0.2.11": {
+      "name": "ember-try",
+      "version": "0.2.11",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "ab17c01fb9fc9ea6332f5aa455b05b2f68e789ea",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.11",
+      "_shasum": "a793fbfe9c327e6dface808f53262a0b5f69e7b8",
+      "_from": ".",
+      "_npmVersion": "3.10.9",
+      "_nodeVersion": "7.1.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "shasum": "a793fbfe9c327e6dface808f53262a0b5f69e7b8",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.11.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.11.tgz_1489674090729_0.8235022192820907"
+      }
+    },
+    "0.2.12": {
+      "name": "ember-try",
+      "version": "0.2.12",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "b30e900cf7ea76f418cd9d386043e755f78e01ae",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.12",
+      "_shasum": "27ea2305ca097b9e0884565c96da2402d6e841aa",
+      "_from": ".",
+      "_npmVersion": "4.1.2",
+      "_nodeVersion": "7.6.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "27ea2305ca097b9e0884565c96da2402d6e841aa",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.12.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-12-west.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.12.tgz_1490324769978_0.8881481832358986"
+      }
+    },
+    "0.2.13": {
+      "name": "ember-try",
+      "version": "0.2.13",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "adda05fb894adc1d6c7647955d061d39b452d836",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.13",
+      "_shasum": "3d91f46950a40bba54da0edbbbb30480f83a9fdb",
+      "_from": ".",
+      "_npmVersion": "4.1.2",
+      "_nodeVersion": "7.6.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "3d91f46950a40bba54da0edbbbb30480f83a9fdb",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.13.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-18-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.13.tgz_1490659485921_0.8953594919294119"
+      }
+    },
+    "0.2.14": {
+      "name": "ember-try",
+      "version": "0.2.14",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0",
+        "sync-exec": "^0.6.2"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "8d9da64e326eb9b75844c6edc4a60a02a7a4cf7a",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.14",
+      "_shasum": "d47e8fa38858d5683e47856e24a260b39e9caf4a",
+      "_from": ".",
+      "_npmVersion": "3.10.9",
+      "_nodeVersion": "7.1.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "shasum": "d47e8fa38858d5683e47856e24a260b39e9caf4a",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.14.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "packages-18-east.internal.npmjs.com",
+        "tmp": "tmp/ember-try-0.2.14.tgz_1492868864430_0.9987577798310667"
+      }
+    },
+    "0.2.15": {
+      "name": "ember-try",
+      "version": "0.2.15",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "d6e0f456eb8414993f5ff570d2931b1b78cb8717",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.15",
+      "_shasum": "559c756058717595babe70068e541625bd5e210a",
+      "_from": ".",
+      "_npmVersion": "4.2.0",
+      "_nodeVersion": "7.10.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "shasum": "559c756058717595babe70068e541625bd5e210a",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.15.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.15.tgz_1496272590551_0.26394757023081183"
+      }
+    },
+    "0.2.16": {
+      "name": "ember-try",
+      "version": "0.2.16",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "c729ee1206f421fc2318fb7669986e160c6c03a2",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.16",
+      "_npmVersion": "5.0.3",
+      "_nodeVersion": "8.1.4",
+      "_npmUser": {
+        "name": "kellyselden",
+        "email": "kellyselden@gmail.com"
+      },
+      "dist": {
+        "integrity": "sha512-AQZEwMv6BIrVq/ysRcWULvw5tr6RQtUfSYuCpvtdxxJWho74d16YKhGyWAdID+QSmWHrVVGx+O1kDgjf7YKu9A==",
+        "shasum": "cf7092d8a8fea9701d7faa73cbdbff37a8ada330",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.16.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.16.tgz_1500222310634_0.1110771878156811"
+      }
+    },
+    "0.2.17": {
+      "name": "ember-try",
+      "version": "0.2.17",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "12be75eb5ca23ccbe5c4f86c22c499dd190ce0f6",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.17",
+      "_shasum": "0ffff687630291b4cf94f5b196e728c1a92d8aec",
+      "_from": ".",
+      "_npmVersion": "4.2.0",
+      "_nodeVersion": "7.10.1",
+      "_npmUser": {
+        "name": "kellyselden",
+        "email": "kellyselden@gmail.com"
+      },
+      "dist": {
+        "shasum": "0ffff687630291b4cf94f5b196e728c1a92d8aec",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.17.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.17.tgz_1504906157623_0.11906589474529028"
+      }
+    },
+    "0.2.18": {
+      "name": "ember-try",
+      "version": "0.2.18",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.8.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.0.1",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "00fad5ac7bab939d36635701306e191c77086e82",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.18",
+      "_npmVersion": "5.4.2",
+      "_nodeVersion": "8.8.1",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "integrity": "sha512-kOmInCuw7Wa1PyRoomzP9IVe53WsEaDOKPrY44ahLQL5EuO6CryUHZaphiLHWd7oodpa/MK5rFs2HpmtyANxkA==",
+        "shasum": "4350cf65247b6471ae25976d65e56944c168ccca",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.18.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.18.tgz_1509935203391_0.08108571195043623"
+      }
+    },
+    "0.2.19": {
+      "name": "ember-try",
+      "version": "0.2.19",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.12.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^2.2.5",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "24c883565559c87a991e8e4e5b339139a84f9113",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.19",
+      "_npmVersion": "5.4.2",
+      "_nodeVersion": "8.8.1",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "integrity": "sha512-f48lrqQLWyJFVw4MNGDZ80xnS6aVOwk/htIwtWDVkbbbMq6woNYOpARGd3yxH8fy3pYbO9/5HyhbiycFygTWBw==",
+        "shasum": "c66bf35524e62186cf2e8b461e8add6199b59f27",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.19.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.19.tgz_1510530445341_0.21046307147480547"
+      }
+    },
+    "0.2.20": {
+      "name": "ember-try",
+      "version": "0.2.20",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.12.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^4.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^1.1.6",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "cbbcf184be3f37c14748b919911803e67d80208e",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.20",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-Rz0JGNuIscBx9wITm0rlBX/LvJbvichQyRKKQS46uRkz7SwnWqG+wGSjHpF750LObF7ETqA8jft1e3W/eecmcw==",
+        "shasum": "9660e0b3657c3277911b2bccb1b999dfccf1c0aa",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.20.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.20.tgz_1510613959169_0.7085050672758371"
+      }
+    },
+    "0.2.21": {
+      "name": "ember-try",
+      "version": "0.2.21",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.12.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^4.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-cli-version-checker": "^2.1.0",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "9b32644a5436a475e42ce9cb6a98a7d41c9d682a",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.21",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-rFdE9wrM9Sabn2oCe78ZaFME9i/VuVKjEs8YRs1jxzehuQLUAE1vPB9olBGmQcZ4B+c7Kz0w7WobL1ywbSfPlw==",
+        "shasum": "a0d316f5aa4cbff66f4f1e6d95e757fbbc8d7ffd",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.21.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.21.tgz_1510687334407_0.7239828039892018"
+      }
+    },
+    "0.2.22": {
+      "name": "ember-try",
+      "version": "0.2.22",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.12.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^4.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "09011c0bd38e6d4afd84c807b09d04c7d18b31b2",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.22",
+      "_npmVersion": "5.5.1",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-5NKqlKCGWqTUWAA61/dchIFKG2loqEBcHHI4ZbCHToKdK82NTzWkifxryhmwzFE0c9MomvQ3Rza7yxVD5C9rMw==",
+        "shasum": "3989e9c013c1d5c209ec97f5dfcf4234e594d5e2",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.22.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.22.tgz_1510703630588_0.48213009419851005"
+      }
+    },
+    "0.2.23": {
+      "name": "ember-try",
+      "version": "0.2.23",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "start": "ember server",
+        "client-test": "./all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "istanbul cover _mocha test/**/*.js && ./upload-coverage.sh",
+        "smoke-test": "./smoke-test.sh",
+        "lint": "eslint lib test",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": ">= 4.5"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.2",
+        "chai": "^3.5.0",
+        "codeclimate-test-reporter": "^0.3.1",
+        "ember-cli": "2.12.0",
+        "ember-cli-app-version": "^1.0.0",
+        "ember-cli-babel": "^5.1.3",
+        "ember-cli-dependency-checker": "^1.2.0",
+        "ember-cli-htmlbars": "^1.0.3",
+        "ember-cli-htmlbars-inline-precompile": "^0.3.1",
+        "ember-cli-inject-live-reload": "^1.4.0",
+        "ember-cli-qunit": "^2.1.0",
+        "ember-cli-release": "^0.2.9",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-test-loader": "^1.1.0",
+        "ember-cli-uglify": "^1.2.0",
+        "ember-disable-prototype-extensions": "^1.1.0",
+        "ember-export-application-global": "^1.0.5",
+        "ember-load-initializers": "^0.5.1",
+        "ember-resolver": "^2.0.3",
+        "eslint": "^3.16.1",
+        "glob": "^7.0.0",
+        "istanbul": "1.0.0-alpha.2",
+        "loader.js": "^4.0.1",
+        "mocha": "^4.0.0",
+        "mockery": "^1.4.0",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^1.0.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^1.1.0",
+        "debug": "^2.2.0",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^0.26.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^3.0.17",
+        "semver": "^5.1.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "d9324544462e29564b98a35b029276b023d9dce8",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@0.2.23",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "8.6.0",
+      "_npmUser": {
+        "name": "rwjblue",
+        "email": "me@rwjblue.com"
+      },
+      "dist": {
+        "integrity": "sha512-kmVNsSFFafGinFhERMox3SXHoU+V1td1538SbhpslPtf7S2BZYr7JdAwOCIRoRtpcWeNdYgdQGzJZxNvUc8aLg==",
+        "shasum": "39b57141b4907541d0ac8b503d211e6946b08718",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-0.2.23.tgz"
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try-0.2.23.tgz_1515864922940_0.823361897142604"
+      }
+    },
+    "1.0.0-beta.0": {
+      "name": "ember-try",
+      "version": "1.0.0-beta.0",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
+        "start": "ember serve",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test",
+        "client-test": "./run-smoke-test.sh all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "nyc --reporter lcov npm run-script node-test && node_modules/.bin/codecov",
+        "smoke-test": "./run-smoke-test.sh smoke-test.sh",
+        "lint": "eslint lib test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.5",
+        "chai": "^4.1.2",
+        "codecov": "^3.0.0",
+        "ember-cli": "~2.18.0",
+        "ember-cli-babel": "^6.6.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-qunit": "^4.1.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-uglify": "^2.0.0",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-export-application-global": "^2.0.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.18.0",
+        "eslint": "^4.15.0",
+        "eslint-plugin-ember": "^5.0.0",
+        "eslint-plugin-node": "^5.2.1",
+        "glob": "^7.0.0",
+        "loader.js": "^4.2.3",
+        "mocha": "^4.0.0",
+        "mockery": "^2.1.0",
+        "nyc": "^11.4.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^2.3.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^3.1.5",
+        "debug": "^3.1.0",
+        "ember-try-config": "^2.2.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^5.0.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^4.7.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "gitHead": "cc44a103d61396f50ce14f93a36ea5f40e555d4e",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@1.0.0-beta.0",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.5.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "integrity": "sha512-i/fXsJ2IJlrECfJ0Pq8BKBC1gkcrUH++p1jqkbdklEGewHrEAPG3EoFHK0CmCf/qGU0MUgYLrDOwoRRmTvudrg==",
+        "shasum": "a51d797484153afa984c4294de714fad9dd43037",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-1.0.0-beta.0.tgz",
+        "fileCount": 26,
+        "unpackedSize": 302691
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try_1.0.0-beta.0_1518027036068_0.42873276765443635"
+      }
+    },
+    "1.0.0-beta.1": {
+      "name": "ember-try",
+      "version": "1.0.0-beta.1",
+      "description": "An ember-cli addon to test against multiple bower dependencies, such as ember and ember-data.",
+      "directories": {
+        "doc": "doc",
+        "test": "tests"
+      },
+      "scripts": {
+        "build": "ember build",
+        "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
+        "start": "ember serve",
+        "test": "npm run-script lint && npm run-script node-test && npm run-script client-test",
+        "client-test": "./run-smoke-test.sh all-commands.sh",
+        "node-test": "mocha test/**/*.js",
+        "all-test": "npm run-script node-test && npm run-script smoke-test",
+        "node-test-with-coverage": "nyc --reporter lcov npm run-script node-test && node_modules/.bin/codecov",
+        "smoke-test": "./run-smoke-test.sh smoke-test.sh",
+        "lint": "eslint lib test"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ember-cli/ember-try.git"
+      },
+      "engines": {
+        "node": "^4.5 || 6.* || >= 7.*"
+      },
+      "author": {
+        "name": "Katie Gengler"
+      },
+      "license": "MIT",
+      "devDependencies": {
+        "bower": "^1.8.2",
+        "broccoli-asset-rev": "^2.4.5",
+        "chai": "^4.1.2",
+        "codecov": "^3.0.0",
+        "ember-cli": "~2.18.0",
+        "ember-cli-babel": "^6.6.0",
+        "ember-cli-dependency-checker": "^2.0.0",
+        "ember-cli-htmlbars": "^2.0.1",
+        "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+        "ember-cli-inject-live-reload": "^1.4.1",
+        "ember-cli-qunit": "^4.1.1",
+        "ember-cli-shims": "^1.2.0",
+        "ember-cli-sri": "^2.1.0",
+        "ember-cli-uglify": "^2.0.0",
+        "ember-disable-prototype-extensions": "^1.1.2",
+        "ember-export-application-global": "^2.0.0",
+        "ember-load-initializers": "^1.0.0",
+        "ember-resolver": "^4.0.0",
+        "ember-source": "~2.18.0",
+        "eslint": "^4.15.0",
+        "eslint-plugin-ember": "^5.0.0",
+        "eslint-plugin-node": "^5.2.1",
+        "glob": "^7.0.0",
+        "loader.js": "^4.2.3",
+        "mocha": "^4.0.0",
+        "mockery": "^2.1.0",
+        "nyc": "^11.4.1",
+        "tmp-sync": "^1.1.0"
+      },
+      "keywords": [
+        "ember-addon",
+        "testing"
+      ],
+      "dependencies": {
+        "chalk": "^2.3.0",
+        "cli-table2": "^0.2.0",
+        "core-object": "^3.1.5",
+        "debug": "^3.1.0",
+        "ember-try-config": "^3.0.0",
+        "extend": "^3.0.0",
+        "fs-extra": "^5.0.0",
+        "promise-map-series": "^0.2.1",
+        "resolve": "^1.1.6",
+        "rimraf": "^2.3.2",
+        "rsvp": "^4.7.0"
+      },
+      "ember-addon": {
+        "configPath": "tests/dummy/config"
+      },
+      "readme": "# ember-try\n\n[![npm version](https://badge.fury.io/js/ember-try.svg)](https://badge.fury.io/js/ember-try) [![Build Status](https://travis-ci.org/ember-cli/ember-try.svg?branch=master)](https://travis-ci.org/ember-cli/ember-try) [![Ember Observer Score](http://emberobserver.com/badges/ember-try.svg)](http://emberobserver.com/addons/ember-try) [![Build status](https://ci.appveyor.com/api/projects/status/9sswkni8pfuvo4dv/branch/master?svg=true)](https://ci.appveyor.com/project/kategengler/ember-try/branch/master) [![Code Climate](https://codeclimate.com/github/ember-cli/ember-try/badges/gpa.svg)](https://codeclimate.com/github/ember-cli/ember-try) [![Test Coverage](https://codecov.io/gh/ember-cli/ember-try/branch/master/graph/badge.svg)](https://codecov.io/gh/ember-cli/ember-try)\n\nAn ember-cli addon to test against multiple bower and npm dependencies, such as `ember` and `ember-data`.\n\n### Installation\n\n```\nember install ember-try\n```\n\n### Usage\n\nThis addon provides a few commands:\n\n### `ember try:each`\n\nThis command will run `ember test` or the configured command with each scenario's specified in the config and exit appropriately.\n\nThis command is especially useful to use on CI to test against multiple `ember` versions.\n\nIn order to use an alternate config path or to group various scenarios together in a single `try:each` run, you can use\nthe `--config-path` option.\n\n```\n  ember try:each --config-path=\"config/legacy-scenarios.js\"\n```\n\nIf you need to know the scenario that is being run (i.e. to customize a test output file name) you can use the `EMBER_TRY_CURRENT_SCENARIO`\nenvironment variable.\n\n#### `ember try:one <scenario> (...options) --- <command (Default: ember test)>`\n\nThis command will run any `ember-cli` command with the specified scenario. The command will default to `ember test`, if no command is specified on the command-line or in configuration.\n\nFor example:\n\n```\n  ember try:one ember-1.11-with-ember-data-beta-16 --- ember test --reporter xunit\n```\n\nor\n\n```\n  ember try:one ember-1.11-with-ember-data-beta-16 --- ember serve\n```\n\nWhen running in a CI environment where changes are discarded you can skip resetting your environment back to its original state by specifying --skip-cleanup=true as an option to ember try.\n*Warning: If you use this option and, without cleaning up, build and deploy as the result of a passing test suite, it will build with the last set of dependencies ember try was run with.*\n\n```\n  ember try:one ember-1.11 --skip-cleanup=true --- ember test\n```\n\nIn order to use an alternate config path or to group various scenarios, you can use the `--config-path` option.\n\n```\n  ember try:one ember-1.13 --config-path=\"config/legacy-scenarios.js\"\n```\n\n#### `ember try:reset`\n\nThis command restores the original `bower.json` from `bower.json.ember-try`, `package.json` from `package.json.ember-try`, `rm -rf`s `bower_components` and `node_components` and runs `bower install` and `npm install`. For use if any of the other commands fail to clean up after (they run this by default on completion).\n\n#### `ember try:ember <semver-string>`\n\nRuns `ember test` or the command in config for each version of Ember that is possible under the semver string given. Configuration follows the rules given under the `versionCompatibility` heading below.\n\n#### `ember try:config`\n\nDisplays the configuration that will be used. Also takes an optional `--config-path`.\n\n### Config\n\n##### versionCompatibility\nIf you're using `ember-try` with an Ember addon, there is a short cut to test many Ember versions. In your `package.json` under the `ember-addon` key, add the following:\n\n```json\n  \"ember-addon\": {\n    \"versionCompatibility\": {\n       \"ember\": \">1.11.0 <=2.0.0\"\n    }\n  }\n```\n\nThe value for \"ember\" can be any valid [semver statement](https://github.com/npm/node-semver).\nThis will autogenerate scenarios for each version of Ember that matches the statement. It will also include scenarios for `beta` and `canary` channels of Ember that will be allowed to fail.\nThese scenarios will ONLY be used if `scenarios` is NOT a key in the configuration file being used.\nIf `useVersionCompatibility` is set to `true` in the config file, the autogenerated scenarios will deep merge with any scenarios in the config file. For example, you could override just the `allowedToFail` property of the `ember-beta` scenario.\n\nTo keep this from getting out of hand, `ember-try` will limit the versions of Ember used to the lasted point release per minor version. For example, \">1.11.0 <=2.0.0\", would (as of writing) run with versions ['1.11.4', '1.12.2', '1.13.13', '2.0.0'].\n\nAs of v1.0.0, This will only work for projects starting with ember provided by npm, not bower. \n\n##### Configuration Files\n\nConfiguration will be read from a file in your ember app in `config/ember-try.js`. Here are the possible options:\n\n```js\n/*jshint node:true*/\n\nmodule.exports = function() {\n  return {\n    /*\n      `command` - a single command that, if set, will be the default command used by `ember-try`.\n      P.S. The command doesn't need to be an `ember <something>` command, they can be anything.\n      Keep in mind that this config file is JavaScript, so you can code in here to determine the command.\n    */\n    command: 'ember test --reporter xunit',\n    /*\n      `bowerOptions` - options to be passed to `bower`.\n    */\n    bowerOptions: ['--allow-root=true'],\n    /*\n      `npmOptions` - options to be passed to `npm`.\n    */\n    npmOptions: ['--loglevel=silent', '--no-shrinkwrap=true'],\n    /*\n      If set to true, the `versionCompatibility` key under `ember-addon` in `package.json` will be used to\n      automatically generate scenarios that will deep merge with any in this configuration file.\n    */\n    useVersionCompatibility: true,\n    scenarios: [\n      {\n        name: 'Ember 1.10 with ember-data',\n\n        /*\n          `command` can also be overridden at the scenario level.\n        */\n        command: 'ember test --filter ember-1-10',\n        bower: {\n          dependencies: {\n            'ember': '1.10.0',\n            'ember-data': '1.0.0-beta.15'\n          }\n        },\n      },\n      {\n        name: 'Ember 2.11.0',\n        /*\n          `env` can be set per scenario, with environment variables to set for the command being run.\n          This will be merged with process.env\n       */\n        env: {\n          ENABLE_NEW_DASHBOARD: true\n        },\n        npm: {\n          devDependencies: {\n            'ember-source': '2.11.0'\n          }\n        }\n      },\n      {\n        name: 'Ember canary with Ember-Data 2.3.0',\n        /*\n          `allowedToFail` - If true, if this scenario fails it will not fail the entire try command.\n        */\n        allowedToFail: true,\n        npm: {\n          devDependencies: {\n            'ember-data': '2.3.0',\n\n            // you can remove any package by marking `null`\n            'some-optional-package': null\n          }\n        },\n        bower: {\n          dependencies: {\n            'ember': 'components/ember#canary'\n          },\n          resolutions: {\n            'ember': 'canary'\n          }\n        }\n      },\n      {\n        name: 'Ember beta',\n        bower: {\n          dependencies: {\n            'ember': 'components/ember#beta'\n          },\n          resolutions: { // Resolutions are only necessary when they do not match the version specified in `dependencies`\n            'ember': 'beta'\n          }\n        }\n      }\n    ]\n  };\n};\n```\n\nScenarios are sets of dependencies (`bower` and `npm` only). They can be specified exactly as in the `bower.json` or `package.json`\nThe `name` can be used to try just one scenario using the `ember try:one` command.\n\n##### Yarn\n\nIf you include `useYarn: true` in your `ember-try` config, all npm scenarios will use `yarn` for install with the `--no-lockfile` option. At cleanup, your dependencies will be restored to their prior state.\n \n##### A note on npm scenarios with lockfiles\n\nLockfiles are ignored by `ember-try`. (`yarn` will run with `--no-lockfile` and `npm` will be run with `--no-shrinkwrap`).\nWhen testing various scenarios, it's important to \"float\" dependencies so that the scenarios are run with the latest satisfying versions of dependencies a user of the project would get.\n\n### Video\n[![How to use EmberTry](https://i.vimeocdn.com/video/559399937_500.jpg)](https://vimeo.com/157688157)\n\nSee an example of using `ember-try` for CI [here](https://github.com/kategengler/ember-feature-flags/commit/aaf0226975c76630c875cf6b923fdc23b025aa79), and the resulting build [output](https://travis-ci.org/kategengler/ember-feature-flags/builds/55597086).\n\n### Special Thanks\n\n- Much credit is due to [Edward Faulkner](https://github.com/ef4) The scripts in [liquid-fire](https://github.com/ef4/liquid-fire) that test against multiple ember versions were the inspiration for this project.\n\n\n### Developing\n\n- Be sure to run `npm link` and `npm link ember-try`, otherwise any `ember try` commands you run will use the version of ember-try included by ember-cli itself.\n",
+      "readmeFilename": "README.md",
+      "gitHead": "1520550b5626382640146797e67261289374f642",
+      "bugs": {
+        "url": "https://github.com/ember-cli/ember-try/issues"
+      },
+      "homepage": "https://github.com/ember-cli/ember-try#readme",
+      "_id": "ember-try@1.0.0-beta.1",
+      "_npmVersion": "5.6.0",
+      "_nodeVersion": "9.4.0",
+      "_npmUser": {
+        "name": "katiegengler",
+        "email": "katie@kmg.io"
+      },
+      "dist": {
+        "integrity": "sha512-Fe6K1bZIdWkHtNlO4X0PryR48CKqk2ird2V/pQq9Wy4+1QcJOQ3paxaqzkBy++s2TIQGHf5PVItWim5yf0RqKg==",
+        "shasum": "868524de4f81deca33407b929f69d12f83ce6c0d",
+        "tarball": "https://registry.npmjs.org/ember-try/-/ember-try-1.0.0-beta.1.tgz",
+        "fileCount": 99,
+        "unpackedSize": 409734
+      },
+      "maintainers": [
+        {
+          "name": "katiegengler",
+          "email": "katie@kmg.io"
+        },
+        {
+          "name": "kellyselden",
+          "email": "kellyselden@gmail.com"
+        },
+        {
+          "name": "rwjblue",
+          "email": "me@rwjblue.com"
+        },
+        {
+          "name": "stefanpenner",
+          "email": "stefan.penner@gmail.com"
+        }
+      ],
+      "_npmOperationalInternal": {
+        "host": "s3://npm-registry-packages",
+        "tmp": "tmp/ember-try_1.0.0-beta.1_1518144056103_0.4847379995229224"
+      }
+    }
+  },
+  "readme": "",
+  "maintainers": [
+    {
+      "name": "katiegengler",
+      "email": "katie@kmg.io"
+    },
+    {
+      "name": "kellyselden",
+      "email": "kellyselden@gmail.com"
+    },
+    {
+      "name": "rwjblue",
+      "email": "me@rwjblue.com"
+    },
+    {
+      "name": "stefanpenner",
+      "email": "stefan.penner@gmail.com"
+    }
+  ],
+  "time": {
+    "modified": "2018-02-09T02:40:57.122Z",
+    "created": "2015-03-24T05:12:52.775Z",
+    "0.0.1": "2015-03-24T05:12:52.775Z",
+    "0.0.2": "2015-03-31T06:17:50.917Z",
+    "0.0.3": "2015-04-04T01:48:18.101Z",
+    "0.0.4": "2015-04-05T06:12:34.996Z",
+    "0.0.5": "2015-04-20T03:09:27.950Z",
+    "0.0.6": "2015-06-02T02:10:48.248Z",
+    "0.0.7": "2015-06-03T15:58:19.878Z",
+    "0.0.8": "2015-07-24T04:06:20.106Z",
+    "0.1.0": "2016-01-29T19:12:05.724Z",
+    "0.1.1": "2016-02-01T17:14:21.570Z",
+    "0.1.2": "2016-02-04T23:45:06.240Z",
+    "0.1.3": "2016-02-16T21:37:34.250Z",
+    "0.2.0": "2016-02-20T00:36:56.495Z",
+    "0.2.1": "2016-03-13T21:26:29.489Z",
+    "0.2.2": "2016-03-15T02:46:24.735Z",
+    "0.2.3": "2016-06-21T16:02:23.493Z",
+    "0.2.4": "2016-06-21T16:58:00.246Z",
+    "0.2.5": "2016-08-03T04:56:59.780Z",
+    "0.2.6": "2016-09-28T12:57:38.894Z",
+    "0.2.7": "2016-10-30T23:21:43.469Z",
+    "0.2.8": "2016-11-01T00:59:11.362Z",
+    "0.2.9": "2017-01-15T03:19:00.509Z",
+    "0.2.10": "2017-02-21T12:47:35.750Z",
+    "0.2.11": "2017-03-16T14:21:32.774Z",
+    "0.2.12": "2017-03-24T03:06:12.058Z",
+    "0.2.13": "2017-03-28T00:04:47.775Z",
+    "0.2.14": "2017-04-22T13:47:46.077Z",
+    "0.2.15": "2017-05-31T23:16:32.184Z",
+    "0.2.16": "2017-07-16T16:25:10.749Z",
+    "0.2.17": "2017-09-08T21:29:17.737Z",
+    "0.2.18": "2017-11-06T02:26:44.479Z",
+    "0.2.19": "2017-11-12T23:47:25.412Z",
+    "0.2.20": "2017-11-13T22:59:19.290Z",
+    "0.2.21": "2017-11-14T19:22:14.482Z",
+    "0.2.22": "2017-11-14T23:53:51.699Z",
+    "0.2.23": "2018-01-13T17:35:23.069Z",
+    "1.0.0-beta.0": "2018-02-07T18:10:37.008Z",
+    "1.0.0-beta.1": "2018-02-09T02:40:57.122Z"
+  },
+  "homepage": "https://github.com/ember-cli/ember-try#readme",
+  "keywords": [
+    "ember-addon",
+    "testing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ember-cli/ember-try.git"
+  },
+  "author": {
+    "name": "Katie Gengler"
+  },
+  "bugs": {
+    "url": "https://github.com/ember-cli/ember-try/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "",
+  "users": {
+    "gregone": true,
+    "bmeurant": true
+  },
+  "_attachments": {}
+}
