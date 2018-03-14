@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddonsUpdater
   def self.run
     matching_npm_packages = PackageListFetcher.run
@@ -10,8 +12,8 @@ class AddonsUpdater
   def self.addons_in_need_of_update(matching_npm_packages)
     addons_needing_updating = []
     matching_npm_packages.each do |a|
-      addon_data = a["package"]
-      addon_name = addon_data["name"]
+      addon_data = a['package']
+      addon_name = addon_data['name']
       addon = Addon.find_by(name: addon_name)
 
       unless addon
@@ -19,7 +21,7 @@ class AddonsUpdater
         next
       end
 
-      if DateTime.parse(addon_data["date"]) > addon.latest_version_date
+      if Time.zone.parse(addon_data['date']) > addon.latest_version_date
         addons_needing_updating << addon_name
       end
     end

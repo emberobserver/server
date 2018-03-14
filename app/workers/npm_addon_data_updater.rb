@@ -39,7 +39,7 @@ class NpmAddonDataUpdater
   end
 
   def repo_url
-    if !@metadata['repository']
+    unless @metadata['repository']
       return
     end
     url = @metadata['repository']['url']
