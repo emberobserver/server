@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213164540) do
+ActiveRecord::Schema.define(version: 20180314180351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180213164540) do
     t.string "dependency_type"
     t.integer "addon_version_id"
     t.index ["addon_version_id"], name: "index_addon_version_dependencies_on_addon_version_id"
+    t.index ["package", "version"], name: "index_addon_version_dependencies_on_package_and_version"
+    t.index ["package"], name: "index_addon_version_dependencies_on_package"
   end
 
   create_table "addon_versions", id: :serial, force: :cascade do |t|
