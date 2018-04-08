@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 class AddonSourceUpdater
-  EXCLUDED_PATHS = %w[bower_components node_modules tmp dist vendor public coverage tests/fixtures demo
-                      typings website docs support dependencies jsdocTemplates test/vendor example examples
-                      npm-shrinkwrap.json dependency-snapshot.json].freeze
-  EXCLUDED_PATTERNS = %w[**/*.log **/yarn.lock **/Gemfile.lock].freeze
+  EXCLUDED = %w[/bower_components /node_modules /tmp /dist /vendor /public /coverage /tests/fixtures /demo
+                /typings /website /docs /support /dependencies /jsdocTemplates /test/vendor /example /examples
+                /.git npm-shrinkwrap.json dependency-snapshot.json .gitkeep bin/ .bin/ **/*.log **/yarn.lock **/Gemfile.lock].freeze
 
-  def initialize(addon_id, source_directory)
-    @source_directory = source_directory
+  def initialize(addon_id, directories)
+    @source_directory = directories[:full_source_dir]
+    @source_directory_to_index = directories[:indexed_source_dir]
     @addon = Addon.find(addon_id)
-    @addon_directory = File.join(source_directory, addon.id.to_s)
-  end
+
+    @addon_directory = File.join(@source_directory, addon.id.to_s)
+    @addon_directory_to_index = File.join(@source_directory_to_index, addon.id.to_s)
 
   def run
     fetch_or_clone_repo
-    remove_excluded_paths
+    copy_to_indexed_directory
   end
 
   private
@@ -49,13 +50,12 @@ class AddonSourceUpdater
     end
   end
 
-  def remove_excluded_paths
-    return unless File.exist?(addon_directory)
-    FileUtils.cd addon_directory do
-      FileUtils.rmtree EXCLUDED_PATHS
-      EXCLUDED_PATTERNS.each { |pattern| FileUtils.rmtree Dir.glob(pattern) }
-    end
+  def copy_to_indexed_directory
+    excludes = EXCLUDED.map { |e| "--exclude=#{e}" }.join(' ')
+    # copy, e.g. /source-dir/addon-name/ /dest-dir/addon-name/
+    # done this way so the excludes starting with a / are matched at the root of the transfer
+    system("rsync -azv --delete-before --delete-excluded #{excludes} #{addon_directory}/ #{addon_directory_to_index}/")
   end
 
-  attr_reader :source_directory, :addon_directory, :addon
+  attr_reader :source_directory, :source_directory_to_index, :addon_directory, :addon_directory_to_index, :addon
 end

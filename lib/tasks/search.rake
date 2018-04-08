@@ -12,10 +12,11 @@ namespace :search do
 
   task fetch_source: :environment do
     code_index_dir = ENV['INDEX_SOURCE_DIR'] || File.join(Rails.root, 'source')
+    code_copy_dir = ENV['FULL_SOURCE_DIR'] || File.join(Rails.root, 'source-copy')
     addons_to_fetch = Addon.where(has_invalid_github_repo: false, hidden: false).where.not(repository_url: nil, github_repo: nil)
     puts "Fetching source for #{addons_to_fetch.size} addons..."
-    addons_to_fetch.select([:id, :name]).each do |addon|
-      AddonSourceUpdater.new(addon.id, code_index_dir).run
+    addons_to_fetch.select(:id).each do |addon|
+      AddonSourceUpdater.new(addon.id, full_source_dir: code_copy_dir, indexed_source_dir: code_index_dir).run
     end
 
     all_addon_directories = Dir.entries(code_index_dir)
