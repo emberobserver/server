@@ -56,7 +56,7 @@ class AddonSourceUpdater
       excludes = EXCLUDED.map { |e| "--exclude=#{e}" }.join(' ')
       # copy, e.g. /source-dir/addon-name/ /dest-dir/addon-name/
       # done with trailing slashes so the excludes starting with a / are matched at the root of the transfer
-      system("rsync -azv --delete-before --delete-excluded #{excludes} #{addon_directory}/ #{addon_directory_to_index}/")
+      system("rsync -az --delete-before --delete-excluded #{excludes} #{addon_directory}/ #{addon_directory_to_index}/")
     else
       FileUtils.rm_rf(addon_directory_to_index)
     end
