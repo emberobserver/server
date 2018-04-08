@@ -47,6 +47,7 @@ DEPLOY_HOST=$1
 [[ $# == 2 ]] && . $2
 
 require_env_variable 'ADDON_SOURCE_DIR'
+require_env_variable 'ADDON_FULL_SOURCE_DIR'
 require_env_variable 'BACKUP_SNITCH_URL'
 require_env_variable 'BUGSNAG_API_KEY'
 require_env_variable 'EMBER_OBSERVER_DATABASE_PASSWORD'
@@ -190,6 +191,7 @@ SMTP_USERNAME=${SMTP_USERNAME}
 SMTP_PASSWORD=${SMTP_PASSWORD}
 ADDON_BADGE_DIR=${CLIENT_ROOT}/badges
 INDEX_SOURCE_DIR=${ADDON_SOURCE_DIR}
+FULL_SOURCE_DIR=${ADDON_FULL_SOURCE_DIR}
 END_OF_ENV
 chown ${USER}.${GROUP} "${SERVER_ROOT}/shared/.env"
 
@@ -213,6 +215,9 @@ ufw --force enable
 # Create directory to hold checked-out addon source
 mkdir ${ADDON_SOURCE_DIR}
 chown ${USER}.${GROUP} ${ADDON_SOURCE_DIR}
+
+mkdir ${ADDON_FULL_SOURCE_DIR}
+chown ${USER}.${GROUP} ${ADDON_FULL_SOURCE_DIR}
 
 # Add Go packages
 export GOPATH=${GO_PATH}
