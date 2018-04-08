@@ -46,15 +46,20 @@ class AddonSourceUpdater
       clone_command = "GIT_TERMINAL_PROMPT=0 git clone --single-branch #{addon.repository_url} #{addon.id}"
       unless system(clone_command)
         puts "Source for #{addon.name} is not available, skipping"
+        FileUtils.rm_rf(addon_directory)
       end
     end
   end
 
   def copy_to_indexed_directory
-    excludes = EXCLUDED.map { |e| "--exclude=#{e}" }.join(' ')
-    # copy, e.g. /source-dir/addon-name/ /dest-dir/addon-name/
-    # done this way so the excludes starting with a / are matched at the root of the transfer
-    system("rsync -azv --delete-before --delete-excluded #{excludes} #{addon_directory}/ #{addon_directory_to_index}/")
+    if File.exist?(addon_directory)
+      excludes = EXCLUDED.map { |e| "--exclude=#{e}" }.join(' ')
+      # copy, e.g. /source-dir/addon-name/ /dest-dir/addon-name/
+      # done with trailing slashes so the excludes starting with a / are matched at the root of the transfer
+      system("rsync -azv --delete-before --delete-excluded #{excludes} #{addon_directory}/ #{addon_directory_to_index}/")
+    else
+      FileUtils.rm_rf(addon_directory_to_index)
+    end
   end
 
   attr_reader :source_directory, :source_directory_to_index, :addon_directory, :addon_directory_to_index, :addon
