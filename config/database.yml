@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   host: localhost
   encoding: unicode
-  pool: 5
+  pool: 27
   timeout: 5000
 
 development:
