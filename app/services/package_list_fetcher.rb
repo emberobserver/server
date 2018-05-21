@@ -56,7 +56,7 @@ class PackageListFetcher
         total = parsed_response[:total]
 
         if fetched_count == 0
-          expected_count += total
+          expected_count = total
         end
 
         fetched_count += parsed_response[:packages].length

@@ -37,18 +37,12 @@ class PackageFetcher
 
     response = Request.get("#{base_url}#{sanitized_name}")
     if response.success?
-      begin
-        response_body = response.body
-        contents = JSON.parse(response_body)
-        NpmAddonDataUpdater.new(contents).update
-      rescue StandardError
-        Rails.logger.warn("Response not as expected for #{addon_name}")
-      end
+      response_body = response.body
+      return JSON.parse(response_body)
     elsif response.timed_out?
-      Rails.logger.warn("Timed out fetching addon from npm #{addon_name}")
+      raise RuntimeError, "Timed out fetching addon from npm #{addon_name}"
     else
-      Rails.logger.warn("Failure fetching addon from npm #{addon_name}")
-      Rails.logger.warn("HTTP request failed: #{response.code}")
+      raise RuntimeError, "Failure fetching addon from npm #{addon_name}, #{response.code}"
     end
   end
 end

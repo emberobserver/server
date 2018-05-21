@@ -29,3 +29,5 @@ npm-fetch/node_modules
 /public/badges/*.svg
 
 /coverage
+
+dump.rdb
