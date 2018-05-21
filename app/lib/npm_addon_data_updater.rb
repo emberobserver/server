@@ -39,24 +39,8 @@ class NpmAddonDataUpdater
     demo_url
   end
 
-  def repo_url
-    unless @metadata['repository']
-      return
-    end
-    url = @metadata['repository']['url']
-    return nil if url.nil?
-    if url.match?(%r{^http:///})
-      url.sub!('http:///', 'http://')
-    end
-    if url.match?(/git@github.com/)
-      url.sub!('git@github.com', 'github.com')
-    end
-    if url.match?(%r{^git\+https://})
-      url.sub!(/^git\+/, '')
-    elsif url.match?(%r{^git\+ssh://github.com})
-      url.sub!(/^git\+ssh/, 'https')
-    end
-    url.sub(/`$/, '')
+  def repo_url(url)
+    NpmDataSanitizer.repository_url(url)
   end
 
   def save_addon
@@ -74,6 +58,7 @@ class NpmAddonDataUpdater
 
   def update_addon_data
     latest_version = @metadata['dist-tags']['latest']
+    repo = @metadata['repository'] ? @metadata['repository']['url'] : nil
     addon_props = {
       demo_url: demo_url(latest_version),
       description: @metadata['description'],
@@ -81,7 +66,7 @@ class NpmAddonDataUpdater
       latest_version_date: @metadata['time'] ? @metadata['time'][latest_version] : nil,
       license: @metadata['license'],
       published_date: @metadata['time']['created'],
-      repository_url: repo_url
+      repository_url: repo_url(repo)
     }
     if @metadata.include?('github')
       github_data = @metadata['github']
@@ -92,6 +77,9 @@ class NpmAddonDataUpdater
         addon_props[:github_user] = Regexp.last_match(1)
         addon_props[:github_repo] = Regexp.last_match(2)
       end
+    elsif repo_url(repo) =~ %r{^https*://www\.github\.com/(.+?)/(.+?)}
+      addon_props[:github_user] = Regexp.last_match(1)
+      addon_props[:github_repo] = Regexp.last_match(2)
     end
     @addon.update!(addon_props)
   end
@@ -108,11 +96,9 @@ class NpmAddonDataUpdater
 
     @metadata['versions'].each do |version, data|
       addon_version = @addon.addon_versions.find_by(version: version)
-      if addon_version && !addon_version.ember_cli_version
-        if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
-          addon_version.ember_cli_version = data['devDependencies']['ember-cli']
-          addon_version.save!
-        end
+      if addon_version && data['devDependencies'] && data['devDependencies']['ember-cli'] && !addon_version.ember_cli_version
+        addon_version.ember_cli_version = data['devDependencies']['ember-cli']
+        addon_version.save!
       end
       next if addon_version
       addon_version = AddonVersion.create!(
@@ -184,9 +170,11 @@ class NpmAddonDataUpdater
 
   def update_keywords
     @addon.npm_keywords.clear
-    @metadata['keywords'].each do |keyword|
-      npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
-      @addon.npm_keywords << npm_keyword
+    if @metadata['keywords']
+      @metadata['keywords'].each do |keyword|
+        npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
+        @addon.npm_keywords << npm_keyword
+      end
     end
   end
 
