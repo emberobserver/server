@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class AddonScoreUpdater < ApplicationJob
+class AddonScoreUpdater
+  include Sidekiq::Worker
+
   def perform(addon_id)
     addon = Addon.find(addon_id)
     update_score(addon)

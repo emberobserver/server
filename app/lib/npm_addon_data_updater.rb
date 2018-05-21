@@ -20,6 +20,7 @@ class NpmAddonDataUpdater
     update_latest_addon_version
     update_update_timestamp
     save_addon
+    @addon
   end
 
   private

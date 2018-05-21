@@ -70,10 +70,10 @@ Naming/VariableNumber:
 # Offense count: 11
 Rails/FilePath:
   Exclude:
-    - 'app/services/code_search.rb'
+    - 'app/lib/code_search.rb'
     - 'app/workers/addon_score_updater.rb'
     - 'lib/tasks/search.rake'
-    - 'test/services/code_search_test.rb'
+    - 'test/lib/code_search_test.rb'
     - 'test/workers/addon_data_updater_test.rb'
 
 # Offense count: 16
@@ -140,7 +140,7 @@ Style/DateTime:
 # Offense count: 1
 Style/DoubleNegation:
   Exclude:
-    - 'app/services/search_engine.rb'
+    - 'app/lib/search_engine.rb'
 
 # Offense count: 6
 # Configuration parameters: MinBodyLength.
@@ -170,7 +170,7 @@ Style/RedundantBegin:
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:
   Exclude:
-    - 'app/services/code_search.rb'
+    - 'app/lib/code_search.rb'
     - 'test/controllers/api/v2/search_controller_test.rb'
 
 # Offense count: 4
