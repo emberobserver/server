@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class PackageListFetcherTest < ActiveSupport::TestCase
-  test 'Simple request smaller than page size' do
+  test 'simple request smaller than page size' do
     data = {
       objects: [
         { package: { name: 'ember-try' } },
@@ -21,7 +21,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
     assert_equal(%w[ember-try @ember/test-helpers ember-cli-mirage ember-feature-flags], results.map { |r| r['package']['name'] })
   end
 
-  test 'Multiple pages returns all matching packages' do
+  test 'multiple pages returns all matching packages' do
     page_1_data = {
       objects: [
         { package: { name: 'ember-try' } },
@@ -59,7 +59,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
 
     results = PackageListFetcher.run(page_size: 2)
 
-    assert_equal(results.length, 7)
+    assert_equal(7, results.length)
     assert_equal(%w[
                    ember-try
                    @ember/test-helpers
@@ -71,14 +71,14 @@ class PackageListFetcherTest < ActiveSupport::TestCase
                  ], results.map { |r| r['package']['name'] })
   end
 
-  test 'First page request times out' do
+  test 'first page request times out' do
     stub_page(timed_out_response, size: 250, from: 0)
     results = PackageListFetcher.run
 
-    assert_equal(results.length, 0)
+    assert_equal(0, results.length)
   end
 
-  test 'Multiple pages with some timing out returns everything fetched before the timeout' do
+  test 'multiple pages with some timing out returns everything fetched before the timeout' do
     page_1_data = {
       objects: [
         { package: { name: 'ember-try' } },
@@ -99,14 +99,14 @@ class PackageListFetcherTest < ActiveSupport::TestCase
                  ], results.map { |r| r['package']['name'] })
   end
 
-  test 'First page request fails' do
+  test 'first page request fails' do
     stub_page(failed_response, size: 250, from: 0)
     results = PackageListFetcher.run
 
-    assert_equal(results.length, 0)
+    assert_equal(0, results.length)
   end
 
-  test 'Multiple pages with some failing returns everything fetched before the failure' do
+  test 'multiple pages with some failing returns everything fetched before the failure' do
     page_1_data = {
       objects: [
         { package: { name: 'ember-try' } },
@@ -127,7 +127,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
                  ], results.map { |r| r['package']['name'] })
   end
 
-  test 'Empty response causes it to stop fetching' do
+  test 'empty response causes it to stop fetching' do
     empty_objects_data = {
       objects: [],
       total: 4
@@ -139,7 +139,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
     assert_equal(0, results.length)
   end
 
-  test 'Multiple pages of data with one empty response returns those fetched so far' do
+  test 'multiple pages of data with one empty response returns those fetched so far' do
     page_1_data = {
       objects: [
         { package: { name: 'ember-try' } },
@@ -165,7 +165,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
                  ], results.map { |r| r['package']['name'] })
   end
 
-  test 'Malformed response raises' do
+  test 'malformed response raises' do
     response = MockResponse.new(body: '{ foo: {}')
     stub_page(response, size: 250, from: 0)
     assert_raises JSON::ParserError do
