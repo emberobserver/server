@@ -40,9 +40,9 @@ class PackageFetcher
       response_body = response.body
       return JSON.parse(response_body)
     elsif response.timed_out?
-      raise RuntimeError, "Timed out fetching addon from npm #{addon_name}"
+      raise "Timed out fetching addon from npm #{addon_name}"
     else
-      raise RuntimeError, "Failure fetching addon from npm #{addon_name}, #{response.code}"
+      raise "Failure fetching addon from npm #{addon_name}, #{response.code}"
     end
   end
 end
