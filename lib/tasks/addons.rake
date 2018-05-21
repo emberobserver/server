@@ -7,6 +7,10 @@ namespace :addons do
     AddonsUpdater.run
   end
 
+  task update_repos: [:environment, 'github:update:all']
+
+  task update_meta: [:environment, 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'addons:update:search_indexes', 'addons:update:notify']
+
   namespace :update do
     desc 'Update download count for addons'
     task download_count: :environment do
@@ -53,7 +57,7 @@ namespace :addons do
     desc 'Update scores for addons'
     task scores: :environment do
       Addon.all.each do |addon|
-        AddonScoreUpdater.perform_now(addon.id)
+        AddonScoreUpdater.perform_async(addon.id)
       end
     end
 

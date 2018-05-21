@@ -28,7 +28,15 @@ every 1.day, at: '0900' do
 end
 
 every 1.hour, at: 5 do
-  rake "addons:update:all"
+  rake "addons:update_all"
+end
+
+every 1.hour, at: 25 do
+  rake "addons:update_repos"
+end
+
+every 1.hour, at: 45 do
+  rake "addons:update_meta"
 end
 
 every 1.day, at: '0400' do

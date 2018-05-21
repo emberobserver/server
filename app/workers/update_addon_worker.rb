@@ -6,6 +6,7 @@ class UpdateAddonWorker
 
   def perform(addon_name)
     data = PackageFetcher.run(addon_name)
-    NpmAddonDataUpdater.new(data).update
+    addon = NpmAddonDataUpdater.new(data).update
+    AddonScoreUpdater.perform_async(addon.id)
   end
 end
