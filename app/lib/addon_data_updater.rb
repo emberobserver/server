@@ -76,7 +76,7 @@ class AddonDataUpdater
         addon_props[:github_user] = Regexp.last_match(1)
         addon_props[:github_repo] = Regexp.last_match(2)
       end
-    elsif repo_url =~ %r{^https*://www\.github\.com/(.+?)/(.+?)}
+    elsif repo_url(@metadata['repository']['url']) =~ %r{^https*://www\.github\.com/(.+?)/(.+?)}
       addon_props[:github_user] = Regexp.last_match(1)
       addon_props[:github_repo] = Regexp.last_match(2)
     end
