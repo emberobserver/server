@@ -5,6 +5,9 @@ require 'net/http'
 namespace :addons do
   task update_all: :environment do
     AddonsUpdater.run
+    if Rails.env.production?
+      Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
+    end
   end
 
   task update_repos: [:environment, 'github:update:all']
