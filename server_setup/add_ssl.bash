@@ -60,9 +60,16 @@ upstream ember-observer-server {
   server unix:${SERVER_ROOT}/shared/tmp/sockets/puma.sock fail_timeout=0;
 }
 
+proxy_cache_path  /var/cache/nginx levels=1:2 keys_zone=default:8m max_size=1000m inactive=30d;
+proxy_temp_path   /var/cache/nginx/tmp;
+
 server {
   listen 80;
   server_name emberobserver.com www.emberobserver.com ${DEPLOY_HOST};
+
+  location ~* /.well-known {
+    root /srv/app/ember-observer/client;
+  }
 
   return 301 https://\\\$host\\\$request_uri;
 }
@@ -76,6 +83,8 @@ server {
   ssl_certificate_key /etc/letsencrypt/live/emberobserver.com/privkey.pem;
   include /etc/nginx/ssl.conf;
 
+  client_max_body_size 500M;
+
   gzip on;
   gzip_types text/html text/css application/x-javascript application/json image/svg+xml;
 
@@ -83,7 +92,31 @@ server {
   access_log ${CLIENT_ROOT}/logs/access.log;
   error_log ${CLIENT_ROOT}/logs/error.log;
 
-  client_max_body_size 1G;
+  location /sidekiq {
+    auth_basic "Sidekiq";
+    auth_basic_user_file /etc/apache2/.htpasswd;
+    proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
+    proxy_set_header Host \\\$http_host;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_redirect off;
+    proxy_pass http://ember-observer-server;
+  }
+
+  location /api/v2 {
+    proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
+    proxy_set_header Host \\\$http_host;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_redirect off;
+    proxy_pass http://ember-observer-server;
+
+    proxy_cache default;
+    proxy_cache_lock on;
+    proxy_cache_use_stale updating;
+    proxy_cache_valid 2h;
+    proxy_cache_bypass $http_authorization;
+    proxy_no_cache $http_authorization;
+    add_header X-Cache-Status \\\$upstream_cache_status;
+  }
 
   location /api {
     proxy_set_header X-Forwarded-For \\\$proxy_add_x_forwarded_for;
@@ -96,6 +129,20 @@ server {
   location ~* /badges {
     add_header Cache-Control no-cache;
     root ${CLIENT_ROOT};
+  }
+
+  location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|webm|woff)$ {
+    expires 1y;
+    add_header Cache-Control "public";
+  }
+
+  location ~* \.(?:css|js)$ {
+    expires 1y;
+    add_header Cache-Control "public";
+  }
+
+  location ~* /.well-known {
+    root /srv/app/ember-observer/client;
   }
 
   location / {
