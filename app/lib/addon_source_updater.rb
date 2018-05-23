@@ -6,10 +6,13 @@ class AddonSourceUpdater
                       npm-shrinkwrap.json dependency-snapshot.json].freeze
   EXCLUDED_PATTERNS = %w[**/*.log **/yarn.lock **/Gemfile.lock].freeze
 
-  def run(addon_id, source_directory)
+  def initialize(addon_id, source_directory)
     @source_directory = source_directory
     @addon = Addon.find(addon_id)
     @addon_directory = File.join(source_directory, addon.id.to_s)
+  end
+
+  def run
     fetch_or_clone_repo
     remove_excluded_paths
   end

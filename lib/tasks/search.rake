@@ -15,7 +15,7 @@ namespace :search do
     addons_to_fetch = Addon.where(has_invalid_github_repo: false, hidden: false).where.not(repository_url: nil, github_repo: nil)
     puts "Fetching source for #{addons_to_fetch.size} addons..."
     addons_to_fetch.select([:id, :name]).each do |addon|
-      AddonSourceUpdater.run(addon.id, code_index_dir)
+      AddonSourceUpdater.new(addon.id, code_index_dir).run
     end
 
     all_addon_directories = Dir.entries(code_index_dir)
