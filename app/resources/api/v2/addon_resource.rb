@@ -30,6 +30,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   DEFAULT_PAGE_SIZE = 977
 
   filter :name
+  filter :id
 
   REQUIRE_ADMIN = ->(values, context) {
     if values.include?('true') && context[:current_user].nil?
