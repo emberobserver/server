@@ -126,6 +126,10 @@ server {
     proxy_pass http://ember-observer-server;
   }
 
+  location ^~ /addons {
+    try_files \\\$uri \\\$uri/ /index.html?/\\\$request_uri;
+  }
+
   location ~* /badges {
     add_header Cache-Control no-cache;
     root ${CLIENT_ROOT};
