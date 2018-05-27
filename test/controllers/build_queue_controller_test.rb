@@ -89,7 +89,7 @@ class BuildQueueControllerTest < ControllerTest
 
     authed_post :get_build
 
-    assert_equal '>= 1.12.0', json_response['pending_build']['ember_version_compatibility']
+    assert_equal PendingBuildSerializer::DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING, json_response['pending_build']['ember_version_compatibility']
   end
 
   private
