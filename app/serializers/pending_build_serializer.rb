@@ -23,9 +23,9 @@
 #  fk_rails_...  (build_server_id => build_servers.id)
 #
 
-DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '>= 1.12.0'
-
 class PendingBuildSerializer < ApplicationSerializer
+  DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '^1.13.0 || ^2.0.0 || ^2.4.0 || ^2.8.0 || ^2.12.0 || ^2.16.0 || >=2.18.0'
+
   attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility
 
   def addon_name
