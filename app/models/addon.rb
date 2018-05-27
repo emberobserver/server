@@ -117,4 +117,8 @@ class Addon < ApplicationRecord
   def self.ranked
     where('ranking is not null')
   end
+
+  def self.top_n(n)
+    Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(n)
+  end
 end

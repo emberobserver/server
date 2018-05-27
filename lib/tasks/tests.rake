@@ -2,7 +2,7 @@
 
 namespace :tests do
   task queue_canary_tests: :environment do
-    Addon.ranked.each do |addon|
+    Addon.top_n(200).each do |addon|
       PendingBuild.create!(
         addon_version: addon.newest_version,
         canary: true
@@ -11,7 +11,7 @@ namespace :tests do
   end
 
   task queue_tests: :environment do
-    Addon.ranked
+    Addon.top_n(200)
          .map(&:newest_version)
          .select { |version| version.test_results.where(canary: false).count == 0 }
          .each { |version| PendingBuild.create!(addon_version: version) }

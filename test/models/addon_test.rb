@@ -159,4 +159,19 @@ class AddonTest < ActiveSupport::TestCase
 
     assert_equal [top], Addon.top_scoring.to_a
   end
+
+  test 'top_n returns the top N addons' do
+    create(:addon, score: 8, last_month_downloads: 4)
+    create(:addon, score: 9)
+    create(:addon, score: 8, last_month_downloads: 100)
+    create(:addon, score: 10)
+    create(:addon, score: 8, last_month_downloads: 54)
+    create(:addon, score: 8, last_month_downloads: 77)
+
+    top_addons = Addon.top_n(5)
+
+    assert_equal 5, top_addons.count, 'returns the request number of addons'
+    assert_equal [10, 9, 8, 8, 8], top_addons.map(&:score), 'sorts addons by score'
+    assert_equal [100, 77, 54], top_addons.select { |addon| addon.score == 8 }.map(&:last_month_downloads), 'sorts addons with the same score by download count'
+  end
 end
