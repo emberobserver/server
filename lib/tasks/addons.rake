@@ -38,7 +38,7 @@ namespace :addons do
     desc 'Update ranking for top 100 addons'
     task ranking: [:environment] do
       Addon.update_all(ranking: nil)
-      Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(100).each_with_index do |addon, index|
+      Addon.top_n(100).each_with_index do |addon, index|
         addon.ranking = index + 1
         addon.save
       end
