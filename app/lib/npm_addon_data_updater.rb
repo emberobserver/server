@@ -77,7 +77,7 @@ class NpmAddonDataUpdater
         addon_props[:github_user] = Regexp.last_match(1)
         addon_props[:github_repo] = Regexp.last_match(2)
       end
-    elsif repo_url(repo) =~ %r{^https*://www\.github\.com/(.+?)/(.+?)}
+    elsif repo_url(repo) =~ %r{https?://(www\.)?github\.com/(.+?)/(.+?)(\.git)?$}
       addon_props[:github_user] = Regexp.last_match(1)
       addon_props[:github_repo] = Regexp.last_match(2)
     end
