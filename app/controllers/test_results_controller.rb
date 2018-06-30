@@ -100,7 +100,7 @@ class TestResultsController < ApplicationController
   end
 
   def extract_ember_version(scenario)
-    ember_dependency = scenario['dependencies'].select { |dep| dep['name'] == 'ember' }.first
+    ember_dependency = scenario['dependencies'].select { |dep| dep['name'] == 'ember' || dep['name'] == 'ember-source' }.reject { |dep| dep['versionSeen'] == 'Not Installed' }.first
     ember_dependency.blank? ? nil : ember_dependency['versionSeen']
   end
 end
