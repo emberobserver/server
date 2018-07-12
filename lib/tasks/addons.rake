@@ -4,7 +4,8 @@ require 'net/http'
 
 namespace :addons do
   task update_all: :environment do
-    AddonsUpdater.run
+    updating_addons = AddonsUpdater.run
+    puts "Updating #{updating_addons.length} addons..."
     if Rails.env.production?
       Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
     end
