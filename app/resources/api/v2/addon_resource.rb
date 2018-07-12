@@ -24,6 +24,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   has_many :categories
   has_one :github_stats
   has_one :readme
+  has_one :latest_addon_version, class_name: 'Version', relation_name: 'latest_addon_version'
 
   paginator :offset
 
