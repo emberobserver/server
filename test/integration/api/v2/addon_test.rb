@@ -35,6 +35,7 @@ class API::V2::AddonTest < IntegrationTest
     categories
     github-stats
     readme
+    latest-addon-version
   ].freeze
 
   test 'end user can fetch addons with filter' do
