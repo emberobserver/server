@@ -61,11 +61,11 @@ class PackageListFetcher
 
         fetched_count += parsed_response[:packages].length
       elsif response.timed_out?
-        Rails.logger.warn("Timed out fetching addon list from npm #{request_params}")
+        Bugsnag.notify("Timed out fetching addon list from npm #{request_params}")
         break
       else
-        Rails.logger.warn("Failure fetching addon list from npm #{request_params}")
-        Rails.logger.warn("HTTP request failed: #{response.code}")
+        Bugsnag.notify("Failure fetching addon list from npm #{request_params}")
+        Bugsnag.notify("HTTP request failed: #{response.code}")
         break
       end
 
@@ -73,7 +73,7 @@ class PackageListFetcher
     end
 
     if fetched_count < total
-      Rails.logger.warn("Failed to fetch the expected number of addons, got #{fetched_count}/#{total}")
+      Bugsnag.notify("Failed to fetch the expected number of addons, got #{fetched_count}/#{total}")
     end
 
     matching_npm_packages

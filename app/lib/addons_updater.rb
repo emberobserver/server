@@ -3,10 +3,16 @@
 class AddonsUpdater
   def self.run
     matching_npm_packages = PackageListFetcher.run
+
+    if matching_npm_packages.length < 4500
+      raise RuntimeError("Did not find at least 4500 matching packages, found: #{matching_npm_packages.length}")
+    end
+
     addons_to_update = addons_in_need_of_update(matching_npm_packages)
     addons_to_update.each do |addon_name|
       UpdateAddonWorker.perform_async(addon_name)
     end
+    addons_to_update
   end
 
   def self.addons_in_need_of_update(matching_npm_packages)
