@@ -15,7 +15,7 @@ class AddonsUpdater
     addons_to_update
   end
 
-  def self.addons_in_need_of_update(matching_npm_packages)
+  def self.addons_in_need_of_update(matching_npm_packages, hour = Time.current.hour)
     addons_needing_updating = []
     matching_npm_packages.each do |a|
       addon_data = a['package']
@@ -27,10 +27,16 @@ class AddonsUpdater
         next
       end
 
-      if Time.zone.parse(addon_data['date']) > addon.latest_version_date
+      addon_scheduled_to_be_updated = scheduled_to_be_updated?(addon.id, hour)
+      addon_updated_since_last_fetch = Time.zone.parse(addon_data['date']) > addon.latest_version_date
+      if addon_scheduled_to_be_updated || addon_updated_since_last_fetch
         addons_needing_updating << addon_name
       end
     end
     addons_needing_updating
+  end
+
+  def self.scheduled_to_be_updated?(addon_id, hour)
+    return addon_id % 12 == hour % 12
   end
 end
