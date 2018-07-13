@@ -35,7 +35,7 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
       }
     ]
 
-    results = AddonsUpdater.addons_in_need_of_update(matching_npm_packages, 11)
+    results = AddonsUpdater.addons_in_need_of_update(matching_npm_packages, 11).map { |a| a[:name] }
 
     assert_equal(%w[
                    my-new-addon
@@ -75,7 +75,7 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
       }
     ]
 
-    results = AddonsUpdater.addons_in_need_of_update(matching_npm_packages, 15)
+    results = AddonsUpdater.addons_in_need_of_update(matching_npm_packages, 15).map { |a| a[:name] }
 
     assert_equal(%w[
                    ember-try

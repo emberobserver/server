@@ -9,8 +9,8 @@ class AddonsUpdater
     end
 
     addons_to_update = addons_in_need_of_update(matching_npm_packages)
-    addons_to_update.each do |addon_name|
-      UpdateAddonWorker.perform_async(addon_name)
+    addons_to_update.each do |a|
+      UpdateAddonWorker.perform_async(a[:name])
     end
     addons_to_update
   end
@@ -23,14 +23,16 @@ class AddonsUpdater
       addon = Addon.find_by(name: addon_name)
 
       unless addon
-        addons_needing_updating << addon_name
+        addons_needing_updating << { name: addon_name, reason: 'New addon' }
         next
       end
 
       addon_scheduled_to_be_updated = scheduled_to_be_updated?(addon.id, hour)
       addon_updated_since_last_fetch = Time.zone.parse(addon_data['date']) > addon.latest_version_date
-      if addon_scheduled_to_be_updated || addon_updated_since_last_fetch
-        addons_needing_updating << addon_name
+      if addon_updated_since_last_fetch
+        addons_needing_updating << { name: addon_name, reason: 'Out of date' }
+      elsif addon_scheduled_to_be_updated
+        addons_needing_updating << { name: addon_name, reason: 'Scheduled' }
       end
     end
     addons_needing_updating
