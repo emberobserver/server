@@ -6,6 +6,10 @@ namespace :addons do
   task update_all: :environment do
     updating_addons = AddonsUpdater.run
     puts "Updating #{updating_addons.length} addons..."
+    updating_addons.group_by { |a| a[:reason] }.each_pair do |reason, addons|
+      puts "  #{reason}: #{addons.length}"
+    end
+
     if Rails.env.production?
       Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
     end
