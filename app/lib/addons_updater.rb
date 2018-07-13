@@ -37,6 +37,6 @@ class AddonsUpdater
   end
 
   def self.scheduled_to_be_updated?(addon_id, hour)
-    return addon_id % 12 == hour % 12
+    addon_id % 12 == hour % 12
   end
 end

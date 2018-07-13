@@ -64,7 +64,7 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
       {
         'package' => {
           'name' => '@ember/test-helpers',
-          'date' => 7.day.ago.utc.iso8601
+          'date' => 7.days.ago.utc.iso8601
         }
       },
       {
@@ -97,7 +97,7 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
     end
 
     results.each do |r|
-      assert(r.length.between?(8, 9));
+      assert(r.length.between?(8, 9))
     end
 
     assert_equal(200, results.flatten.length, 'Addons updated twice in a day')
