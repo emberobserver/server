@@ -4,7 +4,7 @@ require 'test_helper'
 
 class NpmAddonDataUpdaterTest < ActiveSupport::TestCase
   setup do
-    fixture_file_path = File.join(Rails.root, 'test', 'fixtures', 'addons.json')
+    fixture_file_path = Rails.root.join('test', 'fixtures', 'addons.json')
     @addon_data = ActiveSupport::JSON.decode(File.read(fixture_file_path))
   end
 
