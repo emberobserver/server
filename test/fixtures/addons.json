@@ -461,10 +461,6 @@
     "licenses": [
       "MIT"
     ],
-    "github": {
-      "user": "a-person",
-      "repo": "a-addon"
-    },
     "releases": {
       "1.0.1": {
         "name": "a-person",
