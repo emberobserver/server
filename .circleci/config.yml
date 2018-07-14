@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/kategengler/ember-addon-review-server
+    docker:
+      - image: circleci/ruby:2.5.0
+      - image: circleci/postgres:9.5
+        environment:
+          POSTGRES_USER: circleci
+    steps:
+      - checkout
+      - run: sudo gem update --system
+      - restore_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run: bundle exec bin/rails db:create db:schema:load
+      - run: bundle exec bin/rails test
+      - run: bundle exec rubocop
