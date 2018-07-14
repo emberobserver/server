@@ -24,6 +24,7 @@ class API::V2::AddonTest < IntegrationTest
     is-top-downloaded
     is-top-starred
     demo-url
+    updated-at
   ].freeze
 
   ADDON_RELATIONSHIPS = %w[

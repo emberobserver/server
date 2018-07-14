@@ -13,7 +13,7 @@ class API::V2::AddonResource < JSONAPI::Resource
              :license, :note,
              :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
-             :demo_url
+             :demo_url, :updated_at
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
