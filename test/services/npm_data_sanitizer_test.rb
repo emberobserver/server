@@ -27,6 +27,10 @@ class NpmDataSanitizerTest < ActiveSupport::TestCase
     assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar`')
   end
 
+  test 'removes trailing slash' do
+    assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar/')
+  end
+
   test 'fixes multiple issues' do
     assert_equal 'http://github.com/foo/bar', parsed_url('http://git@github.com/foo/bar`')
     assert_equal 'https://github.com/foo/bar', parsed_url('git+https://git@github.com/foo/bar')
