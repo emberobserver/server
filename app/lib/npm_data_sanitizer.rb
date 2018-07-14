@@ -15,6 +15,7 @@ module NpmDataSanitizer
     elsif sanitized_url.match?(%r{^git\+ssh://github.com})
       sanitized_url.sub!(/^git\+ssh/, 'https')
     end
+    sanitized_url.sub!(%r{/$}, '')
     sanitized_url.sub(/`$/, '')
   end
 end
