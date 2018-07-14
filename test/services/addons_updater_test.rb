@@ -5,9 +5,9 @@ require 'test_helper'
 class AddonsUpdaterTest < ActiveSupport::TestCase
   test 'self.addons_in_need_of_update' do
     ember_try_date = 1.day.ago.utc.iso8601
-    create(:addon, name: 'ember-try', latest_version_date: ember_try_date)
-    create(:addon, name: '@ember/test-helpers', latest_version_date: 2.days.ago.iso8601)
-    create(:addon, name: 'ember-power-select', latest_version_date: 3.days.ago.utc.iso8601)
+    create(:addon, name: 'ember-try', id: 1, latest_version_date: ember_try_date)
+    create(:addon, name: '@ember/test-helpers', id: 2, latest_version_date: 2.days.ago.iso8601)
+    create(:addon, name: 'ember-power-select', id: 3, latest_version_date: 3.days.ago.utc.iso8601)
     matching_npm_packages = [
       {
         'package' => {
