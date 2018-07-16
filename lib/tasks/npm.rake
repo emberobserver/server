@@ -3,36 +3,6 @@
 require 'net/http'
 
 namespace :npm do
-  task fetch: :environment do
-    sh 'node ./npm-fetch/fetch-all.js'
-  end
-
-  task fetch_addon_info: ['npm:update:all'] do
-    if Rails.env.production?
-      Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
-    end
-  end
-
-  task :update, [:name] => :environment do |_, args|
-    name = args[:name]
-    metadata = JSON.parse(`node ./npm-fetch/fetch.js #{name}`)
-    AddonDataUpdater.new(metadata).update
-  end
-
-  namespace :update do
-    task all: [:environment, 'npm:fetch'] do
-      begin
-        addons = ActiveSupport::JSON.decode(File.read('/tmp/addons.json'))
-      rescue ActiveSupport::JSON.parse_error
-        raise 'Invalid JSON in addons.json file'
-      end
-
-      addons.each do |metadata|
-        AddonDataUpdater.new(metadata).update
-      end
-    end
-  end
-
   task fetch_downloads: :environment do
     addon_names = Addon.pluck(:name)
     File.open('/tmp/addon-names.json', 'w') do |file|

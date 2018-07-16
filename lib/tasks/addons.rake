@@ -69,9 +69,6 @@ namespace :addons do
       end
     end
 
-    desc 'Update all data for addons'
-    task all: [:environment, 'npm:fetch_addon_info', 'github:update:all', 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'addons:update:search_indexes', 'addons:update:notify']
-
     desc 'Update latest version number for ember-cli'
     task ember_cli_version: :environment do
       result = JSON.load(get_url('http://registry.npmjs.org/ember-cli'))
