@@ -2,7 +2,7 @@
   "name": "npm-fetch",
   "version": "0.1.0",
   "description": "Helper utility for ember-addon-review-server",
-  "main": "fetch.js",
+  "main": "historical-downloads.js",
   "dependencies": {
     "async": "^2.4.0",
     "npm-registry": "^0.1.13",
