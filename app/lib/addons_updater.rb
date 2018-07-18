@@ -5,7 +5,7 @@ class AddonsUpdater
     matching_npm_packages = PackageListFetcher.run
 
     if matching_npm_packages.length < 5000
-      raise RuntimeError("Did not find at least 5000 matching packages, found: #{matching_npm_packages.length}")
+      raise "Did not find at least 5000 matching packages, found: #{matching_npm_packages.length}"
     end
 
     addons_to_update = addons_in_need_of_update(matching_npm_packages)
