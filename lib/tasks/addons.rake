@@ -92,6 +92,17 @@ namespace :addons do
       ReadmeView.refresh
     end
 
+    desc 'Update addon size data'
+    task asset_sizes: :environment do
+      AddonSizeUpdater.setup
+      # TODO: include addon versions?
+      Addon.active.each do |addon|
+        next if addon.newest_version.has_size_data
+        AddonSizeUpdater.perform_now(addon.id)
+      end
+      AddonSizeUpdater.teardown
+    end
+
     desc "Notify Dead Man's Snitch of completion"
     task notify: :environment do
       if Rails.env.production?
