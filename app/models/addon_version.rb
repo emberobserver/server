@@ -23,6 +23,7 @@ class AddonVersion < ApplicationRecord
   has_many :all_dependencies, foreign_key: 'addon_version_id', class_name: 'AddonVersionDependency'
   has_many :compatible_versions, foreign_key: 'addon_version_id', class_name: 'AddonVersionCompatibility'
   has_many :test_results
+  has_one :addon_size, dependent: :destroy
 
   before_create :set_addon_name
 
@@ -40,5 +41,9 @@ class AddonVersion < ApplicationRecord
 
   def ember_version_compatibility
     compatible_versions.find_by(package: 'ember')&.version
+  end
+
+  def has_size_data
+    !addon_size.nil?
   end
 end

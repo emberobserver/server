@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["npm_keyword_id"], name: "index_addon_npm_keywords_on_npm_keyword_id"
   end
 
+  create_table "addon_sizes", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.integer "app_js_size"
+    t.integer "app_css_size"
+    t.integer "vendor_js_size"
+    t.integer "vendor_css_size"
+    t.index ["addon_version_id"], name: "index_addon_sizes_on_addon_version_id"
+  end
+
   create_table "addon_version_compatibilities", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.string "package"
@@ -275,6 +284,7 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   end
 
   add_foreign_key "addon_downloads", "addons"
+  add_foreign_key "addon_sizes", "addon_versions"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
   add_foreign_key "addon_version_dependencies", "addons", column: "package_addon_id"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
