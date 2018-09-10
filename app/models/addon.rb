@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: addons
@@ -35,15 +34,18 @@
 #  latest_addon_version_id      :integer
 #  package_info_last_updated_at :datetime
 #  repo_info_last_updated_at    :datetime
+#  latest_review_id             :integer
 #
 # Indexes
 #
 #  index_addons_on_latest_addon_version_id  (latest_addon_version_id)
+#  index_addons_on_latest_review_id         (latest_review_id)
 #  index_addons_on_npm_author_id            (npm_author_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (latest_addon_version_id => addon_versions.id)
+#  fk_rails_...  (latest_review_id => reviews.id)
 #
 
 # TODO: drop `rendered_note` once entirely on API v2
@@ -51,6 +53,7 @@ class Addon < ApplicationRecord
   has_many :addon_versions, -> { order(released: :asc) }
   belongs_to :latest_addon_version, class_name: 'AddonVersion', optional: true
   has_many :reviews, through: :addon_versions
+  belongs_to :latest_review, class_name: 'Review', optional: true
   has_many :addon_maintainers
   has_many :addon_npm_keywords
 
@@ -81,10 +84,6 @@ class Addon < ApplicationRecord
 
   def newest_review
     reviews.order('created_at DESC').first
-  end
-
-  def newest_review_version_release_time
-    newest_review.addon_version.released
   end
 
   def recently_released?

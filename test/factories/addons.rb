@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: addons
@@ -35,15 +34,18 @@
 #  latest_addon_version_id      :integer
 #  package_info_last_updated_at :datetime
 #  repo_info_last_updated_at    :datetime
+#  latest_review_id             :integer
 #
 # Indexes
 #
 #  index_addons_on_latest_addon_version_id  (latest_addon_version_id)
+#  index_addons_on_latest_review_id         (latest_review_id)
 #  index_addons_on_npm_author_id            (npm_author_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (latest_addon_version_id => addon_versions.id)
+#  fk_rails_...  (latest_review_id => reviews.id)
 #
 
 FactoryBot.define do
