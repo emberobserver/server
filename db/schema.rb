@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314180351) do
+ActiveRecord::Schema.define(version: 20180909232841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,9 @@ ActiveRecord::Schema.define(version: 20180314180351) do
     t.integer "latest_addon_version_id"
     t.datetime "package_info_last_updated_at"
     t.datetime "repo_info_last_updated_at"
+    t.bigint "latest_review_id"
     t.index ["latest_addon_version_id"], name: "index_addons_on_latest_addon_version_id"
+    t.index ["latest_review_id"], name: "index_addons_on_latest_review_id"
     t.index ["npm_author_id"], name: "index_addons_on_npm_author_id"
   end
 
@@ -247,6 +249,7 @@ ActiveRecord::Schema.define(version: 20180314180351) do
   add_foreign_key "addon_downloads", "addons"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
+  add_foreign_key "addons", "reviews", column: "latest_review_id"
   add_foreign_key "ember_version_compatibilities", "test_results"
   add_foreign_key "github_stats", "addons"
   add_foreign_key "pending_builds", "addon_versions"

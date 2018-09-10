@@ -19,6 +19,13 @@ namespace :addons do
 
   task update_meta: [:environment, 'addons:update:downloads_flag', 'addons:update:stars_flag', 'addons:update:scores', 'addons:update:ranking', 'addons:update:search_indexes', 'addons:update:notify']
 
+  task set_latest_review: :environment do
+    Addon.all.each do |addon|
+      addon.latest_review = addon.newest_review
+      addon.save!
+    end
+  end
+
   namespace :update do
     desc 'Update download count for addons'
     task download_count: :environment do
