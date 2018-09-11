@@ -19,11 +19,11 @@ Rails.application.routes.draw do
         jsonapi_related_resources :github_stats
         jsonapi_related_resources :readme
         jsonapi_related_resources :github_users
-        jsonapi_related_resources :reviews
+        jsonapi_related_resources :latest_review
       end
 
       jsonapi_resources :reviews, only: [:create] do
-        # This block intentionally left empty to not generate relationship routes
+        jsonapi_related_resources :version
       end
 
       jsonapi_resources :categories do

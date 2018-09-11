@@ -71,23 +71,16 @@ class API::V2::ReviewTest < IntegrationTest
 
   test 'end user can fetch an addons review' do
     addon = create :addon
-    3.times do
-      addon_version = create :addon_version, addon: addon
-      create :review, addon_version: addon_version
-    end
+    addon_version = create :addon_version, addon: addon
+    review = create :review, addon_version: addon_version
+    addon.latest_review = review
+    addon.save
 
-    other_addon = create :addon
-    2.times do
-      version = create :addon_version, addon: other_addon
-      create :review, addon_version: version
-    end
+    get "/api/v2/addons/#{addon.id}/latest-review"
 
-    get "/api/v2/addons/#{addon.id}/reviews"
-
-    assert_equal 3, json_response['data'].length, 'Three reviews returned'
-    first_review_response = json_response['data'][0]
-    assert_equal first_review_response['attributes'].keys, REVIEW_ATTRIBUTES, 'Review response includes expected fields'
-    assert_equal first_review_response['relationships'].keys, REVIEW_RELATIONSHIPS, 'Review response includes expected relationships'
+    review_response = json_response['data']
+    assert_equal review_response['attributes'].keys, REVIEW_ATTRIBUTES, 'Review response includes expected fields'
+    assert_equal review_response['relationships'].keys, REVIEW_RELATIONSHIPS, 'Review response includes expected relationships'
   end
 
   test 'end user cannot delete review' do

@@ -32,11 +32,11 @@ class API::V2::AddonTest < IntegrationTest
     versions
     keywords
     github-users
-    reviews
     categories
     github-stats
     readme
     latest-addon-version
+    latest-review
   ].freeze
 
   test 'end user can fetch addons with filter' do
@@ -80,7 +80,7 @@ class API::V2::AddonTest < IntegrationTest
     addon_version = create :addon_version, addon: addon
     create :review, addon_version: addon_version
 
-    get "/api/v2/addons/#{addon.id}", params: { include: 'versions,maintainers,keywords,reviews,reviews.version,categories' }
+    get "/api/v2/addons/#{addon.id}", params: { include: 'latest-addon-version,versions,maintainers,keywords,latest-review,categories' }
 
     assert_response 200
   end
@@ -268,9 +268,11 @@ class API::V2::AddonTest < IntegrationTest
 
   test 'admin user can update addons with permitted relationships' do
     addon = create :addon
+    addon_version = create :addon_version, addon: addon
     auth_headers = authentication_headers_for(create(:user))
     updatable_relationships_as_keys = API::V2::AddonResource::UPDATABLE_RELATIONSHIPS.map(&:to_s).map(&:dasherize)
     category = create(:category)
+    review = create(:review, addon_version: addon_version)
 
     relationships = {}
     relationships['categories'] = {
@@ -281,6 +283,12 @@ class API::V2::AddonTest < IntegrationTest
         }
       ]
     }
+    relationships['latest-review'] = {
+      data: {
+        type: 'reviews',
+        id: review.id
+      }
+    }
 
     update_addon(addon, relationships: relationships, headers: auth_headers)
 
@@ -288,6 +296,7 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal relationships.keys, updatable_relationships_as_keys, 'All relationships that can be updated should be tested'
     addon.reload
     assert_equal [category.id], addon.categories.map(&:id)
+    assert_equal review.id, addon.latest_review.id
   end
 
   test 'admin user can filter addons by hidden' do
