@@ -42,7 +42,7 @@ class AddonSizeUpdater < ApplicationJob
     addon_version.save!
   end
 
-  def generate_diff 
+  def generate_diff
     base_size_data = parse_json_file(AddonInstaller.base_size_filename)
     base_plus_addon_size_data = parse_json_file(AddonInstaller.addon_size_filename)
     AddonSizeDiff.new(base_size_data, base_plus_addon_size_data)

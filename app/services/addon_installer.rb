@@ -24,7 +24,7 @@ class AddonInstaller
     system('git clone git@github.com:ember-cli/ember-new-output.git -b stable')
     FileUtils.cd INSTALL_DIR do
       system('yarn')
-      system('git add -A && git commit -m "yarn install"')
+      system('rm .gitignore && git add -A && git commit -m "yarn install"')
       system("ember build --environment=production && ember asset-sizes --json > #{BASE_JSON_FILE}")
     end
 
@@ -38,6 +38,7 @@ class AddonInstaller
         # system("ember install #{addon_name}") sometimes hangs on blueprint confirmation prompts
         system("ember build --environment=production && ember asset-sizes --json > #{ADDON_JSON_FILE}")
       ensure
+        # TODO this is leaving some files laying around, but a couple of them are needed
         system("git reset --hard #{current_sha}")
       end
     end
