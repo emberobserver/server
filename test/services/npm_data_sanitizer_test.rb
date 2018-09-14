@@ -15,6 +15,10 @@ class NpmDataSanitizerTest < ActiveSupport::TestCase
     assert_equal 'http://github.com/foo/bar', parsed_url('http://git@github.com/foo/bar')
   end
 
+  test 'replaces git:// with https://' do
+    assert_equal 'https://github.com/foo/bar', parsed_url('git://github.com/foo/bar')
+  end
+
   test 'removes git+ from before https' do
     assert_equal 'https://github.com/foo/bar', parsed_url('git+https://github.com/foo/bar')
   end
@@ -29,6 +33,14 @@ class NpmDataSanitizerTest < ActiveSupport::TestCase
 
   test 'removes trailing slash' do
     assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar/')
+  end
+
+  test 'removes trailing .git' do
+    assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar.git');
+  end
+
+  test 'transforms github.com:user/project into an actual URL' do
+    assert_equal 'https://github.com/foo/bar', parsed_url('github.com:foo/bar')
   end
 
   test 'fixes multiple issues' do
