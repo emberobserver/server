@@ -43,6 +43,10 @@ class NpmDataSanitizerTest < ActiveSupport::TestCase
     assert_equal 'https://github.com/foo/bar', parsed_url('github.com:foo/bar')
   end
 
+  test 'transforms protocol-less Github URLs into https' do
+    assert_equal 'https://github.com/foo/bar', parsed_url('github.com/foo/bar')
+  end
+
   test 'fixes multiple issues' do
     assert_equal 'http://github.com/foo/bar', parsed_url('http://git@github.com/foo/bar`')
     assert_equal 'https://github.com/foo/bar', parsed_url('git+https://git@github.com/foo/bar')
