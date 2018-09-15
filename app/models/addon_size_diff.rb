@@ -4,10 +4,19 @@ class AddonSizeDiff
   VENDOR_CSS_NAME = %r{dist/assets/vendor.*.css}
   VENDOR_JS_NAME = %r{dist/assets/vendor.*.js}
 
-  attr_accessor :app_css, :app_js, :vendor_css, :vendor_js
+  attr_reader :app_css, :app_js, :vendor_css, :vendor_js
 
   def initialize(old_data, new_data)
     create_diff(old_data, new_data)
+  end
+
+  def to_h
+    {
+      app_css: @app_css,
+      app_js: @app_js,
+      vendor_css: @vendor_css,
+      vendor_js: @vendor_js
+    }
   end
 
   private
