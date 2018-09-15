@@ -36,7 +36,7 @@ class NpmDataSanitizerTest < ActiveSupport::TestCase
   end
 
   test 'removes trailing .git' do
-    assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar.git');
+    assert_equal 'http://github.com/foo/bar', parsed_url('http://github.com/foo/bar.git')
   end
 
   test 'transforms github.com:user/project into an actual URL' do
