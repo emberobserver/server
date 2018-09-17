@@ -176,4 +176,12 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal [10, 9, 8, 8, 8], top_addons.map(&:score), 'sorts addons by score'
     assert_equal [100, 77, 54], top_addons.select { |addon| addon.score == 8 }.map(&:last_month_downloads), 'sorts addons with the same score by download count'
   end
+
+  test 'missing_repo_url returns addons without a repository_url set' do
+    create :addon, repository_url: 'http://example.com'
+    missing = create :addon, repository_url: nil
+    create :addon, repository_url: 'http://example.org'
+
+    assert_equal [missing], Addon.missing_repo_url.to_a
+  end
 end
