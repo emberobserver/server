@@ -121,6 +121,10 @@ class Addon < ApplicationRecord
     where('repository_url is null')
   end
 
+  def self.repo_url?
+    where('repository_url is not null')
+  end
+
   def self.top_n(n)
     Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(n)
   end

@@ -67,6 +67,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.needing_rereview
   }
 
+  filter :has_repo_url, apply: ->(records, _value, _options) do
+    records.repo_url?
+  end
+
   filter :code_search, apply: ->(records, _value, _options) {
     records.not_hidden
   }
