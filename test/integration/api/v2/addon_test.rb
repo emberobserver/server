@@ -74,6 +74,21 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal no_repo_addons.map(&:id), addon_ids, 'Addon ids match'
   end
 
+  test 'end user can fetch addons with has_repo_url filter' do
+    repo_addons = create_list :addon, 3, repository_url: 'http://example.com'
+    create_list :addon, 2
+
+    get '/api/v2/addons', params: { filter: { has_repo_url: true } }
+
+    assert_response 200
+
+    parsed_response = json_response
+    assert_equal 3, parsed_response['data'].length
+
+    addon_ids = parsed_response['data'].map { |d| d['id'].to_i }
+    assert_equal repo_addons.map(&:id), addon_ids, 'Addon ids match'
+  end
+
   test 'end user can fetch individual addon' do
     addon = create :addon
 
