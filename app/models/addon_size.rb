@@ -8,6 +8,8 @@
 #  app_css_size     :integer
 #  vendor_js_size   :integer
 #  vendor_css_size  :integer
+#  other_js_size    :integer
+#  other_css_size   :integer
 #
 # Indexes
 #

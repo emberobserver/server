@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-class AddonSizeUpdater < ApplicationJob
+class AddonSizeUpdater
+  include Sidekiq::Worker
 
   def perform(addon_version_id, asset_sizes)
     addon_version = AddonVersion.find(addon_version_id)
@@ -12,7 +13,9 @@ class AddonSizeUpdater < ApplicationJob
       app_js_size: asset_sizes[:app_js],
       app_css_size: asset_sizes[:app_css],
       vendor_js_size: asset_sizes[:vendor_js],
-      vendor_css_size: asset_sizes[:vendor_css]
+      vendor_css_size: asset_sizes[:vendor_css],
+      other_js_size: asset_sizes[:other_js],
+      other_css_size: asset_sizes[:other_css],
     )
     addon_version.save!
   end
