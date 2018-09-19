@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.integer "app_css_size"
     t.integer "vendor_js_size"
     t.integer "vendor_css_size"
+    t.integer "other_js_size"
+    t.integer "other_css_size"
     t.index ["addon_version_id"], name: "index_addon_sizes_on_addon_version_id"
   end
 
