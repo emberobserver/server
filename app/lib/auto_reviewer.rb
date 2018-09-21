@@ -11,8 +11,6 @@ class AutoReviewer
       next if review.nil?
       review.has_tests == 1 &&
         review.has_readme == 1 &&
-        review.is_more_than_empty_addon == 1 &&
-        review.is_open_source == 1 &&
         review.has_build == 1
     end
 
