@@ -5,11 +5,9 @@ class AddonScoreCalculator
     score = nil
     review = addon.newest_review
     if review
-      score = 0
+      score = 2
       score += 1 if review.has_tests == 1
       score += 1 if review.has_readme == 1
-      score += 1 if review.is_more_than_empty_addon == 1
-      score += 1 if review.is_open_source == 1
       score += 1 if review.has_build == 1
 
       score += 1 if addon.recently_released?
