@@ -11,8 +11,6 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
-      is_more_than_empty_addon: 1,
-      is_open_source: 1,
       has_build: 1
     )
     newest_version = create(:addon_version, addon: addon, released: 1.week.ago)
@@ -31,8 +29,6 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
-      is_more_than_empty_addon: 1,
-      is_open_source: 1,
       has_build: 0
     )
     newest_version = create(:addon_version, addon: addon, released: 1.week.ago)
@@ -51,8 +47,6 @@ class AddonDataUpdaterTest < ActiveSupport::TestCase
       addon_version: addon_version,
       has_tests: 1,
       has_readme: 1,
-      is_more_than_empty_addon: 1,
-      is_open_source: 1,
       has_build: 1,
       review: 'Lorem ipsum'
     )

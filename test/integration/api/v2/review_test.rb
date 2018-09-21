@@ -7,9 +7,7 @@ class API::V2::ReviewTest < IntegrationTest
     created-at
     has-tests
     has-readme
-    is-more-than-empty-addon
     review
-    is-open-source
     has-build
   ].freeze
 
@@ -55,8 +53,6 @@ class API::V2::ReviewTest < IntegrationTest
       attrs: {
         "has-tests": 1,
         "has-readme": 2,
-        "is-more-than-empty-addon": 3,
-        "is-open-source": 2,
         "has-build": 3,
         "review": 'A review'
       },
