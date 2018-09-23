@@ -29,16 +29,18 @@ class EmberNewOutput
   end
 
   def install_addon_and_measure(addon_version)
+    diff = nil
     FileUtils.cd install_dir do
       system("yarn add #{addon_version.addon_name}@#{addon_version.version} --dev --no-progress")
       # system("ember install #{addon_name}") sometimes hangs on blueprint confirmation prompts
       system("ember build --environment=production && ember asset-sizes --json > #{ADDON_JSON_FILE}")
       asset_sizes_with_addon = parse_json_file(ADDON_JSON_FILE)
-      generate_diff(asset_sizes_with_addon)
+      diff = generate_diff(asset_sizes_with_addon)
     ensure
       system("rm -rf dist/ tmp/ #{ADDON_JSON_FILE}")
       system("git add -A && git reset --hard #{current_sha}")
     end
+    diff
   end
 
   def parse_json_file(file_name)
