@@ -2,6 +2,7 @@
 
 require 'net/http'
 
+# rubocop:disable Metrics/BlockLength
 namespace :addons do
   task update_all: :environment do
     AddonsUpdater.run
@@ -98,6 +99,7 @@ namespace :addons do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
 
 def get_url(url)
   Net::HTTP.get(URI.parse(url))
