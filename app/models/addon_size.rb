@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addon_sizes
@@ -22,5 +24,4 @@
 
 class AddonSize < ApplicationRecord
   belongs_to :addon_version
-
 end

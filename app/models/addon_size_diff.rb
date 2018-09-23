@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddonSizeDiff
   APP_CSS_REGEX = %r{dist/assets/my-app-\w*\.css}
   APP_JS_REGEX = %r{dist/assets/my-app-\w*\.js}
@@ -17,7 +19,7 @@ class AddonSizeDiff
       'vendor_css' => @vendor_css,
       'vendor_js' => @vendor_js,
       'other_css' => @other_css,
-      'other_js' => @other_js,
+      'other_js' => @other_js
     }
   end
 

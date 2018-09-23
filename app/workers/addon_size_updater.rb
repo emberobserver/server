@@ -15,9 +15,8 @@ class AddonSizeUpdater
       vendor_js_size: asset_sizes['vendor_js'],
       vendor_css_size: asset_sizes['vendor_css'],
       other_js_size: asset_sizes['other_js'],
-      other_css_size: asset_sizes['other_css'],
+      other_css_size: asset_sizes['other_css']
     )
     addon_version.save!
   end
-
 end
