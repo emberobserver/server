@@ -12,12 +12,12 @@ class AddonSizeDiff
 
   def to_h
     {
-      app_css: @app_css,
-      app_js: @app_js,
-      vendor_css: @vendor_css,
-      vendor_js: @vendor_js,
-      other_css: @other_css,
-      other_js: @other_js,
+      'app_css' => @app_css,
+      'app_js' => @app_js,
+      'vendor_css' => @vendor_css,
+      'vendor_js' => @vendor_js,
+      'other_css' => @other_css,
+      'other_js' => @other_js,
     }
   end
 
