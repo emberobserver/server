@@ -7,4 +7,6 @@ class API::V2::VersionResource < JSONAPI::Resource
   attributes :version, :released, :ember_cli_version
   has_many :test_results
   has_one :addon
+
+  has_one :addon_size, foreign_key_on: :related
 end
