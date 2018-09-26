@@ -232,6 +232,16 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["build_server_id"], name: "index_pending_builds_on_build_server_id"
   end
 
+  create_table "pending_size_calculations", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.datetime "build_assigned_at"
+    t.bigint "build_server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_version_id"], name: "index_pending_size_calculations_on_addon_version_id"
+    t.index ["build_server_id"], name: "index_pending_size_calculations_on_build_server_id"
+  end
+
   create_table "readmes", id: :serial, force: :cascade do |t|
     t.text "contents"
     t.integer "addon_id"
@@ -295,6 +305,8 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   add_foreign_key "github_stats", "addons"
   add_foreign_key "pending_builds", "addon_versions"
   add_foreign_key "pending_builds", "build_servers"
+  add_foreign_key "pending_size_calculations", "addon_versions"
+  add_foreign_key "pending_size_calculations", "build_servers"
   add_foreign_key "score_calculations", "addon_versions"
   add_foreign_key "score_calculations", "addons"
   add_foreign_key "test_results", "addon_versions"
