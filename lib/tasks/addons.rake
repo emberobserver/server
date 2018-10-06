@@ -88,7 +88,7 @@ namespace :addons do
     desc 'Update addon size data'
     task asset_sizes: :environment do
       # TODO: include newest addon versions in query?
-      AddonSizeCalculator.calculate_addon_sizes(Addon.active)
+      AddonSizeCalculator.calculate_addon_sizes(Addon.active.where('latest_version_date > ?', 18.months.ago))
     end
 
     desc "Notify Dead Man's Snitch of completion"
