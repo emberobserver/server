@@ -11,7 +11,7 @@ class AddonSizeCalculator
         diff = ember_new_output.install_addon_and_measure(addon_version)
         AddonSizeUpdater.perform_async(addon_version.id, diff.to_h) if diff
       rescue StandardError => e
-        Rails.logger.error("Failed to measure addon #{addon_version.addon_name}: #{e}")
+        Rails.logger.error("Failed to measure addon #{addon_version.addon_name}@#{addon_version.version}: #{e}")
       end
     end
     ember_new_output.cleanup
