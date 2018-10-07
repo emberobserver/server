@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'open3'
+
 class EmberNewOutput
   INSTALL_DIR = 'ember-new-output'
   BASE_JSON_FILE = Rails.root.join(INSTALL_DIR, 'base-size.json')
@@ -20,10 +22,12 @@ class EmberNewOutput
     system('git clone git@github.com:ember-cli/ember-new-output.git -b stable')
     FileUtils.cd install_dir do
       system('yarn --silent --no-progress')
-      system('rm .gitignore && git add -A && git commit -m "yarn install"')
+      system('rm .gitignore && git add -A && git commit --quiet -m "yarn install"')
       @current_sha = `git rev-parse HEAD`
-      system("ember build --environment=production && ember asset-sizes --json > #{BASE_JSON_FILE}")
+      _, stderr, status = Open3.capture3("ember build --environment=production && ember asset-sizes --json > #{BASE_JSON_FILE}")
+      raise stderr unless status.exitstatus == 0
       @base_asset_sizes = parse_json_file(BASE_JSON_FILE)
+    ensure
       system("rm -rf dist/ tmp/ #{BASE_JSON_FILE}")
     end
   end
@@ -33,7 +37,8 @@ class EmberNewOutput
     FileUtils.cd install_dir do
       system("yarn add #{addon_version.addon_name}@#{addon_version.version} --dev --no-progress")
       # system("ember install #{addon_name}") sometimes hangs on blueprint confirmation prompts
-      system("ember build --environment=production && ember asset-sizes --json > #{ADDON_JSON_FILE}")
+      _, stderr, status = Open3.capture3("ember build --environment=production && ember asset-sizes --json > #{ADDON_JSON_FILE}")
+      raise stderr unless status.exitstatus == 0
       asset_sizes_with_addon = parse_json_file(ADDON_JSON_FILE)
       diff = generate_diff(asset_sizes_with_addon)
     ensure
