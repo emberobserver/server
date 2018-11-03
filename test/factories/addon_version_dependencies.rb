@@ -27,6 +27,7 @@
 FactoryBot.define do
   factory :addon_version_dependency do
     package 'ember-try'
+    version '1.0.0'
     dependency_type 'dependency'
     association :addon_version
   end
