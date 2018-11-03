@@ -26,6 +26,10 @@ class AddonVersion < ApplicationRecord
 
   before_create :set_addon_name
 
+  def self.latest_versions
+    AddonVersion.joins(:addon).where('addon_versions.id = addons.latest_addon_version_id')
+  end
+
   def dependencies
     all_dependencies.where(dependency_type: 'dependencies')
   end
