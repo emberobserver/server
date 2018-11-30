@@ -12,7 +12,9 @@ class AddonsUpdater
     addons_to_update.each do |a|
       UpdateAddonWorker.perform_async(a[:name])
     end
-    addons_to_update
+
+    log_updates(addons_to_update)
+    mark_completion
   end
 
   def self.addons_in_need_of_update(matching_npm_packages, hour = Time.current.hour)
@@ -40,5 +42,18 @@ class AddonsUpdater
 
   def self.scheduled_to_be_updated?(addon_id, hour)
     addon_id % 12 == hour % 12
+  end
+
+  def self.log_updates(updating_addons)
+    puts "Updating #{updating_addons.length} addons..."
+    updating_addons.group_by { |a| a[:reason] }.each_pair do |reason, addons|
+      puts "  #{reason}: #{addons.length}"
+    end
+  end
+
+  def self.mark_completion
+    if Rails.env.production?
+      Snitcher.snitch(ENV['FETCH_SNITCH_ID'])
+    end
   end
 end
