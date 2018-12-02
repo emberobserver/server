@@ -21,5 +21,14 @@ module EmberObserverServer
       user_name: Rails.application.secrets.smtp_username,
       password: Rails.application.secrets.smtp_password
     }
+
+    unless Rails.env.test?
+      require 'ember_observer_server/logger'
+      require 'ember_observer_server/readable_logger'
+      file_logger = EmberObserverServer::Logger.new(config.paths['log'].first)
+      console_logger  = EmberObserverServer::ReadableLogger.new(STDOUT)
+      console_logger.extend(Ougai::Logger.broadcast(file_logger))
+      config.logger = console_logger
+    end
   end
 end
