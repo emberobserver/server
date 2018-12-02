@@ -45,10 +45,11 @@ class AddonsUpdater
   end
 
   def self.log_updates(updating_addons)
-    puts "Updating #{updating_addons.length} addons..."
+    breakdown = {}
     updating_addons.group_by { |a| a[:reason] }.each_pair do |reason, addons|
-      puts "  #{reason}: #{addons.length}"
+      breakdown[reason] = addons.length
     end
+    Rails.logger.info 'Addons updater run', updating: updating_addons.length, breakdown: breakdown
   end
 
   def self.mark_completion

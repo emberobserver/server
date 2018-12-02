@@ -21,6 +21,13 @@ gem 'snitcher'
 
 gem 'redis-rails'
 
+# logging
+gem 'lograge'
+gem 'lograge-sql'
+gem 'ougai'
+gem 'awesome_print'
+# logging
+
 group :development, :test do
   gem 'byebug'
   gem 'factory_bot_rails'
