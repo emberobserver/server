@@ -9,6 +9,7 @@ class NpmAddonDataUpdater
   end
 
   def update
+    fetch_addon_lookup
     update_addon_data
     update_readme
     update_author
@@ -24,6 +25,11 @@ class NpmAddonDataUpdater
   end
 
   private
+
+  def fetch_addon_lookup
+    addons = Addon.select(:name, :id).all
+    @addon_lookup = Hash[addons.collect { |a| [a.name, a.id] }]
+  end
 
   def autohide?
     @addon.name =~ /fill-?murray/ && @addon.name != 'ember-cli-fill-murray'
@@ -141,7 +147,8 @@ class NpmAddonDataUpdater
           package: package_name,
           version: version,
           dependency_type: dependency_type,
-          addon_version: addon_version
+          addon_version: addon_version,
+          package_addon_id: @addon_lookup[package_name]
         )
         addon_version.all_dependencies << dependency
       end

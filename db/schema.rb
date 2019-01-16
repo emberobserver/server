@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180909232841) do
+ActiveRecord::Schema.define(version: 20181112002915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(version: 20180909232841) do
     t.string "version"
     t.string "dependency_type"
     t.integer "addon_version_id"
+    t.bigint "package_addon_id"
     t.index ["addon_version_id"], name: "index_addon_version_dependencies_on_addon_version_id"
     t.index ["package", "version"], name: "index_addon_version_dependencies_on_package_and_version"
     t.index ["package"], name: "index_addon_version_dependencies_on_package"
+    t.index ["package_addon_id"], name: "index_addon_version_dependencies_on_package_addon_id"
   end
 
   create_table "addon_versions", id: :serial, force: :cascade do |t|
@@ -248,6 +250,7 @@ ActiveRecord::Schema.define(version: 20180909232841) do
 
   add_foreign_key "addon_downloads", "addons"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
+  add_foreign_key "addon_version_dependencies", "addons", column: "package_addon_id"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
   add_foreign_key "addons", "reviews", column: "latest_review_id"
   add_foreign_key "ember_version_compatibilities", "test_results"
