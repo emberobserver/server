@@ -40,4 +40,22 @@ class NpmAddonDataUpdaterTest < ActiveSupport::TestCase
     assert_equal 'foo', addon.github_user
     assert_equal 'bar', addon.github_repo
   end
+
+  test 'it sets the package addon id on the version dependency' do
+    broccoli_addon = Addon.create(name: 'broccoli-asset-rev')
+    ember_try_addon = Addon.create(name: 'ember-try')
+
+    addon_data = @addon_data.first
+    updater = NpmAddonDataUpdater.new(addon_data)
+    addon = updater.update
+
+    dependencies = addon.latest_addon_version.all_dependencies
+    broccoli_dep = dependencies.find { |dep| dep.package == 'broccoli-asset-rev' }
+    ember_try_dep = dependencies.find { |dep| dep.package == 'ember-try' }
+    ember_cli_dep = dependencies.find { |dep| dep.package == 'ember-cli' }
+
+    assert_equal broccoli_addon.id, broccoli_dep.package_addon_id, 'Package addon references the right addon'
+    assert_equal ember_try_addon.id, ember_try_dep.package_addon_id, 'Package addon references the right addon'
+    assert_nil ember_cli_dep.package_addon_id, 'Package addon is not set if dependency does not reference an existing addon'
+  end
 end
