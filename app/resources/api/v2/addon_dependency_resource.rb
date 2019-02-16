@@ -11,7 +11,7 @@ class API::V2::AddonDependencyResource < JSONAPI::Resource
   filter :addons_only, apply: ->(records, value, _options) {
     addons_only = ActiveModel::Type::Boolean.new.cast(value[0])
     if addons_only
-      records.where('package in (select name from addons)')
+      records.where('package_addon_id is not null')
     else
       records
     end
