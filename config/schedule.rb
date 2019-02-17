@@ -35,6 +35,10 @@ every 1.hour, at: 25 do
   rake "addons:update_repos"
 end
 
+every 1.hour, at: 35 do
+  rake "data:backfill_package_addon_ids"
+end
+
 every 1.hour, at: 45 do
   rake "addons:update_meta"
 end

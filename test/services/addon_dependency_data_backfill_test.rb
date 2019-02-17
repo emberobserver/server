@@ -28,7 +28,7 @@ class AddonDependencyDataBackfillTest < ActiveSupport::TestCase
     addon2.latest_addon_version = addon2_latest_version
     addon2.save!
 
-    AddonDependencyDataBackfill.run
+    PackageAddonUpdater.run
 
     addon1_older_version.reload
     addon1_latest_version.reload
