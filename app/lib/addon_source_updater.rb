@@ -12,6 +12,7 @@ class AddonSourceUpdater
 
     @addon_directory = File.join(@source_directory, addon.id.to_s)
     @addon_directory_to_index = File.join(@source_directory_to_index, addon.id.to_s)
+  end
 
   def run
     fetch_or_clone_repo
