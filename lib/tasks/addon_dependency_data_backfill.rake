@@ -5,4 +5,3 @@ namespace :data do
     AddonDependencyDataBackfill.run
   end
 end
-
