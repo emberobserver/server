@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddonDependencyDataBackfill
+class PackageAddonUpdater
   UPDATE_SQL = <<~SQL
     with latest_versions as (
       select addons.latest_addon_version_id
@@ -11,7 +11,8 @@ class AddonDependencyDataBackfill
     set package_addon_id = addons.id
     from
       addons
-      where package = addons.name
+      where package_addon_id is null
+      and package = addons.name
       and addon_version_dependencies.addon_version_id in (select * from latest_versions);
   SQL
 
