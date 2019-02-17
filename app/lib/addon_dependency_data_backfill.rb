@@ -16,8 +16,8 @@ class AddonDependencyDataBackfill
   SQL
 
   def self.run
-    Rails.logger.info("Starting backfill at #{DateTime.now}")
+    Rails.logger.info("Starting backfill at #{Time.now.iso8601}")
     ActiveRecord::Base.connection.execute(UPDATE_SQL)
-    Rails.logger.info("Done at #{DateTime.now}")
+    Rails.logger.info("Done at #{Time.now.iso8601}")
   end
 end

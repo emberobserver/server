@@ -62,5 +62,4 @@ class API::V2::AddonDependencyTest < IntegrationTest
     assert_response 200
     assert_equal dependency.id.to_s, json_response['data']['id']
   end
-
 end
