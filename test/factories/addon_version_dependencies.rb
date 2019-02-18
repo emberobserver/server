@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: addon_version_dependencies
@@ -21,7 +22,6 @@
 #
 #  fk_rails_...  (package_addon_id => addons.id)
 #
-
 
 FactoryBot.define do
   factory :addon_version_dependency do
