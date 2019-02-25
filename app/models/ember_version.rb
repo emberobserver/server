@@ -10,4 +10,11 @@
 #
 
 class EmberVersion < ApplicationRecord
+  def beta?
+    /beta/ === version
+  end
+
+  def major_or_minor?
+    /\.0$/ === version
+  end
 end
