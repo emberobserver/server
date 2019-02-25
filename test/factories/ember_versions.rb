@@ -11,7 +11,23 @@
 
 FactoryBot.define do
   factory :ember_version do
-    version "MyString"
+    sequence(:version) { |n| "v#{n}.0.0" }
     released "2019-02-24 16:58:46"
+  end
+
+  trait :beta do
+    sequence(:version) { |n| "#{n}.0.0-beta.1" }
+  end
+
+  trait :major do
+    sequence(:version) { |n| "#{n}.0.0" }
+  end
+
+  trait :minor do
+    sequence(:version) { |n| "3.#{n}.0" }
+  end
+
+  trait :point_release do
+    sequence(:version) { |n| "3.1.#{n}" }
   end
 end

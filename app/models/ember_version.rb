@@ -10,11 +10,11 @@
 #
 
 class EmberVersion < ApplicationRecord
-  def beta?
-    /beta/ === version
+  def self.releases
+    where("version NOT LIKE '%beta%'")
   end
 
-  def major_or_minor?
-    /\.0$/ === version
+  def self.major_and_minor
+    where("version LIKE '%.0'")
   end
 end
