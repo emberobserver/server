@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ember_versions
@@ -12,7 +14,7 @@
 FactoryBot.define do
   factory :ember_version do
     sequence(:version) { |n| "v#{n}.0.0" }
-    released "2019-02-24 16:58:46"
+    released '2019-02-24 16:58:46'
   end
 
   trait :beta do
