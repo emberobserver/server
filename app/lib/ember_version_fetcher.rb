@@ -39,9 +39,9 @@ class EmberVersionFetcher
     if response.success?
       ember_versions = JSON.parse(response.body)
     elsif response.timed_out?
-      Bugsnag.notify("Timed out fetching Ember version list from Github")
+      Bugsnag.notify('Timed out fetching Ember version list from Github')
     else
-      Bugsnag.notify("Failure fetching Ember version list from Github")
+      Bugsnag.notify('Failure fetching Ember version list from Github')
       Bugsnag.notify("HTTP request failed: #{response.code}")
     end
 

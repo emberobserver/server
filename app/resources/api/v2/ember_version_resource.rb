@@ -6,7 +6,7 @@ class API::V2::EmberVersionResource < JSONAPI::Resource
   attributes :version, :released
 
   filter :release,
-    verify: ->(values, context) {
+    verify: ->(values, _context) {
       values.map { |v| v.to_s == 'true' }
     },
     apply: ->(records, value, _options) {
@@ -14,7 +14,7 @@ class API::V2::EmberVersionResource < JSONAPI::Resource
     }
 
   filter :major_and_minor,
-    verify: ->(values, context) {
+    verify: ->(values, _context) {
       values.map { |v| v.to_s == 'true' }
     },
     apply: ->(records, value, _options) {
