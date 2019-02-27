@@ -23,10 +23,6 @@ job_type :command_in_dir, "cd :path && source .env && :task"
 
 set :output, "log/cron_log.log"
 
-every 1.day, at: '0900' do
-  rake "search:prepare"
-end
-
 every 1.hour, at: 5 do
   rake "addons:update_all"
 end
@@ -48,10 +44,18 @@ every 1.day, at: '0400' do
   rake "tests:queue_tests"
 end
 
+every 1.day, at: '0530' do
+  rake "ember_versions:update"
+end
+
 every 1.day, at: '0545' do
   rake "npm:import_downloads"
 end
 
 every 1.day, at: '0800' do
   command_in_dir "cd vendor/backup && bundle exec backup perform --config-file=./config.rb -t ember_observer && curl ${BACKUP_SNITCH_URL}"
+end
+
+every 1.day, at: '0900' do
+  rake "search:prepare"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181112002915) do
+ActiveRecord::Schema.define(version: 20190224215846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,13 @@ ActiveRecord::Schema.define(version: 20181112002915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["test_result_id"], name: "index_ember_version_compatibilities_on_test_result_id"
+  end
+
+  create_table "ember_versions", force: :cascade do |t|
+    t.string "version", null: false
+    t.datetime "released", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "github_stats", id: :serial, force: :cascade do |t|

@@ -38,6 +38,10 @@ Rails.application.routes.draw do
         # This block intentionally left empty to not generate relationship routes
       end
 
+      jsonapi_resources :ember_versions, only: [:index] do
+        # This block intentionally left empty to not generate relationship routes
+      end
+
       jsonapi_resources :test_results do
         jsonapi_related_resources :version
       end
