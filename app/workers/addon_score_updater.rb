@@ -13,6 +13,11 @@ class AddonScoreUpdater
 
   def update_score(addon)
     addon.score = AddonScoreCalculator.calculate_score(addon)
+    latest_version = addon.latest_addon_version
+    if latest_version
+      latest_version.score = addon.score
+      latest_version.save
+    end
     addon.save
   end
 

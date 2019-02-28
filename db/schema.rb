@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20190224215846) do
     t.datetime "released"
     t.string "addon_name"
     t.string "ember_cli_version"
+    t.decimal "score", precision: 5, scale: 2
     t.index ["addon_id"], name: "index_addon_versions_on_addon_id"
   end
 

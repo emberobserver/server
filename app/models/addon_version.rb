@@ -10,6 +10,7 @@
 #  released          :datetime
 #  addon_name        :string
 #  ember_cli_version :string
+#  score             :decimal(5, 2)
 #
 # Indexes
 #
