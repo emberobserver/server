@@ -124,7 +124,7 @@ class NpmAddonDataUpdater
     addon_version.compatible_versions.clear
 
     addon_version_metadata['ember-addon']['versionCompatibility'].each do |package_name, package_version|
-      version_compatibility = AddonVersionCompatibility.create(
+      version_compatibility = AddonVersionCompatibility.find_or_create_by(
         package: package_name,
         version: package_version
       )
@@ -137,7 +137,7 @@ class NpmAddonDataUpdater
     %w[devDependencies dependencies optionalDependencies peerDependencies].each do |dependency_type|
       next unless addon_version_metadata[dependency_type]
       addon_version_metadata[dependency_type].each do |package_name, version|
-        dependency = AddonVersionDependency.create(
+        dependency = AddonVersionDependency.find_or_create_by(
           package: package_name,
           version: version,
           dependency_type: dependency_type,
