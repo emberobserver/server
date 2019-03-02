@@ -50,6 +50,7 @@ FactoryBot.define do
   trait :with_review do
     after(:build) do |addon_version|
       addon_version.review = build :review, addon_version: addon_version
+      addon_version.addon.latest_review = addon_version.review
     end
   end
 end
