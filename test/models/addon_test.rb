@@ -238,4 +238,48 @@ class AddonTest < ActiveSupport::TestCase
     assert_equal('9', round_up_addon.score_to_fixed(0))
     assert_equal('8', round_down_addon.score_to_fixed(0))
   end
+
+  test 'has_tests' do
+    addon = create :addon
+
+    assert_nil(addon.has_tests, 'Does not error if latest_review is nil')
+
+    version = create :addon_version, addon: addon, version: '1'
+    review = create :review, addon_version: version, has_tests: 5
+    addon.latest_review = review
+
+    assert_equal(5, addon.has_tests, 'Delegates has_tests to latest_review')
+  end
+
+  test 'has_readme' do
+    addon = create :addon
+
+    assert_nil(addon.has_readme, 'Does not error if latest_review is nil')
+
+    version = create :addon_version, addon: addon, version: '1'
+    review = create :review, addon_version: version, has_readme: 3
+    addon.latest_review = review
+
+    assert_equal(3, addon.has_readme, 'Delegates has_readme to latest_review')
+  end
+
+  test 'has_build' do
+    addon = create :addon
+
+    assert_nil(addon.has_build, 'Does not error if latest_review is nil')
+
+    version = create :addon_version, addon: addon, version: '1'
+    review = create :review, addon_version: version, has_build: 2
+    addon.latest_review = review
+
+    assert_equal(2, addon.has_build, 'Delegates has_build to latest_review')
+  end
+
+  test 'github_contributors_count' do
+    addon = create :addon, :with_github_users, user_count: 9
+    assert_equal(9, addon.github_contributors_count, 'Count of contributors is from relationship')
+
+    no_contributors_addon = create :addon
+    assert_equal(0, no_contributors_addon.github_contributors_count, 'Count works for no contributors')
+  end
 end

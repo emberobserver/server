@@ -73,12 +73,17 @@ class Addon < ApplicationRecord
   has_one :github_stats
 
   has_many :addon_github_contributors
+
+  # TODO: Remove github_contributors relationship
   has_many :github_contributors, through: :addon_github_contributors, source: :github_user
   has_many :github_users, through: :addon_github_contributors
 
   has_one :readme, dependent: :destroy
 
   has_many :test_results, through: :addon_versions
+
+  delegate :has_tests, :has_readme, :has_build, to: :latest_review, allow_nil: true
+  delegate :count, to: :github_users, prefix: :github_contributors
 
   def oldest_version
     addon_versions.first
@@ -105,6 +110,10 @@ class Addon < ApplicationRecord
 
   def score_to_fixed(n = 0)
     format("%.#{n}f", score) if score
+  end
+
+  def valid_github_repo?
+    !has_invalid_github_repo?
   end
 
   def self.active

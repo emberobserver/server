@@ -12,7 +12,12 @@ class AddonScoreUpdater
   private
 
   def update_score(addon)
-    addon.score = AddonScoreCalculator.calculate_score(addon)
+    score_info = AddonScore::Calculator.calculate_score(addon)
+    score = score_info[:score]
+    addon.score = score
+
+    # Save score info to jsonb place
+
     latest_version = addon.latest_addon_version
     if latest_version
       latest_version.score = addon.score
