@@ -25,7 +25,7 @@
 #  last_month_downloads         :integer
 #  is_top_downloaded            :boolean          default(FALSE)
 #  is_top_starred               :boolean          default(FALSE)
-#  score                        :integer
+#  score                        :decimal(5, 2)
 #  published_date               :datetime
 #  last_seen_in_npm             :datetime
 #  is_wip                       :boolean          default(FALSE), not null
@@ -191,5 +191,35 @@ class AddonTest < ActiveSupport::TestCase
     two = create :addon, repository_url: 'http://example.org'
 
     assert_equal [one, two], Addon.repo_url?.to_a
+  end
+
+  test 'score_to_fixed n = 1' do
+    integer_addon = create :addon, score: 9
+    round_up_addon = create :addon, score: 8.55
+    round_down_addon = create :addon, score: 8.54
+
+    assert_equal('9.0', integer_addon.score_to_fixed(1))
+    assert_equal('8.6', round_up_addon.score_to_fixed(1))
+    assert_equal('8.5', round_down_addon.score_to_fixed(1))
+  end
+
+  test 'score_to_fixed n = 2' do
+    integer_addon = create :addon, score: 9
+    round_up_addon = create :addon, score: 8.555
+    round_down_addon = create :addon, score: 8.554
+
+    assert_equal('9.00', integer_addon.score_to_fixed(2))
+    assert_equal('8.56', round_up_addon.score_to_fixed(2))
+    assert_equal('8.55', round_down_addon.score_to_fixed(2))
+  end
+
+  test 'score_to_fixed n = 0' do
+    integer_addon = create :addon, score: 9
+    round_up_addon = create :addon, score: 8.55
+    round_down_addon = create :addon, score: 8.45
+
+    assert_equal('9', integer_addon.score_to_fixed(0))
+    assert_equal('9', round_up_addon.score_to_fixed(0))
+    assert_equal('8', round_down_addon.score_to_fixed(0))
   end
 end

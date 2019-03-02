@@ -25,7 +25,7 @@
 #  last_month_downloads         :integer
 #  is_top_downloaded            :boolean          default(FALSE)
 #  is_top_starred               :boolean          default(FALSE)
-#  score                        :integer
+#  score                        :decimal(5, 2)
 #  published_date               :datetime
 #  last_seen_in_npm             :datetime
 #  is_wip                       :boolean          default(FALSE), not null

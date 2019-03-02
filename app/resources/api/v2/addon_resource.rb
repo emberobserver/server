@@ -124,6 +124,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     true
   end
 
+  def score
+    @model.score_to_fixed(0)
+  end
+
   UPDATABLE_ATTRIBUTES = %i[
     is_deprecated is_official is_cli_dependency
     is_hidden is_wip note has_invalid_github_repo
