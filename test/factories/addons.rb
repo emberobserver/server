@@ -60,6 +60,7 @@ FactoryBot.define do
     deprecated false
     official false
     hidden false
+    latest_version '0.0.1'
     association :author, factory: :npm_author
   end
 
@@ -79,5 +80,15 @@ FactoryBot.define do
   trait :hidden do
     name { "hidden-#{SecureRandom.hex}" }
     hidden true
+  end
+
+  trait :with_github_users do
+    transient do
+      user_count { 5 }
+    end
+
+    after(:create) do |addon, evaluator|
+      addon.github_users = create_list(:github_user, evaluator.user_count)
+    end
   end
 end

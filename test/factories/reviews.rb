@@ -23,8 +23,5 @@
 
 FactoryBot.define do
   factory :review do
-    has_tests true
-    has_readme true
-    has_build true
   end
 end
