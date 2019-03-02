@@ -90,7 +90,7 @@ class API::V2::AddonTest < IntegrationTest
   end
 
   test 'end user can fetch individual addon' do
-    addon = create :addon
+    addon = create :addon, score: 1.2
 
     get "/api/v2/addons/#{addon.id}"
 
@@ -103,6 +103,8 @@ class API::V2::AddonTest < IntegrationTest
     first_addon_response = parsed_response['data']
     assert_equal first_addon_response['attributes'].keys, ADDON_ATTRIBUTES, 'Addon response includes expected fields'
     assert_equal first_addon_response['relationships'].keys, ADDON_RELATIONSHIPS, 'Addon response includes expected relationships'
+
+    assert_equal first_addon_response['attributes']['score'], '1', 'Score is formatted string'
   end
 
   test 'end user can fetch an individual addon with some included resources' do

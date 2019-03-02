@@ -25,7 +25,7 @@
 #  last_month_downloads         :integer
 #  is_top_downloaded            :boolean          default(FALSE)
 #  is_top_starred               :boolean          default(FALSE)
-#  score                        :integer
+#  score                        :decimal(5, 2)
 #  published_date               :datetime
 #  last_seen_in_npm             :datetime
 #  is_wip                       :boolean          default(FALSE), not null
@@ -95,6 +95,10 @@ class Addon < ApplicationRecord
     return false unless github_stats
     return false unless github_stats.penultimate_commit_date
     github_stats.penultimate_commit_date > 3.months.ago
+  end
+
+  def score_to_fixed(n = 0)
+    format("%.#{n}f", score) if score
   end
 
   def self.active

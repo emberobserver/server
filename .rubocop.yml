@@ -26,6 +26,8 @@ Layout/IndentHash:
   EnforcedStyle: consistent
 Style/NumericLiterals:
   Enabled: false
+Rails/FilePath:
+  Enabled: false
 AllCops:
   Include:
     - '**/Rakefile'
