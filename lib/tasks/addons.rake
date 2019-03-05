@@ -64,7 +64,7 @@ namespace :addons do
     desc 'Update scores for addons'
     task scores: :environment do
       Addon.not_hidden.each do |addon|
-        AddonScoreUpdater.perform_async(addon.id)
+        AddonScoreWorker.perform_async(addon.id)
       end
     end
 

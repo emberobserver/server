@@ -241,6 +241,16 @@ ActiveRecord::Schema.define(version: 20190311041851) do
     t.index ["addon_version_id"], name: "index_reviews_on_addon_version_id"
   end
 
+  create_table "score_calculations", force: :cascade do |t|
+    t.bigint "addon_id"
+    t.bigint "addon_version_id"
+    t.jsonb "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_id"], name: "index_score_calculations_on_addon_id"
+    t.index ["addon_version_id"], name: "index_score_calculations_on_addon_version_id"
+  end
+
   create_table "test_results", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.boolean "succeeded"
@@ -272,6 +282,8 @@ ActiveRecord::Schema.define(version: 20190311041851) do
   add_foreign_key "github_stats", "addons"
   add_foreign_key "pending_builds", "addon_versions"
   add_foreign_key "pending_builds", "build_servers"
+  add_foreign_key "score_calculations", "addon_versions"
+  add_foreign_key "score_calculations", "addons"
   add_foreign_key "test_results", "addon_versions"
   add_foreign_key "test_results", "build_servers"
 
