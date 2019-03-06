@@ -121,10 +121,8 @@ class NpmAddonDataUpdater
     return unless addon_version_metadata.include?('ember-addon')
     return unless addon_version_metadata['ember-addon'].include?('versionCompatibility')
 
-    addon_version.compatible_versions.clear
-
     addon_version_metadata['ember-addon']['versionCompatibility'].each do |package_name, package_version|
-      version_compatibility = AddonVersionCompatibility.create(
+      version_compatibility = AddonVersionCompatibility.find_or_create_by(
         package: package_name,
         version: package_version
       )
@@ -133,11 +131,10 @@ class NpmAddonDataUpdater
   end
 
   def update_addon_version_dependencies(addon_version, addon_version_metadata)
-    addon_version.all_dependencies.clear
     %w[devDependencies dependencies optionalDependencies peerDependencies].each do |dependency_type|
       next unless addon_version_metadata[dependency_type]
       addon_version_metadata[dependency_type].each do |package_name, version|
-        dependency = AddonVersionDependency.create(
+        dependency = AddonVersionDependency.find_or_create_by(
           package: package_name,
           version: version,
           dependency_type: dependency_type,
@@ -169,7 +166,6 @@ class NpmAddonDataUpdater
   end
 
   def update_keywords
-    @addon.npm_keywords.clear
     if @metadata['keywords']
       @metadata['keywords'].each do |keyword|
         npm_keyword = NpmKeyword.find_or_create_by(keyword: keyword)
@@ -183,7 +179,6 @@ class NpmAddonDataUpdater
   end
 
   def update_maintainers
-    @addon.maintainers.clear
     @metadata['maintainers'].each do |maintainer|
       npm_user = NpmMaintainer.find_or_create_by(name: maintainer['name'])
       npm_user.email = maintainer['email']
