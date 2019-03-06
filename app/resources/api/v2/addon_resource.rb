@@ -77,7 +77,7 @@ class API::V2::AddonResource < JSONAPI::Resource
 
   filter :recently_reviewed, apply: ->(_records, _value, options) {
     limit = options[:paginator] && options[:paginator].limit != DEFAULT_PAGE_SIZE ? options[:paginator].limit : 10
-    Addon.joins(:addon_versions).where('addon_versions.id IN (?)', Review.order('created_at DESC').limit(limit).select('addon_version_id'))
+    Addon.joins(:addon_versions).where('addon_versions.id IN (?)', Review.order('created_at DESC').limit(limit).select('addon_version_id')).distinct
   }
 
   def self.find(filters, options = {})

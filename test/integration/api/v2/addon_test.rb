@@ -484,6 +484,19 @@ class API::V2::AddonTest < IntegrationTest
     assert_response_only_contains_these_addons(%w[test-10 test-11 test-2 test-3 test-4 test-5 test-6 test-7 test-8 test-9])
   end
 
+  test 'recently reviewed filter does not include duplicates' do
+    reviewed = create :addon, name: 'test1'
+
+    12.times do |_n|
+      reviewed_version = create :addon_version, addon: reviewed
+      create :review, addon_version: reviewed_version
+    end
+
+    get '/api/v2/addons', params: { filter: { recentlyReviewed: true } }
+
+    assert_response_only_contains_these_addons(%w[test1])
+  end
+
   test 'end user can filter by recently reviewed with a limit greater than 10' do
     12.times do |n|
       reviewed = create :addon, name: "test-#{n}"
