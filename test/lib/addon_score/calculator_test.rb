@@ -39,7 +39,8 @@ class CalculatorTest < ActiveSupport::TestCase
         name: :foo,
         weight: 1,
         max_value: 1,
-        value: 1
+        value: 1,
+        explanation: 'foo'
       )
     ]
 
@@ -52,7 +53,8 @@ class CalculatorTest < ActiveSupport::TestCase
       weight: 1,
       weighted_value: 1.0,
       contribution: 1.0,
-      max_contribution: 1.0
+      max_contribution: 1.0,
+      explanation: 'foo'
     }, inputs[0])
   end
 
@@ -63,7 +65,8 @@ class CalculatorTest < ActiveSupport::TestCase
         name: :foo,
         weight: 1,
         max_value: 1,
-        value: 0
+        value: 0,
+        explanation: 'foo'
       )
     ]
 
@@ -76,7 +79,8 @@ class CalculatorTest < ActiveSupport::TestCase
       weight: 1,
       weighted_value: 0.0,
       contribution: 0.0,
-      max_contribution: 1.0
+      max_contribution: 1.0,
+      explanation: 'foo'
     }, inputs[0])
   end
 
@@ -87,7 +91,8 @@ class CalculatorTest < ActiveSupport::TestCase
         name: :foo,
         weight: 1,
         max_value: 5,
-        value: 2
+        value: 2,
+        explanation: 'foo'
       )
     ]
     score_calc = AddonScore::Calculator.score_calc(addon, checks)
@@ -99,7 +104,8 @@ class CalculatorTest < ActiveSupport::TestCase
       weight: 1,
       weighted_value: 0.4,
       contribution: 0.4,
-      max_contribution: 1.0
+      max_contribution: 1.0,
+      explanation: 'foo'
     }, inputs[0])
   end
 
@@ -110,13 +116,15 @@ class CalculatorTest < ActiveSupport::TestCase
         name: :foo,
         weight: 1,
         max_value: 5,
-        value: 2
+        value: 2,
+        explanation: 'foo'
       ),
       create_check(
         name: :bar,
         weight: 0.8,
         max_value: 1,
-        value: 1
+        value: 1,
+        explanation: 'bar'
       )
     ]
 
@@ -129,7 +137,8 @@ class CalculatorTest < ActiveSupport::TestCase
       weight: BigDecimal('1'),
       weighted_value: BigDecimal('0.4'),
       contribution: BigDecimal('0.22222'),
-      max_contribution: BigDecimal('0.55555')
+      max_contribution: BigDecimal('0.55555'),
+      explanation: 'foo'
     }, inputs[0])
   end
 
@@ -139,6 +148,10 @@ class CalculatorTest < ActiveSupport::TestCase
     Class.new(AddonScore::Check) do
       define_method(:name) do
         props[:name]
+      end
+
+      define_method(:explanation) do
+        props[:explanation]
       end
 
       define_method(:weight) do

@@ -7,6 +7,14 @@ module AddonScore
         :top_downloaded
       end
 
+      def explanation
+        if value == 1
+          'Has a npm download count in the top 10% of all addons'
+        else
+          'Does not have a download count in the top 10% for download count of all addons'
+        end
+      end
+
       def max_value
         1
       end

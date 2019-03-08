@@ -108,8 +108,8 @@ class Addon < ApplicationRecord
     github_stats.penultimate_commit_date > 3.months.ago
   end
 
-  def score_to_fixed(n = 0)
-    format("%.#{n}f", score) if score
+  def score_to_fixed(n = 1)
+    format("%.#{n}f", score.round(n)) if score
   end
 
   def valid_github_repo?
@@ -117,7 +117,11 @@ class Addon < ApplicationRecord
   end
 
   def self.active
-    not_hidden.where('(is_wip is null or is_wip != true)')
+    not_hidden.not_wip
+  end
+
+  def self.not_wip
+    where('is_wip is null or is_wip != true')
   end
 
   def self.not_hidden

@@ -7,6 +7,14 @@ module AddonScore
         :has_tests
       end
 
+      def explanation
+        if value == 1
+          'Awarded manually for having meaningful automated tests'
+        else
+          'Does not have meaningful automated tests'
+        end
+      end
+
       def max_value
         1
       end

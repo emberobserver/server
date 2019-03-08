@@ -26,6 +26,14 @@ class RecentReleaseTest < ActiveSupport::TestCase
     assert_equal 0, check.value
   end
 
+  test '#explanation' do
+    check = create_check(recently_released?: true)
+    assert_equal 'Has published a release on `npm` within the past three months', check.explanation
+
+    check = create_check(recently_released?: false)
+    assert_equal 'Has not published a release to `npm` within the past three months', check.explanation
+  end
+
   private
 
   def create_check(props = {})

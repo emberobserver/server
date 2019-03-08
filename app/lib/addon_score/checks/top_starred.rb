@@ -7,6 +7,14 @@ module AddonScore
         :is_top_starred
       end
 
+      def explanation
+        if value == 1
+          'Has a GitHub star count in the top 10% of all addons'
+        else
+          'Does not have a GitHub star count in the top 10% of all addons'
+        end
+      end
+
       def max_value
         1
       end

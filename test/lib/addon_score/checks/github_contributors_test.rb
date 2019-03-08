@@ -29,6 +29,14 @@ class GithubContributorsTest < ActiveSupport::TestCase
     assert_equal 0, check.value, '0 value if contributors is not > 1'
   end
 
+  test '#explanation' do
+    check = create_check(valid_github_repo?: false, github_contributors_count: 2)
+    assert_equal 'Does NOT have more than one contributor on GitHub or does not have a valid Github repository set in `package.json`', check.explanation
+
+    check = create_check(valid_github_repo?: true, github_contributors_count: 2)
+    assert_equal 'Has more than one contributor on GitHub', check.explanation
+  end
+
   private
 
   def create_check(props = {})
