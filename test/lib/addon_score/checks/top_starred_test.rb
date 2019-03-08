@@ -29,6 +29,14 @@ class TopStarredTest < ActiveSupport::TestCase
     assert_equal 0, check.value, '0 value if not top starred'
   end
 
+  test '#explanation' do
+    check = create_check(valid_github_repo?: false, is_top_starred: true)
+    assert_equal 'Does not have a GitHub star count in the top 10% of all addons', check.explanation
+
+    check = create_check(valid_github_repo?: true, is_top_starred: true)
+    assert_equal 'Has a GitHub star count in the top 10% of all addons', check.explanation
+  end
+
   private
 
   def create_check(props = {})

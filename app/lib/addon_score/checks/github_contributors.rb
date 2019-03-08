@@ -7,6 +7,14 @@ module AddonScore
         :github_contributors
       end
 
+      def explanation
+        if value == 1
+          'Has more than one contributor on GitHub'
+        else
+          'Does NOT have more than one contributor on GitHub or does not have a valid Github repository set in `package.json`'
+        end
+      end
+
       def max_value
         1
       end

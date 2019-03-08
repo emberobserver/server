@@ -22,6 +22,10 @@ Rails.application.routes.draw do
         jsonapi_related_resources :latest_review
       end
 
+      jsonapi_resources :score_calculations, only: [:index] do
+        # This block intentionally left empty to not generate relationship routes
+      end
+
       jsonapi_resources :reviews, only: [:create] do
         jsonapi_related_resources :version
       end

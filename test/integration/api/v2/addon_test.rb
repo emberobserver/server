@@ -25,6 +25,7 @@ class API::V2::AddonTest < IntegrationTest
     is-top-starred
     demo-url
     updated-at
+    has-been-reviewed
     override-repository-url
     extends-ember
     extends-ember-cli
@@ -108,7 +109,7 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal first_addon_response['attributes'].keys, ADDON_ATTRIBUTES, 'Addon response includes expected fields'
     assert_equal first_addon_response['relationships'].keys, ADDON_RELATIONSHIPS, 'Addon response includes expected relationships'
 
-    assert_equal first_addon_response['attributes']['score'], '1', 'Score is formatted string'
+    assert_equal first_addon_response['attributes']['score'], '1.2', 'Score is formatted string'
   end
 
   test 'end user can fetch an individual addon with some included resources' do

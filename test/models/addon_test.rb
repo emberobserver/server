@@ -213,30 +213,36 @@ class AddonTest < ActiveSupport::TestCase
     integer_addon = create :addon, score: 9
     round_up_addon = create :addon, score: 8.55
     round_down_addon = create :addon, score: 8.54
+    round_up_addon_another_example = create :addon, score: 1.25
 
     assert_equal('9.0', integer_addon.score_to_fixed(1))
     assert_equal('8.6', round_up_addon.score_to_fixed(1))
     assert_equal('8.5', round_down_addon.score_to_fixed(1))
+    assert_equal('1.3', round_up_addon_another_example.score_to_fixed(1))
   end
 
   test 'score_to_fixed n = 2' do
     integer_addon = create :addon, score: 9
     round_up_addon = create :addon, score: 8.555
     round_down_addon = create :addon, score: 8.554
+    already_two_decimals = create :addon, score: 1.25
 
     assert_equal('9.00', integer_addon.score_to_fixed(2))
     assert_equal('8.56', round_up_addon.score_to_fixed(2))
     assert_equal('8.55', round_down_addon.score_to_fixed(2))
+    assert_equal('1.25', already_two_decimals.score_to_fixed(2))
   end
 
   test 'score_to_fixed n = 0' do
     integer_addon = create :addon, score: 9
     round_up_addon = create :addon, score: 8.55
     round_down_addon = create :addon, score: 8.45
+    another_round_down_addon = create :addon, score: 1.25
 
     assert_equal('9', integer_addon.score_to_fixed(0))
     assert_equal('9', round_up_addon.score_to_fixed(0))
     assert_equal('8', round_down_addon.score_to_fixed(0))
+    assert_equal('1', another_round_down_addon.score_to_fixed(0))
   end
 
   test 'has_tests' do

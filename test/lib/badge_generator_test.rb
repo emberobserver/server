@@ -16,7 +16,7 @@ class BadgeGeneratorTest < ActiveSupport::TestCase
 
     generator = create_generator(addon)
 
-    assert_equal(generator.template_badge_path, Rails.root.join('app/assets/images/badges/8.svg'))
+    assert_equal(generator.template_badge_path, Rails.root.join('app/assets/images/badges/8.0.svg'))
   end
 
   test 'template_badge_path with decimal score' do
@@ -24,7 +24,7 @@ class BadgeGeneratorTest < ActiveSupport::TestCase
 
     generator = create_generator(addon)
 
-    assert_equal(generator.template_badge_path, Rails.root.join('app/assets/images/badges/9.svg'))
+    assert_equal(generator.template_badge_path, Rails.root.join('app/assets/images/badges/8.6.svg'))
   end
 
   private

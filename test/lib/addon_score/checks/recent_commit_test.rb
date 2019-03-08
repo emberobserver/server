@@ -29,6 +29,14 @@ class RecentCommitTest < ActiveSupport::TestCase
     assert_equal 0, check.value, '0 value if commit is not recent'
   end
 
+  test '#explanation' do
+    check = create_check(valid_github_repo?: false, recently_committed_to?: true)
+    assert_equal 'Does NOT have more than one commit in the past three months or does not have a valid Github repository set in `package.json`', check.explanation
+
+    check = create_check(valid_github_repo?: true, recently_committed_to?: true)
+    assert_equal 'Has more than one commit in the past three months', check.explanation
+  end
+
   private
 
   def create_check(props = {})
