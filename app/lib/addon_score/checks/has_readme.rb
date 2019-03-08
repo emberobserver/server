@@ -7,6 +7,14 @@ module AddonScore
         :has_readme
       end
 
+      def explanation
+        if value == 1
+          'Awarded manually for having the README filled out'
+        else
+          'Does not have the README filled out'
+        end
+      end
+
       def max_value
         1
       end

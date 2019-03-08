@@ -14,6 +14,7 @@ class API::V2::AddonResource < JSONAPI::Resource
              :has_invalid_github_repo,
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
              :demo_url, :updated_at,
+             :has_been_reviewed,
              :override_repository_url,
              :extends_ember, :extends_ember_cli,
              :is_monorepo
@@ -119,6 +120,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     @model.cli_dependency = value
   end
 
+  def has_been_reviewed
+    !!@model.latest_review_id
+  end
+
   def is_hidden
     @model.hidden
   end
@@ -132,7 +137,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   end
 
   def score
-    @model.score_to_fixed(0)
+    @model.score_to_fixed(1)
   end
 
   UPDATABLE_ATTRIBUTES = %i[

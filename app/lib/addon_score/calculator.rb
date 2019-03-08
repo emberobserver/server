@@ -28,14 +28,9 @@ module AddonScore
     end
 
     class ScoreComponentCalculation
-      attr_accessor :max_value,
-        :value,
-        :weights_total,
-        :weight,
-        :name
-
       def initialize(check, weights_total)
         @name = check.name
+        @explanation = check.explanation
         @max_value = check.max_value.to_d
         @weight = check.weight.to_d
         @value = check.value.to_d
@@ -49,6 +44,7 @@ module AddonScore
       def details
         {
           name: name,
+          explanation: explanation,
           weighted_value: weighted_value.truncate(5),
           weight: weight.truncate(5),
           max_contribution: max_contribution.truncate(5),
@@ -58,12 +54,19 @@ module AddonScore
 
       private
 
+      attr_reader :max_value,
+        :value,
+        :weights_total,
+        :weight,
+        :name,
+        :explanation
+
       def max_contribution
-        weight / @weights_total
+        weight / weights_total
       end
 
       def contribution
-        max_contribution * (weighted_value / weight)
+        weighted_value / weights_total
       end
 
       def normalized_value

@@ -26,6 +26,14 @@ class HasReadmeTest < ActiveSupport::TestCase
     assert_equal 1, check.value
   end
 
+  test '#explanation' do
+    check = create_check(has_readme: 0)
+    assert_equal 'Does not have the README filled out', check.explanation
+
+    check = create_check(has_readme: 1)
+    assert_equal 'Awarded manually for having the README filled out', check.explanation
+  end
+
   private
 
   def create_check(props = {})

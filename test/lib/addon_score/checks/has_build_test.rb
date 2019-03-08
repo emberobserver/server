@@ -26,6 +26,14 @@ class HasBuildTest < ActiveSupport::TestCase
     assert_equal 1, check.value
   end
 
+  test '#explanation' do
+    check = create_check(has_build: 0)
+    assert_equal 'Does not have CI build and/or does not have meaningful tests', check.explanation
+
+    check = create_check(has_build: 1)
+    assert_equal 'Awarded manually for having a CI build, only applicable if there are meaningful tests', check.explanation
+  end
+
   private
 
   def create_check(props = {})
