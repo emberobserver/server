@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190309014507) do
+ActiveRecord::Schema.define(version: 20190309015814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20190309014507) do
     t.datetime "repo_info_last_updated_at"
     t.bigint "latest_review_id"
     t.string "override_repository_url"
+    t.boolean "extends_ember_cli"
+    t.boolean "extends_ember"
     t.index ["latest_addon_version_id"], name: "index_addons_on_latest_addon_version_id"
     t.index ["latest_review_id"], name: "index_addons_on_latest_review_id"
     t.index ["npm_author_id"], name: "index_addons_on_npm_author_id"

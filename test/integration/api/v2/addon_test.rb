@@ -26,6 +26,8 @@ class API::V2::AddonTest < IntegrationTest
     demo-url
     updated-at
     override-repository-url
+    extends-ember
+    extends-ember-cli
   ].freeze
 
   ADDON_RELATIONSHIPS = %w[
@@ -282,7 +284,9 @@ class API::V2::AddonTest < IntegrationTest
       'is-wip' => true,
       'note' => 'This is an updated note',
       'has-invalid-github-repo' => true,
-      'override-repository-url' => 'http://example.org'
+      'override-repository-url' => 'http://example.org',
+      'extends-ember' => true,
+      'extends-ember-cli' => true
     }
 
     update_addon(addon, attrs: attrs, headers: auth_headers)
@@ -296,6 +300,8 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal true, addon.cli_dependency
     assert_equal true, addon.hidden
     assert_equal true, addon.is_wip
+    assert_equal true, addon.extends_ember_cli
+    assert_equal true, addon.extends_ember
     assert_equal 'This is an updated note', addon.note
     assert_equal 'http://example.org', addon.override_repository_url
     assert_equal true, addon.has_invalid_github_repo

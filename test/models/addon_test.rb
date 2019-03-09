@@ -36,6 +36,8 @@
 #  repo_info_last_updated_at    :datetime
 #  latest_review_id             :integer
 #  override_repository_url      :string
+#  extends_ember_cli            :boolean
+#  extends_ember                :boolean
 #
 # Indexes
 #
