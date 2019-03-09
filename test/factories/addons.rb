@@ -44,6 +44,7 @@
 #
 #  index_addons_on_latest_addon_version_id  (latest_addon_version_id)
 #  index_addons_on_latest_review_id         (latest_review_id)
+#  index_addons_on_name                     (name) UNIQUE
 #  index_addons_on_npm_author_id            (npm_author_id)
 #
 # Foreign Keys
