@@ -17,6 +17,7 @@
 #  index_addon_version_dependencies_on_package              (package)
 #  index_addon_version_dependencies_on_package_addon_id     (package_addon_id)
 #  index_addon_version_dependencies_on_package_and_version  (package,version)
+#  index_addon_version_dependencies_uniqueness              (addon_version_id,package,version,dependency_type) UNIQUE
 #
 # Foreign Keys
 #
