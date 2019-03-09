@@ -39,6 +39,10 @@ every 1.hour, at: 45 do
   rake "addons:update_meta"
 end
 
+every 1.hour, at: 55 do
+  rake "reviews:autoreview"
+end
+
 every 1.day, at: '0400' do
   rake "tests:queue_canary_tests"
   rake "tests:queue_tests"
