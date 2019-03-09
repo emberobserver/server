@@ -35,6 +35,7 @@
 #  package_info_last_updated_at :datetime
 #  repo_info_last_updated_at    :datetime
 #  latest_review_id             :integer
+#  override_repository_url      :string
 #
 # Indexes
 #
