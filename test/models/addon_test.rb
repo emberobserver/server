@@ -38,6 +38,7 @@
 #  override_repository_url      :string
 #  extends_ember_cli            :boolean
 #  extends_ember                :boolean
+#  is_monorepo                  :boolean
 #
 # Indexes
 #

@@ -15,7 +15,8 @@ class API::V2::AddonResource < JSONAPI::Resource
              :last_month_downloads, :is_top_downloaded, :is_top_starred,
              :demo_url, :updated_at,
              :override_repository_url,
-             :extends_ember, :extends_ember_cli
+             :extends_ember, :extends_ember_cli,
+             :is_monorepo
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
@@ -134,7 +135,7 @@ class API::V2::AddonResource < JSONAPI::Resource
     is_deprecated is_official is_cli_dependency
     is_hidden is_wip note has_invalid_github_repo
     override_repository_url extends_ember
-    extends_ember_cli
+    extends_ember_cli is_monorepo
   ].freeze
 
   UPDATABLE_RELATIONSHIPS = [
