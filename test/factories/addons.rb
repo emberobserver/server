@@ -63,21 +63,20 @@ FactoryBot.define do
   end
 
   trait :basic do
-    name 'basic-addon'
   end
 
   trait :offical do
-    name 'official-addon'
+    name { "official-#{SecureRandom.hex}" }
     official true
   end
 
   trait :deprecated do
-    name 'deprecated-addon'
+    name { "deprecated-#{SecureRandom.hex}" }
     deprecated true
   end
 
   trait :hidden do
-    name 'hidden-addon'
+    name { "hidden-#{SecureRandom.hex}" }
     hidden true
   end
 end
