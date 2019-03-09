@@ -25,6 +25,7 @@ class API::V2::AddonTest < IntegrationTest
     is-top-starred
     demo-url
     updated-at
+    override-repository-url
   ].freeze
 
   ADDON_RELATIONSHIPS = %w[
@@ -280,7 +281,8 @@ class API::V2::AddonTest < IntegrationTest
       'is-hidden' => true,
       'is-wip' => true,
       'note' => 'This is an updated note',
-      'has-invalid-github-repo' => true
+      'has-invalid-github-repo' => true,
+      'override-repository-url' => 'http://example.org'
     }
 
     update_addon(addon, attrs: attrs, headers: auth_headers)
@@ -295,6 +297,7 @@ class API::V2::AddonTest < IntegrationTest
     assert_equal true, addon.hidden
     assert_equal true, addon.is_wip
     assert_equal 'This is an updated note', addon.note
+    assert_equal 'http://example.org', addon.override_repository_url
     assert_equal true, addon.has_invalid_github_repo
   end
 
