@@ -108,11 +108,11 @@ class Addon < ApplicationRecord
   end
 
   def self.active
-    not_hidden.where('(is_wip is null or is_wip != true)').published_to_npm
+    not_hidden.where('(is_wip is null or is_wip != true)')
   end
 
   def self.not_hidden
-    where('hidden is null or hidden != true')
+    published_to_npm.where('hidden is null or hidden != true')
   end
 
   def self.published_to_npm
@@ -144,6 +144,6 @@ class Addon < ApplicationRecord
   end
 
   def self.needs_review
-    where('latest_review_id is null').active.repo_url?
+    active.repo_url?.where('latest_review_id is null')
   end
 end
