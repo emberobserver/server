@@ -39,6 +39,7 @@
 #  extends_ember_cli            :boolean
 #  extends_ember                :boolean
 #  is_monorepo                  :boolean
+#  removed_from_npm             :boolean          default(FALSE)
 #
 # Indexes
 #

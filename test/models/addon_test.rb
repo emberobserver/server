@@ -39,6 +39,7 @@
 #  extends_ember_cli            :boolean
 #  extends_ember                :boolean
 #  is_monorepo                  :boolean
+#  removed_from_npm             :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -196,6 +197,14 @@ class AddonTest < ActiveSupport::TestCase
     two = create :addon, repository_url: 'http://example.org'
 
     assert_equal [one, two], Addon.repo_url?.to_a
+  end
+
+  test 'published_to_npm returns addons not removed_from_npm' do
+    one = create :addon, removed_from_npm: false
+    two = create :addon, removed_from_npm: false
+    create :addon, removed_from_npm: true
+
+    assert_equal [one, two], Addon.published_to_npm
   end
 
   test 'score_to_fixed n = 1' do
