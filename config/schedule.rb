@@ -65,5 +65,5 @@ every 1.day, at: '0900' do
 end
 
 every 1.day, at: '1000' do
-  rake "reminder:review"
+  rake "reminders:review"
 end
