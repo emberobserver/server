@@ -39,6 +39,7 @@
 #  extends_ember_cli            :boolean
 #  extends_ember                :boolean
 #  is_monorepo                  :boolean
+#  removed_from_npm             :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -107,11 +108,15 @@ class Addon < ApplicationRecord
   end
 
   def self.active
-    where('(hidden is null or hidden != true) and (is_wip is null or is_wip != true)')
+    not_hidden.where('(is_wip is null or is_wip != true)').published_to_npm
   end
 
   def self.not_hidden
     where('hidden is null or hidden != true')
+  end
+
+  def self.published_to_npm
+    where('removed_from_npm = false')
   end
 
   def self.needing_rereview
