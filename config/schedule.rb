@@ -63,3 +63,7 @@ end
 every 1.day, at: '0900' do
   rake "search:prepare"
 end
+
+every 1.day, at: '1000' do
+  rake "reminder:review"
+end
