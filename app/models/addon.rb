@@ -136,4 +136,8 @@ class Addon < ApplicationRecord
   def self.top_n(n)
     Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(n)
   end
+
+  def self.needs_review
+    where('latest_review_id is null').active.repo_url?
+  end
 end
