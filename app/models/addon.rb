@@ -120,7 +120,7 @@ class Addon < ApplicationRecord
   end
 
   def self.needing_rereview
-    where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
+    active.where('name in (?)', Review.select(:addon_name)).joins(:latest_addon_version).where('addon_versions.id NOT IN (?)', Review.select(:addon_version_id))
   end
 
   def self.top_scoring
@@ -144,6 +144,6 @@ class Addon < ApplicationRecord
   end
 
   def self.needs_review
-    active.repo_url?.where('latest_review_id is null')
+    active.where('latest_review_id is null')
   end
 end

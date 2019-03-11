@@ -380,7 +380,9 @@ class API::V2::AddonTest < IntegrationTest
     auth_headers = authentication_headers_for(create(:user))
 
     reviewed_addon = create :addon, name: 'test-foo'
-    create :addon_version, :with_review, addon: reviewed_addon
+    addon_version = create :addon_version, :with_review, addon: reviewed_addon
+    reviewed_addon.latest_review = addon_version.review
+    reviewed_addon.save
 
     not_reviewed_addon = create :addon, name: 'test-bah'
     create :addon_version, addon: not_reviewed_addon

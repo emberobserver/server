@@ -59,7 +59,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :not_reviewed, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
-    records.where('name NOT IN (?)', Review.select(:addon_name))
+    records.needs_review
   }
 
   filter :missing_repo_url, apply: ->(records, _value, _options) do
