@@ -17,7 +17,7 @@ class AutoReviewer
     addons.each do |addon|
       # create all-yes review for newest version
       review = addon.newest_review.dup
-      review.addon_version = addon.newest_version
+      review.addon_version = addon.latest_addon_version
       review.save!
       addon.update(latest_review: review)
     end
