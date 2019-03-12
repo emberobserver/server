@@ -66,6 +66,10 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.missing_repo_url
   end
 
+  filter :invalid_repo_url, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) do
+    records.not_hidden.invalid_repo_url
+  end
+
   filter :needs_re_review, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
     records.needing_rereview
   }

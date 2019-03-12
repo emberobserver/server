@@ -139,6 +139,10 @@ class Addon < ApplicationRecord
     where('repository_url is not null')
   end
 
+  def self.invalid_repo_url
+    where(has_invalid_github_repo: true)
+  end
+
   def self.top_n(n)
     Addon.active.top_scoring.order('score desc').order('last_month_downloads desc').limit(n)
   end
