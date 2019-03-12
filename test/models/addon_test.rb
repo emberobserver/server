@@ -184,16 +184,18 @@ class AddonTest < ActiveSupport::TestCase
   end
 
   test 'missing_repo_url returns addons without a repository_url set' do
-    create :addon, repository_url: 'http://example.com'
+    create :addon, repository_url: ' '
     missing = create :addon, repository_url: nil
+    missing_but_a_string = create :addon, repository_url: ''
     create :addon, repository_url: 'http://example.org'
 
-    assert_equal [missing], Addon.missing_repo_url.to_a
+    assert_equal [missing, missing_but_a_string], Addon.missing_repo_url.to_a
   end
 
-  test 'has_repo_url returns addons with a repository_url set' do
-    one = create :addon, repository_url: 'http://example.com'
+  test 'repo_url? scope returns addons with a repository_url set' do
+    one = create :addon, repository_url: ' '
     create :addon, repository_url: nil
+    create :addon, repository_url: ''
     two = create :addon, repository_url: 'http://example.org'
 
     assert_equal [one, two], Addon.repo_url?.to_a

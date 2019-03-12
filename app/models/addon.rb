@@ -132,11 +132,11 @@ class Addon < ApplicationRecord
   end
 
   def self.missing_repo_url
-    where('repository_url is null')
+    where('repository_url is null or repository_url = ?', '')
   end
 
   def self.repo_url?
-    where('repository_url is not null')
+    where('repository_url is not null and repository_url != ?', '')
   end
 
   def self.invalid_repo_url
