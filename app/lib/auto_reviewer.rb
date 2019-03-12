@@ -19,6 +19,7 @@ class AutoReviewer
       review = addon.newest_review.dup
       review.addon_version = addon.newest_version
       review.save!
+      addon.update(latest_review: review)
     end
   end
 end
