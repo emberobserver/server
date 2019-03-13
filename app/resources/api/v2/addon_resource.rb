@@ -51,7 +51,9 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.where('ranking is not null')
   }
 
-  filter :hidden, verify: REQUIRE_ADMIN, default: 'false'
+  filter :hidden, verify: REQUIRE_ADMIN, default: 'false', apply: ->(records, values, _options) {
+    values.include?('true') ? records : records.not_hidden
+  }
 
   filter :is_wip
 
