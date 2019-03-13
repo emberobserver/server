@@ -55,7 +55,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   filter :is_wip
 
   filter :not_categorized, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
-    records.includes(:categories).where(categories: { id: nil })
+    records.not_hidden.includes(:categories).where(categories: { id: nil })
   }
 
   filter :not_reviewed, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) {
@@ -63,7 +63,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   filter :missing_repo_url, apply: ->(records, _value, _options) do
-    records.missing_repo_url
+    records.not_hidden.missing_repo_url
   end
 
   filter :invalid_repo_url, verify: REQUIRE_ADMIN, apply: ->(records, _value, _options) do
