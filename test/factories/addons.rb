@@ -91,4 +91,11 @@ FactoryBot.define do
       addon.github_users = create_list(:github_user, evaluator.user_count)
     end
   end
+
+  trait :with_reviewed_version do
+    after(:create) do |addon|
+      addon_version = create(:addon_version, :with_review, addon: addon)
+      addon.update(latest_review: addon_version.review)
+    end
+  end
 end
