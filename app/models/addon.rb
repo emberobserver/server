@@ -167,4 +167,8 @@ class Addon < ApplicationRecord
   def self.needs_review
     active.where('latest_review_id is null')
   end
+
+  def self.reviewed
+    where('latest_review_id is not null')
+  end
 end

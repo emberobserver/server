@@ -288,4 +288,11 @@ class AddonTest < ActiveSupport::TestCase
     no_contributors_addon = create :addon
     assert_equal(0, no_contributors_addon.github_contributors_count, 'Count works for no contributors')
   end
+
+  test '.reviewed scope returns only addons which have been reviewed' do
+    create_list :addon, 10
+    reviewed_addon = create(:addon, :with_reviewed_version)
+
+    assert_equal [reviewed_addon], Addon.reviewed.to_a, 'addons without reviews are excluded'
+  end
 end
