@@ -108,6 +108,10 @@ class Addon < ApplicationRecord
     github_stats.penultimate_commit_date > 3.months.ago
   end
 
+  def reviewed?
+    latest_review.present?
+  end
+
   def score_to_fixed(n = 1)
     format("%.#{n}f", score.round(n)) if score
   end
