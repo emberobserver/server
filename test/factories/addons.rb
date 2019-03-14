@@ -92,10 +92,20 @@ FactoryBot.define do
     end
   end
 
+  trait :with_unreviewed_version do
+    after(:create) do |addon|
+      addon_version = create(:addon_version, addon: addon)
+      addon.update(latest_addon_version: addon_version)
+    end
+  end
+
   trait :with_reviewed_version do
     after(:create) do |addon|
       addon_version = create(:addon_version, :with_review, addon: addon)
-      addon.update(latest_review: addon_version.review)
+      addon.update(
+        latest_addon_version: addon_version,
+        latest_review: addon_version.review
+      )
     end
   end
 end

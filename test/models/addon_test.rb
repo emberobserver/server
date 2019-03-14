@@ -295,4 +295,16 @@ class AddonTest < ActiveSupport::TestCase
 
     assert_equal [reviewed_addon], Addon.reviewed.to_a, 'addons without reviews are excluded'
   end
+
+  test '#reviewed? returns true when addon has at least one review' do
+    addon = create(:addon, :with_reviewed_version)
+
+    assert_equal true, addon.reviewed?
+  end
+
+  test '#reviewed? returns false when addon does not have any reviews' do
+    addon = create(:addon, :with_unreviewed_version)
+
+    assert_equal false, addon.reviewed?
+  end
 end

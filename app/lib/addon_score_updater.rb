@@ -8,6 +8,7 @@ class AddonScoreUpdater
   end
 
   def update(score_info = calculate_score)
+    return unless addon.reviewed?
     score = score_info[:score]
     save_score_to_addon(score)
     save_score_to_latest_version(score)
