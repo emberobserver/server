@@ -51,9 +51,9 @@ class API::V2::AddonResource < JSONAPI::Resource
     records.where('ranking is not null')
   }
 
-  filter :hidden, verify: REQUIRE_ADMIN, default: 'false', apply: ->(records, values, _options) {
-    values.include?('true') ? records : records.not_hidden
-  }
+  filter :hidden, verify: REQUIRE_ADMIN, default: 'false'
+
+  filter :removed_from_npm, verify: REQUIRE_ADMIN, default: 'false'
 
   filter :is_wip
 
@@ -91,7 +91,7 @@ class API::V2::AddonResource < JSONAPI::Resource
   }
 
   def self.find(filters, options = {})
-    has_specified_filter = !(filters.keys == [:hidden] && filters[:hidden] == %w[false])
+    has_specified_filter = !(filters.keys.sort == [:hidden, :removed_from_npm] && filters[:hidden] == %w[false] && filters[:removed_from_npm] == %w[false])
     has_valid_limit = options[:paginator] ? options[:paginator].limit <= 100 : false
     has_sort = options[:sort_criteria] ? ![:sort_criteria].empty? : false
     raise Forbidden unless has_specified_filter || (has_valid_limit && has_sort)
