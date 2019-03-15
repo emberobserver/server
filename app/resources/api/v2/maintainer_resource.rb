@@ -11,7 +11,7 @@ class API::V2::MaintainerResource < JSONAPI::Resource
     matching_records = records.where(name: values)
     unless matching_records.count == values.length
       missing_names = values - matching_records.map(&:name)
-      raise JSONAPI::Exceptions::RecordNotFound.new(missing_names.first)
+      raise JSONAPI::Exceptions::RecordNotFound, missing_names.first
     end
     matching_records
   }
