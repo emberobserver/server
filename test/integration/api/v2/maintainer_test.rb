@@ -62,5 +62,4 @@ class API::V2::MaintainerTest < IntegrationTest
 
     assert_response :not_found
   end
-
 end
