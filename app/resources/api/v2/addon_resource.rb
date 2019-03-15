@@ -33,7 +33,14 @@ class API::V2::AddonResource < JSONAPI::Resource
 
   DEFAULT_PAGE_SIZE = 977
 
-  filter :name
+  filter :name, apply: ->(records, values, _options) {
+    matching_records = records.where(name: values)
+    unless matching_records.count == values.length
+      missing_addon_names = values - matching_records.map(&:name)
+      raise JSONAPI::Exceptions::RecordNotFound.new(missing_addon_names.first)
+    end
+    matching_records
+  }
   filter :id
 
   REQUIRE_ADMIN = ->(values, context) {
