@@ -56,4 +56,10 @@ class API::V2::MaintainerTest < IntegrationTest
       delete "/api/v2/maintainers/#{maintainer.id}"
     end
   end
+
+  test 'when filtering by name and no maintainer matches, returns 404' do
+    get '/api/v2/maintainers', params: { filter: { name: 'evil-tomster' } }
+
+    assert_response :not_found
+  end
 end
