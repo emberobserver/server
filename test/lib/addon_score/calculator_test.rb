@@ -14,7 +14,8 @@ class CalculatorTest < ActiveSupport::TestCase
 
     score_info = AddonScore::Calculator.calculate_score(addon)
 
-    assert_equal(8, score_info[:checks].length, 'Total # of current checks')
+    assert_equal(1, AddonScore::Calculator::MODEL_VERSION, 'Model version')
+    assert_equal(8, score_info[:checks].length, 'Total # of current checks - if you update this, update the MODEL_VERSION')
     assert_equal(10.0, score_info[:score], 'Perfect score')
   end
 

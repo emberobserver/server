@@ -2,6 +2,11 @@
 
 module AddonScore
   class Calculator
+    # The following needs to be bumped any time a check is added, removed,
+    # or if a check is changed in anyway. This allows us to see the effect
+    # of the change in the scores
+    MODEL_VERSION = 1
+
     def self.calculate_score(addon)
       score_calc(addon, CHECKS)
     end
@@ -23,6 +28,7 @@ module AddonScore
       {
         addon_name: addon.name,
         score: score.truncate(5),
+        model_version: MODEL_VERSION,
         checks: score_components.map(&:details)
       }
     end

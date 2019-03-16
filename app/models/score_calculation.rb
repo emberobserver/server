@@ -25,4 +25,9 @@
 class ScoreCalculation < ApplicationRecord
   belongs_to :addon
   belongs_to :addon_version
+  store_accessor :info, :model_version
+
+  def self.with_model_version(version)
+    where('info @> ?', { model_version: version }.to_json)
+  end
 end
