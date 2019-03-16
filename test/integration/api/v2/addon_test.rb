@@ -557,6 +557,12 @@ class API::V2::AddonTest < IntegrationTest
     end
   end
 
+  test 'when filtering by name and no addon matches, returns 404' do
+    get '/api/v2/addons', params: { filter: { name: 'ember-nonexistent-addon' } }
+
+    assert_response :not_found
+  end
+
   private
 
   def assert_response_only_contains_these_addons(addon_names)
