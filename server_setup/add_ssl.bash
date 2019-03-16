@@ -133,6 +133,12 @@ server {
   location ~* /badges {
     add_header Cache-Control no-cache;
     root ${CLIENT_ROOT};
+
+    try_files $uri /badges/na.svg;
+  }
+
+  location = /badges/na.svg {
+    root ${SERVER_ROOT}/current/app/assets/images/;
   }
 
   location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|webm|woff)$ {
