@@ -120,6 +120,10 @@ class Addon < ApplicationRecord
     !has_invalid_github_repo?
   end
 
+  def historical_score_calculations
+    ScoreCalculation.where(addon_id: id).order('created_at desc')
+  end
+
   def self.active
     not_hidden.not_wip
   end

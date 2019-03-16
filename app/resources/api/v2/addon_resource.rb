@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # rubocop:disable all Metrics/LineLength Naming/PredicateName
-class API::V2::AddonResource < JSONAPI::Resource
+class API::V2::AddonResource < API::V2::BaseResource
   attributes :name,
              :latest_version_date,
              :description, :is_deprecated,
@@ -42,13 +42,6 @@ class API::V2::AddonResource < JSONAPI::Resource
     matching_records
   }
   filter :id
-
-  REQUIRE_ADMIN = ->(values, context) {
-    if values.include?('true') && context[:current_user].nil?
-      raise Forbidden
-    end
-    values
-  }
 
   filter :in_category, apply: ->(_records, category_id, _options) {
     Category.find(category_id.first).addons
