@@ -7,10 +7,17 @@ class ScoreHistory
 
   def self.data_by_model_version
     data = {}
-    ScoreCalculation.all.group_by(&:model_version).each do |version, calcs|
-      data[version] = calcs.group_by(&:addon_id).map do |_addon_id, addon_calcs|
-        calc = addon_calcs.last
-        { name: calc.info['addon_name'], score: calc.info['score'], model_version: calc.info['model_version'] }
+    model_versions = ScoreCalculation.pluck("distinct info -> 'model_version'")
+    model_versions.each do |model_version|
+      score_calcs_by_addon_id = {}
+      ScoreCalculation.with_model_version(model_version).each do |sc|
+        if !score_calcs_by_addon_id[sc.addon_id] || score_calcs_by_addon_id[sc.addon_id].created_at < sc.created_at
+          score_calcs_by_addon_id[sc.addon_id] = sc
+        end
+
+        data[model_version] = score_calcs_by_addon_id.values.map do |calc|
+          { name: calc.info['addon_name'], score: calc.info['score'], model_version: calc.info['model_version'] }
+        end
       end
     end
     data
