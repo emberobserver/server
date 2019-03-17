@@ -10,11 +10,12 @@ class CalculatorTest < ActiveSupport::TestCase
     addon_version = create(:addon_version, addon: addon, released: 2.months.ago)
     review = create(:review, addon_version: addon_version, has_tests: 1, has_readme: 1, has_build: 1)
     addon.latest_review = review
+    addon.latest_addon_version = addon_version
     addon.save
 
     score_info = AddonScore::Calculator.calculate_score(addon)
 
-    assert_equal(1, AddonScore::Calculator::MODEL_VERSION, 'Model version')
+    assert_equal(2, AddonScore::Calculator::MODEL_VERSION, 'Model version')
     assert_equal(8, score_info[:checks].length, 'Total # of current checks - if you update this, update the MODEL_VERSION')
     assert_equal(10.0, score_info[:score], 'Perfect score')
   end
@@ -22,9 +23,10 @@ class CalculatorTest < ActiveSupport::TestCase
   test 'self.calculate_score zero score smoke test' do
     stats = build(:github_stats, penultimate_commit_date: 10.months.ago)
     addon = create(:addon, github_stats: stats, is_top_downloaded: false, is_top_starred: false)
-    addon_version = create(:addon_version, addon: addon, released: 10.months.ago)
+    addon_version = create(:addon_version, addon: addon, released: 13.months.ago)
     review = create(:review, addon_version: addon_version, has_tests: 0, has_readme: 0, has_build: 0)
     addon.latest_review = review
+    addon.latest_addon_version = addon_version
     addon.save
 
     score_info = AddonScore::Calculator.calculate_score(addon)

@@ -5,7 +5,7 @@ module AddonScore
     # The following needs to be bumped any time a check is added, removed,
     # or if a check is changed in anyway. This allows us to see the effect
     # of the change in the scores
-    MODEL_VERSION = 1
+    MODEL_VERSION = 2
 
     def self.calculate_score(addon)
       score_calc(addon, CHECKS)
