@@ -10,7 +10,7 @@ class RecentReleaseTest < ActiveSupport::TestCase
 
   test '#max_value' do
     check = create_check
-    assert_equal 1, check.max_value
+    assert_equal 100, check.max_value
   end
 
   test '#weight' do
@@ -19,19 +19,25 @@ class RecentReleaseTest < ActiveSupport::TestCase
   end
 
   test '#value' do
-    check = create_check(recently_released?: true)
-    assert_equal 1, check.value
+    check = create_check(latest_addon_version: OpenStruct.new(released: 89.days.ago))
+    assert_equal 100, check.value
 
-    check = create_check(recently_released?: false)
+    check = create_check(latest_addon_version: OpenStruct.new(released: 4.months.ago))
+    assert_equal 80, check.value
+
+    check = create_check(latest_addon_version: OpenStruct.new(released: 7.months.ago))
+    assert_equal 50, check.value
+
+    check = create_check(latest_addon_version: OpenStruct.new(released: 13.months.ago))
     assert_equal 0, check.value
   end
 
   test '#explanation' do
-    check = create_check(recently_released?: true)
-    assert_equal 'Has published a release on `npm` within the past three months', check.explanation
+    check = create_check(latest_addon_version: OpenStruct.new(released: 13.months.ago))
+    assert_equal 'Has not published a release to `npm` tagged `latest` within about 1 year', check.explanation
 
-    check = create_check(recently_released?: false)
-    assert_equal 'Has not published a release to `npm` within the past three months', check.explanation
+    check = create_check(latest_addon_version: OpenStruct.new(released: 7.months.ago))
+    assert_equal 'Published a release to `npm` tagged `latest` within the past 7 months', check.explanation
   end
 
   private
