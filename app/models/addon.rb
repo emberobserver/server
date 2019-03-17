@@ -179,4 +179,8 @@ class Addon < ApplicationRecord
   def self.reviewed
     where('latest_review_id is not null')
   end
+
+  def scorable?
+    !hidden? && !is_wip && reviewed?
+  end
 end
