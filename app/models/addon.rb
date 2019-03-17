@@ -181,6 +181,6 @@ class Addon < ApplicationRecord
   end
 
   def scorable?
-    !hidden? && !is_wip && && !removed_from_npm? && reviewed?
+    !hidden? && !is_wip && !removed_from_npm? && reviewed?
   end
 end
