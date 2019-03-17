@@ -34,7 +34,7 @@ class RecentReleaseTest < ActiveSupport::TestCase
 
   test '#explanation' do
     check = create_check(latest_addon_version: OpenStruct.new(released: 13.months.ago))
-    assert_equal 'Has not published a release to `npm` tagged `latest` within about 1 year', check.explanation
+    assert_equal 'Has not published a release to `npm` tagged `latest` within the past year', check.explanation
 
     check = create_check(latest_addon_version: OpenStruct.new(released: 7.months.ago))
     assert_equal 'Published a release to `npm` tagged `latest` within the past 7 months', check.explanation
