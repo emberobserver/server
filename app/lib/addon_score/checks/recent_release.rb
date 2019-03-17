@@ -9,7 +9,7 @@ module AddonScore
 
       def explanation
         if value > 0
-          since_words = threshold_for_explanation(addon.latest_addon_version.released)
+          since_words = threshold_for_date(addon.latest_addon_version.released)[:text]
           "Published a release to `npm` tagged `latest` within the past #{since_words}"
         else
           'Has not published a release to `npm` tagged `latest` within the past year'
@@ -27,22 +27,21 @@ module AddonScore
       def value
         return 0 unless addon.latest_addon_version
         latest_release = addon.latest_addon_version.released
-        return 100 if latest_release >= 3.months.ago
-        return 80 if latest_release >= 6.months.ago
-        return 50 if latest_release >= 12.months.ago
+        threshold = threshold_for_date(latest_release)
+        return threshold[:value] if threshold
         0
       end
 
       private
 
-      def threshold_for_explanation(date)
-        if date >= 3.months.ago
-          '3 months'
-        elsif date >= 6.months.ago
-          '6 months'
-        elsif date >= 12.months.ago
-          'year'
-        end
+      THRESHOLDS = [
+        { date: 3.months.ago, value: 100, text: '3 months' },
+        { date: 6.months.ago, value: 80, text: '6 months' },
+        { date: 12.months.ago, value: 50, text: 'year' }
+      ].freeze
+
+      def threshold_for_date(date)
+        THRESHOLDS.find { |t| date >= t[:date] }
       end
     end
   end
