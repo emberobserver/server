@@ -3,15 +3,13 @@
 module AddonScore
   module Checks
     class RecentRelease < Check
-      include ActionView::Helpers::DateHelper
-
       def name
         :recent_release
       end
 
       def explanation
         if value > 0
-          since_words = time_ago_in_words(addon.latest_addon_version.released)
+          since_words = threshold_for_explanation(addon.latest_addon_version.released)
           "Published a release to `npm` tagged `latest` within the past #{since_words}"
         else
           'Has not published a release to `npm` tagged `latest` within the past year'
@@ -33,6 +31,18 @@ module AddonScore
         return 80 if latest_release >= 6.months.ago
         return 50 if latest_release >= 12.months.ago
         0
+      end
+
+      private
+
+      def threshold_for_explanation(date)
+        if date >= 3.months.ago
+          '3 months'
+        elsif date >= 6.months.ago
+          '6 months'
+        elsif date >= 12.months.ago
+          'year'
+        end
       end
     end
   end
