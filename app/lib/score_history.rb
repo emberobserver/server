@@ -20,7 +20,7 @@ class ScoreHistory
     data = data_by_model_version
     # Find all addons that have scores (some addons may not be present in all model_versions)
     addons = []
-    data.each do |_version, calculations|
+    data.each_value do |calculations|
       calculations.each do |c|
         addons << c[:name]
       end
@@ -36,7 +36,7 @@ class ScoreHistory
       addons.each do |addon_name|
         # Find calculation for this addon
         calc = calculations.find { |c| c[:name] == addon_name }
-        scores_by_addon[addon_name].push (calc ? calc[:score] : nil)
+        scores_by_addon[addon_name].push calc ? calc[:score] : nil
       end
     end
 
