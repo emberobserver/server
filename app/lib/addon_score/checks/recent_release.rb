@@ -10,11 +10,11 @@ module AddonScore
       end
 
       def explanation
-        since_words = time_ago_in_words(addon.latest_addon_version.released)
         if value > 0
+          since_words = time_ago_in_words(addon.latest_addon_version.released)
           "Published a release to `npm` tagged `latest` within the past #{since_words}"
         else
-          "Has not published a release to `npm` tagged `latest` within #{since_words}"
+          "Has not published a release to `npm` tagged `latest` within the past year"
         end
       end
 
