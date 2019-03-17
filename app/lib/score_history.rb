@@ -17,11 +17,27 @@ class ScoreHistory
   end
 
   def self.rows_by_model_version
-    rows = [['Addon']]
+    data = data_by_model_version
+    # Find all addons that have scores (some addons may not be present in all model_versions)
+    addons = []
+    data.each do |_version, calculations|
+      calculations.each do |c|
+        addons << c[:name]
+      end
+    end
+    addons.uniq!
+
     scores_by_addon = Hash.new { |hash, key| hash[key] = [] }
-    data_by_model_version.each do |version, calculations|
+
+    rows = [['Addon']]
+    data.keys.sort.each do |version|
       rows[0].push("Model #{version}")
-      calculations.each { |c| scores_by_addon[c[:name]].push(c[:score]) }
+      calculations = data[version]
+      addons.each do |addon_name|
+        # Find calculation for this addon
+        calc = calculations.find { |c| c[:name] == addon_name }
+        scores_by_addon[addon_name].push (calc ? calc[:score] : nil)
+      end
     end
 
     scores_by_addon.keys.sort.each do |addon_name|
