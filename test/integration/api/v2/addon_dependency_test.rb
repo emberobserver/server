@@ -37,11 +37,26 @@ class API::V2::AddonDependencyTest < IntegrationTest
     assert_equal addon_dependency.id.to_s, parsed_response['data'][0]['id']
   end
 
+  test 'hidden addon dependencies are not returned' do
+    addon_dependency = create :addon_version_dependency, :is_addon
+    addon_dependency.package_addon.update(hidden: false)
+
+    hidden_addon_dependency = create :addon_version_dependency, :is_addon
+    hidden_addon_dependency.package_addon.update(hidden: true)
+
+    get '/api/v2/addon-dependencies'
+
+    parsed_response = json_response
+    assert_equal 1, parsed_response['data'].length, 'Only unhidden addon dependency is returned'
+
+    assert_equal addon_dependency.id.to_s, parsed_response['data'][0]['id']
+  end
+
   test 'end user can fetch non-addon addon dependencies' do
     addon_dependency = create :addon_version_dependency, :is_addon
     non_addon_addon_dependency = create :addon_version_dependency, :is_not_addon
 
-    get '/api/v2/addon-dependencies', params: { filter: { addons_only: false } }
+    get '/api/v2/addon-dependencies', params: { filter: { visible_addons_only: false } }
 
     parsed_response = json_response
     assert_equal 2, parsed_response['data'].length, 'Both addon dependencies are returned'
