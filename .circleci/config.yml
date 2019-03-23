@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/kategengler/ember-addon-review-server
+    working_directory: ~/emberobserver/server
     docker:
       - image: circleci/ruby:2.5.0
       - image: circleci/postgres:9.5

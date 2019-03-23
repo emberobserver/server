@@ -2,7 +2,7 @@
 lock '3.10.1'
 
 set :application, 'ember-observer-server'
-set :repo_url, 'git@github.com:kategengler/ember-addon-review-server.git'
+set :repo_url, 'git@github.com:emberobserver/server.git'
 
 set :deploy_to, '/srv/app/ember-observer/server'
 
