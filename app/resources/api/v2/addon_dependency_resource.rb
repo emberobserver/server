@@ -8,10 +8,10 @@ class API::V2::AddonDependencyResource < JSONAPI::Resource
 
   has_one :dependent_version, class_name: 'Version', relation_name: 'addon_version', foreign_key: 'addon_version_id'
 
-  filter :addons_only, apply: ->(records, value, _options) {
+  filter :visible_addons_only, apply: ->(records, value, _options) {
     addons_only = ActiveModel::Type::Boolean.new.cast(value[0])
     if addons_only
-      records.where('package_addon_id is not null')
+      records.joins(:package_addon).merge(Addon.not_hidden)
     else
       records
     end
