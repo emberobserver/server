@@ -25,7 +25,42 @@ class API::V2::AddonDependencyTest < IntegrationTest
     assert_equal first_addon_dependency_response['relationships'].keys, ADDON_DEPENDENCY_RELATIONSHIPS, 'Addon dependency response includes expected relationships'
   end
 
-  test 'addon dependencies filtered by default to exclude non-addons' do
+  test 'end user can fetch the latest dependents of a given addon' do
+    addon_to_look_up = create :addon
+
+    addon_1_dependency_in_latest_version = create :addon
+    addon_1_older_version = create :addon_version, addon: addon_1_dependency_in_latest_version
+    addon_1_latest_version = create :addon_version, addon: addon_1_dependency_in_latest_version
+    addon_1_dependency_in_latest_version.latest_addon_version = addon_1_latest_version
+    addon_1_dependency_in_latest_version.save!
+
+    expected_dependency = create :addon_version_dependency, package_addon: addon_to_look_up, addon_version: addon_1_latest_version
+
+    addon_2_dependency_in_old_version = create :addon
+    create :addon_version, addon: addon_2_dependency_in_old_version
+    addon_2_latest_version = create :addon_version, addon: addon_2_dependency_in_old_version
+    addon_2_dependency_in_old_version.latest_addon_version = addon_2_latest_version
+    addon_2_dependency_in_old_version.save!
+
+    create :addon_version_dependency, package_addon: addon_to_look_up, addon_version: addon_1_older_version
+
+    addon_3_hidden = create :addon, hidden: true
+    hidden_addon_latest_version = create :addon_version, addon: addon_3_hidden
+    addon_3_hidden.latest_addon_version = hidden_addon_latest_version
+    addon_3_hidden.save!
+
+    create :addon_version_dependency, package_addon: addon_to_look_up, addon_version: hidden_addon_latest_version
+
+    get '/api/v2/addon-dependencies', params: { filter: { package_addon_id: addon_to_look_up.id } }
+
+    parsed_response = json_response
+    assert_equal 1, parsed_response['data'].length, 'All addon dependents are returned'
+
+    first_addon_dependency_response = parsed_response['data'][0]
+    assert_equal expected_dependency.id.to_s, first_addon_dependency_response['id']
+  end
+
+  test 'addon dependencies filtered by default to exclude non-addons and hidden addons' do
     addon_dependency = create :addon_version_dependency, :is_addon
     create :addon_version_dependency, :is_not_addon
 
