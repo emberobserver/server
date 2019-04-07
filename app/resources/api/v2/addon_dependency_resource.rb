@@ -19,4 +19,11 @@ class API::V2::AddonDependencyResource < JSONAPI::Resource
 
   filter :addon_version_id
   filter :dependency_type
+
+  filter :package_addon_id, apply: ->(records, value, _options) {
+    package_addon_id = value[0]
+    latest_versions_sql = Addon.not_hidden.where('latest_addon_version_id is not null').select('latest_addon_version_id as id, name as addon_name').to_sql
+    records.where(package_addon_id: package_addon_id)
+           .joins("inner join (#{latest_versions_sql}) as latest_versions on latest_versions.id = addon_version_id")
+  }
 end
