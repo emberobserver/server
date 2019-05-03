@@ -15,6 +15,8 @@ require 'rails/test_help'
 require_relative './controllers/controller_test'
 require_relative './integration/integration_test'
 
+require 'helpers/build_server_auth_helper'
+
 require 'mocha/mini_test'
 
 class ActiveSupport::TestCase

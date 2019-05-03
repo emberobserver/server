@@ -3,6 +3,8 @@
 require 'test_helper'
 
 class BuildQueueControllerTest < ControllerTest
+  include BuildServerAuthHelper
+
   test "responds with HTTP unauthorized when request doesn't include a token" do
     post :get_build
 
@@ -92,14 +94,4 @@ class BuildQueueControllerTest < ControllerTest
     assert_equal PendingBuildSerializer::DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING, json_response['pending_build']['ember_version_compatibility']
   end
 
-  private
-
-  def build_server
-    @build_server ||= create(:build_server)
-  end
-
-  def authed_post(action, data = {})
-    request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(build_server.token)
-    post action, params: data
-  end
 end
