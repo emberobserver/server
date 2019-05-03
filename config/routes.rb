@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
     post 'build_queue/get_build' => 'build_queue#get_build'
     post 'test_results/:id/retry' => 'test_results#retry'
+
+    post 'size_calculation_queue' => 'size_calculation_queue#get_calculation'
   end
 
   post 'api/v2/test_results/:id/retry' => 'test_results#retry'
