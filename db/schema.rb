@@ -272,6 +272,17 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["addon_version_id"], name: "index_score_calculations_on_addon_version_id"
   end
 
+  create_table "size_calculation_results", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.boolean "succeeded"
+    t.text "output"
+    t.bigint "build_server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_version_id"], name: "index_size_calculation_results_on_addon_version_id"
+    t.index ["build_server_id"], name: "index_size_calculation_results_on_build_server_id"
+  end
+
   create_table "test_results", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.boolean "succeeded"
@@ -309,6 +320,8 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   add_foreign_key "pending_size_calculations", "build_servers"
   add_foreign_key "score_calculations", "addon_versions"
   add_foreign_key "score_calculations", "addons"
+  add_foreign_key "size_calculation_results", "addon_versions"
+  add_foreign_key "size_calculation_results", "build_servers"
   add_foreign_key "test_results", "addon_versions"
   add_foreign_key "test_results", "build_servers"
 
