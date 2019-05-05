@@ -29,6 +29,13 @@ class AssetSizeParserTest < ActiveSupport::TestCase
     assert_equal json['files'][0], first_file
   end
 
+  test 'when given non-json' do
+    parser = AssetSizeParser.new('something unexpected')
+    assert_raises AssetSizeParser::ParseError do
+      parser.asset_size_json
+    end
+  end
+
   def asset_size_json
     <<~JSON
       {"files":[{"name":"dist/assets/my-app-7ed61c3f6c1b68080e1901c27e8c1fee.js","size":5114,"gzipSize":1448},{"name":"dist/assets/my-app-d41d8cd98f00b204e9800998ecf8427e.css","size":0,"gzipSize":20},{"name":"dist/assets/vendor-2cd54805ca70d41c1e600e0e3b90631c.js","size":749443,"gzipSize":197335},{"name":"dist/assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css","size":0,"gzipSize":20}]}
