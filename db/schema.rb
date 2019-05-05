@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180924111257) do
+ActiveRecord::Schema.define(version: 20190504141908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,12 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.string "version"
     t.string "dependency_type"
     t.integer "addon_version_id"
+    t.bigint "package_addon_id"
+    t.index ["addon_version_id", "package", "version", "dependency_type"], name: "index_addon_version_dependencies_uniqueness", unique: true
     t.index ["addon_version_id"], name: "index_addon_version_dependencies_on_addon_version_id"
     t.index ["package", "version"], name: "index_addon_version_dependencies_on_package_and_version"
     t.index ["package"], name: "index_addon_version_dependencies_on_package"
+    t.index ["package_addon_id"], name: "index_addon_version_dependencies_on_package_addon_id"
   end
 
   create_table "addon_versions", id: :serial, force: :cascade do |t|
@@ -78,6 +81,7 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.datetime "released"
     t.string "addon_name"
     t.string "ember_cli_version"
+    t.decimal "score", precision: 5, scale: 2
     t.index ["addon_id"], name: "index_addon_versions_on_addon_id"
   end
 
@@ -103,7 +107,7 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.integer "last_month_downloads"
     t.boolean "is_top_downloaded", default: false
     t.boolean "is_top_starred", default: false
-    t.integer "score"
+    t.decimal "score", precision: 5, scale: 2
     t.datetime "published_date"
     t.datetime "last_seen_in_npm"
     t.boolean "is_wip", default: false, null: false
@@ -113,8 +117,14 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.datetime "package_info_last_updated_at"
     t.datetime "repo_info_last_updated_at"
     t.bigint "latest_review_id"
+    t.string "override_repository_url"
+    t.boolean "extends_ember_cli"
+    t.boolean "extends_ember"
+    t.boolean "is_monorepo"
+    t.boolean "removed_from_npm", default: false
     t.index ["latest_addon_version_id"], name: "index_addons_on_latest_addon_version_id"
     t.index ["latest_review_id"], name: "index_addons_on_latest_review_id"
+    t.index ["name"], name: "index_addons_on_name", unique: true
     t.index ["npm_author_id"], name: "index_addons_on_npm_author_id"
   end
 
@@ -151,6 +161,13 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["test_result_id"], name: "index_ember_version_compatibilities_on_test_result_id"
+  end
+
+  create_table "ember_versions", force: :cascade do |t|
+    t.string "version", null: false
+    t.datetime "released", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "github_stats", id: :serial, force: :cascade do |t|
@@ -245,6 +262,27 @@ ActiveRecord::Schema.define(version: 20180924111257) do
     t.index ["addon_version_id"], name: "index_reviews_on_addon_version_id"
   end
 
+  create_table "score_calculations", force: :cascade do |t|
+    t.bigint "addon_id"
+    t.bigint "addon_version_id"
+    t.jsonb "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_id"], name: "index_score_calculations_on_addon_id"
+    t.index ["addon_version_id"], name: "index_score_calculations_on_addon_version_id"
+  end
+
+  create_table "size_calculation_results", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.boolean "succeeded"
+    t.text "output"
+    t.bigint "build_server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_version_id"], name: "index_size_calculation_results_on_addon_version_id"
+    t.index ["build_server_id"], name: "index_size_calculation_results_on_build_server_id"
+  end
+
   create_table "test_results", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.boolean "succeeded"
@@ -270,6 +308,7 @@ ActiveRecord::Schema.define(version: 20180924111257) do
   add_foreign_key "addon_downloads", "addons"
   add_foreign_key "addon_sizes", "addon_versions"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
+  add_foreign_key "addon_version_dependencies", "addons", column: "package_addon_id"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
   add_foreign_key "addons", "reviews", column: "latest_review_id"
   add_foreign_key "ember_version_compatibilities", "test_results"
@@ -278,6 +317,10 @@ ActiveRecord::Schema.define(version: 20180924111257) do
   add_foreign_key "pending_builds", "build_servers"
   add_foreign_key "pending_size_calculations", "addon_versions"
   add_foreign_key "pending_size_calculations", "build_servers"
+  add_foreign_key "score_calculations", "addon_versions"
+  add_foreign_key "score_calculations", "addons"
+  add_foreign_key "size_calculation_results", "addon_versions"
+  add_foreign_key "size_calculation_results", "build_servers"
   add_foreign_key "test_results", "addon_versions"
   add_foreign_key "test_results", "build_servers"
 

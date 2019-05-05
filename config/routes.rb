@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
     resources :test_results, only: [:create]
+    resources :size_calculation_results, only: [:create]
 
     post 'build_queue/get_build' => 'build_queue#get_build'
     post 'test_results/:id/retry' => 'test_results#retry'

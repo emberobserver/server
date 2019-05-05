@@ -12,6 +12,7 @@ class AddonSizeDiff
     create_diff(old_data, new_data)
   end
 
+  # TODO this needs to_json
   def to_h
     {
       'app_css' => @app_css,
