@@ -5,6 +5,7 @@
 #  id               :integer          not null, primary key
 #  addon_version_id :integer
 #  succeeded        :boolean
+#  error_message    :text
 #  output           :text
 #  build_server_id  :integer
 #  created_at       :datetime         not null

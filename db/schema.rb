@@ -275,6 +275,7 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   create_table "size_calculation_results", force: :cascade do |t|
     t.bigint "addon_version_id"
     t.boolean "succeeded"
+    t.text "error_message"
     t.text "output"
     t.bigint "build_server_id"
     t.datetime "created_at", null: false

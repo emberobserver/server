@@ -46,11 +46,12 @@ class SizeCalculationResultsControllerTest < ControllerTest
   end
 
   test 'records the correct information when a failed build is reported' do
-    authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'failed', output: 'Install failed'
+    authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'failed', output: 'Install failed', error_message: 'Something unexpected happened'
 
     calculation_result = SizeCalculationResult.find_by(addon_version_id: @pending_calculation.addon_version.id)
     assert_equal false, calculation_result.succeeded?
     assert_equal 'Install failed', calculation_result.output
+    assert_equal 'Something unexpected happened', calculation_result.error_message
   end
 
   test 'records the correct information when a successful build is reported' do
