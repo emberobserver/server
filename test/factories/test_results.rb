@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: test_results
@@ -14,6 +13,7 @@
 #  build_server_id  :integer
 #  semver_string    :string
 #  output           :text
+#  output_format    :string           default("text"), not null
 #
 # Indexes
 #

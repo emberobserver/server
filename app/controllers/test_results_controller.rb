@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+VALID_FORMATS = %w(json text)
+
 class TestResultsController < ApplicationController
   before_action :authenticate_server, only: [:create]
   before_action :authenticate_user, only: [:retry]
@@ -40,12 +42,13 @@ class TestResultsController < ApplicationController
       end
       test_result = TestResult.create!(
         addon_version_id: build.addon_version.id,
-        succeeded: succeeded?,
-        status_message: params[:status_message],
-        canary: build.canary?,
         build_server: build.build_server,
+        canary: build.canary?,
+        output: output,
+        output_format: output_format,
         semver_string: semver_string,
-        output: params[:output]&.read
+        status_message: params[:status_message],
+        succeeded: succeeded?,
       )
 
       if succeeded?
@@ -73,6 +76,18 @@ class TestResultsController < ApplicationController
     @test_result = TestResult.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     head :not_found
+  end
+
+  def output
+    if params[:format] == 'json'
+      params[:output]
+    else
+      params[:output]&.read
+    end
+  end
+
+  def output_format
+    params[:format] || 'text'
   end
 
   def succeeded?
