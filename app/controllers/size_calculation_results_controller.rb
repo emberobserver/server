@@ -37,6 +37,7 @@ class SizeCalculationResultsController < ApplicationController
         succeeded: succeeded?,
         output: params[:output],
         build_server: size_calculation.build_server,
+        error_message: params[:error_message]
       )
 
       if succeeded?
