@@ -115,7 +115,7 @@ class AddonSizeDiffTest < ActiveSupport::TestCase
       { 'name' => 'dist/assets/vendor-7b7fa6908e8cf411d0a74286b5911772.js', 'size' => 767098, 'gzipSize' => 196131 },
       { 'name' => 'dist/assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css', 'size' => 0, 'gzipSize' => 20 },
       { 'name' => 'dist/assets/intl-4d7d43141e437dac353033ef26ee0bf4.js', 'size' => 40783, 'gzipSize' => 13637 },
-      { 'name' => 'dist/assets/intl/intl.complete-f0ad87362f2317fce81ddadbcb15c7bc.js', 'size' => 934663, 'gzipSize' => 191766 },
+      { 'name' => 'dist/assets/intl/intl.complete-f0ad87362f2317fce81ddadbcb15c7bc.js', 'size' => 934663, 'gzipSize' => 191766 }
     ] }
 
     diff = AddonSizeDiff.new(base_sizes, new_sizes)

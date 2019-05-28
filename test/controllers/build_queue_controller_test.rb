@@ -93,5 +93,4 @@ class BuildQueueControllerTest < ControllerTest
 
     assert_equal PendingBuildSerializer::DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING, json_response['pending_build']['ember_version_compatibility']
   end
-
 end

@@ -20,7 +20,7 @@ class SizeCalculationQueueControllerTest < ControllerTest
   test 'responds with HTTP 204 (no content) when the queue is not empty but all calculations are assigned' do
     addon_version = create(:addon_version)
     other_build_server = create(:build_server)
-    x = create(:pending_size_calculation, addon_version: addon_version, build_server: other_build_server, build_assigned_at: 1.hour.ago)
+    create(:pending_size_calculation, addon_version: addon_version, build_server: other_build_server, build_assigned_at: 1.hour.ago)
 
     authed_post :get_calculation
 

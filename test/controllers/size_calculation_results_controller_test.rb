@@ -39,7 +39,7 @@ class SizeCalculationResultsControllerTest < ControllerTest
     assert_response :ok
   end
 
-  test' "requires output param when status is failed"' do
+  test ' "requires output param when status is failed"' do
     authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'failed'
 
     assert_response :unprocessable_entity
@@ -119,5 +119,4 @@ class SizeCalculationResultsControllerTest < ControllerTest
   def asset_size_result
     %({"appJsSize":"1960","vendorJsSize":"0","otherJsSize":"200","appCssSize":"1428","vendorCssSize":"420","otherCssSize":"0"})
   end
-
 end

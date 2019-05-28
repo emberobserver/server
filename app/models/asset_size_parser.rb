@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AssetSizeParser
-  class ParseError < StandardError ; end
+  class ParseError < StandardError; end
 
   def initialize(file_contents)
     @file_contents = file_contents
@@ -13,7 +13,7 @@ class AssetSizeParser
     normalized_contents.sub!(/^(.*?)\n/, '') until normalized_contents.starts_with? '{'
     begin
       JSON.parse(normalized_contents)
-    rescue
+    rescue StandardError
       raise ParseError
     end
   end

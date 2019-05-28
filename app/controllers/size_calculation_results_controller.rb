@@ -58,8 +58,8 @@ class SizeCalculationResultsController < ApplicationController
 
   def parse_asset_sizes(json_string)
     @asset_sizes = JSON.parse(json_string)
-    rescue JSON::ParserError
-      false
+  rescue JSON::ParserError
+    false
   end
 
   def create_addon_size(addon_version)

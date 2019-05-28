@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: size_calculation_results
@@ -24,6 +26,5 @@
 
 FactoryBot.define do
   factory :size_calculation_result do
-    
   end
 end
