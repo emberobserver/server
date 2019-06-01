@@ -53,6 +53,10 @@ Rails.application.routes.draw do
         jsonapi_related_resources :version
       end
 
+      jsonapi_resources :size_calculation_results do
+        jsonapi_related_resources :version
+      end
+
       jsonapi_resources :build_servers
 
       scope :authentication do
