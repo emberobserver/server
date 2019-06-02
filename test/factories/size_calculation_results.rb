@@ -26,5 +26,7 @@
 
 FactoryBot.define do
   factory :size_calculation_result do
+    association :addon_version
+    association :build_server
   end
 end

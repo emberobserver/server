@@ -105,6 +105,37 @@ class SizeCalculationResultsControllerTest < ControllerTest
     assert_equal build_server, SizeCalculationResult.find_by(addon_version_id: @pending_calculation.addon_version_id).build_server
   end
 
+  test 'retry action responds with HTTP unauthorized if request is not authenticated' do
+    size_result = create(:size_calculation_result)
+
+    post :retry, params: { id: size_result.id }
+
+    assert_response :unauthorized
+  end
+
+  test 'retry action responds with HTTP 404 if result ID is invalid' do
+    user = create(:user)
+
+    post_as_user user, :retry, id: 42
+
+    assert_response :not_found
+  end
+
+  test 'retry action enqueues a new pending size calculation with same parameters' do
+    user = create(:user)
+    addon_version = create(:addon_version)
+    result = create(:size_calculation_result, addon_version: addon_version)
+
+    assert_difference 'PendingSizeCalculation.count' do
+      post_as_user user, :retry, id: result.id
+    end
+
+    assert_response :created
+
+    new_size_calculation = PendingSizeCalculation.last
+    assert_equal addon_version.id, new_size_calculation.addon_version_id, 'new size calculation is created for same addon version'
+  end
+
   private
 
   def create_pending_calculation

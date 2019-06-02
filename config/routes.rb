@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post 'test_results/:id/retry' => 'test_results#retry'
 
     post 'size_calculation_queue/get_calculation' => 'size_calculation_queue#get_calculation'
+    post 'size_calculation_results/:id/retry' => 'size_calculation_results#retry'
   end
 
   post 'api/v2/test_results/:id/retry' => 'test_results#retry'

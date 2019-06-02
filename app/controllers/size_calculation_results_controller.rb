@@ -2,6 +2,8 @@
 
 class SizeCalculationResultsController < ApplicationController
   before_action :authenticate_server, only: [:create]
+  before_action :authenticate_user, only: [:retry]
+  before_action :find_result, only: [:retry]
 
   def create
     begin
@@ -50,7 +52,18 @@ class SizeCalculationResultsController < ApplicationController
     head :ok
   end
 
+  def retry
+    PendingSizeCalculation.create!(addon_version_id: @result.addon_version_id)
+    head :created
+  end
+
   private
+
+  def find_result
+    @result = SizeCalculationResult.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    head :not_found
+  end
 
   def succeeded?
     params[:status] == 'succeeded'
