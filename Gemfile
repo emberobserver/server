@@ -57,6 +57,7 @@ gem 'github-markdown'
 gem 'pg_search'
 gem 'scenic'
 gem 'sidekiq'
+gem 'skylight'
 
 gem 'mocha'
 
