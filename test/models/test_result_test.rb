@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: test_results
@@ -31,8 +33,8 @@ class TestResultTest < ActiveSupport::TestCase
   test 'only accepts valid values for output_format' do
     addon_version = create(:addon_version)
     build_server = create(:build_server)
-    valid_formats = %w(json text)
-    some_invalid_formats = %w(binary foo)
+    valid_formats = %w[json text]
+    some_invalid_formats = %w[binary foo]
 
     valid_formats.each do |format|
       test_result = TestResult.new(output_format: format, output: '{}', addon_version: addon_version, build_server: build_server)

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-VALID_FORMATS = %w(json text)
-
 class TestResultsController < ApplicationController
   before_action :authenticate_server, only: [:create]
   before_action :authenticate_user, only: [:retry]
@@ -48,7 +46,7 @@ class TestResultsController < ApplicationController
         output_format: output_format,
         semver_string: semver_string,
         status_message: params[:status_message],
-        succeeded: succeeded?,
+        succeeded: succeeded?
       )
 
       if succeeded?
