@@ -77,7 +77,7 @@ class TestResultsController < ApplicationController
   end
 
   def output
-    if params[:format] == 'json'
+    if output_format == 'json'
       params[:output]
     else
       params[:output]&.read
@@ -85,7 +85,7 @@ class TestResultsController < ApplicationController
   end
 
   def output_format
-    params[:format] || 'text'
+    params[:format].blank? ? 'text' : params[:format].to_s
   end
 
   def succeeded?
