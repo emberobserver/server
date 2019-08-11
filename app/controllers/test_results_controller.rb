@@ -93,6 +93,7 @@ class TestResultsController < ApplicationController
   end
 
   def verify_test_results(results_str)
+    return false unless results_str
     begin
       @results = JSON.parse(results_str)
     rescue JSON::ParserError
