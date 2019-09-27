@@ -10,6 +10,7 @@ class API::V2::ReviewTest < IntegrationTest
     semver-string
     canary
     output
+    output-format
   ].freeze
 
   TEST_RESULT_RELATIONSHIPS = %w[

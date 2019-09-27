@@ -14,6 +14,7 @@
 #  build_server_id  :integer
 #  semver_string    :string
 #  output           :text
+#  output_format    :string           default("text"), not null
 #
 # Indexes
 #
@@ -27,7 +28,24 @@
 #
 
 class TestResult < ApplicationRecord
+  VALID_OUTPUT_FORMATS = %w[json text].freeze
+
   belongs_to :addon_version
   belongs_to :build_server
   has_many :ember_version_compatibilities
+
+  validates :output_format, inclusion: { in: VALID_OUTPUT_FORMATS }
+  validate :valid_output?
+
+  private
+
+  def valid_output?
+    return unless output_format == 'json'
+
+    begin
+      JSON.parse(output)
+    rescue JSON::ParserError
+      errors.add(:output, 'must be valid JSON')
+    end
+  end
 end

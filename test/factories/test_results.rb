@@ -14,6 +14,7 @@
 #  build_server_id  :integer
 #  semver_string    :string
 #  output           :text
+#  output_format    :string           default("text"), not null
 #
 # Indexes
 #

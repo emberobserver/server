@@ -40,12 +40,13 @@ class TestResultsController < ApplicationController
       end
       test_result = TestResult.create!(
         addon_version_id: build.addon_version.id,
-        succeeded: succeeded?,
-        status_message: params[:status_message],
-        canary: build.canary?,
         build_server: build.build_server,
+        canary: build.canary?,
+        output: output,
+        output_format: output_format,
         semver_string: semver_string,
-        output: params[:output]&.read
+        status_message: params[:status_message],
+        succeeded: succeeded?
       )
 
       if succeeded?
@@ -75,11 +76,24 @@ class TestResultsController < ApplicationController
     head :not_found
   end
 
+  def output
+    if output_format == 'json'
+      params[:output]
+    else
+      params[:output]&.read
+    end
+  end
+
+  def output_format
+    params[:format].blank? ? 'text' : params[:format].to_s
+  end
+
   def succeeded?
     params[:status] == 'succeeded'
   end
 
   def verify_test_results(results_str)
+    return false unless results_str
     begin
       @results = JSON.parse(results_str)
     rescue JSON::ParserError

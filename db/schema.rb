@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190311041851) do
+ActiveRecord::Schema.define(version: 20190526121432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,7 @@ ActiveRecord::Schema.define(version: 20190311041851) do
     t.integer "build_server_id"
     t.string "semver_string"
     t.text "output"
+    t.string "output_format", default: "text", null: false
     t.index ["addon_version_id"], name: "index_test_results_on_addon_version_id"
     t.index ["build_server_id"], name: "index_test_results_on_build_server_id"
   end

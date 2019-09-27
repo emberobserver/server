@@ -130,12 +130,35 @@ class TestResultsControllerTest < ControllerTest
     assert_nil TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
   end
 
-  test "captures provided 'output' file" do
+  test "captures provided 'output' file when 'format' is missing" do
     output_file = fixture_file_upload('build.output', 'text/plain')
     authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1), output: output_file
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
     assert_equal 'This is the output', test_result.output.chomp
+  end
+
+  test "captures provided output from param when 'format' is 'json'" do
+    output = JSON.generate(foo: 'bar')
+    authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: build_test_result_string(1), output: output
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
+    assert_equal '{"foo":"bar"}', test_result.output.chomp
+  end
+
+  test "output format defaults to 'text' when not provided" do
+    authed_post :create, pending_build_id: @pending_build.id, status: 'failed', status_message: 'unknown'
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
+    assert_equal 'text', test_result.output_format
+  end
+
+  test "saves value for 'format' param" do
+    output = JSON.generate(foo: 'bar')
+    authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: build_test_result_string(1), output: output
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
+    assert_equal 'json', test_result.output_format
   end
 
   test "'retry' action responds with HTTP unauthorized if request..." do
