@@ -173,6 +173,10 @@ class PackageListFetcherTest < ActiveSupport::TestCase
     end
   end
 
+  test 'FETCH_URL includes keywords' do
+    assert_equal 'http://registry.npmjs.org/-/v1/search?text=keywords:ember-addon,ember-codemod', PackageListFetcher::FETCH_URL, 'Fetch url includes keywords'
+  end
+
   def stub_page(response, options)
     PackageListFetcher::Request.expects(:get).with(PackageListFetcher::FETCH_URL, params: { size: options[:size], from: options[:from] }).returns(response)
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PackageListFetcher
-  FETCH_URL = 'http://registry.npmjs.org/-/v1/search?text=keywords:ember-addon'
+  FETCH_URL = 'http://registry.npmjs.org/-/v1/search?text=keywords:ember-addon,ember-codemod'
   PAGE_SIZE = 250
 
   class Request
