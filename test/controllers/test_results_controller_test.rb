@@ -161,6 +161,15 @@ class TestResultsControllerTest < ControllerTest
     assert_equal 'json', test_result.output_format
   end
 
+  test 'saves provided results' do
+    output = JSON.generate(foo: 'bar')
+    ember_try_results = build_test_result_string(1)
+    authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: ember_try_results, output: output
+
+    test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
+    assert_equal ember_try_results, test_result.ember_try_results
+  end
+
   test "'retry' action responds with HTTP unauthorized if request..." do
     test_result = create(:test_result)
 

@@ -42,6 +42,7 @@ class TestResultsController < ApplicationController
         addon_version_id: build.addon_version.id,
         build_server: build.build_server,
         canary: build.canary?,
+        ember_try_results: @results ? JSON.generate(@results) : nil,
         output: output,
         output_format: output_format,
         semver_string: semver_string,
