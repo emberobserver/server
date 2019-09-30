@@ -4,6 +4,7 @@ require 'test_helper'
 
 class API::V2::ReviewTest < IntegrationTest
   TEST_RESULT_ATTRIBUTES = %w[
+    ember-try-results
     succeeded
     status-message
     created-at
