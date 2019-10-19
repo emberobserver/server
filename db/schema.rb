@@ -323,7 +323,7 @@ ActiveRecord::Schema.define(version: 20191220234215) do
     t.string "semver_string"
     t.text "output"
     t.string "output_format", default: "text", null: false
-    t.text "ember_try_results"
+    t.jsonb "ember_try_results"
     t.index ["addon_version_id"], name: "index_test_results_on_addon_version_id"
     t.index ["build_server_id"], name: "index_test_results_on_build_server_id"
   end

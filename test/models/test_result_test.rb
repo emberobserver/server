@@ -15,7 +15,7 @@
 #  semver_string     :string
 #  output            :text
 #  output_format     :string           default("text"), not null
-#  ember_try_results :text
+#  ember_try_results :jsonb
 #
 # Indexes
 #

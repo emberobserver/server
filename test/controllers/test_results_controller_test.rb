@@ -139,7 +139,7 @@ class TestResultsControllerTest < ControllerTest
   end
 
   test "captures provided output from param when 'format' is 'json'" do
-    output = JSON.generate(foo: 'bar')
+    output = { foo: 'bar' }.to_json
     authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: build_test_result_string(1), output: output
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
@@ -154,7 +154,7 @@ class TestResultsControllerTest < ControllerTest
   end
 
   test "saves value for 'format' param" do
-    output = JSON.generate(foo: 'bar')
+    output = { foo: 'bar' }.to_json
     authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: build_test_result_string(1), output: output
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
@@ -162,15 +162,15 @@ class TestResultsControllerTest < ControllerTest
   end
 
   test 'saves provided results' do
-    output = JSON.generate(foo: 'bar')
-    ember_try_results = build_test_result_string(1)
+    output = { foo: 'bar' }.to_json
+    ember_try_results = build_test_result_string(7)
     authed_post :create, pending_build_id: @pending_build.id, format: 'json', status: 'succeeded', results: ember_try_results, output: output
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version_id)
-    assert_equal ember_try_results, test_result.ember_try_results
+    assert_equal 7, test_result.ember_try_results['scenarios'].count
   end
 
-  test "'retry' action responds with HTTP unauthorized if request..." do
+  test "'retry' action responds with HTTP unauthorized if request is not authenticated" do
     test_result = create(:test_result)
 
     post :retry, params: { id: test_result.id }
@@ -214,16 +214,24 @@ class TestResultsControllerTest < ControllerTest
   end
 
   def build_test_result_string(num_scenarios)
-    scenario_string = build_scenarios(num_scenarios)
-    %({"scenarios":[#{scenario_string}]})
+    scenarios = Array.new(num_scenarios) { |i| build_scenario(i) }
+    { scenarios: scenarios }.to_json
   end
 
-  def build_scenarios(n)
-    scenarios = []
-    n.times do |i|
-      scenarios << %({"scenarioName":"ember-2.#{i}","passed":true,"allowedToFail":false,"dependencies":[{"name":"ember","versionSeen":"2.#{i}.2","versionExpected":"~2.#{i}.0","type":"bower"}]})
-    end
-    scenarios.join(',')
+  def build_scenario(i)
+    {
+      scenarioName: "ember-3.#{i}",
+      passed: true,
+      allowedToFail: false,
+      dependencies: [
+        {
+          name: 'ember-source',
+          versionSeen: "3.#{i}.2",
+          versionExpected: "~3.#{i}.0",
+          type: 'yarn'
+        }
+      ]
+    }
   end
 
   def authed_post(action, data = nil)
