@@ -8,7 +8,8 @@ To manually update packages, run `rake npm:update`.  Make sure to run `npm insta
 
 ### Loading a production database in development
 
-* bunzip2 ember-observer.2017-12-13.sql.bz2
-* rails db:drop
-* rails db:create
-* psql -d ember_addon_review_development -f ember-observer.2017-12-13.sql
+* tar -xf ember_observer.tar
+* bzip2 -d PostgreSQL.sql.bz2
+* bundle exec rails db:drop
+* bundle exec rails db:create
+* psql -d ember_addon_review_development -f PostgreSQL.sql
