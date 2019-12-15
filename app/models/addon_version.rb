@@ -42,10 +42,4 @@ class AddonVersion < ApplicationRecord
   def ember_version_compatibility
     compatible_versions.find_by(package: 'ember')&.version
   end
-
-  # rubocop:disable Naming/PredicateName
-  def has_size_data?
-    !addon_size.nil?
-  end
-  # rubocop:enable Naming/PredicateName
 end
