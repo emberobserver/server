@@ -107,7 +107,9 @@ class NpmAddonDataUpdater
         released: @metadata['time'][version],
         ember_cli_version: (data['devDependencies'] ? data['devDependencies']['ember-cli'] : nil)
       )
-      PendingSizeCalculation.create!(addon_version: addon_version)
+      if ENV['ADDON_SIZES_ENABLED']
+        PendingSizeCalculation.create!(addon_version: addon_version)
+      end
       @addon.addon_versions << addon_version
       update_addon_version_dependencies(addon_version, data)
     end
