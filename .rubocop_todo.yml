@@ -67,6 +67,7 @@ Metrics/PerceivedComplexity:
 Naming/AccessorMethodName:
   Exclude:
     - 'app/controllers/build_queue_controller.rb'
+    - 'app/controllers/size_calculation_queue_controller.rb'
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle.
@@ -119,6 +120,7 @@ Rails/SkipsModelValidations:
 Rails/TimeZone:
   Exclude:
     - 'app/controllers/build_queue_controller.rb'
+    - 'app/controllers/size_calculation_queue_controller.rb'
     - 'app/lib/npm_addon_data_updater.rb'
 
 # Offense count: 1
@@ -140,6 +142,7 @@ Style/BracesAroundHashParameters:
 Style/DateTime:
   Exclude:
     - 'app/controllers/build_queue_controller.rb'
+    - 'app/controllers/size_calculation_queue_controller.rb'
     - 'app/lib/npm_addon_data_updater.rb'
 
 # Offense count: 1

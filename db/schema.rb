@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["npm_keyword_id"], name: "index_addon_npm_keywords_on_npm_keyword_id"
   end
 
+  create_table "addon_sizes", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.integer "app_js_size"
+    t.integer "app_css_size"
+    t.integer "vendor_js_size"
+    t.integer "vendor_css_size"
+    t.integer "other_js_size"
+    t.integer "other_css_size"
+    t.index ["addon_version_id"], name: "index_addon_sizes_on_addon_version_id"
+  end
+
   create_table "addon_version_compatibilities", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.string "package"
@@ -221,6 +232,16 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["build_server_id"], name: "index_pending_builds_on_build_server_id"
   end
 
+  create_table "pending_size_calculations", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.datetime "build_assigned_at"
+    t.bigint "build_server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_version_id"], name: "index_pending_size_calculations_on_addon_version_id"
+    t.index ["build_server_id"], name: "index_pending_size_calculations_on_build_server_id"
+  end
+
   create_table "readmes", id: :serial, force: :cascade do |t|
     t.text "contents"
     t.integer "addon_id"
@@ -251,6 +272,18 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["addon_version_id"], name: "index_score_calculations_on_addon_version_id"
   end
 
+  create_table "size_calculation_results", force: :cascade do |t|
+    t.bigint "addon_version_id"
+    t.boolean "succeeded"
+    t.text "error_message"
+    t.text "output"
+    t.bigint "build_server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_version_id"], name: "index_size_calculation_results_on_addon_version_id"
+    t.index ["build_server_id"], name: "index_size_calculation_results_on_build_server_id"
+  end
+
   create_table "test_results", id: :serial, force: :cascade do |t|
     t.integer "addon_version_id"
     t.boolean "succeeded"
@@ -275,6 +308,7 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   end
 
   add_foreign_key "addon_downloads", "addons"
+  add_foreign_key "addon_sizes", "addon_versions"
   add_foreign_key "addon_version_compatibilities", "addon_versions"
   add_foreign_key "addon_version_dependencies", "addons", column: "package_addon_id"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
@@ -283,8 +317,12 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   add_foreign_key "github_stats", "addons"
   add_foreign_key "pending_builds", "addon_versions"
   add_foreign_key "pending_builds", "build_servers"
+  add_foreign_key "pending_size_calculations", "addon_versions"
+  add_foreign_key "pending_size_calculations", "build_servers"
   add_foreign_key "score_calculations", "addon_versions"
   add_foreign_key "score_calculations", "addons"
+  add_foreign_key "size_calculation_results", "addon_versions"
+  add_foreign_key "size_calculation_results", "build_servers"
   add_foreign_key "test_results", "addon_versions"
   add_foreign_key "test_results", "build_servers"
 

@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   scope :api, defaults: { format: :json } do
     resources :test_results, only: [:create]
+    resources :size_calculation_results, only: [:create]
 
     post 'build_queue/get_build' => 'build_queue#get_build'
     post 'test_results/:id/retry' => 'test_results#retry'
+
+    post 'size_calculation_queue/get_calculation' => 'size_calculation_queue#get_calculation'
+    post 'size_calculation_results/:id/retry' => 'size_calculation_results#retry'
   end
 
   post 'api/v2/test_results/:id/retry' => 'test_results#retry'
@@ -47,6 +51,10 @@ Rails.application.routes.draw do
       end
 
       jsonapi_resources :test_results do
+        jsonapi_related_resources :version
+      end
+
+      jsonapi_resources :size_calculation_results do
         jsonapi_related_resources :version
       end
 
