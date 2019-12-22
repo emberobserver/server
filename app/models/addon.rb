@@ -165,7 +165,7 @@ class Addon < ApplicationRecord
   end
 
   def self.with_valid_repo
-    where(has_invalid_github_repo: false).repo_url?
+    where(has_invalid_github_repo: false).repo_url?.not_hidden
   end
 
   def self.top_n(n)

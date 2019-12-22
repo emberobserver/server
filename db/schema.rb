@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190526121432) do
+ActiveRecord::Schema.define(version: 20191220234215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,23 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.index ["npm_author_id"], name: "index_addons_on_npm_author_id"
   end
 
+  create_table "audits", force: :cascade do |t|
+    t.bigint "addon_id"
+    t.bigint "addon_version_id"
+    t.boolean "value"
+    t.boolean "override_value"
+    t.bigint "user_id"
+    t.datetime "override_timestamp"
+    t.jsonb "results"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "sha"
+    t.string "audit_type"
+    t.index ["addon_id"], name: "index_audits_on_addon_id"
+    t.index ["addon_version_id"], name: "index_audits_on_addon_version_id"
+    t.index ["user_id"], name: "index_audits_on_user_id"
+  end
+
   create_table "build_servers", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "token"
@@ -197,6 +214,17 @@ ActiveRecord::Schema.define(version: 20190526121432) do
     t.string "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lint_results", force: :cascade do |t|
+    t.bigint "addon_id"
+    t.bigint "addon_version_id"
+    t.jsonb "results"
+    t.string "sha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addon_id"], name: "index_lint_results_on_addon_id"
+    t.index ["addon_version_id"], name: "index_lint_results_on_addon_version_id"
   end
 
   create_table "npm_authors", id: :serial, force: :cascade do |t|
@@ -313,8 +341,13 @@ ActiveRecord::Schema.define(version: 20190526121432) do
   add_foreign_key "addon_version_dependencies", "addons", column: "package_addon_id"
   add_foreign_key "addons", "addon_versions", column: "latest_addon_version_id"
   add_foreign_key "addons", "reviews", column: "latest_review_id"
+  add_foreign_key "audits", "addon_versions"
+  add_foreign_key "audits", "addons"
+  add_foreign_key "audits", "users"
   add_foreign_key "ember_version_compatibilities", "test_results"
   add_foreign_key "github_stats", "addons"
+  add_foreign_key "lint_results", "addon_versions"
+  add_foreign_key "lint_results", "addons"
   add_foreign_key "pending_builds", "addon_versions"
   add_foreign_key "pending_builds", "build_servers"
   add_foreign_key "pending_size_calculations", "addon_versions"

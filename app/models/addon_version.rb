@@ -24,6 +24,7 @@ class AddonVersion < ApplicationRecord
   has_many :compatible_versions, foreign_key: 'addon_version_id', class_name: 'AddonVersionCompatibility'
   has_many :test_results
   has_one :addon_size, dependent: :destroy
+  has_many :audits
 
   before_create :set_addon_name
 
