@@ -3,7 +3,7 @@
 require 'open3'
 
 class Linter
-  attr_reader :addon, :results
+  attr_reader :addon
 
   def initialize(addon)
     @addon = addon
@@ -22,7 +22,7 @@ class Linter
     end
 
     output = JSON.parse(stdout)
-    @results ||= output.map do |o|
+    output.map do |o|
       {
         filePath: o['filePath'].gsub("#{addon_source_dir}/", ''),
         messages: o['messages'],

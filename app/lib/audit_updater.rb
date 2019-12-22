@@ -23,12 +23,12 @@ class AuditUpdater
 
   def save_audits(results, sha)
     by_rule = results_by_rule(results)
-    RULE_MAP.each_key do |rule|
-      audit = Audit.find_or_create_by!(addon_id: addon.id, addon_version_id: addon.latest_addon_version.id, audit_type: RULE_MAP[rule])
-      if by_rule[rule]
-        audit.update(value: false, results: by_rule[rule], audit_type: RULE_MAP[rule], sha: sha)
+    RULE_MAP.each do |lint_rule, audit_type|
+      audit = Audit.find_or_create_by!(addon_id: addon.id, addon_version_id: addon.latest_addon_version.id, audit_type: audit_type)
+      if by_rule[lint_rule]
+        audit.update(value: false, results: by_rule[lint_rule], audit_type: audit_type, sha: sha)
       else
-        audit.update(value: true, results: nil, audit_type: RULE_MAP[rule], sha: sha)
+        audit.update(value: true, results: nil, audit_type: audit_type, sha: sha)
       end
     end
   end
