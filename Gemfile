@@ -46,6 +46,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-sidekiq'
   gem 'capistrano3-puma'
+  gem 'capistrano-nvm', require: false
 end
 
 gem 'faraday-http-cache'
