@@ -13,7 +13,6 @@ require 'capistrano/bundler'
 require 'capistrano/rails/migrations'
 require 'capistrano/sidekiq'
 require 'whenever/capistrano'
-require 'capistrano/nvm'
 
 require 'capistrano/puma'
 install_plugin Capistrano::Puma
