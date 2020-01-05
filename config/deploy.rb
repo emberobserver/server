@@ -13,6 +13,7 @@ set :ssh_options, { forward_agent: true }
 
 namespace :deploy do
   after :updated, 'deploy:npm:install'
+  after :updated, 'deploy:linting:yarn_install'
   after :publishing, :restart
 
   task :restart do

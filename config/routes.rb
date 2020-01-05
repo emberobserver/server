@@ -34,6 +34,10 @@ Rails.application.routes.draw do
         jsonapi_related_resources :version
       end
 
+      jsonapi_resources :audits, only: [:create, :update, :index] do
+        # This block intentionally left empty to not generate relationship routes
+      end
+
       jsonapi_resources :categories do
         # This block intentionally left empty to not generate relationship routes
       end

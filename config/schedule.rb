@@ -62,6 +62,7 @@ end
 
 every 1.day, at: '0900' do
   rake "search:prepare"
+  rake "audits:enqueue"
 end
 
 every 1.day, at: '1000' do
