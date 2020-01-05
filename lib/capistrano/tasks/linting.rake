@@ -3,7 +3,7 @@
 namespace :deploy do
   namespace :linting do
     desc 'Install Node packages for linting, using yarn'
-    task :install do
+    task :yarn_install do
       on roles(:app) do
         within "#{release_path}/linting" do
           execute :yarn, 'install'
