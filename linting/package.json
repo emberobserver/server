@@ -12,6 +12,6 @@
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-ember": "kategengler/eslint-plugin-ember#kg-jquery-integration"
+    "eslint-plugin-ember": "kategengler/eslint-plugin-ember#emberobserver"
   }
 }

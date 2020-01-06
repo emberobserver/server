@@ -46,6 +46,39 @@ class AuditUpdaterTest < ActiveSupport::TestCase
     no_observers = Audit.where(audit_type: 'no-observers').first
     assert_equal true, no_observers.value
     assert_nil no_observers.results
+
+    no_new_mixins = Audit.where(audit_type: 'no-new-mixins').first
+    assert_equal true, no_new_mixins.value
+    assert_nil no_new_mixins.results
+
+    no_old_shims = Audit.where(audit_type: 'no-old-shims').first
+    assert_equal true, no_old_shims.value
+    assert_nil no_old_shims.results
+  end
+
+  test '#update reuses existing audit for same addon version and audit type' do
+    addon = create(:addon, :with_reviewed_version)
+
+    rules = AuditUpdater::RULE_MAP.keys
+
+    create_updater(addon).update(linter)
+
+    audits = Audit.all
+
+    assert_equal audits.length, rules.length, 'One audit for each rule'
+
+    no_jquery = Audit.where(audit_type: 'no-jquery').first
+    assert_equal false, no_jquery.value
+    assert_equal 3, no_jquery.results.length
+
+    create_updater(addon).update(linter([]))
+
+    audits.reload
+
+    assert_equal audits.length, rules.length, 'One audit for each rule'
+    no_jquery = Audit.where(audit_type: 'no-jquery').first
+    assert_equal true, no_jquery.value
+    assert_nil no_jquery.results
   end
 
   private
@@ -54,8 +87,8 @@ class AuditUpdaterTest < ActiveSupport::TestCase
     AuditUpdater.new(addon)
   end
 
-  def linter
-    OpenStruct.new(run: lint_results, sha: 'abcd3f')
+  def linter(results = lint_results)
+    OpenStruct.new(run: results, sha: 'abcd3f')
   end
 
   def lint_results
