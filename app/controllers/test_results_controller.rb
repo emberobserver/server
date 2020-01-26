@@ -28,7 +28,7 @@ class TestResultsController < ApplicationController
       return
     end
 
-    if succeeded? && !verify_test_results(params[:results])
+    if succeeded? && !verify_test_results
       head :unprocessable_entity
       return
     end
@@ -42,7 +42,7 @@ class TestResultsController < ApplicationController
         addon_version_id: build.addon_version.id,
         build_server: build.build_server,
         canary: build.canary?,
-        ember_try_results: @results,
+        ember_try_results: results,
         output: output,
         output_format: output_format,
         semver_string: semver_string,
@@ -93,15 +93,17 @@ class TestResultsController < ApplicationController
     params[:status] == 'succeeded'
   end
 
-  def verify_test_results(results_str)
-    return false unless results_str
-    begin
-      @results = JSON.parse(results_str)
+  def results
+    @results ||= begin
+      JSON.parse(params[:results] || '')
     rescue JSON::ParserError
-      return false
+      return nil
     end
+  end
 
-    return false if @results['scenarios'].empty?
+  def verify_test_results
+    return false if results.nil?
+    return false if results['scenarios'].empty?
     true
   end
 
