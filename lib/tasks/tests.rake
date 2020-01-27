@@ -14,6 +14,6 @@ namespace :tests do
     Addon.top_n(200).with_valid_repo
          .map(&:latest_addon_version)
          .select { |version| version.test_results.where(canary: false).count == 0 }
-         .each { |version| PendingBuild.create!(addon_version: version) }
+         .each { |version| BuildQueuer.new(version).queue }
   end
 end

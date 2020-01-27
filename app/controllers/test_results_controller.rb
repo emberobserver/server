@@ -34,7 +34,7 @@ class TestResultsController < ApplicationController
     end
 
     ActiveRecord::Base.transaction do
-      semver_string = build.addon_version.ember_version_compatibility
+      semver_string = build.semver_string
       if build.canary?
         semver_string = nil
       end

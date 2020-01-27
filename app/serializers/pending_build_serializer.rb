@@ -11,6 +11,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  canary            :boolean          default(FALSE), not null
+#  semver_string     :string
 #
 # Indexes
 #
@@ -24,8 +25,6 @@
 #
 
 class PendingBuildSerializer < ApplicationSerializer
-  DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '~3.4.0 || ~3.8.0 || ~3.12.0 || >=3.13.0'
-
   attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility
 
   def addon_name
@@ -41,6 +40,6 @@ class PendingBuildSerializer < ApplicationSerializer
   end
 
   def ember_version_compatibility
-    object.addon_version.ember_version_compatibility || DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING
+    object.semver_string
   end
 end

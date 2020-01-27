@@ -11,6 +11,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  canary            :boolean          default(FALSE), not null
+#  semver_string     :string
 #
 # Indexes
 #

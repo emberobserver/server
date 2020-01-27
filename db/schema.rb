@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191220234215) do
+ActiveRecord::Schema.define(version: 20200126220215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 20191220234215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "canary", default: false, null: false
+    t.string "semver_string"
     t.index ["addon_version_id"], name: "index_pending_builds_on_addon_version_id"
     t.index ["build_server_id"], name: "index_pending_builds_on_build_server_id"
   end
