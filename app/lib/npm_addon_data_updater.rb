@@ -9,7 +9,7 @@ class NpmAddonDataUpdater
   end
 
   def update
-    return if @addon.removed_from_npm
+    return @addon if @addon.removed_from_npm
     update_addon_data
     update_readme
     update_author
