@@ -7,6 +7,7 @@ jobs:
       - image: circleci/postgres:9.5
         environment:
           POSTGRES_USER: circleci
+          POSTGRES_PASSWORD: circleci
     steps:
       - checkout
       - run: sudo gem update --system
