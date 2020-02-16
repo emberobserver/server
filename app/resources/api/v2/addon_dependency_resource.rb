@@ -4,7 +4,7 @@ class API::V2::AddonDependencyResource < JSONAPI::Resource
   immutable
   model_name 'AddonVersionDependency'
 
-  attributes :package, :dependency_type
+  attributes :package, :dependency_type, :package_addon_id
 
   has_one :dependent_version, class_name: 'Version', relation_name: 'addon_version', foreign_key: 'addon_version_id'
 
