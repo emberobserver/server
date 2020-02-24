@@ -281,9 +281,9 @@ escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-plugin-ember@kategengler/eslint-plugin-ember#emberobserver:
-  version "7.7.2"
-  resolved "https://codeload.github.com/kategengler/eslint-plugin-ember/tar.gz/4cbfa236ff4c75231724762d7429fdd43181504c"
+eslint-plugin-ember@kategengler/eslint-plugin-ember#065cacd5b7b6fc5378f22b02fe49c53e10392d89:
+  version "7.8.1"
+  resolved "https://codeload.github.com/kategengler/eslint-plugin-ember/tar.gz/065cacd5b7b6fc5378f22b02fe49c53e10392d89"
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.12"
