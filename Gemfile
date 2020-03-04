@@ -14,7 +14,7 @@ gem 'whenever', require: false
 gem 'bcrypt', '~> 3.1.7'
 gem 'has_secure_token'
 
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 
 gem 'bugsnag'
 gem 'snitcher'
