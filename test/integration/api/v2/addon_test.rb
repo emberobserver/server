@@ -30,6 +30,7 @@ class API::V2::AddonTest < IntegrationTest
     extends-ember
     extends-ember-cli
     is-monorepo
+    latest-addon-version-id
   ].freeze
 
   ADDON_RELATIONSHIPS = %w[

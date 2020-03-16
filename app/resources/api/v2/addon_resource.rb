@@ -17,7 +17,7 @@ class API::V2::AddonResource < API::V2::BaseResource
              :has_been_reviewed,
              :override_repository_url,
              :extends_ember, :extends_ember_cli,
-             :is_monorepo
+             :is_monorepo, :latest_addon_version_id
 
   has_many :maintainers, class_name: 'Maintainer'
   has_many :versions, class_name: 'Version', relation_name: 'addon_versions'
