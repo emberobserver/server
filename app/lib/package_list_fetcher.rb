@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'net/http'
-
 class PackageListFetcher
   FETCH_URL = 'http://127.0.0.1:5984/npm/_design/app/_view/latest-version-dates'
 
