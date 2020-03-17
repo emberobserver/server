@@ -47,7 +47,7 @@ class PackageListFetcher
     end
 
     parse_response(response).tap do |parsed_response|
-      unless parsed_response && !parsed_response.empty?
+      if parsed_response.blank?
         Rails.logger.warn('No packages returned when fetching addon list from couchdb')
       end
     end

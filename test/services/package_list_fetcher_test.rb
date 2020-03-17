@@ -42,8 +42,8 @@ class PackageListFetcherTest < ActiveSupport::TestCase
     results = PackageListFetcher.run
 
     assert_equal 4, results.length
-    assert_equal %w[ember-try @ember/test-helpers ember-cli-mirage ember-feature-flags], results.map { |r| r[:name] }
-    assert_equal ['2019-12-11T21:52:02.157Z', '2019-10-25T20:19:45.594Z', '2019-12-16T18:37:31.102Z', '2019-10-24T02:20:36.452Z'], results.map { |r| r[:date] }
+    assert_equal %w[ember-try @ember/test-helpers ember-cli-mirage ember-feature-flags], (results.map { |r| r[:name] })
+    assert_equal ['2019-12-11T21:52:02.157Z', '2019-10-25T20:19:45.594Z', '2019-12-16T18:37:31.102Z', '2019-10-24T02:20:36.452Z'], (results.map { |r| r[:date] })
   end
 
   test 'returns an empty array if request times out' do
