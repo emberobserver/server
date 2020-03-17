@@ -10,28 +10,20 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
     create(:addon, name: 'ember-power-select', id: 3, latest_version_date: 3.days.ago.utc.iso8601)
     matching_npm_packages = [
       {
-        'package' => {
-          'name' => 'ember-try',
-          'date' => ember_try_date
-        }
+        name: 'ember-try',
+        date: ember_try_date
       },
       {
-        'package' => {
-          'name' => 'my-new-addon',
-          'date' => Time.zone.now.utc.iso8601
-        }
+        name: 'my-new-addon',
+        date: Time.zone.now.utc.iso8601
       },
       {
-        'package' => {
-          'name' => '@ember/test-helpers',
-          'date' => 1.day.ago.utc.iso8601
-        }
+        name: '@ember/test-helpers',
+        date: 1.day.ago.utc.iso8601
       },
       {
-        'package' => {
-          'name' => 'ember-power-select',
-          'date' => 4.days.ago.utc.iso8601
-        }
+        name: 'ember-power-select',
+        date: 4.days.ago.utc.iso8601
       }
     ]
 
@@ -50,28 +42,20 @@ class AddonsUpdaterTest < ActiveSupport::TestCase
     create(:addon, id: 15, name: 'ember-power-select', latest_version_date: 3.days.ago.utc.iso8601)
     matching_npm_packages = [
       {
-        'package' => {
-          'name' => 'ember-try',
-          'date' => ember_try_date
-        }
+        name: 'ember-try',
+        date: ember_try_date
       },
       {
-        'package' => {
-          'name' => 'my-new-addon',
-          'date' => Time.zone.now.utc.iso8601
-        }
+        name: 'my-new-addon',
+        date: Time.zone.now.utc.iso8601
       },
       {
-        'package' => {
-          'name' => '@ember/test-helpers',
-          'date' => 7.days.ago.utc.iso8601
-        }
+        name: '@ember/test-helpers',
+        date: 7.days.ago.utc.iso8601
       },
       {
-        'package' => {
-          'name' => 'ember-power-select',
-          'date' => 4.days.ago.utc.iso8601
-        }
+        name: 'ember-power-select',
+        date: 4.days.ago.utc.iso8601
       }
     ]
 
