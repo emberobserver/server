@@ -99,7 +99,7 @@ namespace :addons do
     desc "Notify Dead Man's Snitch of completion"
     task notify: :environment do
       if Rails.env.production?
-        Snitcher.snitch(ENV['UPDATE_SNITCH_ID'])
+        Snitcher.snitch!(ENV['UPDATE_SNITCH_ID'])
       end
     end
   end

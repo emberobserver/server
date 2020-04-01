@@ -53,6 +53,6 @@ class AddonsUpdater
   end
 
   def self.mark_completion
-    Snitcher.snitch(ENV['FETCH_SNITCH_ID']) if Rails.env.production?
+    Snitcher.snitch!(ENV['FETCH_SNITCH_ID']) if Rails.env.production?
   end
 end
