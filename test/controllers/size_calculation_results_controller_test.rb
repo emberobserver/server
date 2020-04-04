@@ -48,6 +48,8 @@ class SizeCalculationResultsControllerTest < ControllerTest
   test 'records the correct information when a failed build is reported' do
     authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'failed', output: 'Install failed', error_message: 'Something unexpected happened'
 
+    assert_response :ok
+
     calculation_result = SizeCalculationResult.find_by(addon_version_id: @pending_calculation.addon_version.id)
     assert_equal false, calculation_result.succeeded?
     assert_equal 'Install failed', calculation_result.output
@@ -56,6 +58,8 @@ class SizeCalculationResultsControllerTest < ControllerTest
 
   test 'records the correct information when a successful build is reported' do
     authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'succeeded', results: asset_size_result
+
+    assert_response :ok
 
     test_result = SizeCalculationResult.find_by(addon_version_id: @pending_calculation.addon_version.id)
     assert_equal true, test_result.succeeded?
@@ -76,6 +80,8 @@ class SizeCalculationResultsControllerTest < ControllerTest
   test 'reporting results adds the results to the DB' do
     test_result_str = asset_size_result
 
+    assert_response :ok
+
     assert_difference 'SizeCalculationResult.count' do
       authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'succeeded', results: test_result_str
     end
@@ -84,22 +90,35 @@ class SizeCalculationResultsControllerTest < ControllerTest
   test 'reporting successful result creates AddonSize' do
     test_result_str = asset_size_result
 
+    assert_response :ok
+
     assert_difference 'AddonSize.count' do
       authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'succeeded', results: test_result_str
     end
 
     addon_size = AddonSize.find_by(addon_version_id: @pending_calculation.addon_version.id)
     assert_equal 1960, addon_size.app_js_size
+    assert_equal 424, addon_size.app_js_gzip_size
     assert_equal 0, addon_size.vendor_js_size
+    assert_equal 0, addon_size.vendor_js_gzip_size
     assert_equal 200, addon_size.other_js_size
+    assert_equal 40, addon_size.other_js_gzip_size
 
     assert_equal 1428, addon_size.app_css_size
+    assert_equal 280, addon_size.app_css_gzip_size
     assert_equal 420, addon_size.vendor_css_size
+    assert_equal 110, addon_size.vendor_css_gzip_size
     assert_equal 0, addon_size.other_css_size
+    assert_equal 0, addon_size.other_css_gzip_size
+
+    expected_json = JSON.parse(test_result_str)['otherAssets']
+    assert_equal expected_json, addon_size.other_assets
   end
 
   test 'saves build server ID with record result' do
     authed_post :create, pending_size_calculation_id: @pending_calculation.id, status: 'succeeded', results: asset_size_result
+
+    assert_response :ok
 
     assert_equal build_server, SizeCalculationResult.find_by(addon_version_id: @pending_calculation.addon_version_id).build_server
   end
@@ -147,6 +166,20 @@ class SizeCalculationResultsControllerTest < ControllerTest
   end
 
   def asset_size_result
-    %({"appJsSize":"1960","vendorJsSize":"0","otherJsSize":"200","appCssSize":"1428","vendorCssSize":"420","otherCssSize":"0"})
+    other_assets_json = {
+      files: [
+        {
+          name: 'dist/assets/auto-import-fastboot-d41d8cd98f00b204e9800998ecf8427e.js',
+          size: 200,
+          gzipSize: 78
+        },
+        {
+          name: 'dist/ember-fetch/fetch-fastboot-38cfd9007f94f81f5a2bc13690efc343.js',
+          size: 1020,
+          gzipSize: 562
+        }
+      ]
+    }
+    %({"appJsSize":"1960","appJsGzipSize":"424","vendorJsSize":"0","vendorJsGzipSize":"0","otherJsSize":"200","otherJsGzipSize":"40","appCssSize":"1428","appCssGzipSize":"280","vendorCssSize":"420","vendorCssGzipSize":"110","otherCssSize":"0","otherCssGzipSize":"0","otherAssets":#{JSON.generate(other_assets_json)}})
   end
 end
