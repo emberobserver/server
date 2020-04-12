@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191220234215) do
+ActiveRecord::Schema.define(version: 20200322112738) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 20191220234215) do
     t.integer "vendor_css_size"
     t.integer "other_js_size"
     t.integer "other_css_size"
+    t.integer "app_js_gzip_size"
+    t.integer "app_css_gzip_size"
+    t.integer "vendor_js_gzip_size"
+    t.integer "vendor_css_gzip_size"
+    t.integer "other_js_gzip_size"
+    t.integer "other_css_gzip_size"
+    t.jsonb "other_assets"
     t.index ["addon_version_id"], name: "index_addon_sizes_on_addon_version_id"
   end
 

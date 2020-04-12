@@ -79,11 +79,18 @@ class SizeCalculationResultsController < ApplicationController
     AddonSize.create!(
       addon_version_id: addon_version.id,
       app_js_size: @asset_sizes['appJsSize'],
+      app_js_gzip_size: @asset_sizes['appJsGzipSize'],
       app_css_size: @asset_sizes['appCssSize'],
+      app_css_gzip_size: @asset_sizes['appCssGzipSize'],
       vendor_js_size: @asset_sizes['vendorJsSize'],
+      vendor_js_gzip_size: @asset_sizes['vendorJsGzipSize'],
       vendor_css_size: @asset_sizes['vendorCssSize'],
+      vendor_css_gzip_size: @asset_sizes['vendorCssGzipSize'],
       other_js_size: @asset_sizes['otherJsSize'],
-      other_css_size: @asset_sizes['otherCssSize']
+      other_js_gzip_size: @asset_sizes['otherJsGzipSize'],
+      other_css_size: @asset_sizes['otherCssSize'],
+      other_css_gzip_size: @asset_sizes['otherCssGzipSize'],
+      other_assets: @asset_sizes['otherAssets']
     )
   end
 end
