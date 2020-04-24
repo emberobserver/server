@@ -9,6 +9,7 @@ class UpdateAddonWorker
   # as an individual package. (This is a bug in NPM.)
   SKIPPED_PACKAGES = %w[
     @choiceform/ui-foundation
+    @unihorncorn/horn-styles
   ].freeze
 
   def perform(addon_name)
