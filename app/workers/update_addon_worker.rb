@@ -8,7 +8,9 @@ class UpdateAddonWorker
   # packages get returned in the package list but then aren't available to fetch
   # as an individual package. (This is a bug in NPM.)
   SKIPPED_PACKAGES = %w[
+    @choiceform/components-display
     @choiceform/components-feedback
+    @choiceform/components-inputs
     @choiceform/components-navigation
     @choiceform/ui-foundation
     @unihorncorn/horn-styles
