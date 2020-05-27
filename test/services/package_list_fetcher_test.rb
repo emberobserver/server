@@ -71,7 +71,7 @@ class PackageListFetcherTest < ActiveSupport::TestCase
   end
 
   def stub_page(response)
-    PackageListFetcher::Request.expects(:get).with(PackageListFetcher::FETCH_URL, userpwd: 'test-user:test-password').returns(response)
+    PackageListFetcher::Request.expects(:get).with(PackageListFetcher::FETCH_URL, 'test-user', 'test-password').returns(response)
   end
 
   def response_from(data, options = { code: 200 })

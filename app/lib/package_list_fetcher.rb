@@ -4,8 +4,16 @@ class PackageListFetcher
   FETCH_URL = 'http://127.0.0.1:5984/npm/_design/app/_view/latest-version-dates'
 
   class Request
-    def self.get(url, options)
-      request = Typhoeus::Request.new(url, options)
+    def self.get(url, username, password)
+      user_and_password = [username, password].join(':')
+      auth = Base64.encode64(user_and_password)
+      request = Typhoeus::Request.new(
+        url,
+        headers: {
+          'Authorization' => "Basic #{auth}"
+        },
+        userpwd: user_and_password
+      )
       request.run
       Response.new(request.response)
     end
@@ -34,7 +42,7 @@ class PackageListFetcher
   end
 
   def self.run
-    response = Request.get(FETCH_URL, userpwd: [ENV['COUCHDB_USERNAME'], ENV['COUCHDB_PASSWORD']].join(':'))
+    response = Request.get(FETCH_URL, ENV['COUCHDB_USERNAME'], ENV['COUCHDB_PASSWORD'])
 
     unless response.success?
       if response.timed_out?
