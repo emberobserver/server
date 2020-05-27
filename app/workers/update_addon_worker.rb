@@ -13,6 +13,7 @@ class UpdateAddonWorker
     @choiceform/components-inputs
     @choiceform/components-navigation
     @choiceform/ui-foundation
+    @phille/ember-base
     @unihorncorn/horn-styles
   ].freeze
 
