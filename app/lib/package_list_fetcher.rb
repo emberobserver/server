@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class PackageListFetcher
-  FETCH_URL = 'http://registry.npmjs.org/-/v1/search?text=keywords:ember-addon,ember-codemod'
-  PAGE_SIZE = 250
+  FETCH_URL = 'http://127.0.0.1:5984/npm/_design/app/_view/latest-version-dates'
 
   class Request
     def self.get(url, options)
@@ -34,54 +33,30 @@ class PackageListFetcher
     end
   end
 
-  def self.run(opts = {})
-    options = { page_size: PAGE_SIZE }.merge(opts)
-    total = 0
-    expected_count = 0
-    fetched_count = 0
-    matching_npm_packages = []
+  def self.run
+    response = Request.get(FETCH_URL, userpwd: [ENV['COUCHDB_USERNAME'], ENV['COUCHDB_PASSWORD']].join(':'))
 
-    loop do
-      request_params = { size: options[:page_size], from: fetched_count }
-      response = Request.get(FETCH_URL, params: request_params)
-      if response.success?
-        parsed_response = parse_response(response.body)
-
-        unless parsed_response && !parsed_response[:packages].empty?
-          Rails.logger.warn("No packages returned when fetching addon list from npm #{request_params}")
-          break
-        end
-
-        matching_npm_packages.push(*parsed_response[:packages])
-        total = parsed_response[:total]
-
-        if fetched_count == 0
-          expected_count = total
-        end
-
-        fetched_count += parsed_response[:packages].length
-      elsif response.timed_out?
-        Bugsnag.notify("Timed out fetching addon list from npm #{request_params}")
-        break
+    unless response.success?
+      if response.timed_out?
+        Bugsnag.notify('Timed out fetching addon list from couchdb')
       else
-        Bugsnag.notify("Failure fetching addon list from npm #{request_params}")
+        Bugsnag.notify('Failure fetching addon list from couchdb')
         Bugsnag.notify("HTTP request failed: #{response.code}")
-        break
       end
-
-      break if fetched_count >= expected_count
+      return []
     end
 
-    if fetched_count < total
-      Bugsnag.notify("Failed to fetch the expected number of addons, got #{fetched_count}/#{total}")
+    parse_response(response).tap do |parsed_response|
+      if parsed_response.blank?
+        Rails.logger.warn('No packages returned when fetching addon list from couchdb')
+      end
     end
-
-    matching_npm_packages
   end
 
   def self.parse_response(response)
-    return unless response
-    contents = JSON.parse(response)
-    { packages: contents['objects'], total: contents['total'] }
+    rows = JSON.parse(response.body)['rows']
+    rows.map do |r|
+      { name: r['key'], date: r['value'] }
+    end
   end
 end

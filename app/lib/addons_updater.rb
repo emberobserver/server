@@ -19,9 +19,8 @@ class AddonsUpdater
 
   def self.addons_in_need_of_update(matching_npm_packages, hour = Time.current.hour)
     addons_needing_updating = []
-    matching_npm_packages.each do |a|
-      addon_data = a['package']
-      addon_name = addon_data['name']
+    matching_npm_packages.each do |addon_data|
+      addon_name = addon_data[:name]
       addon = Addon.find_by(name: addon_name)
 
       unless addon
@@ -30,7 +29,7 @@ class AddonsUpdater
       end
 
       addon_scheduled_to_be_updated = scheduled_to_be_updated?(addon.id, hour)
-      addon_updated_since_last_fetch = Time.zone.parse(addon_data['date']) > addon.latest_version_date
+      addon_updated_since_last_fetch = Time.zone.parse(addon_data[:date]) > addon.latest_version_date
       if addon_updated_since_last_fetch
         addons_needing_updating << { name: addon_name, reason: 'Out of date' }
       elsif addon_scheduled_to_be_updated
