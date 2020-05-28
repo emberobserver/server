@@ -13,8 +13,14 @@ class UpdateAddonWorker
     @choiceform/components-inputs
     @choiceform/components-navigation
     @choiceform/ui-foundation
+    @phille/clickfunnels-marketplace-shared
     @phille/ember-base
     @unihorncorn/horn-styles
+    @viviedu/ember-source
+    ember-cli-fill-murray-michelegera
+    ember-source-vivi
+    ember-store-events
+    trionyx
   ].freeze
 
   def perform(addon_name)
