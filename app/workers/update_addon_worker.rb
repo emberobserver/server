@@ -28,6 +28,6 @@ class UpdateAddonWorker
     addon = Addon.find_by(name: name)
     return false if addon.nil?
 
-    return addon.removed_from_npm
+    addon.removed_from_npm
   end
 end
