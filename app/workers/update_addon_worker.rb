@@ -24,10 +24,21 @@ class UpdateAddonWorker
   ].freeze
 
   def perform(addon_name)
-    return if SKIPPED_PACKAGES.include?(addon_name)
+    return if skip_addon?(addon_name)
 
     data = PackageFetcher.run(addon_name)
     addon = NpmAddonDataUpdater.new(data).update
     AddonScoreWorker.perform_async(addon.id)
+  end
+
+  private
+
+  def skip_addon?(name)
+    return true if SKIPPED_PACKAGES.include?(name)
+
+    addon = Addon.find_by(name: name)
+    return false if addon.nil?
+
+    return addon.removed_from_npm
   end
 end
