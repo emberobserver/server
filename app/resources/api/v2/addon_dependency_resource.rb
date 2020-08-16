@@ -8,6 +8,8 @@ class API::V2::AddonDependencyResource < JSONAPI::Resource
 
   has_one :dependent_version, class_name: 'Version', relation_name: 'addon_version', foreign_key: 'addon_version_id'
 
+  has_one :package_addon, class_name: 'Addon', relation_name: 'package_addon', foreign_key: 'package_addon_id'
+
   filter :visible_addons_only, apply: ->(records, value, _options) {
     addons_only = ActiveModel::Type::Boolean.new.cast(value[0])
     if addons_only

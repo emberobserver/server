@@ -10,6 +10,7 @@ class API::V2::AddonDependencyTest < IntegrationTest
 
   ADDON_DEPENDENCY_RELATIONSHIPS = %w[
     dependent-version
+    package-addon
   ].freeze
 
   test 'end user can fetch addon dependencies' do
@@ -111,5 +112,33 @@ class API::V2::AddonDependencyTest < IntegrationTest
 
     assert_response 200
     assert_equal dependency.id.to_s, json_response['data']['id']
+  end
+
+  test 'end user request can include latest addon size of the dependency' do
+    package_addon = create :addon
+    latest_version = create :addon_version, addon: package_addon
+    older_version = create :addon_version, addon: package_addon
+
+    latest_size = create :addon_size, addon_version: latest_version, app_js_size: 50
+    create :addon_size, addon_version: older_version, app_js_size: 75
+
+    package_addon.latest_addon_version = latest_version
+    package_addon.save!
+
+    dependent_addon = create :addon
+    dependent_version = create :addon_version, addon: dependent_addon
+
+    create :addon_version_dependency, package_addon: package_addon, addon_version: dependent_version
+
+    include = 'package-addon.latest-addon-version.addon-size'
+    get '/api/v2/addon-dependencies', params: { filter: { addon_version_id: dependent_version.id }, include: include }
+
+    parsed_response = json_response
+    assert_equal 1, parsed_response['data'].length, 'One addon dependency is returned'
+
+    included_sizes = parsed_response['included'].find_all { |datum| datum['type'] == 'addon-sizes' }
+
+    assert_equal 1, included_sizes.length, 'One addon size is returned'
+    assert_equal latest_size.app_js_size, included_sizes[0]['attributes']['app-js-size'], 'Latest addon size is returned'
   end
 end
