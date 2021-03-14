@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200322112738) do
+ActiveRecord::Schema.define(version: 20210314150851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20200322112738) do
     t.string "github_user"
     t.string "github_repo"
     t.boolean "has_invalid_github_repo", default: false
-    t.text "rendered_note"
     t.integer "last_month_downloads"
     t.boolean "is_top_downloaded", default: false
     t.boolean "is_top_starred", default: false
