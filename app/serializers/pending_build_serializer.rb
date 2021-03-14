@@ -24,7 +24,7 @@
 #
 
 class PendingBuildSerializer < ApplicationSerializer
-  DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '~3.4.0 || ~3.8.0 || ~3.12.0 || >=3.13.0'
+  DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '~3.16.0 || ~3.20.0 || ~3.24.0 || >=3.25.0'
 
   attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility
 
