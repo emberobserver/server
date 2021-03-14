@@ -53,7 +53,6 @@ gem 'faraday_middleware'
 gem 'typhoeus'
 gem 'octokit', '~> 4.0'
 
-gem 'github-markdown'
 gem 'pg_search'
 gem 'scenic'
 gem 'sidekiq'
