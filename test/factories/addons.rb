@@ -21,7 +21,6 @@
 #  github_user                  :string
 #  github_repo                  :string
 #  has_invalid_github_repo      :boolean          default(FALSE)
-#  rendered_note                :text
 #  last_month_downloads         :integer
 #  is_top_downloaded            :boolean          default(FALSE)
 #  is_top_starred               :boolean          default(FALSE)
