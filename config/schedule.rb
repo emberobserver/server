@@ -44,6 +44,7 @@ every 1.hour, at: 55 do
 end
 
 every 1.day, at: '0400' do
+  rake "tests:verify_queue"
   rake "tests:queue_canary_tests"
   rake "tests:queue_tests"
 end
