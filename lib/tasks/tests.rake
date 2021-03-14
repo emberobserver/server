@@ -16,4 +16,10 @@ namespace :tests do
          .select { |version| version.test_results.where(canary: false).count == 0 }
          .each { |version| PendingBuild.create!(addon_version: version) }
   end
+
+  task verify_queue: :environment do
+    if PendingBuild.count > 0
+      BuildQueueMailer.queue_not_empty.deliver_now
+    end
+  end
 end
