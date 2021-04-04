@@ -85,15 +85,15 @@ namespace :addons do
       ReadmeView.refresh
     end
 
-    desc 'Queue size data calculations for recently updated addons'
+    desc 'Queue size data calculations for top 1000 addons'
     task queue_asset_size_calculations: :environment do
-      latest_version_ids = Addon.active.where('latest_version_date > ?', 18.months.ago).pluck(:latest_addon_version_id)
-      latest_version_ids.each do |version_id|
+      addon_version_ids = Addon.top_n(1000).pluck(:latest_addon_version_id)
+      addon_version_ids.each do |version_id|
         if !AddonSize.exists?(addon_version_id: version_id) && !PendingSizeCalculation.exists?(addon_version_id: version_id)
           PendingSizeCalculation.create!(addon_version_id: version_id)
         end
       end
-      puts "Created PendingSizeCalculations for #{latest_version_ids.size} addon versions"
+      puts "Created PendingSizeCalculations for #{addon_version_ids.size} addon versions"
     end
 
     desc "Notify Dead Man's Snitch of completion"
