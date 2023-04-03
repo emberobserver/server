@@ -106,7 +106,7 @@ class AuditUpdaterTest < ActiveSupport::TestCase
         'endLine' => 147, 'endColumn' => 9
       },
                  {
-                   'ruleId' => 'ember/no-jquery-integration',
+                   'ruleId' => 'ember-observer/no-jquery-integration',
                    'severity' => 2,
                    'message' => 'Do not use jQuery integration',
                    'line' => 147,
@@ -130,7 +130,7 @@ class AuditUpdaterTest < ActiveSupport::TestCase
           'endColumn' => 26
         },
         {
-          'ruleId' => 'ember/no-jquery-integration',
+          'ruleId' => 'ember-observer/no-jquery-integration',
           'severity' => 2,
           'message' => 'Do not use jQuery integration',
           'line' => 120,
