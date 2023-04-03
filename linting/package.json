@@ -12,6 +12,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-ember": "kategengler/eslint-plugin-ember#065cacd5b7b6fc5378f22b02fe49c53e10392d89"
+    "eslint-plugin-ember": "^10.5.0",
+    "eslint-plugin-ember-observer": "emberobserver/eslint-plugin-ember-observer#v1.0.0"
   }
 }
