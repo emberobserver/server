@@ -46,17 +46,17 @@ class AuditUpdater
 
   RULE_MAP = {
     'ember/no-jquery' => 'no-jquery',
-    'ember/no-jquery-integration' => 'no-jquery-integration',
     'ember/no-observers' => 'no-observers',
     'ember/no-new-mixins' => 'no-new-mixins',
     'ember/no-old-shims' => 'no-old-shims',
-    'ember/no-tracked' => 'no-tracked',
     'ember/no-classic-classes' => 'no-classic-classes',
     'ember/no-classic-components' => 'no-classic-components',
     'ember/no-computed-properties-in-native-classes' => 'no-computed-properties-in-native-classes',
     'ember/no-get' => 'no-get',
     'ember/no-get-with-default' => 'no-get-with-default',
-    'ember/no-ember-components' => 'no-ember-components',
-    'ember/no-glimmer-components' => 'no-glimmer-components'
+    'ember-observer/no-ember-components' => 'no-ember-components',
+    'ember-observer/no-glimmer-components' => 'no-glimmer-components',
+    'ember-observer/no-jquery-integration' => 'no-jquery-integration',
+    'ember-observer/no-tracked' => 'no-tracked'
   }.freeze
 end
