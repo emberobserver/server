@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: test_results
@@ -16,6 +15,7 @@
 #  output            :text
 #  output_format     :string           default("text"), not null
 #  ember_try_results :jsonb
+#  build_type        :string
 #
 # Indexes
 #

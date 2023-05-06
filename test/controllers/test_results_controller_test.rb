@@ -93,13 +93,13 @@ class TestResultsControllerTest < ControllerTest
     end
   end
 
-  test "sets 'canary' flag on TestResult to true when build_type was 'canary'" do
+  test "sets 'build_type' field on TestResult to value from PendingBuild" do
     @pending_build.update(build_type: :canary)
 
     authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1)
 
     test_result = TestResult.find_by(addon_version_id: @pending_build.addon_version.id)
-    assert_equal true, test_result.canary?
+    assert_equal 'canary', test_result.build_type
   end
 
   test 'saves build server ID with record result' do
@@ -189,7 +189,7 @@ class TestResultsControllerTest < ControllerTest
   test "'retry' action enqueues a new pending build with same parameters" do
     user = create(:user)
     addon_version = create(:addon_version)
-    test_result = create(:test_result, canary: true, addon_version: addon_version)
+    test_result = create(:test_result, :canary, addon_version: addon_version)
 
     assert_difference 'PendingBuild.count' do
       post_as_user user, :retry, id: test_result.id
@@ -199,7 +199,7 @@ class TestResultsControllerTest < ControllerTest
 
     new_build = PendingBuild.last
     assert_equal addon_version.id, new_build.addon_version_id, 'new build is created for same addon version'
-    assert_equal test_result.canary?, new_build.canary?, 'new build is created with same value for "canary" flag'
+    assert_equal test_result.build_type, new_build.build_type, 'new build is created with same value for "build_type" attribute'
   end
 
   private
