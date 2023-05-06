@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: pending_builds
@@ -11,6 +10,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  canary            :boolean          default(FALSE), not null
+#  build_type        :string
 #
 # Indexes
 #
