@@ -9,7 +9,6 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
 #  build_type        :string
 #
 # Indexes

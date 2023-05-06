@@ -5,7 +5,7 @@ namespace :tests do
     Addon.top_n(200).with_valid_repo.each do |addon|
       PendingBuild.create!(
         addon_version: addon.latest_addon_version,
-        canary: true
+        build_type: :canary
       )
     end
   end
@@ -14,7 +14,7 @@ namespace :tests do
     Addon.top_n(200).with_valid_repo
          .map(&:latest_addon_version)
          .select { |version| version.test_results.where(canary: false).count == 0 }
-         .each { |version| PendingBuild.create!(addon_version: version) }
+         .each { |version| PendingBuild.create!(addon_version: version, build_type: :ember_version_compatibility) }
   end
 
   task verify_queue: :environment do

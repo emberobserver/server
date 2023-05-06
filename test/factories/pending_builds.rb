@@ -9,7 +9,6 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
 #  build_type        :string
 #
 # Indexes
@@ -26,5 +25,13 @@
 FactoryBot.define do
   factory :pending_build do
     association :addon_version, factory: %i[addon_version basic]
+
+    trait :canary do
+      build_type { 'canary' }
+    end
+
+    trait :ember_version_compatibility do
+      build_type { 'ember_version_compatibility' }
+    end
   end
 end

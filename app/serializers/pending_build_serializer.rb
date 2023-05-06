@@ -9,7 +9,6 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
 #  build_type        :string
 #
 # Indexes
@@ -26,7 +25,7 @@
 class PendingBuildSerializer < ApplicationSerializer
   DEFAULT_EMBER_VERSION_COMPATIBILITY_STRING = '~3.28.0 || ~4.4.0 || >=4.5.0'
 
-  attributes :id, :addon_name, :repository_url, :version, :canary, :ember_version_compatibility
+  attributes :id, :addon_name, :build_type, :repository_url, :version, :ember_version_compatibility
 
   def addon_name
     object.addon_version.addon_name

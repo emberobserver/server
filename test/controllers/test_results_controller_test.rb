@@ -93,8 +93,8 @@ class TestResultsControllerTest < ControllerTest
     end
   end
 
-  test "the value of the 'canary' flag is preserved" do
-    @pending_build.update(canary: true)
+  test "sets 'canary' flag on TestResult to true when build_type was 'canary'" do
+    @pending_build.update(build_type: :canary)
 
     authed_post :create, pending_build_id: @pending_build.id, status: 'succeeded', results: build_test_result_string(1)
 
@@ -124,7 +124,7 @@ class TestResultsControllerTest < ControllerTest
 
   test 'does not save semver string for canary builds' do
     addon_version = create(:addon_version_with_ember_version_compatibility, ember_version_compatibility: '>= 2.0.0')
-    pending_build = create(:pending_build, addon_version: addon_version, build_server: build_server, build_assigned_at: 5.minutes.ago, canary: true)
+    pending_build = create(:pending_build, :canary, addon_version: addon_version, build_server: build_server, build_assigned_at: 5.minutes.ago)
     authed_post :create, pending_build_id: pending_build.id, status: 'succeeded', results: build_test_result_string(1)
 
     assert_nil TestResult.find_by(addon_version_id: pending_build.addon_version_id).semver_string
