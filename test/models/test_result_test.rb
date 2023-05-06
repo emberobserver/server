@@ -37,12 +37,12 @@ class TestResultTest < ActiveSupport::TestCase
     some_invalid_formats = %w[binary foo]
 
     valid_formats.each do |format|
-      test_result = TestResult.new(output_format: format, output: '{}', addon_version: addon_version, build_server: build_server)
+      test_result = TestResult.new(output_format: format, output: '{}', build_type: 'canary', addon_version: addon_version, build_server: build_server)
       assert test_result.valid?
     end
 
     some_invalid_formats.each do |format|
-      test_result = TestResult.new(output_format: format, output: '{}', addon_version: addon_version, build_server: build_server)
+      test_result = TestResult.new(output_format: format, output: '{}', build_type: 'canary', addon_version: addon_version, build_server: build_server)
       assert !test_result.valid?
     end
   end
@@ -62,5 +62,19 @@ class TestResultTest < ActiveSupport::TestCase
 
     assert !test_result.valid?
     assert_equal 'must be valid JSON', test_result.errors[:output].first
+  end
+
+  test 'does not allow TestResults to be created with unknown build_types' do
+    addon_version = create(:addon_version)
+    build_server = create(:build_server)
+
+    assert_raises ActiveRecord::RecordInvalid do
+      TestResult.create! build_type: 'foo', addon_version: addon_version, build_server: build_server
+    end
+
+    assert_nothing_raised do
+      TestResult.create! build_type: 'canary', addon_version: addon_version, build_server: build_server
+      TestResult.create! build_type: 'ember_version_compatibility', addon_version: addon_version, build_server: build_server
+    end
   end
 end

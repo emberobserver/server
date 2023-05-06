@@ -67,7 +67,7 @@ class API::V2::ReviewTest < IntegrationTest
 
     create :test_result, build_type: 'ember_version_compatibility', addon_version: addon_version
     canary_result = create(:test_result, build_type: 'canary', addon_version: addon_version, created_at: '2023-05-06T05:00:00Z')
-    create :test_result, build_type: 'foo', addon_version: addon_version, created_at: '2023-05-06T05:00:00Z'
+    create :test_result, build_type: 'ember_version_compatibility', addon_version: addon_version, created_at: '2023-05-06T05:00:00Z'
 
     get '/api/v2/test-results', params: {
       filter: {

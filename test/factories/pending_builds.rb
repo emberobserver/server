@@ -26,6 +26,8 @@ FactoryBot.define do
   factory :pending_build do
     association :addon_version, factory: %i[addon_version basic]
 
+    build_type { 'ember_version_compatibility' }
+
     trait :canary do
       build_type { 'canary' }
     end

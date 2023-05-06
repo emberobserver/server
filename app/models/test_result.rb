@@ -28,12 +28,14 @@
 #
 
 class TestResult < ApplicationRecord
+  VALID_BUILD_TYPES = %w[canary ember_version_compatibility].freeze
   VALID_OUTPUT_FORMATS = %w[json text].freeze
 
   belongs_to :addon_version
   belongs_to :build_server
   has_many :ember_version_compatibilities
 
+  validates :build_type, inclusion: { in: VALID_BUILD_TYPES }
   validates :output_format, inclusion: { in: VALID_OUTPUT_FORMATS }
   validate :valid_output?
 

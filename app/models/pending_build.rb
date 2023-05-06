@@ -23,8 +23,12 @@
 #
 
 class PendingBuild < ApplicationRecord
+  VALID_BUILD_TYPES = ['canary', 'ember_version_compatibility'].freeze
+
   belongs_to :addon_version
   belongs_to :build_server, optional: true
+
+  validates :build_type, inclusion: { in: VALID_BUILD_TYPES }
 
   def self.unassigned
     where('build_assigned_at is null')
