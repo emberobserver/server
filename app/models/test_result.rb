@@ -28,7 +28,7 @@
 #
 
 class TestResult < ApplicationRecord
-  VALID_BUILD_TYPES = %w[canary ember_version_compatibility].freeze
+  VALID_BUILD_TYPES = %w[canary ember_version_compatibility embroider].freeze
   VALID_OUTPUT_FORMATS = %w[json text].freeze
 
   belongs_to :addon_version
