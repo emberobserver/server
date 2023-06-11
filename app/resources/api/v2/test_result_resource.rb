@@ -2,7 +2,7 @@
 
 class API::V2::TestResultResource < JSONAPI::Resource
   immutable
-  attributes :ember_try_results, :succeeded, :status_message, :created_at, :semver_string, :build_type, :output, :output_format
+  attributes :ember_try_results, :succeeded, :status_message, :created_at, :semver_string, :build_type, :canary, :output, :output_format
   has_one :version, class_name: 'Version', relation_name: 'addon_version', foreign_key: 'addon_version_id'
   has_many :ember_version_compatibilities
 
@@ -18,4 +18,8 @@ class API::V2::TestResultResource < JSONAPI::Resource
   }
 
   filter :build_type
+
+  def canary
+    @model.build_type == 'canary'
+  end
 end

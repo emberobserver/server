@@ -10,6 +10,7 @@ class API::V2::ReviewTest < IntegrationTest
     created-at
     semver-string
     build-type
+    canary
     output
     output-format
   ].freeze
