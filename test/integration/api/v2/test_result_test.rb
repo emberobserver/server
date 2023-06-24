@@ -72,7 +72,7 @@ class API::V2::ReviewTest < IntegrationTest
 
     get '/api/v2/test-results', params: {
       filter: {
-        build_type: 'canary',
+        build_type: 'canary'
       },
       include: 'ember-version-compatibilities,version,version.addon'
     }

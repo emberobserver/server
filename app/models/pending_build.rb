@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pending_builds
@@ -23,7 +24,7 @@
 #
 
 class PendingBuild < ApplicationRecord
-  VALID_BUILD_TYPES = ['canary', 'ember_version_compatibility', 'embroider'].freeze
+  VALID_BUILD_TYPES = %w[canary ember_version_compatibility embroider].freeze
 
   belongs_to :addon_version
   belongs_to :build_server, optional: true
