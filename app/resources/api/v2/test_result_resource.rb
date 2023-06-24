@@ -18,6 +18,9 @@ class API::V2::TestResultResource < JSONAPI::Resource
   }
 
   filter :build_type
+  filter :canary, apply: ->(records, _value, _options) {
+    records.where(build_type: 'canary')
+  }
 
   def canary
     @model.build_type == 'canary'
