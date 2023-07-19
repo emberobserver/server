@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210314150851) do
+ActiveRecord::Schema.define(version: 20230506211858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 20210314150851) do
     t.integer "build_server_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "canary", default: false, null: false
+    t.string "build_type"
     t.index ["addon_version_id"], name: "index_pending_builds_on_addon_version_id"
     t.index ["build_server_id"], name: "index_pending_builds_on_build_server_id"
   end
@@ -324,12 +324,12 @@ ActiveRecord::Schema.define(version: 20210314150851) do
     t.string "status_message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "canary", default: false, null: false
     t.integer "build_server_id"
     t.string "semver_string"
     t.text "output"
     t.string "output_format", default: "text", null: false
     t.jsonb "ember_try_results"
+    t.string "build_type"
     t.index ["addon_version_id"], name: "index_test_results_on_addon_version_id"
     t.index ["build_server_id"], name: "index_test_results_on_build_server_id"
   end

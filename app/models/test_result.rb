@@ -10,12 +10,12 @@
 #  status_message    :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
 #  build_server_id   :integer
 #  semver_string     :string
 #  output            :text
 #  output_format     :string           default("text"), not null
 #  ember_try_results :jsonb
+#  build_type        :string
 #
 # Indexes
 #
@@ -29,12 +29,14 @@
 #
 
 class TestResult < ApplicationRecord
+  VALID_BUILD_TYPES = %w[canary ember_version_compatibility embroider].freeze
   VALID_OUTPUT_FORMATS = %w[json text].freeze
 
   belongs_to :addon_version
   belongs_to :build_server
   has_many :ember_version_compatibilities
 
+  validates :build_type, inclusion: { in: VALID_BUILD_TYPES }
   validates :output_format, inclusion: { in: VALID_OUTPUT_FORMATS }
   validate :valid_output?
 

@@ -10,12 +10,12 @@
 #  status_message    :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
 #  build_server_id   :integer
 #  semver_string     :string
 #  output            :text
 #  output_format     :string           default("text"), not null
 #  ember_try_results :jsonb
+#  build_type        :string
 #
 # Indexes
 #
@@ -32,5 +32,11 @@ FactoryBot.define do
   factory :test_result do
     association :addon_version
     association :build_server
+
+    build_type { 'ember_version_compatibility' }
+
+    trait :canary do
+      build_type { 'canary' }
+    end
   end
 end

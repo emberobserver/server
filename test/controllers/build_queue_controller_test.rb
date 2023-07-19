@@ -20,7 +20,7 @@ class BuildQueueControllerTest < ControllerTest
   test 'responds with HTTP 204 (no content) when the queue is not empty but all builds are assigned' do
     addon_version = create(:addon_version)
     other_build_server = create(:build_server)
-    x = create(:pending_build, addon_version: addon_version, build_server: other_build_server, build_assigned_at: 1.hour.ago)
+    x = create(:pending_build, :ember_version_compatibility, addon_version: addon_version, build_server: other_build_server, build_assigned_at: 1.hour.ago)
 
     authed_post :get_build
 
@@ -66,19 +66,19 @@ class BuildQueueControllerTest < ControllerTest
     assert_not_nil pending_build.build_assigned_at
   end
 
-  test "includes the 'canary' flag in the response" do
+  test "includes the 'build_type' value in the response" do
     addon_version = create(:addon_version)
-    pending_build = create(:pending_build, addon_version: addon_version, canary: true)
+    pending_build = create(:pending_build, addon_version: addon_version, build_type: 'canary')
 
     authed_post :get_build
 
-    assert_equal true, json_response['pending_build']['canary']
+    assert_equal 'canary', json_response['pending_build']['build_type']
   end
 
   test "includes the addon's reported Ember version compatibility string for tests, if present" do
     ember_version_compatibility_string = '>= 2.0.0'
     addon_version = create(:addon_version_with_ember_version_compatibility, ember_version_compatibility: ember_version_compatibility_string)
-    pending_build = create(:pending_build, addon_version: addon_version)
+    pending_build = create(:pending_build, :ember_version_compatibility, addon_version: addon_version)
 
     authed_post :get_build
 
@@ -87,7 +87,7 @@ class BuildQueueControllerTest < ControllerTest
 
   test 'includes default Ember version compatibility string for tests, if not specified for the addon version' do
     addon_version = create(:addon_version)
-    create(:pending_build, addon_version: addon_version)
+    create(:pending_build, :ember_version_compatibility, addon_version: addon_version)
 
     authed_post :get_build
 

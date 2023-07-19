@@ -35,13 +35,13 @@ class TestResultsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       semver_string = build.addon_version.ember_version_compatibility
-      if build.canary?
+      if build.build_type == 'canary'
         semver_string = nil
       end
       test_result = TestResult.create!(
         addon_version_id: build.addon_version.id,
         build_server: build.build_server,
-        canary: build.canary?,
+        build_type: build.build_type,
         ember_try_results: results,
         output: output,
         output_format: output_format,
@@ -63,7 +63,7 @@ class TestResultsController < ApplicationController
   def retry
     PendingBuild.create!(
       addon_version_id: @test_result.addon_version_id,
-      canary: @test_result.canary?
+      build_type: @test_result.build_type
     )
 
     head :created

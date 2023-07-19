@@ -10,7 +10,7 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
+#  build_type        :string
 #
 # Indexes
 #
@@ -24,8 +24,12 @@
 #
 
 class PendingBuild < ApplicationRecord
+  VALID_BUILD_TYPES = %w[canary ember_version_compatibility embroider].freeze
+
   belongs_to :addon_version
   belongs_to :build_server, optional: true
+
+  validates :build_type, inclusion: { in: VALID_BUILD_TYPES }
 
   def self.unassigned
     where('build_assigned_at is null')

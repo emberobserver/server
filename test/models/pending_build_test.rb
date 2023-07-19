@@ -10,7 +10,7 @@
 #  build_server_id   :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  canary            :boolean          default(FALSE), not null
+#  build_type        :string
 #
 # Indexes
 #
@@ -49,5 +49,17 @@ class PendingBuildTest < ActiveSupport::TestCase
     create(:pending_build, addon_version: new_addon_version, created_at: 1.day.ago)
 
     assert_equal '1.5.0', PendingBuild.oldest_unassigned.addon_version.version
+  end
+
+  test 'does not allow PendingBuilds to be created with unknown build_types' do
+    addon_version = create(:addon_version)
+    assert_raises ActiveRecord::RecordInvalid do
+      PendingBuild.create! build_type: 'foo', addon_version: addon_version
+    end
+
+    assert_nothing_raised do
+      PendingBuild.create! build_type: 'canary', addon_version: addon_version
+      PendingBuild.create! build_type: 'ember_version_compatibility', addon_version: addon_version
+    end
   end
 end
