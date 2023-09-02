@@ -19,7 +19,7 @@ class API::V2::TestResultResource < JSONAPI::Resource
 
   filter :build_type
   filter :canary, apply: ->(records, value, _options) {
-    if value == 'true'
+    if value[0] == 'true'
       records.where(build_type: 'canary')
     else
       records.where(build_type: 'ember_version_compatibility')

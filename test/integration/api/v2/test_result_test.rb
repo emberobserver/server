@@ -81,4 +81,32 @@ class API::V2::ReviewTest < IntegrationTest
     assert_equal 1, json_response['data'].length, 'One test result returned'
     assert_equal canary_result.id.to_s, json_response['data'][0]['id'], 'correct test result returned'
   end
+
+  test 'can filter by "canary"' do
+    addon = create(:addon)
+    addon_version = create(:addon_version, addon: addon)
+
+    canary_result = create(:test_result, build_type: 'canary', addon_version: addon_version, created_at: '2023-05-06T05:00:00Z')
+    ember_version_compatibility_result = create(:test_result, build_type: 'ember_version_compatibility', addon_version: addon_version, created_at: '2023-05-06T05:00:00Z')
+
+    get '/api/v2/test-results', params: {
+      filter: {
+        canary: true
+      },
+      include: 'ember-version-compatibilities,version,version.addon'
+    }
+    assert_response 200
+    assert_equal 1, json_response['data'].length, 'One test result returned'
+    assert_equal canary_result.id.to_s, json_response['data'][0]['id'], 'correct test result returned'
+
+    get '/api/v2/test-results', params: {
+      filter: {
+        canary: false
+      },
+      include: 'ember-version-compatibilities,version,version.addon'
+    }
+    assert_response 200
+    assert_equal 1, json_response['data'].length, 'One test result returned'
+    assert_equal ember_version_compatibility_result.id.to_s, json_response['data'][0]['id'], 'correct test result returned'
+  end
 end
