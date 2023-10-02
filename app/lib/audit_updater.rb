@@ -57,6 +57,7 @@ class AuditUpdater
     'ember-observer/no-ember-components' => 'no-ember-components',
     'ember-observer/no-glimmer-components' => 'no-glimmer-components',
     'ember-observer/no-jquery-integration' => 'no-jquery-integration',
-    'ember-observer/no-tracked' => 'no-tracked'
+    'ember-observer/no-tracked' => 'no-tracked',
+    'ember-observer/has-maybe-embroider' => 'has-maybe-embroider'
   }.freeze
 end

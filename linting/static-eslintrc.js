@@ -29,5 +29,6 @@ module.exports = {
     'ember-observer/no-glimmer-components': 'error',
     'ember-observer/no-jquery-integration': 'error',
     'ember-observer/no-tracked': 'error',
+    'ember-observer/has-maybe-embroider': 'error',
   },
 };
