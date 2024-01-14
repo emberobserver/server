@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Run builds of these types when we are enqueuing tests.
-BUILD_TYPES = [:ember_version_compatibility, :embroider]
+BUILD_TYPES = [:ember_version_compatibility, :embroider].freeze
 
 namespace :tests do
   task queue_canary_tests: :environment do
