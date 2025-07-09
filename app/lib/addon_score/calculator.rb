@@ -5,7 +5,7 @@ module AddonScore
     # The following needs to be bumped any time a check is added, removed,
     # or if a check is changed in anyway. This allows us to see the effect
     # of the change in the scores
-    MODEL_VERSION = 2
+    MODEL_VERSION = 10
 
     def self.calculate_score(addon)
       score_calc(addon, CHECKS)
@@ -23,7 +23,7 @@ module AddonScore
       end
 
       weighted_value_total = score_components.sum(&:weighted_value)
-      score = ((weighted_value_total.to_d / weights_total) * 10)
+      score = ((weighted_value_total.to_d / weights_total.to_d) * 10)
 
       {
         addon_name: addon.name,
@@ -88,7 +88,10 @@ module AddonScore
       Checks::RecentCommit,
       Checks::TopDownloaded,
       Checks::TopStarred,
-      Checks::GithubContributors
+      Checks::GithubContributors,
+      Checks::NpmMaintainers,
+      Checks::HasDescription,
+      Checks::OneDotO
     ].freeze
   end
 end

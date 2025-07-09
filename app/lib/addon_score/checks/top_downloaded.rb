@@ -20,7 +20,7 @@ module AddonScore
       end
 
       def weight
-        1
+        0.5
       end
 
       def value

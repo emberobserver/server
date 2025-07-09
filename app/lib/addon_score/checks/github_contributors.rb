@@ -8,11 +8,7 @@ module AddonScore
       end
 
       def explanation
-        if value == 1
-          'Has more than one contributor on GitHub'
-        else
-          'Does NOT have more than one contributor on GitHub or does not have a valid Github repository set in `package.json`'
-        end
+        'Has at least 3 contributors on GitHub'
       end
 
       def max_value
@@ -24,11 +20,10 @@ module AddonScore
       end
 
       def value
-        if addon.valid_github_repo? && addon.github_contributors_count > 1
-          1
-        else
-          0
-        end
+        return 0 unless addon.valid_github_repo?
+        return 1 if addon.github_contributors.count > 5
+        return 0.5 if addon.github_contributors.count > 3
+        0
       end
     end
   end
