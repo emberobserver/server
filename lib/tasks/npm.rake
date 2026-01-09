@@ -4,7 +4,7 @@ require 'net/http'
 
 namespace :npm do
   task fetch_downloads: :environment do
-    addon_names = Addon.pluck(:name)
+    addon_names = Addon.not_hidden.pluck(:name)
     File.open('/tmp/addon-names.json', 'w') do |file|
       file << addon_names.to_json
     end
